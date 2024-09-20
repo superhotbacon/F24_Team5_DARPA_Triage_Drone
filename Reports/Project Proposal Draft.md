@@ -1,16 +1,16 @@
-### **Introduction**
+## **Introduction**
 
-Over the last ten years, drones have become ubiquitous in many ways. From warfare to marketing, drones have become cheaper alternatives to old problems and new solutions for emerging issues. Of these old problems comes the need to aid in search and rescue operations of fire departments, park services, police departments and more. Modern methods of search and rescue includes the use of helicopters to aid in the search of individuals. This method costs lots of money and gas, all while the clock is ticking.
+&nbsp;  Over the last ten years, drones have become ubiquitous in many ways. From warfare to marketing, drones have become cheaper alternatives to old problems and new solutions for emerging issues. Of these old problems comes the need to aid in search and rescue operations of fire departments, park services, police departments and more. Modern methods of search and rescue includes the use of helicopters to aid in the search of individuals. This method costs lots of money and gas, all while the clock is ticking.
 
-While this method works, our team believes drones could be implemented to improve this process. Autonomous drones could provide initial canvasing of an area to pinpoint locations of possible human sightings that could be followed up via helicopter or ground search team. This proposal will set out to outline a project that will build a drone to suit this objective. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that our team will strive to overcome. Our team will also examine current solutions to this problem and other approaches and argue why our project is more effective.
+&nbsp;  While this method works, our team believes drones could be implemented to improve this process. Autonomous drones could provide initial canvasing of an area to pinpoint locations of possible human sightings that could be followed up via helicopter or ground search team. This proposal will set out to outline a project that will build a drone to suit this objective. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that our team will strive to overcome. Our team will also examine current solutions to this problem and other approaches and argue why our project is more effective.
 
-### **Formulating the problem**
+## **Formulating the problem**
 
-The cost for the Coast Guard to deploy a Sikorsky HH-60 helicopter is $6530/hr. While this is usually for sea applications, this shows the exorbitant amount of money that helicopter driven search and rescue operations cost. By including autonomous drones in the tool kit, search and rescue operations can increase their productivity while reducing cost. Saving countless dollars and time as searchers race against the clock to bring back survivors alive.
+&nbsp;  The cost for the Coast Guard to deploy a Sikorsky HH-60 helicopter is $6530/hr. While this is usually for sea applications, this shows the exorbitant amount of money that helicopter driven search and rescue operations cost. By including autonomous drones in the tool kit, search and rescue operations can increase their productivity while reducing cost. Saving countless dollars and time as searchers race against the clock to bring back survivors alive.
 
-To build this drone, we must consider the scope of our project and the specific constraints we will be working with. One of the main problems we will encounter is the connectivity of the drone to the centralized position. This is necessary as the drones themselves will not have the processing power to make a full identification. But they will have enough to mark potential sightings as important or not, and then send that data back to a centralized position. This position would be a searcher in the field with the drone sent out to explore a certain area. The drone would communicate via radio with the searcher and would allow the searcher to have remote control of the drone to give it commands. The drone would need to be able to track its location via GPS. The drone will be equipped with cameras to detect humans either via Lidar, thermal imaging, or a combination of both. We will use microprocessors to wire up the drone to get all the pieces to work together. The make and type will be decided in the detailed design. The following section details further specifications.
+&nbsp; To build this drone, we must consider the scope of our project and the specific constraints we will be working with. One of the main problems we will encounter is the connectivity of the drone to the centralized position. This is necessary as the drones themselves will not have the processing power to make a full identification. But they will have enough to mark potential sightings as important or not, and then send that data back to a centralized position. This position would be a searcher in the field with the drone sent out to explore a certain area. The drone would communicate via radio with the searcher and would allow the searcher to have remote control of the drone to give it commands. The drone would need to be able to track its location via GPS. The drone will be equipped with cameras to detect humans either via Lidar, thermal imaging, or a combination of both. We will use microprocessors to wire up the drone to get all the pieces to work together. The make and type will be decided in the detailed design. The following section details further specifications.
 
-## **SPECIFICATION**
+## **Specification**
 
 **Surveillance area:**
 
@@ -160,32 +160,28 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 ## **Set Goals**
 
-### **Ensure Cost-Effectiveness and Budget Optimization**  
-**Objective:** Manage and allocate finances and budgeting to fully optimize the drone’s capabilities and performance.
+#### 1. Ensure Cost-Effectiveness and Budget Optimization
+**Objective:** Manage and allocate finances and budgeting to fully optimize the drone’s capabilities and performance.  
 **Measurement:**
 - How well the team tracks and accounts for each financial decision made throughout the project.
 - How well the team’s capability of conducting an analysis comparing the cost of products to the benefits that will provide to the drone’s performance.
 
-### **Maximize Search and Rescue Capability**
-
+#### 2. Maximize Search and Rescue Capability
 **Objective:** Enhance the capabilities of the drone making it more effective in search and rescue.
-
 **Measurement:**
-
 - How quickly the drone’s capability of targeting a lost individual and communicating the means of rescue back to the team.
 - How effective the drone is in searching for lost individuals and locating across different terrains, elevations, and scenarios.
 
-### **Ensure Usability and Safety**
-
+#### 3. Ensure Usability and Safety
 **Objective:** Optimize the drones features to create a more user- friendly device that safely operates.
-
 **Measurement:**
-
 - The success rate of how well the drone’s ability to operate without failure.
 - How easy and effective the drone’s operation is when operated by different users.
 - How effective the instruction on the drone’s usage is.
 
 ## **Timeline and Resources**
+
+<img width="1497" alt="Screenshot 2024-09-20 at 11 19 20 AM" src="https://github.com/user-attachments/assets/a383c1a6-6119-43ec-a3bc-588f8e763e80">
 
 **Resources**
 
@@ -198,22 +194,22 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 1) **Culture**
 
-\- The development of drones in use of search and rescue contributes positive outlooks on technological advancement. Using drone technology to solve real world problems by way of technology creates a culture of high-tech innovation.
+- The development of drones in the use of search and rescue contributes to positive outlooks on technological advancement. Using drone technology to solve real-world problems by way of technology creates a culture of high-tech innovation.
 
 2) **Society**
 
-\- Aviation drones can be faster, and safer than the boots on the ground method of search and rescue. A drone can access terrain that might be dangerous for humans to traverse, potentially saving lives. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
+- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone can access terrain that might be dangerous for humans to traverse, potentially saving lives. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
 
 3) **Environment**
 
-\- Ground-based search and rescue operations can be disruptive to the natural environment. Aerial search and rescue operations by way of drones are less invasive and leave a smaller environmental footprint.
+- Ground-based search and rescue operations can be disruptive to the natural environment. Aerial search and rescue operations by way of drones are less invasive and leave a smaller environmental footprint.
 
 4) **Public Safety**
 
-\- Search and Rescue drones allow for quick intervention and less risk to both the victim and rescue professionals. These factors contribute to a higher chance of a successful rescue.
+- Search and Rescue drones allow for quick intervention and less risk to both the victim and rescue professionals. These factors contribute to a higher chance of a successful rescue.
 
 5) **Economy**
 
-\- Traditional search and rescue methods require expensive resources such as manpower, equipment and fuel. On the other hand, search and rescue drones can allow for more cost-effective rescue plans.
+- Traditional search and rescue methods require expensive resources such as manpower, equipment, and fuel. On the other hand, search and rescue drones can allow for more cost-effective rescue plans.
 
-\- The application of search and rescue drones can grow the drone and technological development industry. This would result in job opportunities and economic stimulation.
+- The application of search and rescue drones can grow the drone and technological development industry. This would result in job opportunities and economic stimulation.
