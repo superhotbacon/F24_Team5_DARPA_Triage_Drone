@@ -144,7 +144,7 @@ If our project is to be a success, our drone will need to excel at one of the pr
 \- Hardware  
 \- Software  
 
-## **Impacts of a search and rescue drone**
+## **Impacts of a search and rescue drone (8)**
 
 1) **Culture**
 
@@ -170,6 +170,8 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 
 ## **References**
+(8) Insert reference here 
+
 
 
 
