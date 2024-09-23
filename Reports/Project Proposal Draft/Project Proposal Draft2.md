@@ -1,9 +1,10 @@
 
+
 ## **Introduction**
 
 &nbsp; Over the last ten years, drones have become ubiquitous in many ways. From warfare to marketing, drones have become cheaper alternatives to old problems and new solutions for emerging issues. In the effort to help first responders, drones can be used in many ways to help fight fires, locate lost persons, identify hazardous materials, and more.
 
-&nbsp; In search and rescue missions, our drone could provide initial canvasing of an area to pinpoint locations of possible human sightings that could be followed up via helicopter or ground search team. Furthermore, our drone could help scan buildings to find the hottest part of the fire. This proposal will set out to outline a project that will build a drone to suit these objectives. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that our team will strive to overcome. Our team will also examine current solutions to this problem and other approaches and argue why our project is more effective.
+&nbsp; In search and rescue missions, our drone could provide initial canvasing of an area to pinpoint locations of possible human sightings that could be followed up via helicopter or ground search team. Furthermore. our drone could help scan buildings to find the hottest part of the fire. This proposal will set out to outline a project that will build a drone to suit these objectives. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that our team will strive to overcome. Our team will also examine current solutions to this problem and other approaches and argue why our project is more effective.
 
 ## **Formulating the problem**
 
@@ -31,72 +32,41 @@ The drone shall weigh less than 20 lbs to ensure ease of transport. The done wei
 
 Measures of Success: Weigh the drone on a scale. Set up a test with members of the fire department to ensure they can pilot the drone without much training.
 
-**Battery Life:**
+**Battery Life and batteries:**
 
-Batter weight:
+The drone shall be able to fly for at least 30 minutes during normal operation of any mode. The drone shall be able to stay charging on the dock until needed for use without becoming overcharged or being a hazard.
 
-1. Small 100- 300 g
-2. Medium 300-600 g
-3. Large 1-4 kg
+Measures of success: run tests during each mode of operation to ensure it meats specification. Run tests or provide documentation showing why the drone is safe to be left charging on the dock.
 
-Depends on the customer and area being surveillance.
+**Zoom specifications**
 
-**Desired Climate:**
+The drone shall be able to read the side of a rail car at a distance of at lest 50 feet. The drone shall be able to clearly read the markings on a barrel at a range of at least 20 feet. 
 
-Weather:
+Measures of success: conduct tests with standard font sizes of a barrel and rail car to determine readability. Conduct tests with some reference of measurement, such as a football field.
 
-- Clear Skys
-- Cloudy
-- Overcast
-- Snow on the ground
-- Nighttime
+**Ambient temperature readings**
 
-Anything that does not have to deal with precipitation.
+The drone shall be able to sense the ambient temperature and display it on screen and alert users when the temperature is too high. If the drone is in an autonomous mode, it will use the temperature readings to ensure its own safety.
 
-**Processing power:**
+Measures of success: Conduct tests to ensure the temperature reading is accurate and precise on screen. Run decoy tests with a lower temperature threshold than documented as dangerous to ensure the drone will take precautions to avoid the decoy temperature. Provide documentation showing the highest temperature the drone can go and provide a margin of error so that accidents do not occur.
 
-This drone will have to process images, video, collision algorithms, and programs while searching.
+**Ambient Chemical readings**
 
-**Max data storage:**
+The drone shall be able to detect LEL (lower explosive level) percentages for common organic compounds found in fires. The drone shall be able to detect and display oxygen, carbon dioxide, and Hydrogen Sulfide levels.
 
-Storage inputs:
+Measures of success: Provide documentation that displayed levels are accurate.
 
-1\. 4K Video Recording: 20-25 GB per hour
+**GPS location**
 
-2\. 1080p Video Recording: 6-10 GB per hour
+The drone shall be able to take in GPS coordinates and fly to specified locations to carry out certain tasks. The drone shall also be able to track its own GPS location and relay this information back to the controller.
 
-3\. Thermal Video: 1-2 GB per hour
+Measures of success: program the drone to fly out to specified areas and ensure it arrives to said areas.
 
-4\. Telemetry Data: <1 MB per hour
+**Video recording and live feed**
 
-Considering this, we believe we will need a 256 GB Flash Drive/ SD Card. They are very light but if we need to, we might get away with less storage. Cost: 40$
+The drone shall be able to transmit its feed directly to the fire department and upload its video after landing back at the dock
 
-**Picture Resolution of camera:**
-
-Resolution:
-
-1. 4k (Best Option)
-2. 1080p
-
-Zoom:
-
-1. Optical zoom (Best Option)
-2. Digital zoom
-
-Cost Depending.
-
-**Camera Options:**
-
-Cameras:
-
-1. FLIR Vue Pro R (Thermal Camera) cost: 2,500 $ supposably the most affordable
-2. DJI Zenmuse XT2 (Thermal + Visual) cost: 2,900$
-3. RunCam Split 4: 200$
-4. DJI Zenmuse Z3 cost: 500$ Best Option for non-thermal
-
-Bulk of our cost will be coming from the camera. For a camera with 4k or 10080p it is recommended a max height of 200ft-400ft off the ground to keep good detail in the camera.
-
-**\*The spec option list is kept broad as a budget has not been given**
+Measures of success: Ensure the drone can properly store data and be usable after landing. Make sure the live feed of the drone is watchable up to the full range of the drone.
 
 ## **Relevant Literature**
 
@@ -199,7 +169,9 @@ If our project is to be a success, our drone will need to excel at one of the pr
 \- The application of search and rescue drones can grow the drone and technological development industry. This would result in job opportunities and economic stimulation.
 
 
-### **References**
+## **References**
 
 
-### **Statement of contribution**
+
+
+## **Statement of contribution**
