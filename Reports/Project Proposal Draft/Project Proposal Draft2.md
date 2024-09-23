@@ -1,51 +1,35 @@
+
 ## **Introduction**
 
-&nbsp; Over the last ten years, drones have become ubiquitous in many ways. From warfare to marketing, drones have become cheaper alternatives to old problems and new solutions for emerging issues. Of these old problems comes the need to aid in search and rescue operations of fire departments, park services, police departments and more. Modern methods of search and rescue includes the use of helicopters to aid in the search of individuals. This method costs lots of money and gas, all while the clock is ticking.
+&nbsp; Over the last ten years, drones have become ubiquitous in many ways. From warfare to marketing, drones have become cheaper alternatives to old problems and new solutions for emerging issues. In the effort to help first responders, drones can be used in many ways to help fight fires, locate lost persons, identify hazardous materials, and more.
 
-&nbsp; While this method works, our team believes drones could be implemented to improve this process. Autonomous drones could provide initial canvasing of an area to pinpoint locations of possible human sightings that could be followed up via helicopter or ground search team. This proposal will set out to outline a project that will build a drone to suit this objective. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that our team will strive to overcome. Our team will also examine current solutions to this problem and other approaches and argue why our project is more effective.
+&nbsp; In search and rescue missions, our drone could provide initial canvasing of an area to pinpoint locations of possible human sightings that could be followed up via helicopter or ground search team. Furthermore, our drone could help scan buildings to find the hottest part of the fire. This proposal will set out to outline a project that will build a drone to suit these objectives. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that our team will strive to overcome. Our team will also examine current solutions to this problem and other approaches and argue why our project is more effective.
 
 ## **Formulating the problem**
 
-&nbsp; The cost for the Coast Guard to deploy a Sikorsky HH-60 helicopter is $6530/hr. While this is usually for sea applications, this shows the exorbitant amount of money that helicopter driven search and rescue operations cost. By including autonomous drones in the tool kit, search and rescue operations can increase their productivity while reducing cost. Saving countless dollars and time as searchers race against the clock to bring back survivors alive.
+&nbsp; To build this drone, we must consider the scope of our project and the specific constraints we will be working with. One of the main problems we will encounter is the connectivity of the drone to the centralized position. This is necessary as the drones themselves will not have the processing power to make a full identification of a lost person. Rather, it would send back data of a possible sighting to be sifted through by the Fire Department. The drone would need to be able to track its location via GPS in order to not get lost as well as searching a target area. A large obstacle to be tackled is locating individuals through the tree canopy. Thermal imaging itself does not penetrate the tree canopy well. So more sophisticated approaches must be implemented. 
 
-&nbsp; To build this drone, we must consider the scope of our project and the specific constraints we will be working with. One of the main problems we will encounter is the connectivity of the drone to the centralized position. This is necessary as the drones themselves will not have the processing power to make a full identification. But they will have enough to mark potential sightings as important or not, and then send that data back to a centralized position. This position would be a searcher in the field with the drone sent out to explore a certain area. The drone would communicate via radio with the searcher and would allow the searcher to have remote control of the drone to give it commands. The drone would need to be able to track its location via GPS. The drone will be equipped with cameras to detect humans either via Lidar, thermal imaging, or a combination of both. We will use microprocessors to wire up the drone to get all the pieces to work together. The make and type will be decided in the detailed design. The following section details further specifications.
+&nbsp;In addition to autonomous capabilities, the drone will be able to be manually controlled. This will provide more functionality to the drone. As we add equipment to the drone, it becomes heavier so our team will need to take care to get the lightest equipment possible while also reigning in our budget. Take will also have to be taken in order to safely charge the drone. Over charging Lithium Polymer batteries can be very dangerous. This is especially of concern as Li-Po batteries are a popular choice for drones.
 
 ## **SPECIFICATION**
 
 **Surveillance area:**
 
-5-mile radius of strong signal stability possibly for:
+The drone shall have a range of 5 miles on flat land.
 
-1. Tennessee Tech
-2. Small Park
-3. In the city
-
-10-mile radius will be harder to maintain strong stability possibly for:
-
-1. Big Parks (Best Option)
-2. Hiking paths
-3. Mountain biking areas
+Measure of success: Take drone top open piece of land and set up a perimeter 5 miles away. Ensure the drone can make it to the other side of the target area.
 
 **Max Height of drone:**
 
-Height:
+The drone shall be able to reach a height of 200 feet. The drone shall be expected to fly over buildings and trees without losing connection.
 
-1. 65ft – 125ft
-2. 125ft – 200ft (Best Option)
-3. 200ft – 285 ft
-4. 285ft – 400 ft
-
-Drone will be expected to be able to fly above buildings and trees while getting a good visibility form the camera.
+Measures of success: Use barometric readings on the drone to verify the drone can reach a height of 200 feet. To test the connectivity. Fly the drone around an area with buildings to ensure it does not lose connection. Possibly in downtown Cookeville.
 
 **Drone weight:**
 
-Weight:
+The drone shall weigh less than 20 lbs to ensure ease of transport. The done weight shall not restrict the agility of the drone. It shall be maneuverable and pilot-able by most individuals with minimal training.  
 
-1. Heavy 10 lbs.
-2. Mid 5-7 lbs. (Best Option)
-3. Light 2 lbs.
-
-The larger the surveillance area the Heavier the drone will be.
+Measures of Success: Weigh the drone on a scale. Set up a test with members of the fire department to ensure they can pilot the drone without much training.
 
 **Battery Life:**
 
