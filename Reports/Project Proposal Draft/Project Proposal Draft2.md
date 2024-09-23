@@ -197,3 +197,9 @@ If our project is to be a success, our drone will need to excel at one of the pr
 \- Traditional search and rescue methods require expensive resources such as manpower, equipment, and fuel. On the other hand, search and rescue drones can allow for more cost-effective rescue plans.
 
 \- The application of search and rescue drones can grow the drone and technological development industry. This would result in job opportunities and economic stimulation.
+
+
+### **References**
+
+
+### **Statement of contribution**
