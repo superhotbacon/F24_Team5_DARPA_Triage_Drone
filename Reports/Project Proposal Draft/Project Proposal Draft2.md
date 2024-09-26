@@ -152,7 +152,7 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 2) **Society**
 
-\- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone can access terrain that might be dangerous for humans to traverse, potentially saving lives. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
+\- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone can assess the severity of victims and create a priorty list for first responders to save more lives. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
 
 3) **Environment**
 
@@ -160,7 +160,7 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 4) **Public Safety**
 
-\- Search and Rescue drones allow for quick intervention and less risk to both the victim and rescue professionals. These factors contribute to a higher chance of a successful rescue.
+\- Search and Rescue drones allow for faster response times from rescue professionals as well as faster aid brought to the victims in a post emergency situation. These factors contribute to a higher chance of a successful rescue.
 
 5) **Economy**
 
