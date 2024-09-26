@@ -14,59 +14,35 @@
 
 ## **SPECIFICATION**
 
-**Surveillance area:**
+**1. System shall obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).**  
+&nbsp; \-Measure of success: Able to detect a simulated heartbeat accurately of a stationary target 70% of the time. 
 
-The drone shall have a range of 5 miles on flat land.
+**2. System shall accomplish all functionality from at least one meter away.**  
+&nbsp; \-Measure of success:  Drone completes all the listed measures of success from 1 meter away.
 
-Measure of success: Take drone top open piece of land and set up a perimeter 5 miles away. Ensure the drone can make it to the other side of the target area.
+**3. System shall obtain the breathing rate and frequency (range 0.13 to 1 Hz).**  
+&nbsp; \-Measure of success: Using group members breathing at a set rate at room temperature as a control, the drone accurately reads this set rate within 20% margin of error.
 
-**Max Height of drone:**
+**4. System shall give vocal commands using speaker and listen for response to evaluate the cognitive ability of a victim.**  
+&nbsp; \-Measure of success: Being able to verbally communicate from operator to drone. The operator and victim should be able to clearly hear each other.
 
-The drone shall be able to reach a height of 200 feet. The drone shall be expected to fly over buildings and trees without losing connection.
+**5. System shall limit the audio frequency received between 80 to 255 Hz.**  
+&nbsp; \-Measure of success: Test different frequencies in and out of range to ensure the drone receives only specified frequencies.
 
-Measures of success: Use barometric readings on the drone to verify the drone can reach a height of 200 feet. To test the connectivity. Fly the drone around an area with buildings to ensure it does not lose connection. Possibly in downtown Cookeville.
+**6. System shall not store any voice recordings in compliance with the two party consent laws for select states.**  
+&nbsp; \-Measure of success: Provide documentation that software does not save audio recordings in non dynamic memory.
 
-**Drone weight:**
+**7. System shall operate at full functionality for 15 to 60 minutes.**  
+&nbsp; \-Measure of success: Time the drone in each operating condition until the drone runs out of battery. Drone will inform the user when the battery is below 10%.
 
-The drone shall weigh less than 20 lbs to ensure ease of transport. The done weight shall not restrict the agility of the drone. It shall be maneuverable and pilot-able by most individuals with minimal training.  
+**8. System shall display triage results and vitals wirelessly.**  
+&nbsp; \-Measure of success: Triage results will display accurate data on controllers interface that is readable for first responders.
 
-Measures of Success: Weigh the drone on a scale. Set up a test with members of the fire department to ensure they can pilot the drone without much training.
+**9. System shall weigh less than 20 pounds as per DARPA’s requirements for the Drone Triage Challenge or DTC [1].**  
+&nbsp; \-Measure of success: The drone will be placed on a scale and will read under 20 lbs.
 
-**Battery Life and batteries:**
-
-The drone shall be able to fly for at least 30 minutes during normal operation of any mode. The drone shall be able to stay charging on the dock until needed for use without becoming overcharged or being a hazard.
-
-Measures of success: run tests during each mode of operation to ensure it meats specification. Run tests or provide documentation showing why the drone is safe to be left charging on the dock.
-
-**Zoom specifications**
-
-The drone shall be able to read the side of a rail car at a distance of at lest 50 feet. The drone shall be able to clearly read the markings on a barrel at a range of at least 20 feet. 
-
-Measures of success: conduct tests with standard font sizes of a barrel and rail car to determine readability. Conduct tests with some reference of measurement, such as a football field.
-
-**Ambient temperature readings**
-
-The drone shall be able to sense the ambient temperature and display it on screen and alert users when the temperature is too high. If the drone is in an autonomous mode, it will use the temperature readings to ensure its own safety.
-
-Measures of success: Conduct tests to ensure the temperature reading is accurate and precise on screen. Run decoy tests with a lower temperature threshold than documented as dangerous to ensure the drone will take precautions to avoid the decoy temperature. Provide documentation showing the highest temperature the drone can go and provide a margin of error so that accidents do not occur.
-
-**Ambient Chemical readings**
-
-The drone shall be able to detect LEL (lower explosive level) percentages for common organic compounds found in fires. The drone shall be able to detect and display oxygen, carbon dioxide, and Hydrogen Sulfide levels.
-
-Measures of success: Provide documentation that displayed levels are accurate.
-
-**GPS location**
-
-The drone shall be able to take in GPS coordinates and fly to specified locations to carry out certain tasks. The drone shall also be able to track its own GPS location and relay this information back to the controller.
-
-Measures of success: program the drone to fly out to specified areas and ensure it arrives to said areas.
-
-**Video recording and live feed**
-
-The drone shall be able to transmit its feed directly to the fire department and upload its video after landing back at the dock
-
-Measures of success: Ensure the drone can properly store data and be usable after landing. Make sure the live feed of the drone is watchable up to the full range of the drone.
+**10. System shall display results in close to real time**  
+&nbsp; \-Measure of success: Using synced stop watches, two group members will be placed at max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements.
 
 ## **Relevant Literature**
 
@@ -81,10 +57,8 @@ There are essentially 4 basic steps in the process:
 
 How each is accomplished is decided by the engineering team.
 
-### **Contemporary Specs**
-
-The following are the range of certain drone specifications that we deem relevant to the project according to this website's ranking of the top SAR drones of 2023 (<https://www.dslrpros.com/dslrpros-blog/the-top-12-search-and-rescue-drones-of-2023-review/>).
-
+### **Constraints**
+(revisit below) hehe
 #### Cost
 
 - Min - $5,000
@@ -144,7 +118,7 @@ If our project is to be a success, our drone will need to excel at one of the pr
 \- Hardware  
 \- Software  
 
-## **Impacts of a search and rescue drone (8)**
+## **Impacts of a search and rescue drone**
 
 1) **Culture**
 
@@ -152,7 +126,7 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 2) **Society**
 
-\- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone can assess the severity of victims and create a priorty list for first responders to save more lives. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
+\- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone can access terrain that might be dangerous for humans to traverse, potentially saving lives. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
 
 3) **Environment**
 
@@ -160,7 +134,7 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 4) **Public Safety**
 
-\- Search and Rescue drones allow for faster response times from rescue professionals as well as faster aid brought to the victims in a post emergency situation. These factors contribute to a higher chance of a successful rescue.
+\- Search and Rescue drones allow for quick intervention and less risk to both the victim and rescue professionals. These factors contribute to a higher chance of a successful rescue.
 
 5) **Economy**
 
@@ -170,9 +144,10 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 
 ## **References**
-(8) Insert reference here 
-
-
+[1] DARPA Triage Challenge. [Online]. Available: https://triagechallenge.darpa.mil/. [Accessed:
+26-Jan-2024].
+[2] “DTC: FAQ,” DTC | FAQ. [Online]. Available: https://triagechallenge.darpa.mil/faq.
+[Accessed: 26-Jan-2024].
 
 
 
