@@ -1,11 +1,18 @@
-| SUBSYSTEM                          | PART NUMBER            | DESCRIPTION     | MANUFACTURE NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
-| :---:                              | :---:                  | :---:           | :---:            | :---:    | :---:         | :---:         |
+| SUBSYSTEM                          | PART NUMBER            | DESCRIPTION     | MANUFACTURER NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
+| :---                              | :---:                  | :---:           | :---:            | :---:    | :---:         | :---:         |
 | _Wireless Communication Subsystem_ | 4735-RAKDAP1-0-WB-N-ND | [RAKDAP1-0-WB-N](https://www.digikey.com/en/products/detail/rakwireless-technology-limited/RAKDAP1-0-WB-N/18682780?s=N4IgTCBcDaIEoEEDSARBAFAjCAugXyA) | RAKwireless Technology Limited | 2 | $10.90 | $21.80 |
 |                                    | EB0047418              | [RAK811 LPWAN Breakout](https://www.elecbee.com/blog/en-24682-Node-811-Open-Source-Development-Board-with-Built-in-SX1276-Low-Power-Consumption-and-Long-Distance-Transceiver) | RAKwireless Technology Limited | 2 | $32.39 | $64.78 |
 | _Heartbeat/Respiratory Subsystem_  | 513-NJR4262J           | [24 GHz Doppler Sensor Module](https://www.mouser.com/ProductDetail/Nisshinbo/NJR4262J?qs=d9U39LAeJF3Q43gbNnrW1w%3D%3D) | JRC | 1 | $28.87 | $28.87 |
 |                                    | B08S7HYGJM             | [High Precision AD HAT Board Waveshare ADC Module](https://www.amazon.com/Waveshare-High-Precision-Raspberry-ADS1263-Compatible/dp/B08S7HYGJM?th=1) | Waveshare | 1 | $49.99 | $49.99 |
 |                                    | OP07CSZ-REEL7TR-ND     | [Prescision Amplifier](https://www.digikey.com/en/products/detail/analog-devices-inc/OP07CSZ-REEL7/995520?utm_adgroup=Analog%20Devices&utm_source=google&utm_medium=cpc&utm_campaign=Dynamic%20Search_EN_Focus%20Suppliers&utm_term&utm_content=Analog%20Devices&gclid=Cj0KCQjw6cKiBhD5ARIsAKXUdyYBkOYL-1aWh53aOll8AXXF1uU5lS3YKelAGR3BP4-yuHW5urheIyoaAt-TEALw_wcB) | Texas Instruments | 2 | $2.21 | $4.42| 
 |                                    | CF14JT1K00TR-ND        | [1k Ohm 5% 1/4W axial resistor](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT1K00/1830350?utm_adgroup=General&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Zombie%20SKUs&utm_term&utm_content=General&gclid=Cj0KCQjw6cKiBhD5ARIsAKXUdyYzUyry_5jJzcHVz5VKJjgaU44iZpaTrko4jueSd3Ms6wtAu-FjUNYaAqxcEALw_wcB)     | Stackpole Electronics | 2 | $0.10 | $0.20 |
+|                                    | CF14JT3K00TR-ND        | [3k Ohm 5% 1/4W axial resistor](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT3K00/1741418) | Stackpole Electronics | 2 | $0.10 | $0.20 |
+|                                    | CF14JT15K0TR-ND        | [15k Ohm 5% 1/4W axial resistor](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT15K0/1741298) | Stackpole Electronics | 2 | $0.10 | $0.20 |
+|                                    | 338-2641-ND            | [Mica 56 pF 5% 500V Radial](https://www.digikey.com/en/products/detail/cornell-dubilier-electronics-cde/CD15ED560JO3F/1917754) | Cornell Dubilier Electronics (CDE) | 2 | $1.79 | $3.58 |
+|                                    | 338-3057-ND            | [Mica 8200 pF 5% 500V Radial](https://www.digikey.com/en/products/detail/cornell-dubilier-electronics-cde/CD30FD822JO3F/1918194) | Cornell Dubilier Electronics (CDE) | 2 | $13.47 | $26.94 |
+|                                    | 2191-80.00000358-ND    | [IPS-937 24GHZ RADAR MODULE](https://www.digikey.com/en/products/detail/innosent-gmbh/80-00000358/10416543) | InnoSenT GmbH | 1 | $135.99 | $135.99 |
+| _Computing_                        | J1020 V2               | [Jetson Nano Developer Kit](https://www.seeedstudio.com/reComputer-J1020-v2-p-5498.html) | Nvidia | 1 | $279.00 | $279.00 |
+|                                    | RAS-4-4G               | [Raspberry Pi 4 Model B](
 
 
 
