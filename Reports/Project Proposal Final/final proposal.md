@@ -51,3 +51,12 @@
 **10. System shall display results in close to real time**  
 &nbsp; \-Measure of success: Using synced stop watches, two group members will be placed at max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements.
 
+**Constaints**
+
+\- The drone SHALL be user friendly.  
+\- The drone SHALL have a integrated system for security.  
+\- The drone SHALL remain under 400 ft above ground level **[4]**.  
+\- The drone SHALL not exceed 100 mph **[4]**.  
+\- The drone SHALL be equipped with anti-collision lighting **[4]**.  
+
+
