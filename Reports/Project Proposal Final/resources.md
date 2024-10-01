@@ -1,5 +1,5 @@
 | SUBSYSTEM                          | PART NUMBER            | DESCRIPTION     | MANUFACTURER NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
-| :---                              | :---:                  | :---:           | :---:            | :---:    | :---:         | :---:         |
+| :---:                              | :---:                  | :---:           | :---:            | :---:    | :---:         | :---:         |
 | _Wireless Communication Subsystem_ | 4735-RAKDAP1-0-WB-N-ND | [RAKDAP1-0-WB-N](https://www.digikey.com/en/products/detail/rakwireless-technology-limited/RAKDAP1-0-WB-N/18682780?s=N4IgTCBcDaIEoEEDSARBAFAjCAugXyA) | RAKwireless Technology Limited | 2 | $10.90 | $21.80 |
 |                                    | EB0047418              | [RAK811 LPWAN Breakout](https://www.elecbee.com/blog/en-24682-Node-811-Open-Source-Development-Board-with-Built-in-SX1276-Low-Power-Consumption-and-Long-Distance-Transceiver) | RAKwireless Technology Limited | 2 | $32.39 | $64.78 |
 | _Heartbeat/Respiratory Subsystem_  | 513-NJR4262J           | [24 GHz Doppler Sensor Module](https://www.mouser.com/ProductDetail/Nisshinbo/NJR4262J?qs=d9U39LAeJF3Q43gbNnrW1w%3D%3D) | JRC | 1 | $28.87 | $28.87 |
@@ -12,7 +12,12 @@
 |                                    | 338-3057-ND            | [Mica 8200 pF 5% 500V Radial](https://www.digikey.com/en/products/detail/cornell-dubilier-electronics-cde/CD30FD822JO3F/1918194) | Cornell Dubilier Electronics (CDE) | 2 | $13.47 | $26.94 |
 |                                    | 2191-80.00000358-ND    | [IPS-937 24GHZ RADAR MODULE](https://www.digikey.com/en/products/detail/innosent-gmbh/80-00000358/10416543) | InnoSenT GmbH | 1 | $135.99 | $135.99 |
 | _Computing_                        | J1020 V2               | [Jetson Nano Developer Kit](https://www.seeedstudio.com/reComputer-J1020-v2-p-5498.html) | Nvidia | 1 | $279.00 | $279.00 |
-|                                    | RAS-4-4G               | [Raspberry Pi 4 Model B](
+|                                    | RAS-4-4G               | [Raspberry Pi 4 Model B](https://www.amazon.com/Raspberry-Model-2019-Quad-Bluetooth/dp/B07TC2BK1X?th=1) | Raspberry Pi | 1 | $60.98 | $60.98 |
+| _Voice Detection Subsystem_        | BOB-19389              | [OPA344, SPH8878LR5H-1 MEMS Omnidirectional Microphones Audio Evaluation Boar](https://www.digikey.com/en/products/detail/sparkfun-electronics/BOB19389/16342333) | SparkFun Electronics | 1 | $6.95 | $6.95 |
+|                                    | COM-18343              | [4 Ohms General Purpose Speaker 4 W Top Rectangular](https://www.sparkfun.com/products/18343) | SparkFun Electronics | 1 | $10.95 | $10.95 |
+| _Power Subsystem_                  | 3017                   | [DC-DC 5A Buck Converter](https://www.icstation.com/step-down-buck-converter-power-supply-module-125v-adjustable-voltmeter-p-3017.html) | Valefod | 1 | $4.89 | $4.89 |
+|                                    | DD39AJPA               | [Positive And Negative Dual Output Power Supply Module](https://www.aliexpress.us/item/3256804028860260.html?src=google&aff_fcid=4f4e2b29191e40388e6ac755398bc5ec-1694653440148-04081-UneMJZVf&aff_fsk=UneMJZVf&aff_platform=aaf&sk=UneMJZVf&aff_trace_key=4f4e2b29191e40388e6ac755398bc5ec-1694653440148-04081-UneMJZVf&terminal_id=d06cb1cdc06c4998b4935111d106946f&afSmartRedirect=y&gatewayAdapt=glo2usa) | eletechsup | 1 | $0.99 | $0.99 |
+|                                    |
 
 
 
