@@ -51,7 +51,7 @@
 **10. System shall display results in close to real time**  
 &nbsp; \-Measure of success: Using synced stop watches, two group members will be placed at max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements.
 
-**Constaints**
+**Constraints**
 
 \- The drone SHALL be user friendly.  
 \- The drone SHALL have a integrated system for security.  
@@ -121,30 +121,54 @@ M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, �
 |                                    | B0BTHSDF4S             | [20 Pcs DC Power Cable 5A 12v DC](https://www.amazon.com/dp/B0BTHSDF4S/ref%3Dsspa_dk_detail_3?psc=1&pd_rd_i=B0BTHSDF4S&pd_rd_w=1OS6v&content-id=amzn1.sym.08ba9b95-1385-44b0-b652-c46acdff309c&pf_rd_p=08ba9b95-1385-44b0-b652-c46acdff309c&pf_rd_r=B74W16YJ43CMEFKHPWKW&pd_rd_wg=M4xV8&pd_rd_r=78ab97fe-0ffb-402f-b35f-0bdd04872f7e&s=industrial&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWxfdGhlbWF0aWM&customerReviews) | CENTROPOWER | 1 | $9.29 | $9.29 |
 |                                    | B078NRLSKL             | [NP-F550 Battery 2-Pack and Wall Charger](https://www.amazon.com/dp/B078NRLSKL/ref%3Dsspa_dk_detail_0?psc=1&pd_rd_i=B078NRLSKL&pd_rd_w=rglsi&content-id=amzn1.sym.08ba9b95-1385-44b0-b652-c46acdff309c&pf_rd_p=08ba9b95-1385-44b0-b652-c46acdff309c&pf_rd_r=WKYPTFJDH5F1FP8918S5&pd_rd_wg=r98KB&pd_rd_r=a3acff40-bd0e-4712-b060-39a785e03d4e&s=electronics&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWxfdGhlbWF0aWM&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyUUxSNzZQMjBLUlpWJmVuY3J5cHRlZElkPUEwNjM4OTE0MlczWFNPVlNaSEc3MyZlbmNyeXB0ZWRBZElkPUEwNjkyNzg5RzJJWVJMWlJIRTZDJndpZGdldE5hbWU9c3BfZGV0YWlsX3RoZW1hdGljJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ%3D%3D) | Artman | 1 | $26.99 | $26.99 |
 | _Drone System_                     | PF728331               | [Parrot ANAFI Ai 4G Robotic Drone](https://www.adorama.com/parpf728331.html#main-product-tabs) | Parrot ANAFI Ai 4G Robotic Drone | 1 | $4,500.00 | $4,500.00 |
-|                                    |                        |                                                                                                |                                  |   | **Total Expenses** | $5264.00 |
-|                                    |                        |                                                                                                |                                  |   | **Total Quantity** | 29 |
+|                                    |                        |                                                                                                |                                  |   | **Total Expenses** | **$5264.00** |
+|                                    |                        |                                                                                                |                                  |   | **Total Quantity** | 29 |  
 
-
-‌## **Set Goals**
+## Set Goals
 
 #### 1. Ensure Cost-Effectiveness and Budget Optimization
-**Objective:** Manage and allocate finances and budgeting to fully optimize the drone’s capabilities and performance.  
+**Objective:** Manage and allocate finances and budgeting to fully optimize the drone’s capabilities and performance.    
 **Measurement:**
 - How well the team tracks and accounts for each financial decision made throughout the project.
 - How well the team’s capability of conducting an analysis comparing the cost of products to the benefits that will provide to the drone’s performance.
 
 #### 2. Maximize Drone effectiveness
-**Objective:** Enhance the capabilities of the drone making it as effective as possible
+**Objective:** Enhance the capabilities of the drone making it as effective as possible.  
 **Measurement:**
 - Analyze how close the drone comes to achieving the measures of success
 - Routinely evaluate the trajectory of the team to ensure timeline is kept and project scope is kept within bounds
 
 #### 3. Ensure Usability and Safety
-**Objective:** Optimize the drones features to create a more user- friendly device that operates safely 
+**Objective:** Optimize the drones features to create a more user- friendly device that operates safely.  
 **Measurement:**
 - The success rate of how well the drone operates without failure.
 - How easy and effective the drone’s operation is when operated by different users.
 - How effective the instruction on the drone’s usage is.
+
+## **Impacts of a search and rescue drone**
+
+1) **Culture**
+
+\- The development of drones in the use post emergency situations contributes to positive outlooks on technological advancement. Using drone technology to solve real-world problems by way of technology creates a culture of high-tech innovation.
+
+2) **Society**
+
+\- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone that can access medical conditions of victims by prioritizing victims helps first responders use their resources in way that maximizes the help they can provide. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
+
+3) **Environment**
+
+\- Ground-based search and rescue operations can be disruptive to the natural environment. Aerial search and rescue operations by way of drones are less invasive and leave a smaller environmental footprint.
+
+4) **Public Safety**
+
+\- Rescue drones allow for faster response times from rescue professionals as well as faster aid brought to the victims in a post emergency situation. These factors contribute to a higher chance of a successful rescue.
+
+5) **Economy**
+
+\- Traditional rescue methods require expensive resources such as manpower, equipment, and fuel. On the other hand, search and rescue drones can allow for more cost-effective rescue plans.
+
+\- The application of search and rescue drones can grow the drone and technological development industry. This would result in job opportunities and economic stimulation.
+
 ‌
   
 
