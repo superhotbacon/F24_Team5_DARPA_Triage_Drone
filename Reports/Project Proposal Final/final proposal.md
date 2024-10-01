@@ -93,7 +93,9 @@ Since our drone will spend the majority of its time searching, it's important to
 [3]
 M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, “Human Vital Signs Detection Methods and Potential Using Radars: A Review,” Sensors, vol. 20, no. 5, p. 1454, Mar. 2020, doi: https://doi.org/10.3390/s20051454.
 
-###**RESOURCES**
+## **Timeline and Resources**
+
+<img width="1497" alt="Screenshot 2024-09-20 at 11 19 20 AM" src="https://github.com/user-attachments/assets/a383c1a6-6119-43ec-a3bc-588f8e763e80">
 
 
 | SUBSYSTEM                          | PART NUMBER            | DESCRIPTION     | MANUFACTURER NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
