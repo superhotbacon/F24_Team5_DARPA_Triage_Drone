@@ -5,6 +5,7 @@
 &nbsp; Aviation drones have become useful tools for scanning areas that are too difficult or too dangerous for first responders to reach. Taking a step further, aviation drones can assist in assessing the severity of an emergency situation. During a situation such as this, having a drone with sensors and AI capabilities can assess the medical conditions of the victims, allowing first responders to prioritize the most affected areas. This would grant first responders the ability to use resources such as time and aid more efficiently, ultimately resulting in more lives saved. Currently, there are no aviation drones that have the capability to categorize victims of an emergency by prioritizing critical injuries. Due to this problem, the Defense Advanced Research Projects Agency (DARPA) has come up with a challenge to provide first responders with this technology. 
 
 \-The drone with integrated cameras, sensors, and AI algorithms shall fly above the ground to quickly detect possible cassualties in large areas. 
+
 \-The drone shall fly close to victims and use sensors to collect medical data about the injured person. 
 
 &nbsp; In rescue missions, our drone could provide initial canvasing of an area to pinpoint locations of possible human casualties as well as assess a victims critical condition. This could be followed up via helicocpter or ground medical team by way of utmost effeciency. This proposal will set out to outline a project that will build a drone to suit these objectives. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that our team will strive to overcome. Our team will also examine current solutions to this problem and other approaches and argue why our project is more effective.
@@ -131,11 +132,11 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 1) **Culture**
 
-\- The development of drones in the use of search and rescue contributes to positive outlooks on technological advancement. Using drone technology to solve real-world problems by way of technology creates a culture of high-tech innovation.
+\- The development of drones in the use post emergency situations contributes to positive outlooks on technological advancement. Using drone technology to solve real-world problems by way of technology creates a culture of high-tech innovation.
 
 2) **Society**
 
-\- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone can access terrain that might be dangerous for humans to traverse, potentially saving lives. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
+\- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone that can access medical conditions of victims by prioritizing victims helps first responders use their resources in way that maximizes the help they can provide. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
 
 3) **Environment**
 
