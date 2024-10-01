@@ -6,8 +6,8 @@
 
 &nbsp; Aviation drones have become useful tools for scanning areas that are too difficult or too dangerous to reach for first responders. Taking a step further, aviation drones can assist in assessing the servierity of an emergency situation. During a situation such as this, having a drone with sensors and AI capabilities can assess the medical conditions of the victims allowing first responders to prioritze the most affected areas. This would grant first responders the ability to use resources such as time and aid more effeciently, ultimately resulting in more lives saved. Currently, there are not any aviation drones that have the capability to catagorize victims of an emergency by prioritizy the critical injuries. Due to this problem the Defense Advanced Research Projects Agency(DARPA) has come up with a challenge to provide first responders with this described technology.
 
-&nsbp;          -The drone with integrated cameras, sensors, and AI algorithms shall fly above the ground to quickly detect possible cassualties in large areas. 
-&nsbp;          -The drone shall fly close to victims and use sensors to collect medical data about the injured person. 
+&nsbp; -The drone with integrated cameras, sensors, and AI algorithms shall fly above the ground to quickly detect possible cassualties in large areas. 
+&nsbp; -The drone shall fly close to victims and use sensors to collect medical data about the injured person. 
 
 &nbsp; In search and rescue missions, our drone could provide initial canvasing of an area to pinpoint locations of possible human sightings that could be followed up via helicopter or ground search team. Furthermore. our drone could help scan buildings to find the hottest part of the fire. This proposal will set out to outline a project that will build a drone to suit these objectives. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that our team will strive to overcome. Our team will also examine current solutions to this problem and other approaches and argue why our project is more effective.
 
@@ -17,11 +17,11 @@
 
 &nbsp; -Weight: After adding the necessary sensor and camera components a larger drone might be imperative. 
 
-&nbsp: -Flight Duration: Drones typically have a short flight duartion, especially one with the size and weigth needed for this functionality. 
+&nbsp; -Flight Duration: Drones typically have a short flight duartion, especially one with the size and weigth needed for this functionality. 
 
-&nbsp: -Range: The distance a drone can travel is dependent on weather, battery size, and weight. 
+&nbsp; -Range: The distance a drone can travel is dependent on weather, battery size, and weight. 
 
-&nbsp;In addition to autonomous capabilities, the drone will be able to be manually controlled. This will provide more functionality to the drone. As we add equipment to the drone, it becomes heavier so our team will need to take care to get the lightest equipment possible while also reigning in our budget. Take will also have to be taken in order to safely charge the drone. Over charging Lithium Polymer batteries can be very dangerous. This is especially of concern as Li-Po batteries are a popular choice for drones.
+&nbsp; In addition to autonomous capabilities, the drone will be able to be manually controlled. This will provide more functionality to the drone. As we add equipment to the drone, it becomes heavier so our team will need to take care to get the lightest equipment possible while also reigning in our budget. Care will also have to be taken in order to safely charge the drone. Over charging Lithium Polymer batteries can be very dangerous. This is especially of concern as Li-Po batteries are a popular choice for drones.
 
 ## **SPECIFICATION**
 
