@@ -163,3 +163,17 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 
 ## **Statement of contribution**
+
+
+ &nbsp; The team worked on this proposal as a team through multiple revisions. Specifications and the gantt  chart were worked on together as a group while other sub sections were delegated to individual members of the group. For revisions, the team met together to discuss changes that needed to be made. During revisions, different members were delegated to a different section to get a fresh set of eyes on each part of the document. The following breakdown shows who worked on what sections of the current version of the document
+
+  1) **Introduction:** Reece Gilbert & Gabriel Buckner
+  2) **Challenges/obstacles:** Reece
+  3) **Specification:** Team effort
+  4) **Relevant Literature:** Mathias Hadgewood
+  5) **Timeline:** Team effort
+  6) **Resources:** Mathias Hadgewood
+  7) **Constraints:** Caleb Bucher
+  8) **Set Goals:** Chris Bradley
+9) **Impacts of Drone:** Reece Gilbert
+ 
