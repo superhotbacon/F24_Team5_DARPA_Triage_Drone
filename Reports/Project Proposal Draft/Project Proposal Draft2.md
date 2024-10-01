@@ -144,11 +144,11 @@ If our project is to be a success, our drone will need to excel at one of the pr
 
 4) **Public Safety**
 
-\- Search and Rescue drones allow for quick intervention and less risk to both the victim and rescue professionals. These factors contribute to a higher chance of a successful rescue.
+\- Rescue drones allow for faster response times from rescue professionals as well as faster aid brought to the victims in a post emergency situation. These factors contribute to a higher chance of a successful rescue.
 
 5) **Economy**
 
-\- Traditional search and rescue methods require expensive resources such as manpower, equipment, and fuel. On the other hand, search and rescue drones can allow for more cost-effective rescue plans.
+\- Traditional rescue methods require expensive resources such as manpower, equipment, and fuel. On the other hand, search and rescue drones can allow for more cost-effective rescue plans.
 
 \- The application of search and rescue drones can grow the drone and technological development industry. This would result in job opportunities and economic stimulation.
 
@@ -158,6 +158,7 @@ If our project is to be a success, our drone will need to excel at one of the pr
 26-Jan-2024].
 [2] “DTC: FAQ,” DTC | FAQ. [Online]. Available: https://triagechallenge.darpa.mil/faq.
 [Accessed: 26-Jan-2024].
+[3] R. Kloet and P. Mulder, "Drones in Search and Rescue: A New Era in Emergency Response," Journal of Unmanned Vehicle Systems, MDPI. [Online]. Available: https://www.mdpi.com/2072-4292/15/13/3266. [Accessed:30-Sep-2024].
 
 
 
