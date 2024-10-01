@@ -22,3 +22,15 @@ Since our drone will spend the majority of its time searching, it's important to
 - SAR drones must be safe and reliable, following UN regulations.
 - SAR drones should avoid disrupting the flow of traffic or any other service.
 - SAR drones must optimize their routes.
+
+[1]
+“Autonomous Vehicles for Emergency Response and Disaster Relief - IEEE Public Safety Technology Initiative,” Ieee.org, 2024. https://publicsafety.ieee.org/topics/autonomous-vehicles-for-emergency-response-and-disaster-relief
+
+‌[2]
+“Deep Learning in Aerial Systems Using Jetson | NVIDIA Technical Blog,” NVIDIA Technical Blog, Nov. 03, 2016. https://developer.nvidia.com/blog/deep-learning-in-aerial-systems-jetson/ (accessed Oct. 01, 2024).
+
+[3]
+M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, “Human Vital Signs Detection Methods and Potential Using Radars: A Review,” Sensors, vol. 20, no. 5, p. 1454, Mar. 2020, doi: https://doi.org/10.3390/s20051454.
+
+‌
+‌
