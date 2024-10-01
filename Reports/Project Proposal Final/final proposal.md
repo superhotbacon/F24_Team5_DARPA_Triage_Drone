@@ -145,7 +145,7 @@ M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, �
 - How easy and effective the drone’s operation is when operated by different users.
 - How effective the instruction on the drone’s usage is.
 
-## **Impacts of a search and rescue drone**
+## **Impacts of a rescue drone**
 
 1) **Culture**
 
