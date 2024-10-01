@@ -1,6 +1,6 @@
 # Relevant Literature
 
-Our project will have three main areas of focus:
+We will have to do some research into the following fields of study to build a successful search and rescue (SAR) drone:
 - Vitals detecting via radar
 - Image processing
 - Drone programming
