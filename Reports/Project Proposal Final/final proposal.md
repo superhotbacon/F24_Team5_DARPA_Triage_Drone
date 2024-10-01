@@ -125,7 +125,26 @@ M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, �
 |                                    |                        |                                                                                                |                                  |   | **Total Quantity** | 29 |
 
 
-‌
+‌## **Set Goals**
+
+#### 1. Ensure Cost-Effectiveness and Budget Optimization
+**Objective:** Manage and allocate finances and budgeting to fully optimize the drone’s capabilities and performance.  
+**Measurement:**
+- How well the team tracks and accounts for each financial decision made throughout the project.
+- How well the team’s capability of conducting an analysis comparing the cost of products to the benefits that will provide to the drone’s performance.
+
+#### 2. Maximize Drone effectiveness
+**Objective:** Enhance the capabilities of the drone making it as effective as possible
+**Measurement:**
+- Analyze how close the drone comes to achieving the measures of success
+- Routinely evaluate the trajectory of the team to ensure timeline is kept and project scope is kept within bounds
+
+#### 3. Ensure Usability and Safety
+**Objective:** Optimize the drones features to create a more user- friendly device that operates safely 
+**Measurement:**
+- The success rate of how well the drone operates without failure.
+- How easy and effective the drone’s operation is when operated by different users.
+- How effective the instruction on the drone’s usage is.
 ‌
   
 
