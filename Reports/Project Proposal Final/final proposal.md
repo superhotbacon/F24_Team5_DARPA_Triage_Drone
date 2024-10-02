@@ -1,85 +1,85 @@
 ## **Introduction**
-&nbsp; Aviation drones have become useful tools for scanning areas that are too difficult or too dangerous for first responders to reach. Taking a step further, aviation drones can assist in assessing the severity of an emergency situation. During a situation such as this, having a drone with sensors and AI capabilities can assess the medical conditions of the victims, allowing first responders to prioritize the most affected areas. This would grant first responders the ability to use resources such as time and aid more efficiently, ultimately resulting in more lives saved. Currently, there are no aviation drones that have the capability to categorize victims of an emergency by prioritizing critical injuries. Due to this problem, the Defense Advanced Research Projects Agency (DARPA) has come up with a challenge to provide first responders with this technology. 
+&nbsp; Aviation drones have become useful tools for scanning areas that are too difficult or too dangerous for first responders to reach. Taking a step further, aviation drones can assist in assessing the severity of an emergency. During a situation such as this, having a drone with sensors and AI capabilities can assess the medical conditions of the victims, allowing first responders to prioritize the most affected areas. This would grant first responders the ability to use resources such as time and aid more efficiently, ultimately resulting in more lives saved. Currently, there are no aviation drones that have the capability to categorize victims of an emergency by prioritizing critical injuries. Due to this problem, the Defense Advanced Research Projects Agency (DARPA) has come up with a challenge to provide first responders with this technology. 
 
-\-The drone with integrated cameras, sensors, and AI algorithms shall fly above the ground to quickly detect possible cassualties in large areas. 
+\- The drone with integrated cameras, sensors, and AI algorithms shall fly above the ground to quickly detect possible casualties in large areas. 
 
-\-The drone shall fly close to victims and use sensors to collect medical data about the injured person. 
+\- The drone shall fly close to victims and use sensors to collect medical data about the injured person. 
 
-&nbsp; In rescue missions, our drone could provide initial canvasing of an area to pinpoint locations of possible human casualties as well as assess a victims critical condition. This could be followed up via helicocpter or ground medical team by way of utmost effeciency. This proposal will set out to outline a project that will build a drone to suit these objectives. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that our team will strive to overcome. Our team will also examine current solutions to this problem and other approaches and argue why our project is more effective.
+&nbsp; In rescue missions, the drone could provide initial canvasing of an area to pinpoint locations of possible human casualties as well as assess a victim's critical condition. This could be followed up via helicopter or ground medical team by way of utmost efficiency. This proposal will set out to outline a project that will build a drone to suit these objectives. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that  the team will strive to overcome. The team will also examine current solutions to this problem and other approaches and argue why the project is more effective.
 
-## **CHALLENGES/OBSTACLES**
+## **Challenges/Obstacles**
 
-&nbsp; -Harsh environments: The drone will need to remain steady and controlled in weather conditions that might make that difficult. 
+&nbsp; - Harsh environments: The drone will need to remain steady and controlled in weather conditions that may be difficult. 
 
-&nbsp; -Weight: After adding the necessary sensor and camera components a larger drone might be imperative. 
+&nbsp; - Weight: Adding the necessary sensor and camera components, a larger drone might be imperative. 
 
-&nbsp; -Flight Duration: Drones typically have a short flight duartion, especially one with the size and weigth needed for this functionality. 
+&nbsp; - Flight Duration: Drones typically have a short flight duration, especially with the size and weight needed for this functionality. 
 
-&nbsp; -Range: The distance a drone can travel is dependent on weather, battery size, and weight. 
+&nbsp; - Range: The distance a drone can travel is dependent on weather, battery size, and weight. 
 
-&nbsp; In addition to autonomous capabilities, the drone will be able to be manually controlled. This will provide more functionality to the drone. As we add equipment to the drone, it becomes heavier so our team will need to take care to get the lightest equipment possible while also reigning in our budget. Care will also have to be taken in order to safely charge the drone. Over charging Lithium Polymer batteries can be very dangerous. This is especially of concern as Li-Po batteries are a popular choice for drones.
+&nbsp; In addition to autonomous capabilities, the drone will be able to be manually controlled. This will provide more functionality to the drone. As equipment is added to the drone, it can become heavier so balancing budget and weight is an important factor. Safety and preventative measures will also have to be taken to safely charge the drone. Overcharging Lithium Polymer batteries can be very dangerous. This is especially of concern as Li-Po batteries are a popular choice for drones.
 
-## **SPECIFICATION**
+## **Specification**
 
-**1. System shall obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).**  
-&nbsp; \-Measure of success: Able to detect a simulated heartbeat accurately of a stationary target 70% of the time. 
+**1. The system shall obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).**  
+&nbsp; \- Measure of success: Able to detect a simulated heartbeat accurately of a stationary target 70% of the time. 
 
-**2. System shall accomplish all functionality from at least one meter away.**  
-&nbsp; \-Measure of success:  Drone completes all the listed measures of success from 1 meter away.
+**2. The system shall accomplish all functionality from at least one meter away.**  
+&nbsp; \- Measure of success:  Drone completes all the listed measures of success from 1 meter away.
 
-**3. System shall obtain the breathing rate and frequency (range 0.13 to 1 Hz).**  
-&nbsp; \-Measure of success: Using group members breathing at a set rate at room temperature as a control, the drone accurately reads this set rate within 20% margin of error.
+**3. The system shall obtain the breathing rate and frequency (range 0.13 to 1 Hz).**  
+&nbsp; \- Measure of success: Using group members breathing at a set rate at room temperature as a control, the drone accurately reads this set rate within 20% margin of error.
 
-**4. System shall give vocal commands using speaker and listen for response to evaluate the cognitive ability of a victim.**  
-&nbsp; \-Measure of success: Being able to verbally communicate from operator to drone. The operator and victim should be able to clearly hear each other.
+**4.  The system shall give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.**  
+&nbsp; \- Measure of success: Being able to verbally communicate from operator to drone. The operator and victim should be able to clearly hear each other.
 
-**5. System shall limit the audio frequency received between 80 to 255 Hz.**  
-&nbsp; \-Measure of success: Test different frequencies in and out of range to ensure the drone receives only specified frequencies.
+**5. The system shall limit the audio frequency received between 80 to 255 Hz.**  
+&nbsp; \- Measure of success: Test different frequencies in and out of range to ensure the drone receives only specified frequencies.
 
-**6. System shall not store any voice recordings in compliance with the two party consent laws for select states.**  
-&nbsp; \-Measure of success: Provide documentation that software does not save audio recordings in non dynamic memory.
+**6. The system shall not store any voice recordings in compliance with the two-party consent laws for select states.**  
+&nbsp; \- Measure of success: Provide documentation that the software does not save audio recordings in nondynamic memory.
 
-**7. System shall operate at full functionality for 15 to 60 minutes.**  
-&nbsp; \-Measure of success: Time the drone in each operating condition until the drone runs out of battery. Drone will inform the user when the battery is below 10%.
+**7. The system shall operate at full functionality for 15 to 60 minutes.**  
+&nbsp; \- Measure of success: Time the drone in each operating condition until the drone runs out of battery. Drone will inform the user when the battery is below 10%.
 
-**8. System shall display triage results and vitals wirelessly.**  
-&nbsp; \-Measure of success: Triage results will display accurate data on controllers interface that is readable for first responders.
+**8. The system shall display triage results and vitals wirelessly.**  
+&nbsp; \- Measure of success: Triage results will display accurate data on the controller interface that is readable for first responders.
 
-**9. System shall weigh less than 20 pounds as per DARPA’s requirements for the Drone Triage Challenge or DTC [1].**  
-&nbsp; \-Measure of success: The drone will be placed on a scale and will read under 20 lbs.
+**9. The system shall weigh less than 20 pounds as per DARPA’s requirements for the Drone Triage Challenge or DTC [1].**  
+&nbsp; \- Measure of success: The drone will be placed on a scale and will read under 20 lbs.
 
-**10. System shall display results in close to real time**  
-&nbsp; \-Measure of success: Using synced stop watches, two group members will be placed at max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements.
+**10. The system shall display results in close to real-time**  
+&nbsp; \- Measure of success: Using synced stopwatches, two group members will be placed at the max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements.
 
 **Constraints**
 
-\- The drone SHALL be user friendly.  
-\- The drone SHALL have a integrated system for security.  
-\- The drone SHALL remain under 400 ft above ground level **[4]**.  
-\- The drone SHALL not exceed 100 mph **[4]**.  
-\- The drone SHALL be equipped with anti-collision lighting **[4]**.  
+\- The drone SHALL be user-friendly.  
+\- The drone SHALL have an integrated system for security.  
+\- The drone SHALL remain under 400 ft above ground level **[4](##References)**.  
+\- The drone SHALL not exceed 100 mph **[4](##References)**.  
+\- The drone SHALL be equipped with anti-collision lighting **[4](References)**.  
 
 # Relevant Literature
 
-We will have to do some research into the following fields of study to build a successful search and rescue (SAR) drone:
+The team will have to research the following fields of study to build a successful search and rescue (SAR) drone:
 - Vitals detecting via radar
 - Image processing
 - Drone programming
 
 ### Radar
-The National Library of Medicine has already done research into reading a subject's vitals at a distance. From their research, it's clear that we'll need to consider the following as we engineer our product:
-- How to fine tune our signal to avoid noise generated by the drone or any other external movement.
+The National Library of Medicine has already done research into reading a subject's vitals at a distance. From their research, it's clear that the team will need to consider the following during the engineering process of the product:
+- How to fine-tune our signal to avoid noise generated by the drone or any other external movement.
 - How to differentiate between a heart rate and a breathing rate.
 - How to consume minimal power with acceptable performance.
 
 ### Image Processing
-NVIDIA has an article on using the chip our drone will be working with, a jetson nano, for search and rescue purposes. From the text, several steps in the image computing process include:
+NVIDIA has an article on using the chip the drone will be working with, a Jetson Nano, for search and rescue purposes. From the text, several steps in the image computing process include:
 - Prioritizing speed over detail when observing the landscape.
 - Cropping images with likely targets to optimize processing.
 - Using an algorithm to train the data.
 
 ### Drone Programming
-Since our drone will spend the majority of its time searching, it's important to consider portential strategies for navigating any potential terrain. The IEEE explains some important considerations regarding this:
+Since the drone will spend the majority of its time searching, it's important to consider potential strategies for navigating any potential terrain. The IEEE explains some important considerations regarding this:
 - SAR drones are built to be safe and reliable, following UN regulations.
 - SAR drones should avoid disrupting the flow of traffic or any other service.
 - SAR drones can optimize their routes to better their performance.
@@ -135,11 +135,11 @@ M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, �
 #### 2. Maximize Drone effectiveness
 **Objective:** Enhance the capabilities of the drone making it as effective as possible.  
 **Measurement:**
-- Analyze how close the drone comes to achieving the measures of success
-- Routinely evaluate the trajectory of the team to ensure timeline is kept and project scope is kept within bounds
+- Analyze how close the drone comes to achieving the measures of success.
+- Routinely evaluate the trajectory of the team to ensure the timeline is kept and project scope is kept within bounds.
 
 #### 3. Ensure Usability and Safety
-**Objective:** Optimize the drones features to create a more user- friendly device that operates safely.  
+**Objective:** Optimize the drone's features to create a more user-friendly device that operates safely.  
 **Measurement:**
 - The success rate of how well the drone operates without failure.
 - How easy and effective the drone’s operation is when operated by different users.
@@ -149,11 +149,11 @@ M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, �
 
 1) **Culture**
 
-\- The development of drones in the use post emergency situations contributes to positive outlooks on technological advancement. Using drone technology to solve real-world problems by way of technology creates a culture of high-tech innovation.
+\- The development of drones in the use of post emergencies contributes to positive outlooks on technological advancement. Using drone technology to solve real-world problems by way of technology creates a culture of high-tech innovation.
 
 2) **Society**
 
-\- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone that can access medical conditions of victims by prioritizing victims helps first responders use their resources in way that maximizes the help they can provide. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
+\- Aviation drones can be faster, and safer than the boots-on-the-ground method of search and rescue. A drone that can access the medical conditions of victims by prioritizing victims helps first responders use their resources in a way that maximizes the help they can provide. Along with increasing the sense of safety in communities it also unlocks new roles and responsibilities under an emergency services career.
 
 3) **Environment**
 
@@ -161,7 +161,7 @@ M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, �
 
 4) **Public Safety**
 
-\- Rescue drones allow for faster response times from rescue professionals as well as faster aid brought to the victims in a post emergency situation. These factors contribute to a higher chance of a successful rescue.
+\- Rescue drones allow for faster response times from rescue professionals as well as faster aid brought to the victims in a post-emergency situation. These factors contribute to a higher chance of a successful rescue.
 
 5) **Economy**
 
@@ -169,12 +169,16 @@ M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, �
 
 \- The application of search and rescue drones can grow the drone and technological development industry. This would result in job opportunities and economic stimulation.
 
-‌## **References**
+## References
+
 [1] DARPA Triage Challenge. [Online]. Available: https://triagechallenge.darpa.mil/. [Accessed:
-26-Jan-2024].  
+26-Jan-2024].    
+  
 [2] “DTC: FAQ,” DTC | FAQ. [Online]. Available: https://triagechallenge.darpa.mil/faq.
-[Accessed: 26-Jan-2024].  
-[3] R. Kloet and P. Mulder, "Drones in Search and Rescue: A New Era in Emergency Response," Journal of Unmanned Vehicle Systems, MDPI. [Online]. Available: https://www.mdpi.com/2072-4292/15/13/3266. [Accessed:30-Sep-2024].  
+[Accessed: 26-Jan-2024].    
+
+[3] R. Kloet and P. Mulder, "Drones in Search and Rescue: A New Era in Emergency Response," Journal of Unmanned Vehicle Systems, MDPI. [Online]. Available: https://www.mdpi.com/2072-4292/15/13/3266. [Accessed:30-Sep-2024].    
+
 [4] Federal Aviation Administration, “Airspace 101 – Rules of the Sky | Federal Aviation Administration,” Faa.gov, 2021. https://www.faa.gov/uas/getting_started/where_can_i_fly/airspace_101  
 
 ‌
@@ -183,17 +187,17 @@ M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, �
 ## **Statement of contribution**
 
 
- &nbsp; The team worked on this proposal as a team through multiple revisions. Specifications and the gantt  chart were worked on together as a group while other sub sections were delegated to individual members of the group. For revisions, the team met together to discuss changes that needed to be made. During revisions, different members were delegated to a different section to get a fresh set of eyes on each part of the document. The following breakdown shows who worked on what sections of the current version of the document
+ &nbsp; The team worked on this proposal as a team through multiple revisions. Specifications and the Gantt  chart were worked on together as a group while other sub-sections were delegated to individual members of the group. For revisions, the team met together to discuss changes that needed to be made. During revisions, different members were delegated to different sections to get a fresh set of eyes on each part of the document. The following breakdown shows who worked on what sections of the current version of the document
 
   1) **Introduction:** Reece Gilbert & Gabriel Buckner
-  2) **Challenges/obstacles:** Reece
+  2) **Challenges/obstacles:** Reece Gilbert
   3) **Specification:** Team effort
   4) **Relevant Literature:** Mathias Hadgewood
   5) **Timeline:** Team effort
-  6) **Resources:** Mathias Hadgewood
+  6) **Resources:** Chris Bradley
   7) **Constraints:** Caleb Bucher
-  8) **Set Goals:** Chris Bradley
-9) **Impacts of Drone:** Reece Gilbert
+  8) **Set Goals:** Chris Bradley & Gabriel Buckner
+  9) **Impacts of Drone:** Reece Gilbert
  
   
 
