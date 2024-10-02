@@ -55,11 +55,11 @@
 
 \- The drone SHALL be user-friendly.  
 \- The drone SHALL have an integrated system for security.  
-\- The drone SHALL remain under 400 ft above ground level **[4](#references)**.  
-\- The drone SHALL not exceed 100 mph **[4](#references)**.  
-\- The drone SHALL be equipped with anti-collision lighting **[4](#references)**.  
+\- The drone SHALL remain under 400 ft above ground level **[[4](#references)]**.  
+\- The drone SHALL not exceed 100 mph **[[4](#references)]**.  
+\- The drone SHALL be equipped with anti-collision lighting **[[4](#references)]**.  
 
-# Relevant Literature
+## Relevant Literature
 
 The team will have to research the following fields of study to build a successful search and rescue (SAR) drone:
 - Vitals detecting via radar
@@ -84,18 +84,12 @@ Since the drone will spend the majority of its time searching, it's important to
 - SAR drones should avoid disrupting the flow of traffic or any other service.
 - SAR drones can optimize their routes to better their performance.
 
-[1]
-“Autonomous Vehicles for Emergency Response and Disaster Relief - IEEE Public Safety Technology Initiative,” Ieee.org, 2024. https://publicsafety.ieee.org/topics/autonomous-vehicles-for-emergency-response-and-disaster-relief
 
-‌[2]
-“Deep Learning in Aerial Systems Using Jetson | NVIDIA Technical Blog,” NVIDIA Technical Blog, Nov. 03, 2016. https://developer.nvidia.com/blog/deep-learning-in-aerial-systems-jetson/ (accessed Oct. 01, 2024).
-
-[3]
-M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, “Human Vital Signs Detection Methods and Potential Using Radars: A Review,” Sensors, vol. 20, no. 5, p. 1454, Mar. 2020, doi: https://doi.org/10.3390/s20051454.
 
 ## **Timeline and Resources**
 
 <img width="1497" alt="Screenshot 2024-09-20 at 11 19 20 AM" src="https://github.com/user-attachments/assets/a383c1a6-6119-43ec-a3bc-588f8e763e80">
+  
 
 
 | SUBSYSTEM                          | PART NUMBER            | DESCRIPTION     | MANUFACTURER NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
@@ -179,9 +173,13 @@ M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, �
 
 [3] R. Kloet and P. Mulder, "Drones in Search and Rescue: A New Era in Emergency Response," Journal of Unmanned Vehicle Systems, MDPI. [Online]. Available: https://www.mdpi.com/2072-4292/15/13/3266. [Accessed:30-Sep-2024].    
 
-[4] Federal Aviation Administration, “Airspace 101 – Rules of the Sky | Federal Aviation Administration,” Faa.gov, 2021. https://www.faa.gov/uas/getting_started/where_can_i_fly/airspace_101  
+[[4](#specification)] Federal Aviation Administration, “Airspace 101 – Rules of the Sky | Federal Aviation Administration,” Faa.gov, 2021. https://www.faa.gov/uas/getting_started/where_can_i_fly/airspace_101  
 
-‌
+‌[[5](#relevant-literature)] “Autonomous Vehicles for Emergency Response and Disaster Relief - IEEE Public Safety Technology Initiative,” Ieee.org, 2024. https://publicsafety.ieee.org/topics/autonomous-vehicles-for-emergency-response-and-disaster-relief
+
+‌[[6](#relevant-literature)] “Deep Learning in Aerial Systems Using Jetson | NVIDIA Technical Blog,” NVIDIA Technical Blog, Nov. 03, 2016. https://developer.nvidia.com/blog/deep-learning-in-aerial-systems-jetson/ (accessed Oct. 01, 2024).
+
+[[7](#relevant-literature)] M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, “Human Vital Signs Detection Methods and Potential Using Radars: A Review,” Sensors, vol. 20, no. 5, p. 1454, Mar. 2020, doi: https://doi.org/10.3390/s20051454.
 
 
 ## **Statement of contribution**
