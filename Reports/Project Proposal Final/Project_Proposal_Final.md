@@ -70,7 +70,7 @@ The National Library of Medicine has already done research into reading a subjec
 - How to consume minimal power with acceptable performance.
 
 ### Image Processing
-NVIDIA has an article on using the chip the drone will be working with, a Jetson Nano, for search and rescue purposes. From the text, several steps in the image computing process include:
+NVIDIA has an article on using the chip the drone will be working with, a Jetson Nano, for search and rescue purposes. From the text, several steps in the image computing process include [[6](#references)]:
 - Prioritizing speed over detail when observing the landscape.
 - Cropping images with likely targets to optimize processing.
 - Using an algorithm to train the data.
