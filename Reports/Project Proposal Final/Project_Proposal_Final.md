@@ -49,7 +49,7 @@
 &nbsp; \- Measure of success: Using synced stopwatches, two group members will be placed at the max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements.
 
 **11. The system shall semi-autonomously execute a predefined scan of a required zone**.  
-&nbsp; \- Measure of success: Reducing the time required to excute a predifined scan compared to manual operation, while accurately scanning for individuals in the area with minimum error. 
+&nbsp; \- Measure of success: Reducing the time required to excute a predifined scan compared to manual operation, while accurately scanning for individuals in the area with minimal error. 
 
 
 **Constraints**
