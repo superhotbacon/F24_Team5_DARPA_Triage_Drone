@@ -49,10 +49,10 @@
 &nbsp; \- Measure of success: Using synced stopwatches, two group members will be placed at the max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements. Ensure this latency does not exceed 1000 ms at full range.
 
 **11. The system shall semi-autonomously execute a predefined scan of a required zone**.  
-&nbsp; \- Measure of success: Reducing the time required to excute a predifined scan compared to manual operation, while accurately scanning for individuals in the area with minimal error. 
+&nbsp; \- Measure of success: Reducing the time required to execute a predefined scan compared to manual operation, while accurately scanning for individuals in the area with minimal error. 
 
 
-**Constraints**
+#### **Constraints**
 
 **1.** The drone SHALL be user-friendly.  
 **2.** The drone SHALL have an integrated system for security.  
@@ -174,7 +174,7 @@ Since the drone will spend the majority of its time searching, it's important to
 
 [3] R. Kloet and P. Mulder, "Drones in Search and Rescue: A New Era in Emergency Response," Journal of Unmanned Vehicle Systems, MDPI. [Online]. Available: https://www.mdpi.com/2072-4292/15/13/3266. [Accessed:30-Sep-2024].    
 
-[[4](#specification)] Federal Aviation Administration, “Airspace 101 – Rules of the Sky | Federal Aviation Administration,” Faa.gov, 2021. https://www.faa.gov/uas/getting_started/where_can_i_fly/airspace_101  
+[[4](#constraints)] Federal Aviation Administration, “Airspace 101 – Rules of the Sky | Federal Aviation Administration,” Faa.gov, 2021. https://www.faa.gov/uas/getting_started/where_can_i_fly/airspace_101  
 
 ‌[[5](#relevant-literature)] “Autonomous Vehicles for Emergency Response and Disaster Relief - IEEE Public Safety Technology Initiative,” Ieee.org, 2024. https://publicsafety.ieee.org/topics/autonomous-vehicles-for-emergency-response-and-disaster-relief
 
