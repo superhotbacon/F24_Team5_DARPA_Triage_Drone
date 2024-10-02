@@ -162,7 +162,7 @@ Since the drone will spend the majority of its time searching, it's important to
 
 ## References
 
-[[1](#specification] DARPA Triage Challenge. [Online]. Available: https://triagechallenge.darpa.mil/. [Accessed:
+[[1](#specification)] DARPA Triage Challenge. [Online]. Available: https://triagechallenge.darpa.mil/. [Accessed:
 26-Jan-2024].    
   
 [2] “DTC: FAQ,” DTC | FAQ. [Online]. Available: https://triagechallenge.darpa.mil/faq.
