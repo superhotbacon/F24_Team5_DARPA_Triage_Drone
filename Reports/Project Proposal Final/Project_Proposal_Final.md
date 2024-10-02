@@ -187,15 +187,15 @@ Since the drone will spend the majority of its time searching, it's important to
 
  &nbsp; The team worked on this proposal as a team through multiple revisions. Specifications and the Gantt  chart were worked on together as a group while other sub-sections were delegated to individual members of the group. For revisions, the team met together to discuss changes that needed to be made. During revisions, different members were delegated to different sections to get a fresh set of eyes on each part of the document. The following breakdown shows who worked on what sections of the current version of the document
 
-  1) **Introduction:** Reece Gilbert & Gabriel Buckner
-  2) **Challenges/obstacles:** Reece Gilbert
+  1) **Introduction:** Reese Gilbert & Gabriel Buckner
+  2) **Challenges/obstacles:** Reese Gilbert
   3) **Specification:** Team effort
   4) **Relevant Literature:** Mathias Hadgewood
   5) **Timeline:** Team effort
   6) **Resources:** Chris Bradley
   7) **Constraints:** Caleb Bucher
   8) **Set Goals:** Chris Bradley & Gabriel Buckner
-  9) **Impacts of Drone:** Reece Gilbert
+  9) **Impacts of Drone:** Reese Gilbert
  
   
 
