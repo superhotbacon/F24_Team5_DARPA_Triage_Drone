@@ -50,11 +50,11 @@
 
 **Constraints**
 
-\1. The drone SHALL be user-friendly.  
-\2. The drone SHALL have an integrated system for security.  
-\3. The drone SHALL remain under 400 ft above ground level **[[4](#references)]**.  
-\4. The drone SHALL not exceed 100 mph **[[4](#references)]**.  
-\5. The drone SHALL be equipped with anti-collision lighting **[[4](#references)]**.  
+**1.** The drone SHALL be user-friendly.  
+**2.** The drone SHALL have an integrated system for security.  
+**3.** The drone SHALL remain under 400 ft above ground level **[[4](#references)]**.  
+**4.** The drone SHALL not exceed 100 mph **[[4](#references)]**.  
+**5.** The drone SHALL be equipped with anti-collision lighting **[[4](#references)]**.  
 
 ## Relevant Literature
 
