@@ -1,5 +1,5 @@
 ## **Introduction**
-&nbsp; Aviation drones have become useful tools for scanning areas that are too difficult or too dangerous for first responders to reach. Taking a step further, aviation drones can assist in assessing the severity of an emergency. During a situation such as this, having a drone with sensors and AI capabilities can assess the medical conditions of the victims, allowing first responders to prioritize the most affected areas. This would grant first responders the ability to use resources such as time and aid more efficiently, ultimately resulting in more lives saved. Currently, there are no aviation drones that have the capability to categorize victims of an emergency by prioritizing critical injuries. Due to this problem, the Defense Advanced Research Projects Agency (DARPA) has come up with a challenge to provide first responders with this technology. 
+&nbsp; Aviation drones have become useful tools for scanning areas that are too difficult or too dangerous for first responders to reach. Taking a step further, aviation drones can assist in assessing the severity of an emergency. During a situation such as this, having a drone with sensors and AI capabilities can assess the medical conditions of the victims, allowing first responders to prioritize the most affected areas. This would grant first responders the ability to use resources such as time and aid more efficiently, ultimately resulting in more lives saved. Currently, there are no aviation drones that have the capability to categorize victims of an emergency by prioritizing critical injuries. Due to this problem, the Defense Advanced Research Projects Agency **[DARPA]** has come up with a challenge to provide first responders with this technology. 
 
 
 &nbsp; In rescue missions, the drone could provide initial canvasing of an area to pinpoint locations of possible human casualties as well as assess a victim's critical condition. This could be followed up via helicopter or ground medical team by way of utmost efficiency. This proposal will set out to outline a project that will build a drone to suit these objectives. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that the team will strive to overcome. The team will also examine current solutions to this problem and other approaches and argue why the project is more effective.
@@ -48,7 +48,7 @@
 **10. The system shall display results in close to real-time.**  
 &nbsp; \- Measure of success: Using synced stopwatches, two group members will be placed at the max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements.
 
-**11. The system shall semi-autonomously execute a predefined scan of a required zone.**
+**11. The system shall semi-autonomously execute a predefined scan of a required zone**.  
 &nbsp; \- Measure of success: Reducing the time required to excute a predifined scan compared to manual operation, while accurately scanning for individuals in the area with minimum error. 
 
 
