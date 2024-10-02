@@ -28,7 +28,7 @@
 &nbsp; \- Measure of success:  Drone completes all the listed measures of success from 1 meter away.
 
 **3. The system shall obtain the breathing rate and frequency (range 0.13 to 1 Hz).**  
-&nbsp; \- Measure of success: Using group members breathing at a set rate at room temperature as a control, the drone accurately reads this set rate within 20% margin of error.
+&nbsp; \- Measure of success: Using group members breathing at a set rate at room temperature as a control, the drone accurately reads this set rate within a 20% margin of error.
 
 **4.  The system shall give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.**  
 &nbsp; \- Measure of success: Being able to verbally communicate from operator to drone. The operator and victim should be able to clearly hear each other.
