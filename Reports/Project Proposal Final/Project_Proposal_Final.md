@@ -46,7 +46,7 @@
 &nbsp; \- Measure of success: The drone will be placed on a scale and will read under 20 lbs.
 
 **10. The system shall display results in close to real-time.**  
-&nbsp; \- Measure of success: Using synced stopwatches, two group members will be placed at the max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements.
+&nbsp; \- Measure of success: Using synced stopwatches, two group members will be placed at the max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements. Ensure this latency does not exceed 1000 ms at full range.
 
 **11. The system shall semi-autonomously execute a predefined scan of a required zone**.  
 &nbsp; \- Measure of success: Reducing the time required to excute a predifined scan compared to manual operation, while accurately scanning for individuals in the area with minimal error. 
