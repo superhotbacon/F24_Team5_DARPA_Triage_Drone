@@ -27,11 +27,11 @@ Below the video link show some well-taken, appropriately sized images of the pro
 ## About Us
 
 ### Team
-[Caleb Bucher](https://github.com/CalebBucher42)
-[Gabriel Buckner](https://github.com/superhotbacon)
-[Chris Bradley](https://github.com/clbradley42)
-[Reese Gilbert](https://github.com/ReeseGilbert04)
-[Mathias Hagewood](https://github.com/Cassad0r2)
+[Caleb Bucher](https://github.com/CalebBucher42)  
+[Gabriel Buckner](https://github.com/superhotbacon)  
+[Chris Bradley](https://github.com/clbradley42)  
+[Reese Gilbert](https://github.com/ReeseGilbert04)  
+[Mathias Hagewood](https://github.com/Cassad0r2)  
 
 ### Faculty Supervisor
 
