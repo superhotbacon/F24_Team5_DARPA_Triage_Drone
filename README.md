@@ -1,10 +1,10 @@
-# {Name of the Project} - Your project should have a catchy and functional name
 
-The descriptions and information in all readme files in the starter repo (including this one) must be edited. All section descriptions must be deleted. Any failure to remove the description information (like the statement that you are currently reading) will be heavily penalized!
+# F24_Team5_DARPA_Triage_Drone 
+
 
 ## Executive Summary
 
-Give the elevator pitch and abstract for the project. It should allow interested visitors to broadly understand the motivation for the project and what the project has accomplished.
+We are the Fall 2024 Triage Drone capstone team at Tennessee Technological University. We are tackling the [DARPA Triage Challenge](https://triagechallenge.darpa.mil/) and continuing the work of [the Fall 2023 team](https://github.com/TnTech-ECE/Fall2023-DARPA-Drone-Triage-Sensing-System). Our task is to create a drone that can be used in emergency situations to better allocate resources of first responders. This will help save lives by giving first responders a better assessment of a scene so they can get to treating victims faster. The drone will do this by reading the heart rates, breathing rates, and consciousness levels of victims. This project will be easy to use and extremely versatile. 
 
 
 ## Capabilities
@@ -27,20 +27,21 @@ Below the video link show some well-taken, appropriately sized images of the pro
 ## About Us
 
 ### Team
-
-Give a brief bio for each team member and their broad contribution to the project (no need to be terribly specifc).
+[Caleb Bucher](https://github.com/CalebBucher42)
+[Gabriel Buckner](https://github.com/superhotbacon)
+[Chris Bradley](https://github.com/clbradley42)
+[Reese Gilbert](https://github.com/ReeseGilbert04)
+[Mathias Hagewood](https://github.com/Cassad0r2)
 
 ### Faculty Supervisor
 
-Tell who the faculty supervisor was for the project
+Our faculty supervisor was [Tarek Elfouly, Ph.D](https://www.tntech.edu/directory/engineering/faculty/tarek-elfouly.php).
 
 ### Stakeholders
 
-Tell a bit about the customer for the project. Also discuss any other groups (specific or general) that are expected to be impacted by the project.
 
 ### Recognitions
-
-Use this space to recognize anyone that you feel has had an impact on the project. Be sure to recognize the work of previous teams if you referenced it for style or content. 
+Our team would like to thank [Micah Rentschler](https://www.tntech.edu/directory/engineering/faculty/micah-rentschler.php) for his contributions to this project. Micah served as our facilitator and lent his expertise and wisdom. He was an integral part of the project and we thank him for his time and effort to help us grow as engineers. 
 
 ## Repo Organization
 
@@ -53,7 +54,7 @@ In the reports section of this repository information about the individual expec
 
 ### Documentation
 
-In the documentaion section information regarding the documentation that is required and how it should be organized is given.
+In the documentation section information regarding the documentation that is required and how it should be organized is given.
 
 ### Software
 
