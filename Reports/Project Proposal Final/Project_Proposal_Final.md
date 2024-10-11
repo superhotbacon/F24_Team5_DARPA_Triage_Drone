@@ -4,9 +4,7 @@
 
 &nbsp; In rescue missions, the drone could provide initial canvasing of an area to pinpoint locations of possible human casualties as well as assess a victim's critical condition. This could be followed up via helicopter or ground medical team by way of utmost efficiency. This proposal will set out to outline a project that will build a drone to suit these objectives. In the coming sections, the specific goals and objectives will be laid out as well as specifications and constraints that the team will strive to overcome. The team will also examine current solutions to this problem and other approaches and argue why the project is more effective.
 
-## **Challenges/Obstacles**
-
-&nbsp; - Harsh environments: The drone will need to remain steady and controlled in weather conditions that may be difficult. 
+## **Challenges/Obstacles** 
 
 &nbsp; - Weight: Adding the necessary sensor and camera components, a larger drone might be imperative. 
 
@@ -48,9 +46,8 @@
 **10. The system shall display results in close to real-time.**  
 &nbsp; \- Measure of success: Using synced stopwatches, two group members will be placed at the max range away. The drone will then take simulated measurements and the results will be analyzed to find the average latency for measurements. Ensure this latency does not exceed 1000 ms at full range.
 
-**11. The system shall semi-autonomously execute a predefined scan of a required zone**.  
-&nbsp; \- Measure of success: Reducing the time required to execute a predefined scan compared to manual operation, while accurately scanning for individuals in the area with minimal error. 
-
+**11. The drone shall operate during daylight hours on a clear day without wind.**  
+&nbsp; \- Measure of success: The drone shall be able to operate in clear conditions, with wind speeds <10 Mph.
 
 #### **Constraints**
 
@@ -176,9 +173,9 @@ Since the drone will spend the majority of its time searching, it's important to
 
 [[4](#constraints)] Federal Aviation Administration, “Airspace 101 – Rules of the Sky | Federal Aviation Administration,” Faa.gov, 2021. https://www.faa.gov/uas/getting_started/where_can_i_fly/airspace_101  
 
-‌[[5](#relevant-literature)] “Autonomous Vehicles for Emergency Response and Disaster Relief - IEEE Public Safety Technology Initiative,” Ieee.org, 2024. https://publicsafety.ieee.org/topics/autonomous-vehicles-for-emergency-response-and-disaster-relief
+[[5](#relevant-literature)] “Autonomous Vehicles for Emergency Response and Disaster Relief - IEEE Public Safety Technology Initiative,” Ieee.org, 2024. https://publicsafety.ieee.org/topics/autonomous-vehicles-for-emergency-response-and-disaster-relief
 
-‌[[6](#relevant-literature)] “Deep Learning in Aerial Systems Using Jetson | NVIDIA Technical Blog,” NVIDIA Technical Blog, Nov. 03, 2016. https://developer.nvidia.com/blog/deep-learning-in-aerial-systems-jetson/ (accessed Oct. 01, 2024).
+[[6](#relevant-literature)] “Deep Learning in Aerial Systems Using Jetson | NVIDIA Technical Blog,” NVIDIA Technical Blog, Nov. 03, 2016. https://developer.nvidia.com/blog/deep-learning-in-aerial-systems-jetson/ (accessed Oct. 01, 2024).
 
 [[7](#relevant-literature)] M. Kebe, R. Gadhafi, B. Mohammad, M. Sanduleanu, H. Saleh, and M. Al-Qutayri, “Human Vital Signs Detection Methods and Potential Using Radars: A Review,” Sensors, vol. 20, no. 5, p. 1454, Mar. 2020, doi: https://doi.org/10.3390/s20051454.
 
@@ -199,5 +196,3 @@ Since the drone will spend the majority of its time searching, it's important to
   9) **Impacts of Drone:** Reese Gilbert
  
   
-
-
