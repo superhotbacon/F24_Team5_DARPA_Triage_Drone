@@ -2,7 +2,27 @@
 
 The following conceptual design wll lay out the general solution to the DARPA triage drone challenge [1].
 
-## Restating the Fully Formulated Problem
+## Introducing the problem
+
+  To tackle the problem. The customer has outlined a specific scenario that the drones effectiveness will be built around. This scenario is the following
+
+    An individual has been working on a powerline when suddenly the powerline comes crashing down. 
+    The individual is unresponsive and paramedics cannot get to the individual due to the active powerline.
+    The triage drone will be used to fly 20' away to the downed individual, attempt to communicate with 
+    the individual, and read their vitals. The powerline and the individual are in a clear field 
+    with no wind on a clear day.
+
+  The specifications for this project have remained the same as our customer has not changed. This proect does not have many constraints. The following list describes the constraints as well as reasoning and reference numbers for each constraint.
+
+  
+**1.** The drone SHALL be user-friendly.  
+**2.** The drone SHALL have an integrated system for security.  
+**3.** The drone SHALL remain under 400 ft above ground level
+**4.** The drone SHALL not exceed 100 mph
+**5.** The drone SHALL be equipped with anti-collision lighting 
+
+
+
 
 The fully formulated problem is the overall objective and scope complete with the set of shall statements. This was part of the project proposal. However, it may be that the scope has changed. So, state the fully formulated problem in the introduction of the conceptual design and planning document. For each of the constraints, explain the origin of the constraint (customer specification, standards, ethical concern, broader implication concern, etc).
 
