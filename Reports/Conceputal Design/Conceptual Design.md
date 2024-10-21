@@ -1,7 +1,6 @@
 ## Introduction
 
-The introduction is intended to reintroduce the fully formulated problem. 
-
+The following conceptual design wll lay out the general solution to the DARPA triage drone challenge [1].
 
 ## Restating the Fully Formulated Problem
 
@@ -73,8 +72,10 @@ Revise the detailed timeline (Gantt chart) you created in the project proposal. 
 
 ## References
 
-All sources utilized in the conceptual design that are not considered common knowledge must be properly cited. Multiple references should be included.
+[[1](#specification)]
+“DARPA Triage Challenge,” triagechallenge.darpa.mil. https://triagechallenge.darpa.mil/
 
+‌
 
 ## Statement of Contributions
 
