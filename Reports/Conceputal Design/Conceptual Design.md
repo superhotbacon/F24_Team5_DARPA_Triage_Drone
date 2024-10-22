@@ -53,6 +53,29 @@ Similar to a block diagram, the flow chart aims to specify the system, but from 
 
 ## Atomic Subsystem Specifications
 
+### Drone controller
+
+### Drone
+
+### Jetson Nano
+#### connections
+Bi-directional wireless connection line between Jetson Nano and the drone controller.
+USB connection to extenal microphone.
+analog signal to doppler sensor
+USB connection to speaker
+
+#### specifications
+The Jetson Nano shall communicate via LoRaWAN to the drone controller.
+The Jetson Nano shall use signal processing to determine heart rate and respritory rate.
+The Jetson Nano shall be able to get accurate readings from 1 meter away.
+The Jetson Nano shall be able to use the microphone and speaker to communicate with the individual.
+The Jetson Nano shall not store recordings except for use in transmitting to drone controller
+The Jetson Nana shall limit recorded voice between 80 Hz and 255 Hz
+
+#### Description
+
+The Jetson Nano is the center of the sensor processing and communication. The Nano will connect to the drone and will interface the microphone, speaker, doppler, and drone controller. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The Jetson Nano will connect wirelessly to the drone controller module and ensure that no audio information is recorded.
+
 Based on the high-level design, provide a comprehensive description of the functions each subsection will perform.
 
 Inclued a description the interfaces between this subsystem and other subsystems:
