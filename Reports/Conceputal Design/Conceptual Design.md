@@ -53,26 +53,53 @@ Similar to a block diagram, the flow chart aims to specify the system, but from 
 
 ## Atomic Subsystem Specifications
 
-### Drone controller
+### **Drone controller**
+#### **connections**
+Bi-directional wireless communication to the drone and Jetson Nano.
+Output digital connection to LCD display.
+Output power connection to LCD display.
+Input connection to microphone.
+Output connection to the speaker.
 
-### Drone
+#### **specifications**
+The drone controller shall work in tandem with the drone to fly the drone.
+The drone controller shall connect to the Jetson Nano in order to display collected data.
+The drone controller shall be conect to a microphone and speaker to ensure operator can talk to victim.
 
-### Jetson Nano
-#### connections
+#### **Description**
+The drone controller will come out of the box with the drone and will be modified to have extra functionality. The drone controller shall connect to an LCD display and display the information from the Jetson Nano. The controller will need to have a power connection to the LCD as well. If possible, the controller will be able to perform the logic neccessary to display the data to the LCD. Otherwise a raspberry pi will be needed to do this communication.
+
+### **Drone**
+#### **connections**
+The drone will mount the Jetson Nano, microphone, and speaker.
+Bi-directional wireless communication to the drone controller.
+
+#### **specifications**
+The drone shall weigh less than 20 lbs.
+The drone shall be able to fly out of the box.
+The drone shall be modular and able to add or change parts.
+The drone shall have anti collision lighting.
+
+#### **Description**
+The drone will be bought and intended to fly out of the box. The drone needs to be able to be modified and extra parts added. A modular design is the most practical. The drone needs to have its own drone controller that comes with it. This will allow our team to spend more of our time on other parts of the project. 
+
+
+### **Jetson Nano**
+#### **connections**
 Bi-directional wireless connection line between Jetson Nano and the drone controller.
 USB connection to extenal microphone.
-analog signal to doppler sensor
-USB connection to speaker
+analog signal to doppler sensor.
+USB connection to speaker.
 
-#### specifications
+#### **specifications**
 The Jetson Nano shall communicate via LoRaWAN to the drone controller.
 The Jetson Nano shall use signal processing to determine heart rate and respritory rate.
 The Jetson Nano shall be able to get accurate readings from 1 meter away.
 The Jetson Nano shall be able to use the microphone and speaker to communicate with the individual.
-The Jetson Nano shall not store recordings except for use in transmitting to drone controller
-The Jetson Nana shall limit recorded voice between 80 Hz and 255 Hz
+The Jetson Nano shall not store recordings except for use in transmitting to drone controller.
+The Jetson Nana shall limit recorded voice between 80 Hz and 255 Hz.
 
-#### Description
+#### **Description**
 
 The Jetson Nano is the center of the sensor processing and communication. The Nano will connect to the drone and will interface the microphone, speaker, doppler, and drone controller. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The Jetson Nano will connect wirelessly to the drone controller module and ensure that no audio information is recorded.
 
