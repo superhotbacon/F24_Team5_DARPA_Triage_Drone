@@ -38,13 +38,13 @@ In this section, various potential solutions are hypothesized, design considerat
 
 The solution to this problem rerquires an aviation drone as well as integrated sensors to record data. The drone will be manually flown to the victim and have the ability to hover 1 meter above the target. Attached to the drone will be a sensing system that can measure one's, heart rate and respiratory rate, and cognitiveness all without contacting the individual. The data gathered by the sensors will then be sent to the computing system. The information will be processed and the person will be catagorized by servereness of injuries in accordance with the START method. 
 
-In order to do this, the design will be split up into subsystems:
+In order to do this, the design will be split up into devices:
 
-1). Power subsystem <br />
+1). Power device <br />
         -A battery will be used to supply all necessary power to each device along with voltage regulators to adjust the voltage to the required amount for each sensing device. <br />
         
-2). Computing subsystem <br /> 
-        -This subsystem will process the data recieved from the voice detection algorithm as well as the data from the heartbeat and respiratory sensors. The information will then be compared to the START triage method and the results will be wirelessly tranmitted to the user interface. 
+2). Signal Processing <br /> 
+        -This processing unit (Jettson Nano) will process the data recieved from the voice detection algorithm as well as the data from the heartbeat and respiratory sensors. The information will then be compared to the START triage method and the results will be wirelessly tranmitted to the user interface. 
         
 3). User Interface Subsystem <br /> 
     -This subsystem will display the victims vitals as well as triage level back to the user. The data will be wirelessly transmitted from the computing system back to the control point of the drone. 
