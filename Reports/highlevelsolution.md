@@ -4,7 +4,7 @@ The solution to this problem rerquires an aviation drone as well as integrated s
 
 In order to do this, the design will be split up into subsystems:
 
-1). Power subsystem
+1). Power subsystem <br />
     -A battery will be used to supply all necessary power to each device along with voltage regulators to adjust the voltage to the required amount for each sensing device. 
 2). Computing subsystem 
     -This subsystem will process the data recieved from the voice detection algorithm as well as the data from the heartbeat and respiratory sensors. The information will then be compared to the START triage method and the results will be wirelessly tranmitted to the user interface. 
