@@ -54,8 +54,6 @@ In order to do this, the design will be split up into subsystems:
     -These sensors are responsible for obtaining heatbeat and respiratory rate frequencies. The data acquired by these sensors will also be sent to the computing system. 
 
 
-This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
-
 
 
 ### Hardware Block Diagram
