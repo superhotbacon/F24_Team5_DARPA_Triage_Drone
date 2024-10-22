@@ -4,7 +4,9 @@ The following conceptual design wll lay out the general solution to the DARPA tr
 
 ## Introducing the problem
 
-  To tackle the problem. The customer has outlined a specific scenario that the drones effectiveness will be built around. This scenario is the following
+
+The porblem proposed is to create a system that will manually fly to individuals in an emergency situation and read vital signs in terms of heart rate, respiratory rate, and cognition. Then the system must relay that information back to the user and rank the victim in terms of the START triage method. 
+To understand the scope of the problem, the customer has outlined a specific scenario that the drones effectiveness will be built around. This scenario is the following
 
     An individual has been working on a powerline when suddenly the powerline comes crashing down. 
     The individual is unresponsive and paramedics cannot get to the individual due to the active powerline.
