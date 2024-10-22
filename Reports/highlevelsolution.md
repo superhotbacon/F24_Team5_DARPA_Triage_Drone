@@ -2,7 +2,8 @@
 
 The solution to this problem rerquires an aviation drone as well as integrated sensors to record data. The drone will be manually flown to the victim and have the ability to hover 1 meter above the target. Attached to the drone will be a sensing system that can measure one's, heart rate and respiratory rate, and cognitiveness all without contacting the individual. The data gathered by the sensors will then be sent to the computing system. The information will be processed and the person will be catagorized by servereness of injuries in accordance with the START method. 
 
-In order to do this, the design will be split up into subsystems: 
+In order to do this, the design will be split up into subsystems:
+
 1). Power subsystem
     -A battery will be used to supply all necessary power to each device along with voltage regulators to adjust the voltage to the required amount for each sensing device. 
 2). Computing subsystem 
