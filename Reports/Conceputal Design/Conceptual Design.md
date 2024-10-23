@@ -152,7 +152,52 @@ Develop a budget proposal with justifications for expenses associated with each 
 
 ### Skills
 
-First, conduct a thorough analysis of the skills currently available within the team, and then compare these skills to the specific requirements of each subsystem. Based on this analysis, assign each team member to oversee the development of a particular subsystem. Additionally, appoint a different team member to take the specifications and generate a corresponding solution. Ensure that the assignments are structured in such a way that no single team member is simultaneously managing and being managed by the same person. If there are more team members than subsystems, consider further subdividing the solutions into smaller tasks or components, thereby allowing each team member the opportunity to manage and design a subsystem.
+The team is comprised of three electrical engineers (Caleb Bucher, Chris Bradley, Reese Gilbert) and two computer engineers (Gabriel Buckner, Mathias Hagewood). Below are the specific specializations of each team member:
+
+Caleb Bucher
+- Software (python, sql, C++)
+- Solidworks
+- Circuits/LTSpice
+- PLC
+- Project Management
+
+Chris Bradley
+- LTSpice
+- Power Analysis
+- Software (C & C++)
+- Microcomputer Systems
+- Soldering 
+
+Reese Gilbert
+- Circuits/LTSpice
+- Power Analysis
+- VHDL Programming
+- Combinational Logic  
+
+Gabriel Buckner
+- Embedded Systems
+- FPGAS & Digital System Design
+- Signals and Systems
+- Computer Networks
+- Electromagnetic Interference
+
+Mathias Hagewood
+- Software (python, sql, C/C++)
+- Machine Learning (PolyRegression, NN)
+- Embedded Systems
+- Combinational Logic
+
+In a similar vein, the project has been divided into simpler chunks to organize the engineering effort; these are listed in the above section titled "High-Level Solution". Based on each team member's specialty, interest, and workload, the project has been divided in the following way.
+
+The power device will be researched and primarily developed by Reese Gilbert due to his specialization in power systems. Chris Bradley will be observing and acting as Reese's customer because of their similar expertise.
+
+Gabriel Buckner and Mathias Hagewood will be heading the signal processing aspect, specifically the communication between the sensors and the jetson nano. This fits well with their experience in embedded systems and Gabriel's experience in signal processing. Caleb Bucher will be observing and acting as Gabriel's and Mathias's customer to ensure their work fits the team's vision.
+
+Caleb Bucher and Chris Bradley will be developing the controller, its user interface, and the cognitive test device as these two modules go hand in hand. Their circuit, programming, and microcomputer expertise will be required to complete this task. Reese Gilbert and Mathias Hagewood will be observing and acting as customers due to their similar experience in circuitry.
+
+Lastly, Reese Gilbert, Caleb Bucher, and Mathias Hagewood will innovate the vitals sensor. Reese's combinational logic experience, Caleb's circuit design experience, and Mathias's software experience will all be required to develop this technology. Gabriel Buckner will be observing and acting as customer due to his expertise in signals and embedded systems.
+
+These are the primary roles of each team member. If any new information is gathered on a subsystem, the roles are liable to change if someone's expertise becomes better aligned or under advisement of the Georgia Tech team.
 
 ### Timeline
 
