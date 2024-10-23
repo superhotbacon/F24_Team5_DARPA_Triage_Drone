@@ -1,6 +1,6 @@
 ## Introduction
 
-The following conceptual design wll lay out the general solution to the DARPA triage drone challenge [1].
+In mass casualty incidents (MCIs), where the number of injured individuals far exceeds the capacity of available medical resources and responders, timely and accurate triage becomes critical to save lives. With the help of technology and innovation, triage can be much more manageable during a disaster. The DARPA Triage Challenge is set to drive innovation and design to identify injured victims in a catastrophe helping first responders perform scalable, timely, and accurate triage [DARPA Triage Challenge, 2023]. With the help of a carefully engineered system of sensors carried by an Unmanned Aerial Vehicle (UAV), it now becomes possible to deliver accurate and timely triage to these situations with limited medical personnel and equipment.
 
 ## Introducing the problem
 
