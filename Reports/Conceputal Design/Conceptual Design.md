@@ -68,8 +68,9 @@ The end result should present a comprehensive view of a well-defined system, del
 
 
 ### Operational Flow Chart
+[Operational Flow Chart.pdf](https://github.com/user-attachments/files/17498367/Operational.Flow.Chart.pdf)
 
-Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
+The above pdf contains our rudimentary operational flow chart. It details how a user will operate the final product specific to the decisions he or she makes while using it.
 
 
 ## Atomic Subsystem Specifications
