@@ -54,9 +54,23 @@ The fully formulated problem is the overall objective and scope complete with th
 **Cons:** High Cost, Heavy Weight, Complex Flight Style, Higher risk of Malfunction, and Difficult to store.  
   
 #### Drone Design Solution: 
-Considering both the Pros and Cons of each drone, it is in the best interest of the solution to select the multi-rotor Drone. Budgeting and reliability played crucial roles in the decision-making. The multi-rotor drone allocated well with the team’s budget and created no conflicts with any other budgeting needs. For fast and accurate triage, it is a necessity to have a drone that is reliable, the multi-rotor drone seemed to have excelled in this category compared to the Hybrid drone. After careful consideration, the multi-rotor drone is the most optimal choice. 
+Considering both the Pros and Cons of each drone, it is in the best interest of the solution to select the multi-rotor Drone. Budgeting and reliability played crucial roles in the decision-making. The multi-rotor drone allocated well with the team’s budget and created no conflicts with any other budgeting needs. For fast and accurate triage, it is a necessity to have a reliable drone, the multi-rotor drone seemed to have excelled in this category compared to the Hybrid drone. After careful consideration, the multi-rotor drone is the most optimal choice. 
 
  
+### 2. Computing Systems 
+The computing systems considered were a **Raspberry Pi** and a **NVIDIA Jetson Nano** for the triage sensor system.  
+#### **Raspberry Pi**  
+**Description:** Small, Low-Cost Computing Device.  
+**Pros:** Cost-Friendly, Compact Size, Customizable, Low Power Consumption, and Versatility.  
+**Cons:** Low-Performance Capabilities, Limited storage, Overheating, and Limited Connectivity.  
+#### **NVIDIA Jetson Nano** 
+**Description:** Small, powerful, and comprehensive computing system.  
+**Pros:** AI capabilities, High performance, Expandable Storage, Graphics processing optimization, and Multiple I/O options.  
+**Cons:** Power Consumption, Larger Size, Lack of built-in Wi-Fi, Complexity, and High Cost.  
+  
+#### Computing Systems Solution:
+Considering both the Raspberry Pi and the NVIDIA Jetson Nano, the Jetson Nano is the best solution for a computing system. With its high-performance capabilities in graphics processing,  it is a necessity due to the on-board camera that will be used during triage. It also allows for more I/O options compared to the Raspberry Pi, making it the essential choice considering the number of sensors and systems needed for timely and accurate triage. Despite the higher cost of the Jetson Nano, it is capable of maintaining the project budget making it the clear choice. 
+
     
 
 
