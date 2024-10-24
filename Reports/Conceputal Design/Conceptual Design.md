@@ -113,9 +113,10 @@ The power subsystem shall supply ample power to all subsystems.
   The power subsystem shall protect client circuits with fuses.
 
 #### **Description**
-The power subsystem will be responsible for converting power from the battery to the computing subsystem and other perihperals on the drone.
+The power subsystem will be responsible for converting power from the battery to the computing subsystem and other perihperals on the drone. The following flow chart describes the steps to meet the specifications.
 
 
+<img width="118" alt="power subsystem" src="https://github.com/user-attachments/assets/e48fe624-972f-47ee-875b-66390ba27317">
 
 ### **Computing subsystem**
 #### **connections**
