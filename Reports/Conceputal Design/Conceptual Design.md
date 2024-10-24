@@ -1,8 +1,8 @@
 ## Introduction
 
-In mass casualty incidents (MCIs), where the number of injured individuals far exceeds the capacity of available medical resources, timely and accurate triage becomes critical to save lives. With the help of technology and innovation, triage can be much more manageable during a disaster. The DARPA Triage Challenge aims to engineer new design and innovation to identify injured victims in a catastrophe helping first responders perform scalable, timely, and accurate triage [DARPA Triage Challenge, 2023]. Considering this, a system of highly designed sensors integrated into an Unmanned Aerial Vehicle (UAV) will allow for the utmost effectiveness. The equipped UAV allows for rapid evaluation of a disaster situation, through real-time data collection and analysis. 
+In mass casualty incidents (MCIs), where the number of injured individuals far exceeds the capacity of available medical resources, timely and accurate triage becomes critical to save lives. With the help of technology and innovation, triage can be much more manageable during a disaster. The DARPA Triage Challenge aims to engineer new designs and innovations to identify injured victims in a catastrophe helping first responders perform scalable, timely, and accurate triage [DARPA Triage Challenge, 2023]. Considering this, a system of highly designed sensors integrated into an Unmanned Aerial Vehicle (UAV) will allow for the utmost effectiveness. The equipped UAV allows for rapid evaluation of a disaster situation, through real-time data collection and analysis. 
   
-  With the help of a carefully engineered system of sensors carried by an Unmanned Aerial Vehicle , it is achievable to deliver accurate and timely triage to these situations with limited medical resources. Therefore, to address the difficulty of this critical lifesaving challenge, a comprehensive and high-level design is essential for success. This detailed design will outline these key aspects necessary to overcome this challenge. 
+  With the help of a carefully engineered system of sensors carried by an Unmanned Aerial Vehicle, it is achievable to deliver accurate and timely triage to these situations with limited medical resources. Therefore, to address the difficulty of this critical lifesaving challenge, a comprehensive and high-level design is essential for success. This detailed design will outline the key aspects necessary to overcome this challenge. 
 
 
 ## Introducing the problem
@@ -39,7 +39,7 @@ In this section, various potential solutions are hypothesized, design considerat
 
 ## High-Level Solution
 
-The solution to this problem rerquires an aviation drone as well as integrated sensors to record data. The drone will be manually flown to the victim and have the ability to hover 1 meter above the target. Attached to the drone will be a sensing system that can measure one's, heart rate and respiratory rate, and cognitiveness all without contacting the individual. The data gathered by the sensors will then be sent to the computing system. The information will be processed and the person will be catagorized by servereness of injuries in accordance with the START method. 
+The solution to this problem requires an aviation drone as well as integrated sensors to record data. The drone will be manually flown to the victim and have the ability to hover 1 meter above the target. Attached to the drone will be a sensing system that can measure one's, heart rate and respiratory rate, and cognitiveness all without contacting the individual. The data gathered by the sensors will then be sent to the computing system. The information will be processed and the person will be categorized by severity of injuries in accordance with the START method. 
 
 In order to do this, the design will be split up into devices:
 
@@ -53,10 +53,10 @@ In order to do this, the design will be split up into devices:
     -After the signlas are processed the information will be sent to a telecommunication device that will transmit the victims vitals as well as triage level back to the user. The information will be shown on an LCD display at the controller. This device will have one radio frequency signal input that comes from the signal processing device. 
     
 4). Cognitive test devise <br /> 
-    -The user will have a button to allow a procedure to occur using a speaker and a microphone.The speaker will send out a call a prompt and and the microphon will capture audio data and relay it back to the computing system. 
+    -The user will have a button to allow a procedure to occur using a speaker and a microphone. The speaker will send out a call a prompt and and the microphon will capture audio data and relay it back to the computing system. 
     
-5). Heartbeat/Respiratory dopper <br /> 
-    -The doppler radar is responsible for obtaining heatbeat and respiratory rate frequencies. The data acquired will also be sent to the computing system. 
+5). Heartbeat/Respiratory doppler <br /> 
+    -The doppler radar is responsible for obtaining heartbeat and respiratory rate frequencies. The data acquired will also be sent to the computing system. 
 
 
 
@@ -90,11 +90,11 @@ Digital wires to external buttons and switches.
 #### **specifications**
 The drone controller shall work in tandem with the drone to fly the drone.
 The drone controller shall connect to the computing subsystem in order to display collected data.
-The drone controller shall be conect to a microphone and speaker to ensure operator can talk to victim.
+The drone controller shall be connected to a microphone and speaker to ensure the operator can talk to the victim.
 The drone controller shall connect to buttons and switches to control the signal processing and microphone.
 
 #### **Description**
-The drone controller will come out of the box with the drone and will be modified to have extra functionality. The drone controller shall connect to an LCD display and display the information from the computing subsystem. The controller will be modified to communicate with the computing subsystem wirelessly. The controller will need to have a power connection to the LCD as well. The controller subsystem will perform the logic neccessary to display the data to the LCD.
+The drone controller will come out of the box with the drone and will be modified to have extra functionality. The controller shall connect to an LCD display and display the information from the computing subsystem. The controller will be modified to communicate with the computing subsystem wirelessly. The controller will also need to have a power connection to the LCD. The controller subsystem will perform the logic necessary to display the data on the LCD.
 ### **Power subsystem**
 #### **connections**
 The drone will mount the computing subsystem, microphone, and speaker.
@@ -104,7 +104,7 @@ Bi-directional wireless communication to the drone controller.
 The drone shall weigh less than 20 lbs.
 The drone shall be able to fly out of the box.
 The drone shall be modular and able to add or change parts.
-The drone shall have anti collision lighting.
+The drone shall have anti-collision lighting.
 
 #### **Description**
 The drone will be bought and intended to fly out of the box. The drone needs to be able to be modified and extra parts added. A modular design is the most practical. The drone needs to have its own drone controller that comes with it. This will allow our team to spend more of our time on other parts of the project. 
@@ -112,10 +112,10 @@ The drone will be bought and intended to fly out of the box. The drone needs to 
 
 ### **Computing subsystem**
 #### **connections**
-Bi-directional wireless connection line between computing subsystem and the drone controller.
-USB connection to extenal microphone.
-analog signal to doppler sensor.
-USB connection to speaker.
+Bi-directional wireless connection line between the computing subsystem and the drone controller.
+USB connection to an external microphone.
+analog signal to the doppler sensor.
+USB connection to the speaker.
 
 #### **specifications**
 The Computing subsystem shall communicate via LoRaWAN to the drone controller and send signal data, voice data, and state data.
@@ -131,7 +131,7 @@ The Computing subsystem is the center of the sensor processing and communication
 
 Based on the high-level design, provide a comprehensive description of the functions each subsection will perform.
 
-Inclued a description the interfaces between this subsystem and other subsystems:
+Include a description of the interfaces between this subsystem and other subsystems:
 - Give the type of signal (e.g. power, analog signal, serial communication, wireless communication, etc).
 - Clearly define the direction of the signal (input or output).
 - Document the communication protocols used.
@@ -159,7 +159,7 @@ Develop a budget proposal with justifications for expenses associated with each 
 The team is comprised of three electrical engineers (Caleb Bucher, Chris Bradley, Reese Gilbert) and two computer engineers (Gabriel Buckner, Mathias Hagewood). Below are the specific specializations of each team member:
 
 Caleb Bucher
-- Software (python, sql, C++)
+- Software (python, SQL, C++)
 - Solidworks
 - Circuits/LTSpice
 - PLC
@@ -186,7 +186,7 @@ Gabriel Buckner
 - Electromagnetic Interference
 
 Mathias Hagewood
-- Software (python, sql, C/C++)
+- Software (python, SQL, C/C++)
 - Machine Learning (PolyRegression, NN)
 - Embedded Systems
 - Combinational Logic
@@ -195,13 +195,13 @@ In a similar vein, the project has been divided into simpler chunks to organize 
 
 The power device will be researched and primarily developed by Reese Gilbert due to his specialization in power systems. Chris Bradley will be observing and acting as Reese's customer because of their similar expertise.
 
-Gabriel Buckner and Mathias Hagewood will be heading the signal processing aspect, specifically the communication between the sensors and the jetson nano. This fits well with their experience in embedded systems and Gabriel's experience in signal processing. Caleb Bucher will be observing and acting as Gabriel's and Mathias's customer to ensure their work fits the team's vision.
+Gabriel Buckner and Mathias Hagewood will be heading the signal processing aspect, specifically the communication between the sensors and the jetson nano. This fits well with their experience in embedded systems and Gabriel's experience in signal processing. Caleb Bucher will be observing and acting as Gabriel's and Mathias's customers to ensure their work fits the team's vision.
 
 Caleb Bucher and Chris Bradley will be developing the controller, its user interface, and the cognitive test device as these two modules go hand in hand. Their circuit, programming, and microcomputer expertise will be required to complete this task. Reese Gilbert and Mathias Hagewood will be observing and acting as customers due to their similar experience in circuitry.
 
-Lastly, Reese Gilbert, Caleb Bucher, and Mathias Hagewood will innovate the vitals sensor. Reese's combinational logic experience, Caleb's circuit design experience, and Mathias's software experience will all be required to develop this technology. Gabriel Buckner will be observing and acting as customer due to his expertise in signals and embedded systems.
+Lastly, Reese Gilbert, Caleb Bucher, and Mathias Hagewood will innovate the vitals sensor. Reese's combinational logic experience, Caleb's circuit design experience, and Mathias's software experience will all be required to develop this technology. Gabriel Buckner will be observing and acting as a customer due to his expertise in signals and embedded systems.
 
-These are the primary roles of each team member. If any new information is gathered on a subsystem, the roles are liable to change if someone's expertise becomes better aligned or under advisement of the Georgia Tech team.
+These are the primary roles of each team member. If any new information is gathered on a subsystem, the roles are liable to change if someone's expertise becomes better aligned or under the advisement of the Georgia Tech team.
 
 ### Timeline
 
