@@ -37,14 +37,14 @@ The fully formulated problem is the overall objective and scope complete with th
 ### 1. Drone Design
   The drones considered for the solution: **Multi-Rotor Drone** & **Hybrid Drone**.
 
-#### **Multi-Rotor Drone**
+#### **Multi-Rotor Drone** [2]
  [](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.jouav.com%2Fproducts%2Fph-25.html&psig=AOvVaw2NoXoxPRNUwAb-XI9PWE50&ust=1729826904568000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLCQvdSapokDFQAAAAAdAAAAABAI)![image](https://github.com/user-attachments/assets/ef86cd8d-5090-413c-971c-77160f0fdbe3)  
 **Description:** A light-framed, vertical takeoff and landing (VTOL), multi-rotor drone.
   
 **Pros:** High Payload Capacity, Vertical Takeoff and Landing Capability, Improved Control and Stability, Maneuverability, Cost-Friendly, Versatile, and Easy Storage.   
 **Cons:** Limited Flight Time, Limited Range, Weather Sensitivity, Battery Usage, and Slow Flight speeds.  
 
-#### **Hybrid Drone**  
+#### **Hybrid Drone** [3]
 [](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.viewprouav.com%2Fcompare%2F%3Fpost_id%3D3542&psig=AOvVaw16fp1WDzkosiA_6tgQ8p_V&ust=1729829283785000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNj7tbOSpokDFQAAAAAdAAAAABAh)![image](https://github.com/user-attachments/assets/ed79ac40-2bc8-4f6f-a6a8-abf6501a5d0b)
 
 
@@ -55,6 +55,8 @@ The fully formulated problem is the overall objective and scope complete with th
   
 #### Drone Design Solution: 
 Considering both the Pros and Cons of each drone, it is in the best interest of the solution to select the multi-rotor Drone. Budgeting and reliability played crucial roles in the decision-making. The multi-rotor drone allocated well with the team’s budget and created no conflicts with any other budgeting needs. For fast and accurate triage, it is a necessity to have a reliable drone, the multi-rotor drone seemed to have excelled in this category compared to the Hybrid drone. After careful consideration, the multi-rotor drone is the most optimal choice. 
+
+*The photos above are for reference*
 
  
 ### 2. Computing Systems 
@@ -187,7 +189,7 @@ The Computing subsystem is the center of the sensor processing and communication
 5.	Economy  
 \-	The affordability of a Triage Drone system can greatly cut the cost of required resources that some economies may not be able to afford in the time of a disaster. The increased use of drones in situations may create demand for this industry leading to new jobs and economic growth. 
 
-**START Adult Triage Method**     
+**START Adult Triage Method** [4]     
 During times of disaster, good ethical decisions and considerations are often compromised. However, the START Method can better the decision-making for individuals in these situations. The Drone’s Triage system considers the START Method, thus influencing the design and selection of each subsystem to easily navigate the START Method for better and more ethical  life-saving decisions.
 [](https://www.google.com/url?sa=i&url=https%3A%2F%2Fchemm.hhs.gov%2Fstartadult.htm&psig=AOvVaw0y8xkEmUV6EMQKV7fnoMyg&ust=1729839169189000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDd8Ju3pokDFQAAAAAdAAAAABAE)![image](https://github.com/user-attachments/assets/3f9fa7fc-3093-4bae-8b61-276a595ef9d1)  
 These specifications were influenced greatly by the method above.  
@@ -266,8 +268,12 @@ Revise the detailed timeline (Gantt chart) you created in the project proposal. 
 ## References
 
 [[1](#specification)]
-“DARPA Triage Challenge,” triagechallenge.darpa.mil. https://triagechallenge.darpa.mil/
-
+“DARPA Triage Challenge,” triagechallenge.darpa.mil. https://triagechallenge.darpa.mil/  
+[[2](#comparativeanalyisofpotentialsolution)] "JOUAV." [Online]. Available: https://www.jouav.com/products/ph-25.html  
+[[3](#comparativeanalyisofpotentialsolution)] "VIEWPRO." [Online]. Available:
+https://www.viewprouav.com/compare/?post_id=3542  
+[[4](#ethics)] "START Adult Triage Method." [Online]. Available:
+https://chemm.hhs.gov/startadult.htm
 ‌
 
 ## Statement of Contributions
