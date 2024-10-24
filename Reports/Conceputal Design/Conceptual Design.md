@@ -175,13 +175,13 @@ The Computing subsystem is the center of the sensor processing and communication
 
 ## Ethical, Professional, and Standards Considerations
 1.	Culture  
-\-	The integration of drone technology and medical resource contributes to a positive outlook on technological advancement. Using this drone technology to create better solutions to the worlds needs creates a lasting culture of high-tech engineering and innovation. 
+\-	The integration of drone technology and medical resource contributes to a positive outlook on technological advancement. Using this drone technology to create better solutions to the world's needs creates a lasting culture of high-tech engineering and innovation. 
 
 2.	Society  
-\-	Integrating drones and robotics into the medical field with accuracy and effectiveness untaps the potential of new roles and jobs for the future of society. Along with increasing the sense of safety between Humans and Robotics. 
+\-	Integrating drones and robotics into the medical field with accuracy and effectiveness unlocks the potential of new roles and jobs for the future of society. Along with increasing the sense of safety between Humans and Robotics. 
 
 3.	Environment  
-\-	A Triage drone may allow for remote access to difficult areas, otherwise requiring invasive equipment that may damage sensitive ecosystems and environments. It also minimizes carbon emissions by reducing the need for ground transportation in a disaster ridden areas. Therefore, it is considered that a drone may be very Eco-Friendly. 
+\-	A Triage drone may allow for remote access to difficult areas, otherwise requiring invasive equipment that may damage sensitive ecosystems and environments. It also minimizes carbon emissions by reducing the need for ground transportation in  disaster-ridden areas. Therefore, it is considered that a drone may be very Eco-Friendly. 
 
 4.	Public Health and Safety  
 \-	A Triage integrated drone allows for a more accurate and timely response to a disaster site with an excessive amount of medical need and attention. It also considers the safety of the first responders preventing them from being in unsafe areas and conditions. Therefore, maximizing the effort and efficiency of the first responders. 
