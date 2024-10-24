@@ -155,7 +155,7 @@ The Computing subsystem shall limit recorded voice between 80 Hz and 255 Hz.
 
 The Computing subsystem is the center of the sensor processing and communication. The system will connect to the drone and will interface the microphone, speaker, doppler, and drone controller. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The computing subsystem will connect wirelessly to the drone controller module and ensure that no audio information is recorded. The following flow chart decribes the steps to meet the specifications.
 
-<img width="118" alt="power subsystem" src="https://github.com/user-attachments/assets/e8102912-d0a9-4f99-b57b-2eada99b4faa">
+<img width="549" alt="Computing system" src="https://github.com/user-attachments/assets/4159aa57-bca3-4ec6-8778-b3474c0115e3">
 
 ## Ethical, Professional, and Standards Considerations
 
