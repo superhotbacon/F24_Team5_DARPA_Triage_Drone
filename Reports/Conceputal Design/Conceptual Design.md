@@ -63,11 +63,9 @@ In order to do this, the design will be split up into devices:
 
 ### Hardware Block Diagram
 
-Block diagrams are an excellent way to provide an overarching understanding of a system and the relationships among its individual components. Generally, block diagrams draw from visual modeling languages like the Universal Modeling Language (UML). Each block represents a subsystem, and each connection indicates a relationship between the connected blocks. Typically, the relationship in a system diagram denotes an input-output interaction.
+[Operational Flow Chart.pdf](file:///C:/Users/lkbuc/Downloads/Hardware%20Block%20Diagram%20(1).pdf)
 
-In the block diagram, each subsystem should be depicted by a single block. For each block, there should be a brief explanation of its functional expectations and associated constraints. Similarly, each connection should have a concise description of the relationship it represents, including the nature of the connection (such as power, analog signal, serial communication, or wireless communication) and any relevant constraints.
-
-The end result should present a comprehensive view of a well-defined system, delegating all atomic responsibilities necessary to accomplish the project scope to their respective subsystems.
+The above URL contains our hardware block diagram using visio software. It details visually how we are splitting up our systems.
 
 
 ### Operational Flow Chart
@@ -217,4 +215,13 @@ Revise the detailed timeline (Gantt chart) you created in the project proposal. 
 
 ## Statement of Contributions
 
-Each team member is required to make a meaningful contribution to the project proposal. Ensure that each member's contributions are clearly documented.
+
+- **Caleb Bucher**: Responsible for developing the hardware block diagram, managing the project budget, and creating the statement of contribution.
+
+- **Chris Bradely**: Tasked with writing the introduction, overseeing document formatting, addressing ethical considerations, and conducting the comparative analysis.
+
+- **Mathias Hagwood**: In charge of creating the operational flow chart and identifying necessary skills for project execution.
+
+- **Reece Gilbert**: Focused on outlining the high-level solution and clearly restating the problem.
+
+- **Gabriel Buckner**: Responsible for defining the atomic subsystem specifications, managing resource allocation, and developing the project timeline.
