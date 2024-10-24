@@ -34,7 +34,12 @@ The fully formulated problem is the overall objective and scope complete with th
 
 ## Comparative Analysis of Potential Solutions
 
-In this section, various potential solutions are hypothesized, design considerations are discussed, and factors influencing the selection of a solution are outlined. The chosen solution is then identified with justifications for its selection.
+### 1. Drone Design
+  The drones considered for the solution are a **Multi-Rotor Drone** & a **Hybrid Drone**.
+
+  **Multi-Rotor Drone**
+ 
+    
 
 
 ## High-Level Solution
