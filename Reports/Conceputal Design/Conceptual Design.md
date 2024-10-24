@@ -1,6 +1,9 @@
 ## Introduction
 
-In mass casualty incidents (MCIs), where the number of injured individuals far exceeds the capacity of available medical resources and responders, timely and accurate triage becomes critical to save lives. With the help of technology and innovation, triage can be much more manageable during a disaster. The DARPA Triage Challenge is set to drive innovation and design to identify injured victims in a catastrophe helping first responders perform scalable, timely, and accurate triage [DARPA Triage Challenge, 2023]. With the help of a carefully engineered system of sensors carried by an Unmanned Aerial Vehicle (UAV), it now becomes possible to deliver accurate and timely triage to these situations with limited medical personnel and equipment.
+In mass casualty incidents (MCIs), where the number of injured individuals far exceeds the capacity of available medical resources, timely and accurate triage becomes critical to save lives. With the help of technology and innovation, triage can be much more manageable during a disaster. The DARPA Triage Challenge aims to engineer new design and innovation to identify injured victims in a catastrophe helping first responders perform scalable, timely, and accurate triage [DARPA Triage Challenge, 2023]. Considering this, a system of highly designed sensors integrated into an Unmanned Aerial Vehicle (UAV) will allow for the utmost effectiveness. The equipped UAV allows for rapid evaluation of a disaster situation, through real-time data collection and analysis. 
+  
+  With the help of a carefully engineered system of sensors carried by an Unmanned Aerial Vehicle , it is achievable to deliver accurate and timely triage to these situations with limited medical resources. Therefore, to address the difficulty of this critical lifesaving challenge, a comprehensive and high-level design is essential for success. This detailed design will outline these key aspects necessary to overcome this challenge. 
+
 
 ## Introducing the problem
 
