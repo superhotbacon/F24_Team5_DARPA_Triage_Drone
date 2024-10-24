@@ -68,7 +68,7 @@ In order to do this, the design will be split up into devices:
 
 ### Hardware Block Diagram
 
-([Hardware Block Diagram (1).pdf](https://github.com/user-attachments/files/17501255/Hardware.Block.Diagram.1.pdf))
+([Hardware Block Diagram.pdf](https://github.com/user-attachments/files/17501255/Hardware.Block.Diagram.1.pdf))
 
 The above URL contains our hardware block diagram using visio software. It details visually how we are splitting up our systems.
 
@@ -159,7 +159,9 @@ You have already estimated the resources needed to complete the solution. Now, l
 
 ### Budget
 
-Develop a budget proposal with justifications for expenses associated with each subsystem. Note that the total of this budget proposal can also serve as a specification for each subsystem. After creating the budgets for individual subsystems, merge them to create a comprehensive budget for the entire solution.
+[Cost Break Down.pdf](https://github.com/user-attachments/files/17501343/Cost.Break.Down.pdf)
+
+The following budget was obtained from the previous Capstone group, and we have made adjustments by adding additional items that we anticipate will be required to complete our project.
 
 ### Skills
 
