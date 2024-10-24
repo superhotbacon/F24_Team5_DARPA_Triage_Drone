@@ -98,19 +98,21 @@ The drone controller shall connect to buttons and switches to control the signal
 
 #### **Description**
 The drone controller will come out of the box with the drone and will be modified to have extra functionality. The controller shall connect to an LCD display and display the information from the computing subsystem. The controller will be modified to communicate with the computing subsystem wirelessly. The controller will also need to have a power connection to the LCD. The controller subsystem will perform the logic necessary to display the data on the LCD.
+
 ### **Power subsystem**
 #### **connections**
-The drone will mount the computing subsystem, microphone, and speaker.
-Bi-directional wireless communication to the drone controller.
+Power signal to connect the computing subsystem, microphone, doppler and battery on the drone.
+Power signal to connect LCD, microcontroller, and wireless communicator on the drone controller.
 
 #### **specifications**
-The drone shall weigh less than 20 lbs.
-The drone shall be able to fly out of the box.
-The drone shall be modular and able to add or change parts.
-The drone shall have anti-collision lighting.
+The power subsystem shall supply ample power to all subsystems.
+  The power subsystem shall optimally use the battery on the drone to prevent unnessesary discharge.
+  The power subsystem shall not have exposed wiring to ensure safety.
+  The power subsystem shall protect client circuits with fuses.
 
 #### **Description**
-The drone will be bought and intended to fly out of the box. The drone needs to be able to be modified and extra parts added. A modular design is the most practical. The drone needs to have its own drone controller that comes with it. This will allow our team to spend more of our time on other parts of the project. 
+The power subsystem will be responsible for converting power from the battery to the computing subsystem and other perihperals on the drone.
+
 
 
 ### **Computing subsystem**
