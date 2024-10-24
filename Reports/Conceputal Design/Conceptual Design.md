@@ -32,12 +32,30 @@ To understand the scope of the problem, the customer has outlined a specific sce
 The fully formulated problem is the overall objective and scope complete with the set of shall statements. This was part of the project proposal. However, it may be that the scope has changed. So, state the fully formulated problem in the introduction of the conceptual design and planning document. For each of the constraints, explain the origin of the constraint (customer specification, standards, ethical concern, broader implication concern, etc).
 
 
-## Comparative Analysis of Potential Solutions
+## Comparative Analysis of Potential Solutions  
 
 ### 1. Drone Design
-  The drones considered for the solution are a **Multi-Rotor Drone** & a **Hybrid Drone**.
+  The drones considered for the solution: **Multi-Rotor Drone** & **Hybrid Drone**.
 
-  **Multi-Rotor Drone**
+#### **Multi-Rotor Drone**
+ [](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.jouav.com%2Fproducts%2Fph-25.html&psig=AOvVaw2NoXoxPRNUwAb-XI9PWE50&ust=1729826904568000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLCQvdSapokDFQAAAAAdAAAAABAI)![image](https://github.com/user-attachments/assets/ef86cd8d-5090-413c-971c-77160f0fdbe3)  
+**Description:** A light-framed, vertical takeoff and landing (VTOL), multi-rotor drone.
+  
+**Pros:** High Payload Capacity, Vertical Takeoff and Landing Capability, Improved Control and Stability, Maneuverability, Cost-Friendly, Versatile, and Easy Storage.   
+**Cons:** Limited Flight Time, Limited Range, Weather Sensitivity, Battery Usage, and Slow Flight speeds.  
+
+#### **Hybrid Drone**  
+[](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.viewprouav.com%2Fcompare%2F%3Fpost_id%3D3542&psig=AOvVaw16fp1WDzkosiA_6tgQ8p_V&ust=1729829283785000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNj7tbOSpokDFQAAAAAdAAAAABAh)![image](https://github.com/user-attachments/assets/ed79ac40-2bc8-4f6f-a6a8-abf6501a5d0b)
+
+
+**Description:** A VTOL and fixed-winged drone.  
+  
+**Pros:** High Payload Capacity, Fast Flight Speeds, High Range, Versatility, Fuel-Efficient, Extended Flight times.   
+**Cons:** High Cost, Heavy Weight, Complex Flight Style, Higher risk of Malfunction, and Difficult to store.  
+  
+#### Drone Design Solution: 
+Considering both the Pros and Cons of each drone, it is in the best interest of the solution to select the multi-rotor Drone. Budgeting and reliability played crucial roles in the decision-making. The multi-rotor drone allocated well with the team’s budget and created no conflicts with any other budgeting needs. For fast and accurate triage, it is a necessity to have a drone that is reliable, the multi-rotor drone seemed to have excelled in this category compared to the Hybrid drone. After careful consideration, the multi-rotor drone is the most optimal choice. 
+
  
     
 
