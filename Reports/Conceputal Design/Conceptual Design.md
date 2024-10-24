@@ -281,9 +281,9 @@ https://chemm.hhs.gov/startadult.htm
 
 - **Caleb Bucher**: Responsible for developing the hardware block diagram, managing the project budget, and creating the statement of contribution.
 
-- **Chris Bradely**: Tasked with writing the introduction, overseeing document formatting, addressing ethical considerations, and conducting the comparative analysis.
+- **Chris Bradley**: Tasked with writing the introduction, overseeing document formatting, addressing ethical considerations, and conducting the comparative analysis.
 
-- **Mathias Hagwood**: In charge of creating the operational flow chart and identifying necessary skills for project execution.
+- **Mathias Hagewood**: In charge of creating the operational flow chart and identifying necessary skills for project execution.
 
 - **Reece Gilbert**: Focused on outlining the high-level solution and clearly restating the problem.
 
