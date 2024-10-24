@@ -209,7 +209,7 @@ You have already estimated the resources needed to complete the solution. Now, l
 
 [Cost Break Down.pdf](https://github.com/user-attachments/files/17501343/Cost.Break.Down.pdf)
 
-The following budget was obtained from the previous Capstone group, and we have made adjustments by adding additional items that we anticipate will be required to complete our project.
+The following budget was obtained from the previous Capstone group, and adjustments have been made by adding additional items that are anticipated to be required to complete our project.
 
 ### Skills
 
