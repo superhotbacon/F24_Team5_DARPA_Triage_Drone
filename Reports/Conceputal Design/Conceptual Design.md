@@ -68,7 +68,7 @@ In order to do this, the design will be split up into devices:
 
 ### Hardware Block Diagram
 
-[Operational Flow Chart.pdf](file:///C:/Users/lkbuc/Downloads/Hardware%20Block%20Diagram%20(1).pdf)
+([Hardware Block Diagram (1).pdf](https://github.com/user-attachments/files/17501255/Hardware.Block.Diagram.1.pdf))
 
 The above URL contains our hardware block diagram using visio software. It details visually how we are splitting up our systems.
 
