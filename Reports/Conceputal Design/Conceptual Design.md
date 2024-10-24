@@ -172,8 +172,31 @@ The Computing subsystem is the center of the sensor processing and communication
 <img width="549" alt="Computing system" src="https://github.com/user-attachments/assets/4159aa57-bca3-4ec6-8778-b3474c0115e3">
 
 ## Ethical, Professional, and Standards Considerations
+1.	Culture  
+\-	The integration of drone technology and medical resource contributes to a positive outlook on technological advancement. Using this drone technology to create better solutions to the worlds needs creates a lasting culture of high-tech engineering and innovation. 
 
-In the project proposal, each team must evaluate the broader impacts of the project on culture, society, the environment, public health, public safety, and the economy. Additionally, teams must consider relevant standards organizations that will inform the design process. A comprehensive discussion should be included on how these considerations have influenced the design. This includes detailing constraints, specifications, and practices implemented as a result, and how these address the identified considerations.
+2.	Society  
+\-	Integrating drones and robotics into the medical field with accuracy and effectiveness untaps the potential of new roles and jobs for the future of society. Along with increasing the sense of safety between Humans and Robotics. 
+
+3.	Environment  
+\-	A Triage drone may allow for remote access to difficult areas, otherwise requiring invasive equipment that may damage sensitive ecosystems and environments. It also minimizes carbon emissions by reducing the need for ground transportation in a disaster ridden areas. Therefore, it is considered that a drone may be very Eco-Friendly. 
+
+4.	Public Health and Safety  
+\-	A Triage integrated drone allows for a more accurate and timely response to a disaster site with an excessive amount of medical need and attention. It also considers the safety of the first responders preventing them from being in unsafe areas and conditions. Therefore, maximizing the effort and efficiency of the first responders. 
+
+5.	Economy  
+\-	The affordability of a Triage Drone system can greatly cut the cost of required resources that some economies may not be able to afford in the time of a disaster. The increased use of drones in situations may create demand for this industry leading to new jobs and economic growth. 
+
+**START Adult Triage Method**     
+During times of disaster, good ethical decisions and considerations are often compromised. However, the START Method can better the decision-making for individuals in these situations. The Drone’s Triage system considers the START Method, thus influencing the design and selection of each subsystem to easily navigate the START Method for better and more ethical  life-saving decisions.
+[](https://www.google.com/url?sa=i&url=https%3A%2F%2Fchemm.hhs.gov%2Fstartadult.htm&psig=AOvVaw0y8xkEmUV6EMQKV7fnoMyg&ust=1729839169189000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDd8Ju3pokDFQAAAAAdAAAAABAE)![image](https://github.com/user-attachments/assets/3f9fa7fc-3093-4bae-8b61-276a595ef9d1)  
+These specifications were influenced greatly by the method above.  
+1. The system shall obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).
+2. The system shall obtain the breathing rate and frequency (range 0.13 to 1 Hz).
+3. The system shall give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.
+4. The system shall display triage results and vitals wirelessly.
+
+
 
 
 ## Resources
