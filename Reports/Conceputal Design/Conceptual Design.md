@@ -97,7 +97,9 @@ The drone controller shall be connected to a microphone and speaker to ensure th
 The drone controller shall connect to buttons and switches to control the signal processing and microphone.
 
 #### **Description**
-The drone controller will come out of the box with the drone and will be modified to have extra functionality. The controller shall connect to an LCD display and display the information from the computing subsystem. The controller will be modified to communicate with the computing subsystem wirelessly. The controller will also need to have a power connection to the LCD. The controller subsystem will perform the logic necessary to display the data on the LCD.
+The drone controller will come out of the box with the drone and will be modified to have extra functionality. The controller shall connect to an LCD display and display the information from the computing subsystem. The controller will be modified to communicate with the computing subsystem wirelessly. The controller will also need to have a power connection to the LCD. The controller subsystem will perform the logic necessary to display the data on the LCD. The following steps are outlined in the following flow chart
+
+<img width="337" alt="Drawing" src="https://github.com/user-attachments/assets/2250e856-0dc8-40f1-8047-8444697589bf">
 
 ### **Power subsystem**
 #### **connections**
