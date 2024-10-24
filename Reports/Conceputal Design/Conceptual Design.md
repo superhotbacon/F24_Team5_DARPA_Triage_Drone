@@ -153,19 +153,9 @@ The Computing subsystem shall limit recorded voice between 80 Hz and 255 Hz.
 
 #### **Description**
 
-The Computing subsystem is the center of the sensor processing and communication. The system will connect to the drone and will interface the microphone, speaker, doppler, and drone controller. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The computing subsystem will connect wirelessly to the drone controller module and ensure that no audio information is recorded.
+The Computing subsystem is the center of the sensor processing and communication. The system will connect to the drone and will interface the microphone, speaker, doppler, and drone controller. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The computing subsystem will connect wirelessly to the drone controller module and ensure that no audio information is recorded. The following flow chart decribes the steps to meet the specifications.
 
-Based on the high-level design, provide a comprehensive description of the functions each subsection will perform.
-
-Include a description of the interfaces between this subsystem and other subsystems:
-- Give the type of signal (e.g. power, analog signal, serial communication, wireless communication, etc).
-- Clearly define the direction of the signal (input or output).
-- Document the communication protocols used.
-- Specifying what data will be sent and what will be received.
-
-Detail the operation of the subsystem:
-- Illustrate the expected user interface, if applicable.
-- Include functional flowcharts that capture the major sequential steps needed to achieve the desired functionalities.
+<img width="118" alt="power subsystem" src="https://github.com/user-attachments/assets/e8102912-d0a9-4f99-b57b-2eada99b4faa">
 
 ## Ethical, Professional, and Standards Considerations
 
