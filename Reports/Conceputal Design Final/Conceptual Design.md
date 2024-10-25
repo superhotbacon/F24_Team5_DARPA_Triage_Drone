@@ -22,8 +22,8 @@ To understand the scope of the problem, the customer has outlined a specific sce
   
 **1.** The drone SHALL be user-friendly.  
 **2.** The drone SHALL have an integrated system for security.  
-**3.** The drone SHALL remain under 400 ft above ground level
-**4.** The drone SHALL not exceed 100 mph
+**3.** The drone SHALL remain under 400 ft above ground level  
+**4.** The drone SHALL not exceed 100 mph  
 **5.** The drone SHALL be equipped with anti-collision lighting 
 
 
@@ -83,26 +83,26 @@ The solution to this problem requires an aviation drone as well as integrated se
 The design will be split up into these devices:
 
 **1). Power device** <br />
-        -A battery will be used to supply all necessary power to each device along with voltage regulators to adjust the voltage to the required amount for each sensing device. The battery will be the input to the voltage regulator circuit. The output of the regulator circuit will be wired to the heart rate/ respiratory rate doppler, the voice detection system, and the computing system. 
+        - A battery will be used to supply all necessary power to each device along with voltage regulators to adjust the voltage to the required amount for each sensing device. The battery will be the input to the voltage regulator circuit. The output of the regulator circuit will be wired to the heart rate/ respiratory rate doppler, the voice detection system, and the computing system. 
         
 **2). Signal Processing** <br /> 
-        -This processing unit (Jettson Nano) will process the data received from the microphone as well as the data from the heartbeat and respiratory doppler. The information will then be compared to the START triage method and the results will be wirelessly transmitted to the user interface. The processing unit will have serial or digital input lines coming from the doppler radar as well as an analog input line coming from the microphone. It will have a wireless radio frequency output going to the user control device. 
+        - This processing unit (Jettson Nano) will process the data received from the microphone as well as the data from the heartbeat and respiratory doppler. The information will then be compared to the START triage method and the results will be wirelessly transmitted to the user interface. The processing unit will have serial or digital input lines coming from the doppler radar as well as an analog input line coming from the microphone. It will have a wireless radio frequency output going to the user control device. 
         
 **3). User Control** <br /> 
-    -After the signals are processed the information will be sent to a telecommunication device that will transmit the victim's vitals as well as triage level back to the user. The information will be shown on an LCD display at the controller. This device will have one radio frequency signal input that comes from the signal processing device. 
+    - After the signals are processed the information will be sent to a telecommunication device that will transmit the victim's vitals as well as triage level back to the user. The information will be shown on an LCD display at the controller. This device will have one radio frequency signal input that comes from the signal processing device. 
     
 **4). Cognitive test device** <br /> 
-    -The user will have a button to allow a procedure to occur using a speaker and a microphone. The speaker will send out a call prompt and the microphone will capture audio data and relay it back to the computing system. 
+    - The user will have a button to allow a procedure to occur using a speaker and a microphone. The speaker will send out a call prompt and the microphone will capture audio data and relay it back to the computing system. 
     
 **5). Heartbeat/Respiratory doppler** <br /> 
-    -The doppler radar is responsible for obtaining heartbeat and respiratory rate frequencies. The data acquired will also be sent to the computing system. 
+    - The doppler radar is responsible for obtaining heartbeat and respiratory rate frequencies. The data acquired will also be sent to the computing system. 
 
 
 
 
 ### Hardware Block Diagram
 
-([Hardware Block Diagram.pdf](https://github.com/user-attachments/files/17501255/Hardware.Block.Diagram.1.pdf))
+[Hardware Block Diagram.pdf](https://github.com/user-attachments/files/17501255/Hardware.Block.Diagram.1.pdf)
 
 The above URL contains the hardware block diagram using Visio software. It details visually how the systems will be split.
 
