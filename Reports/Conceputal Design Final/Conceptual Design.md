@@ -1,4 +1,4 @@
-* ## Introduction 
+## Introduction 
 
 In mass casualty incidents (MCIs), where the number of injured individuals far exceeds the capacity of available medical resources, timely and accurate triage becomes critical to save lives. With the help of technology and innovation, triage can be much more manageable during a disaster. The DARPA Triage Challenge aims to engineer new designs and innovations to identify injured victims in a catastrophe helping first responders perform scalable, timely, and accurate triage [DARPA Triage Challenge, 2023 [1] ]. Considering this, a system of highly designed sensors integrated into an aviation drone will allow for the utmost effectiveness. The equipped aviation allows for rapid evaluation of a disaster situation, through real-time data collection and analysis. 
   
