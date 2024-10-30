@@ -91,7 +91,7 @@ In order to do this, the design will be split up into devices:
 3). User Control <br /> 
     -After the signlas are processed the information will be sent to a telecommunication device that will transmit the victims vitals as well as triage level back to the user. The information will be shown on an LCD display at the controller. This device will have one radio frequency signal input that comes from the signal processing device. 
     
-4). Cognitive test devise <br /> 
+4). Cognitive test device <br /> 
     -The user will have a button to allow a procedure to occur using a speaker and a microphone. The speaker will send out a call a prompt and and the microphon will capture audio data and relay it back to the computing system. 
     
 5). Heartbeat/Respiratory doppler <br /> 
@@ -120,7 +120,6 @@ The above pdf contains our rudimentary operational flow chart. It details how a 
 The drone will be wirelessly connected to a controller that flies the drone. 
 The drone will also be wirelessly connected to an LCD screen. 
 The drone's telecommunication system will be connected to the signal processing system. 
-
 
 
 #### **specifications**
