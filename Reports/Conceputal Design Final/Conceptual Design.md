@@ -170,7 +170,8 @@ The power subsystem will be responsible for converting power from the battery to
 
 The signal processing subsystem carries the heart of the project. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The subsystem will have to be fast and accurate. The system will connect data to the drone so that the drone can transmit the data back to the pilot. The following flow chart decribes the steps to meet the specifications.
 
-<img width="549" alt="Computing system" src="https://github.com/user-attachments/assets/4159aa57-bca3-4ec6-8778-b3474c0115e3">
+<img width="433" alt="Computing system (1)" src="https://github.com/user-attachments/assets/080f6b0c-3eb2-43e6-9002-d479ab09ed63">
+
 
 ### **Sensors subsystem**
 
