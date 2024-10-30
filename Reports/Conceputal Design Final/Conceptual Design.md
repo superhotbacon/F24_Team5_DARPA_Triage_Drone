@@ -190,12 +190,15 @@ Digital wires to external buttons and switches.
 
 ### Interfacing Subsystem
 #### **connections**
+wireless connection between drone and client computer
 
 #### **specifications**
-Need changed
+This system shall display data from the signal processing subsystem onto a laptop screen.
+This system shall use the wireless capability of the programmable drone.
+This system shall run a program on a laptop that will allow the laptop to connect to the drone.
 
 #### **Description**
-
+This subsystem will utilize the programmable nature of the drone to connect to a laptop and display heart rate and breathing rate information onto the screen. This subsystem will need to write a program on the laptop in order to connect to the drone as well. This program should be portable between computer to computer. 
 
 <img width="121" alt="Drawing (1)" src="https://github.com/user-attachments/assets/0d697553-49c6-4af9-b213-ad698e1283d0">
 
