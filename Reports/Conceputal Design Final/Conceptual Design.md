@@ -1,4 +1,4 @@
-## Introduction
+* ## Introduction 
 
 In mass casualty incidents (MCIs), where the number of injured individuals far exceeds the capacity of available medical resources, timely and accurate triage becomes critical to save lives. With the help of technology and innovation, triage can be much more manageable during a disaster. The DARPA Triage Challenge aims to engineer new designs and innovations to identify injured victims in a catastrophe helping first responders perform scalable, timely, and accurate triage [DARPA Triage Challenge, 2023 [1] ]. Considering this, a system of highly designed sensors integrated into an aviation drone will allow for the utmost effectiveness. The equipped aviation allows for rapid evaluation of a disaster situation, through real-time data collection and analysis. 
   
@@ -8,8 +8,8 @@ In mass casualty incidents (MCIs), where the number of injured individuals far e
 ## Introducing the problem
 
 
-The problem proposed is to create a system that will manually fly to individuals in an emergency situation and read vital signs in terms of heart rate, respiratory rate, and cognition. Then the system must relay that information back to the user and rank the victim in terms of the START triage method. 
-To understand the scope of the problem, the customer has outlined a specific scenario that the drone's effectiveness will be built around. This scenario is the following
+The porblem proposed is to create a system that will manually fly to individuals in an emergency situation and read vital signs in terms of heart rate, respiratory rate, and cognition. Then the system must relay that information back to the user and rank the victim in terms of the START triage method. 
+To understand the scope of the problem, the customer has outlined a specific scenario that the drones effectiveness will be built around. This scenario is the following
 
     An individual has been working on a powerline when suddenly the powerline comes crashing down. 
     The individual is unresponsive and paramedics cannot get to the individual due to the active powerline.
@@ -17,13 +17,13 @@ To understand the scope of the problem, the customer has outlined a specific sce
     the individual, and read their vitals. The powerline and the individual are in a clear field 
     with no wind on a clear day.
 
-  The specifications for this project have remained the same as our customer has not changed. This project does not have many constraints. The following list describes the constraints as well as reasoning and reference numbers for each constraint.
+  The specifications for this project have remained the same as our customer has not changed. This proect does not have many constraints. The following list describes the constraints as well as reasoning and reference numbers for each constraint.
 
   
 **1.** The drone SHALL be user-friendly.  
 **2.** The drone SHALL have an integrated system for security.  
-**3.** The drone SHALL remain under 400 ft above ground level  
-**4.** The drone SHALL not exceed 100 mph  
+**3.** The drone SHALL remain under 400 ft above ground level
+**4.** The drone SHALL not exceed 100 mph
 **5.** The drone SHALL be equipped with anti-collision lighting 
 
 
@@ -78,33 +78,33 @@ Considering both the Raspberry Pi and the NVIDIA Jetson Nano, the Jetson Nano is
 
 ## High-Level Solution
 
-The solution to this problem requires an aviation drone as well as integrated sensors to record data. The drone will be manually flown to the victim and have the ability to hover 1 meter above the target. Attached to the drone will be a sensing system that can measure one's: heart rate, respiratory rate, and cognitiveness all without contacting the individual. The data gathered by the sensors will then be sent to the computing system. The information will be processed and the person will be categorized by severity of injuries in accordance with the START method. 
+The solution to this problem requires an aviation drone as well as integrated sensors to record data. The drone will be manually flown to the victim and have the ability to hover 1 meter above the target. Attached to the drone will be a sensing system that can measure one's, heart rate and respiratory rate, and cognitiveness all without contacting the individual. The data gathered by the sensors will then be sent to the computing system. The information will be processed and the person will be categorized by severity of injuries in accordance with the START method. 
 
-The design will be split up into these devices:
+In order to do this, the design will be split up into devices:
 
-**1). Power device** <br />
-        - A battery will be used to supply all necessary power to each device along with voltage regulators to adjust the voltage to the required amount for each sensing device. The battery will be the input to the voltage regulator circuit. The output of the regulator circuit will be wired to the heart rate/ respiratory rate doppler, the voice detection system, and the computing system. 
+1). Power device <br />
+        -A battery will be used to supply all necessary power to each device along with voltage regulators to adjust the voltage to the required amount for each sensing device. The battery will be the input to the voltage regulator circuit. The output of the regulator circuit will be wired to the heartrate/ respiratory rate doppler, the voice detection system, and the computing system. 
         
-**2). Signal Processing** <br /> 
-        - This processing unit (Jettson Nano) will process the data received from the microphone as well as the data from the heartbeat and respiratory doppler. The information will then be compared to the START triage method and the results will be wirelessly transmitted to the user interface. The processing unit will have serial or digital input lines coming from the doppler radar as well as an analog input line coming from the microphone. It will have a wireless radio frequency output going to the user control device. 
+2). Signal Processing <br /> 
+        -This processing unit (Jettson Nano) will process the data recieved from the microphone as well as the data from the heartbeat and respiratory doppler. The information will then be compared to the START triage method and the results will be wirelessly tranmitted to the user interface. The processing unit will have serial or digital input lines coming from the doppler radar as well as an analog input line coming from the microphone. It will have a wireless radio frequency output going to the user control device. 
         
-**3). User Control** <br /> 
-    - After the signals are processed the information will be sent to a telecommunication device that will transmit the victim's vitals as well as triage level back to the user. The information will be shown on an LCD display at the controller. This device will have one radio frequency signal input that comes from the signal processing device. 
+3). User Control <br /> 
+    -After the signlas are processed the information will be sent to a telecommunication device that will transmit the victims vitals as well as triage level back to the user. The information will be shown on an LCD display at the controller. This device will have one radio frequency signal input that comes from the signal processing device. 
     
-**4). Cognitive test device** <br /> 
-    - The user will have a button to allow a procedure to occur using a speaker and a microphone. The speaker will send out a call prompt and the microphone will capture audio data and relay it back to the computing system. 
+4). Cognitive test devise <br /> 
+    -The user will have a button to allow a procedure to occur using a speaker and a microphone. The speaker will send out a call a prompt and and the microphon will capture audio data and relay it back to the computing system. 
     
-**5). Heartbeat/Respiratory doppler** <br /> 
-    - The doppler radar is responsible for obtaining heartbeat and respiratory rate frequencies. The data acquired will also be sent to the computing system. 
+5). Heartbeat/Respiratory doppler <br /> 
+    -The doppler radar is responsible for obtaining heartbeat and respiratory rate frequencies. The data acquired will also be sent to the computing system. 
 
 
 
 
 ### Hardware Block Diagram
 
-[Hardware Block Diagram.pdf](https://github.com/user-attachments/files/17501255/Hardware.Block.Diagram.1.pdf)
+([Hardware Block Diagram.pdf](https://github.com/user-attachments/files/17501255/Hardware.Block.Diagram.1.pdf))
 
-The above URL contains the hardware block diagram using Visio software. It details visually how the systems will be split.
+The above URL contains our hardware block diagram using visio software. It details visually how we are splitting up our systems.
 
 
 ### Operational Flow Chart
@@ -115,8 +115,9 @@ The above pdf contains our rudimentary operational flow chart. It details how a 
 
 ## Atomic Subsystem Specifications
 
-### **Drone controller subsystem**
-#### **Connections**
+### **Programmable Drone subsystem**
+#### **connections**
+ALL THIS NEEDS TO BE CHANGED /UPDATED
 Bi-directional wireless communication to the drone and computing subsystem.
 Output digital connection to LCD display.
 Output power connection to LCD display.
@@ -124,7 +125,11 @@ Input connection to microphone.
 Output connection to the speaker.
 Digital wires to external buttons and switches.
 
-#### **Specifications**
+(Gabe added from computing subsystem)
+USB connection to an external microphone.
+USB connection to the speaker.
+
+#### **specifications**
 The drone controller shall work in tandem with the drone to fly the drone.
 The drone controller shall connect to the computing subsystem in order to display collected data.
 The drone controller shall be connected to a microphone and speaker to ensure the operator can talk to the victim.
@@ -135,47 +140,70 @@ The drone controller will come out of the box with the drone and will be modifie
 
 <img width="337" alt="Drawing" src="https://github.com/user-attachments/assets/2250e856-0dc8-40f1-8047-8444697589bf">
 
-### **Power subsystem**
-#### **Connections**
-Power signal to connect the computing subsystem, microphone, doppler, and battery on the drone.
-Power signal to connect LCD, microcontroller, and wireless communicator on the drone controller.
+### **Power and circuity design subsystem**
+#### **connections**
+Power signal to connect the signal processing subsystem
 
-#### **Specifications**
-The power subsystem shall supply ample power to all subsystems.
-  The power subsystem shall optimally use the battery on the drone to prevent unnecessary discharge.
+#### **specifications**
+The power subsystem shall supply ample power to all needed subsystems.
+  The power subsystem shall optimally use the battery on the drone to prevent unnessesary discharge.
   The power subsystem shall not have exposed wiring to ensure safety.
   The power subsystem shall protect client circuits with fuses.
 
 #### **Description**
-The power subsystem will be responsible for converting power from the battery to the computing subsystem and other peripherals on the drone. The following flow chart describes the steps to meet the specifications.
+The power subsystem will be responsible for converting power from the battery to the signal processing subsystem subsystem and other perihperals on the drone. The following flow chart describes the steps to meet the specifications.
 
 
 <img width="118" alt="power subsystem" src="https://github.com/user-attachments/assets/e48fe624-972f-47ee-875b-66390ba27317">
 
-### **Computing subsystem**
-#### **Connections**
-Bi-directional wireless connection line between the computing subsystem and the drone controller.
-USB connection to an external microphone.
-analog signal to the doppler sensor.
-USB connection to the speaker.
+### **Signal Processing subsystem**
+#### **connections**
+-Digital connection to programmable Drone
+-Digital signal to the doppler sensor.
 
-#### **Specifications**
-The Computing subsystem shall communicate via LoRaWAN to the drone controller and send signal data, voice data, and state data.
-The Computing subsystem shall use signal processing to determine heart rate and respiratory rate.
-The Computing subsystem shall be able to get accurate readings from 1 meter away.
-The Computing subsystem shall be able to use the microphone and speaker to communicate with the individual.
-The Computing subsystem shall not store recordings except for use in transmitting to the drone controller.
-The Computing subsystem shall limit recorded voice between 80 Hz and 255 Hz.
+#### **specifications**
+-The Computing subsystem shall use signal processing to determine heart rate and respritory rate.
+-The Computing subsystem shall be able to get accurate readings from 1 meter away.
+-The signal processing algorithms shall process data and have it ready to transmit within 500ms of being recieved
 
 #### **Description**
 
-The Computing subsystem is the center of the sensor processing and communication. The system will connect to the drone and interface the microphone, speaker, doppler, and drone controller. It will employ signal processing algorithms to extract useful information about the heart rate and respiratory rate. The computing subsystem will connect wirelessly to the drone controller module and ensure that no audio information is recorded. The following flow chart describes the steps to meet the specifications.
+The signal processing subsystem carries the heart of the project. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The subsystem will have to be fast and accurate. The system will connect data to the drone so that the drone can transmit the data back to the pilot. The following flow chart decribes the steps to meet the specifications.
 
 <img width="549" alt="Computing system" src="https://github.com/user-attachments/assets/4159aa57-bca3-4ec6-8778-b3474c0115e3">
 
+### **Sensors subsystem**
+
+#### **connections**
+
+
+#### **specifications**
+
+
+#### **Description**
+
+ALL THIS NEEDS TO BE CHANGED /UPDATED
+Bi-directional wireless communication to the drone and computing subsystem.
+Output digital connection to LCD display.
+Output power connection to LCD display.
+Input connection to microphone.
+Output connection to the speaker.
+Digital wires to external buttons and switches.
+
+### Interfacing Subsystem
+#### **connections**
+
+#### **specifications**
+Need changed
+
+#### **Description**
+
+
+need flo chart
+
 ## Ethical, Professional, and Standards Considerations
 1.	Culture  
-\-	The integration of drone technology and medical resources contributes to a positive outlook on technological advancement. Using this drone technology to create better solutions to the world's needs creates a lasting culture of high-tech engineering and innovation. 
+\-	The integration of drone technology and medical resource contributes to a positive outlook on technological advancement. Using this drone technology to create better solutions to the world's needs creates a lasting culture of high-tech engineering and innovation. 
 
 2.	Society  
 \-	Integrating drones and robotics into the medical field with accuracy and effectiveness unlocks the potential of new roles and jobs for the future of society. Along with increasing the sense of safety between Humans and Robotics. 
@@ -203,40 +231,17 @@ These specifications were influenced greatly by the method above.
 
 ## Resources
 
-### Budget
-| SUBSYSTEM                          | PART NUMBER            | DESCRIPTION     | MANUFACTURER NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
-| :---:                              | :---:                  | :---:           | :---:            | :---:    | :---:         | :---:         |
-| _Computing_ | 4735-RAKDAP1-0-WB-N-ND | [RAKDAP1-0-WB-N](https://www.digikey.com/en/products/detail/rakwireless-technology-limited/RAKDAP1-0-WB-N/18682780?s=N4IgTCBcDaIEoEEDSARBAFAjCAugXyA) | RAKwireless Technology Limited | 2 | $10.90 | $21.80 |
-|                                    | EB0047418              | [RAK811 LPWAN Breakout](https://www.elecbee.com/blog/en-24682-Node-811-Open-Source-Development-Board-with-Built-in-SX1276-Low-Power-Consumption-and-Long-Distance-Transceiver) | RAKwireless Technology Limited | 2 | $32.39 | $64.78 |
-|   | 513-NJR4262J           | [24 GHz Doppler Sensor Module](https://www.mouser.com/ProductDetail/Nisshinbo/NJR4262J?qs=d9U39LAeJF3Q43gbNnrW1w%3D%3D) | JRC | 1 | $28.87 | $28.87 |
-|                                    | B08S7HYGJM             | [High Precision AD HAT Board Waveshare ADC Module](https://www.amazon.com/Waveshare-High-Precision-Raspberry-ADS1263-Compatible/dp/B08S7HYGJM?th=1) | Waveshare | 1 | $49.99 | $49.99 |
-|                                    | OP07CSZ-REEL7TR-ND     | [Prescision Amplifier](https://www.digikey.com/en/products/detail/analog-devices-inc/OP07CSZ-REEL7/995520?utm_adgroup=Analog%20Devices&utm_source=google&utm_medium=cpc&utm_campaign=Dynamic%20Search_EN_Focus%20Suppliers&utm_term&utm_content=Analog%20Devices&gclid=Cj0KCQjw6cKiBhD5ARIsAKXUdyYBkOYL-1aWh53aOll8AXXF1uU5lS3YKelAGR3BP4-yuHW5urheIyoaAt-TEALw_wcB) | Texas Instruments | 2 | $2.21 | $4.42| 
-|                                    | CF14JT1K00TR-ND        | [1k Ohm 5% 1/4W axial resistor](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT1K00/1830350?utm_adgroup=General&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Zombie%20SKUs&utm_term&utm_content=General&gclid=Cj0KCQjw6cKiBhD5ARIsAKXUdyYzUyry_5jJzcHVz5VKJjgaU44iZpaTrko4jueSd3Ms6wtAu-FjUNYaAqxcEALw_wcB)     | Stackpole Electronics | 2 | $0.10 | $0.20 |
-|                                    | CF14JT3K00TR-ND        | [3k Ohm 5% 1/4W axial resistor](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT3K00/1741418) | Stackpole Electronics | 2 | $0.10 | $0.20 |
-|                                    | CF14JT15K0TR-ND        | [15k Ohm 5% 1/4W axial resistor](https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT15K0/1741298) | Stackpole Electronics | 2 | $0.10 | $0.20 |
-|                                    | 338-2641-ND            | [Mica 56 pF 5% 500V Radial](https://www.digikey.com/en/products/detail/cornell-dubilier-electronics-cde/CD15ED560JO3F/1917754) | Cornell Dubilier Electronics (CDE) | 2 | $1.79 | $3.58 |
-|                                    | 338-3057-ND            | [Mica 8200 pF 5% 500V Radial](https://www.digikey.com/en/products/detail/cornell-dubilier-electronics-cde/CD30FD822JO3F/1918194) | Cornell Dubilier Electronics (CDE) | 2 | $13.47 | $26.94 |
-|                                    | 2191-80.00000358-ND    | [IPS-937 24GHZ RADAR MODULE](https://www.digikey.com/en/products/detail/innosent-gmbh/80-00000358/10416543) | InnoSenT GmbH | 1 | $135.99 | $135.99 |
-|                      | J1020 V2               | [Jetson Nano Developer Kit](https://www.seeedstudio.com/reComputer-J1020-v2-p-5498.html) | Nvidia | 1 | $279.00 | $279.00 |
-|                                    | RAS-4-4G               | [Raspberry Pi 4 Model B](https://www.amazon.com/Raspberry-Model-2019-Quad-Bluetooth/dp/B07TC2BK1X?th=1) | Raspberry Pi | 1 | $60.98 | $60.98 |
-|       | BOB-19389              | [OPA344, SPH8878LR5H-1 MEMS Omnidirectional Microphones Audio Evaluation Boar](https://www.digikey.com/en/products/detail/sparkfun-electronics/BOB19389/16342333) | SparkFun Electronics | 1 | $6.95 | $6.95 |
-|                                    | COM-18343              | [4 Ohms General Purpose Speaker 4 W Top Rectangular](https://www.sparkfun.com/products/18343) | SparkFun Electronics | 1 | $10.95 | $10.95 |
-| _Power Subsystem_                  | 3017                   | [DC-DC 5A Buck Converter](https://www.icstation.com/step-down-buck-converter-power-supply-module-125v-adjustable-voltmeter-p-3017.html) | Valefod | 1 | $4.89 | $4.89 |
-|                                    | DD39AJPA               | [Positive And Negative Dual Output Power Supply Module](https://www.aliexpress.us/item/3256804028860260.html?src=google&aff_fcid=4f4e2b29191e40388e6ac755398bc5ec-1694653440148-04081-UneMJZVf&aff_fsk=UneMJZVf&aff_platform=aaf&sk=UneMJZVf&aff_trace_key=4f4e2b29191e40388e6ac755398bc5ec-1694653440148-04081-UneMJZVf&terminal_id=d06cb1cdc06c4998b4935111d106946f&afSmartRedirect=y&gatewayAdapt=glo2usa) | eletechsup | 1 | $0.99 | $0.99 |
-|                                    | B091TRMFYT             | [NP-F Battery Adapter Plate](https://www.amazon.com/dp/B091TRMFYT?ascsubtag=amzn1.ideas.2WYYMHDV0VVNZ&linkCode=sl1&tag=jetsonhacks-20&linkId=3a4257f3f9f547ba799ddbcec22977d9&language=en_US&ref_=as_li_ss_tl) | SmallRig | 1 | $26.99 | $26.99 |
-|                                    | B0BTHSDF4S             | [20 Pcs DC Power Cable 5A 12v DC](https://www.amazon.com/dp/B0BTHSDF4S/ref%3Dsspa_dk_detail_3?psc=1&pd_rd_i=B0BTHSDF4S&pd_rd_w=1OS6v&content-id=amzn1.sym.08ba9b95-1385-44b0-b652-c46acdff309c&pf_rd_p=08ba9b95-1385-44b0-b652-c46acdff309c&pf_rd_r=B74W16YJ43CMEFKHPWKW&pd_rd_wg=M4xV8&pd_rd_r=78ab97fe-0ffb-402f-b35f-0bdd04872f7e&s=industrial&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWxfdGhlbWF0aWM&customerReviews) | CENTROPOWER | 1 | $9.29 | $9.29 |
-|                                    | B078NRLSKL             | [NP-F550 Battery 2-Pack and Wall Charger](https://www.amazon.com/dp/B078NRLSKL/ref%3Dsspa_dk_detail_0?psc=1&pd_rd_i=B078NRLSKL&pd_rd_w=rglsi&content-id=amzn1.sym.08ba9b95-1385-44b0-b652-c46acdff309c&pf_rd_p=08ba9b95-1385-44b0-b652-c46acdff309c&pf_rd_r=WKYPTFJDH5F1FP8918S5&pd_rd_wg=r98KB&pd_rd_r=a3acff40-bd0e-4712-b060-39a785e03d4e&s=electronics&sp_csd=d2lkZ2V0TmFtZT1zcF9kZXRhaWxfdGhlbWF0aWM&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyUUxSNzZQMjBLUlpWJmVuY3J5cHRlZElkPUEwNjM4OTE0MlczWFNPVlNaSEc3MyZlbmNyeXB0ZWRBZElkPUEwNjkyNzg5RzJJWVJMWlJIRTZDJndpZGdldE5hbWU9c3BfZGV0YWlsX3RoZW1hdGljJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ%3D%3D) | Artman | 1 | $26.99 | $26.99 |
-| _Drone & Controller System_                     | PF728331               | [Parrot ANAFI Ai 4G Robotic Drone](https://www.adorama.com/parpf728331.html#main-product-tabs) | Parrot ANAFI Ai 4G Robotic Drone | 1 | $4,500.00 | $4,500.00 |
-|                                    | 	799441544067          | [HiLetgo 1602 LCD Keypad Shield 1602 LCD Expansion Shield Board Blue Backlight 4.5-5.5V](https://www.amazon.com/HiLetgo-Expansion-Backlight-4-5-5-5V-Duemilanove/dp/B00OGYXN8C/ref=sr_1_9?crid=KI08QIR7XF9Z&dib=eyJ2IjoiMSJ9.zQLZ_4krT5G8YjOzE7bSm79Ay-OnMOtwlaXAIEuE0cshv0b0BJH-5amq_ruQBElDhGfa9KvmFgM3ECPfuXoAphsCGS9A5u7X8ygGAFDV6oqPIoF89FjwQt63tiV90NkCbYUUz1GyhgQtMH__KtwO-hViozcgk9rcVOtZ1dKdtZCfRCxZ2bVmfptDz3_jsybqqTg08phdZNZ9XE-wNyC5oB0QPBMFfs2fiuTLhumWciw.ZBjcBxRqbFj1vIVktPyAoQW0phlOU9lHuZYPTdkychs&dib_tag=se&keywords=LCD+Board+for+coding&qid=1729627046&sprefix=lcd+board+for+coding%2Caps%2C103&sr=8-9) | HiLetGo | 1 | $7.99 | $7.99 |
-|                                    |                        |                                                                                                |                                  |   | **Total Expenses** | **$5272.00** |
-|                                    |                        |                                                                                                |                                  |   | **Total Quantity** | **30** | 
+You have already estimated the resources needed to complete the solution. Now, let's refine those estimates.
 
+### Budget
+
+[Cost Break Down.pdf](https://github.com/user-attachments/files/17501343/Cost.Break.Down.pdf)
 
 The following budget was obtained from the previous Capstone group, and adjustments have been made by adding additional items that are anticipated to be required to complete our project.
 
 ### Skills
 
-The team is comprised of three Electrical Engineers (Caleb Bucher, Chris Bradley, Reese Gilbert) and two Computer Engineers (Gabriel Buckner, Mathias Hagewood). Below are the specific specializations of each team member:
+The team is comprised of three electrical engineers (Caleb Bucher, Chris Bradley, Reese Gilbert) and two computer engineers (Gabriel Buckner, Mathias Hagewood). Below are the specific specializations of each team member:
 
 Caleb Bucher
 - Software (python, SQL, C++)
@@ -275,9 +280,9 @@ In a similar vein, the project has been divided into simpler chunks to organize 
 
 The power device will be researched and primarily developed by Reese Gilbert due to his specialization in power systems. Chris Bradley will be observing and acting as Reese's customer because of their similar expertise.
 
-Gabriel Buckner and Mathias Hagewood will be heading the signal processing aspect, specifically the communication between the sensors and the jetson nano. This fits well with their experience in embedded systems and Gabriel's experience in signal processing. Caleb Bucher will observe and act as Gabriel's and Mathias's customers to ensure their work fits the team's vision.
+Gabriel Buckner and Mathias Hagewood will be heading the signal processing aspect, specifically the communication between the sensors and the jetson nano. This fits well with their experience in embedded systems and Gabriel's experience in signal processing. Caleb Bucher will be observing and acting as Gabriel's and Mathias's customers to ensure their work fits the team's vision.
 
-Caleb Bucher and Chris Bradley will develop the controller, the controller's user interface, and the cognitive test device as these two modules go hand in hand. Their circuit, programming, and microcomputer expertise will be required to complete this task. Reese Gilbert and Mathias Hagewood will be observing and acting as customers due to their similar experience in circuitry.
+Caleb Bucher and Chris Bradley will be developing the controller, its user interface, and the cognitive test device as these two modules go hand in hand. Their circuit, programming, and microcomputer expertise will be required to complete this task. Reese Gilbert and Mathias Hagewood will be observing and acting as customers due to their similar experience in circuitry.
 
 Lastly, Reese Gilbert, Caleb Bucher, and Mathias Hagewood will innovate the vitals sensor. Reese's combinational logic experience, Caleb's circuit design experience, and Mathias's software experience will all be required to develop this technology. Gabriel Buckner will be observing and acting as a customer due to his expertise in signals and embedded systems.
 
@@ -285,16 +290,15 @@ These are the primary roles of each team member. If any new information is gathe
 
 ### Timeline
 
-<img width="1497" alt="Screenshot 2024-09-20 at 11 19 20 AM" src="https://github.com/user-attachments/assets/c2f95619-d33f-4900-8267-ec57169a0633">
-
+Revise the detailed timeline (Gantt chart) you created in the project proposal. Ensure that the timeline is optimized for detailed design. Address critical unknowns early and determine if a prototype needs to be constructed before the final build to validate a subsystem. Additionally, if subsystem $A$ imposes constraints on subsystem $B$, generally, subsystem $A$ should be designed first.
 
 
 ## References
 
-[[1](#introduction)]
+[[1](#specification)]
 “DARPA Triage Challenge,” triagechallenge.darpa.mil. https://triagechallenge.darpa.mil/  
-[[2](#comparative-analysis-of-potential-solutions)] "JOUAV." [Online]. Available: https://www.jouav.com/products/ph-25.html  
-[[3](#comparative-analysis-of-potential-solutions)] "VIEWPRO." [Online]. Available:
+[[2](#comparativeanalyisofpotentialsolution)] "JOUAV." [Online]. Available: https://www.jouav.com/products/ph-25.html  
+[[3](#comparativeanalyisofpotentialsolution)] "VIEWPRO." [Online]. Available:
 https://www.viewprouav.com/compare/?post_id=3542  
 [[4](#ethics)] "START Adult Triage Method." [Online]. Available:
 https://chemm.hhs.gov/startadult.htm
@@ -309,6 +313,6 @@ https://chemm.hhs.gov/startadult.htm
 
 - **Mathias Hagewood**: In charge of creating the operational flow chart and identifying necessary skills for project execution.
 
-- **Reece Gilbert**: Focused on outlining the high-level solution and restating the problem.
+- **Reece Gilbert**: Focused on outlining the high-level solution and clearly restating the problem.
 
 - **Gabriel Buckner**: Responsible for defining the atomic subsystem specifications, managing resource allocation, and developing the project timeline.
