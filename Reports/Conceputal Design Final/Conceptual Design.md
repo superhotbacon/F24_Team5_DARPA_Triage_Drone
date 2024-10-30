@@ -117,26 +117,24 @@ The above pdf contains our rudimentary operational flow chart. It details how a 
 
 ### **Programmable Drone subsystem**
 #### **connections**
-ALL THIS NEEDS TO BE CHANGED /UPDATED
-Bi-directional wireless communication to the drone and computing subsystem.
-Output digital connection to LCD display.
-Output power connection to LCD display.
-Input connection to microphone.
-Output connection to the speaker.
-Digital wires to external buttons and switches.
+The drone will be wirelessly connected to a controller that flies the drone. 
+The drone will also be wirelessly connected to an LCD screen. 
+The drone's telecommunication system will be connected to the signal processing system. 
 
-(Gabe added from computing subsystem)
-USB connection to an external microphone.
-USB connection to the speaker.
+
 
 #### **specifications**
-The drone controller shall work in tandem with the drone to fly the drone.
-The drone controller shall connect to the computing subsystem in order to display collected data.
-The drone controller shall be connected to a microphone and speaker to ensure the operator can talk to the victim.
-The drone controller shall connect to buttons and switches to control the signal processing and microphone.
+The drone shall accomplish all functionality from at least one meter away from the subject.
+The drone shall be able to operate at full performance for at least 15 minutes. 
+The drone shall weigh less than 20 pounds even after the team makes modifications to the drone. 
+The drone shall operate during daylight hours on a clear day with no wind. 
+
 
 #### **Description**
-The drone controller will come out of the box with the drone and will be modified to have extra functionality. The controller shall connect to an LCD display and display the information from the computing subsystem. The controller will be modified to communicate with the computing subsystem wirelessly. The controller will also need to have a power connection to the LCD. The controller subsystem will perform the logic necessary to display the data on the LCD. The following steps are outlined in the following flow chart
+The drone will be bought and be ready to fly. Senors and a proccessing unit will be added to the drone to expand the capabilities of the drone. The drone will be able to fly to a victim and use the attached sensors to check vitals and cognitivness and sort the injured person into a triage catagory. 
+
+![Drawing.vsdx - Google Chrome 10_30_2024 3_16_14 PM](https://hackmd.io/_uploads/BJNs4zgbkx.png)
+
 
 <img width="337" alt="Drawing" src="https://github.com/user-attachments/assets/2250e856-0dc8-40f1-8047-8444697589bf">
 
