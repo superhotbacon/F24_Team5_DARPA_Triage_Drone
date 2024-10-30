@@ -155,8 +155,8 @@ The power subsystem will be responsible for converting power from the battery to
 
 ### **Signal Processing subsystem**
 #### **connections**
-  Digital connection to programmable Drone
-  Digital signal to the doppler sensor.
+  Digital connection to programmable Drone  
+    Digital signal to the doppler sensor.
 
 #### **specifications**
   The Computing subsystem shall use signal processing to determine heart rate and respritory rate.
