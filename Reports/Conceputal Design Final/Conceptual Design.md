@@ -199,6 +199,19 @@ Need changed
 
 <img width="121" alt="Drawing (1)" src="https://github.com/user-attachments/assets/0d697553-49c6-4af9-b213-ad698e1283d0">
 
+### **Microphone and speaker subsystem**
+
+#### **connections**
+Digital connection to microphone from drone.
+Digital connection to the speaker from drone.
+
+#### **specifications**
+The subsystem shall ensure two way communication from the pilot to the victim.
+The subsystem shall communicate wirelessly via the drone.
+
+#### **Description**
+
+The microphone and speaker subsystem is extremely important as it allows the pilot to determine the cognitive ability of the triage patient. This subsystem will have to figure out how the microphones will connect to the drone and the drone controller and figure out how to send data through the interfaces with the drone.
 
 ## Ethical, Professional, and Standards Considerations
 1.	Culture  
