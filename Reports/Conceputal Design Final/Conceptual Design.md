@@ -243,7 +243,12 @@ These specifications were influenced greatly by the method above.
 4. The system shall display triage results and vitals wirelessly.
 
 ### **Standards**
-Our design will have to comply with IEEE standard 802.11 [5] which defines how wifi networks are set up and communicate. Our drone will have to work under this standard to ensure proper communication with wifi networks and the interfacing subsystem. Most of this should already be handled with the programmable drone API. However, great care should be taken to ensure proper application of this standard.
+#### WI-FI Standard
+The design will have to comply with IEEE standard 802.11 [5] which defines how WI-FI networks are set up and communicate. The drone will have to work under this standard to ensure proper communication with WI-FI networks and the interfacing subsystem. Most of this should already be handled with the programmable drone API. However, great care should be taken to ensure proper application of this standard.
+#### Videography and Audio Recording Standard
+The design and project must comply with the **DEFENSE HEALTH AGENCY's [DHA]** _ADMINISTRATIVE INSTRUCTION **NUMBER** 6000.02_ [6]. Systems responsible for videotaping, filming, recording, and imaging of patients must comply with this instruction and policy to ensure lawful and ethical use of videography and audio recordings.
+#### Drone Standard
+The drone must comply with the **Federal Aviation Administration** _Small Unmanned Aircraft Systems (UAS) Regulations (Part 107)_. Any system in accordance with these operating limits is required to meet the standard criteria for lawful operation. 
 
 
 ## Resources
@@ -348,7 +353,9 @@ These are the primary roles of each team member. If any new information is gathe
   
 ‌[5] "802.11 "IEEE Standard for Information Technology--Telecommunications and Information Exchange between Systems - Local and Metropolitan Area Networks--Specific Requirements - Part 11: Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY) Specifications," in IEEE Std 802.11-2020 (Revision of IEEE Std 802.11-2016) , vol., no., pp.1-4379, 26 Feb. 2021, doi: 10.1109/IEEESTD.2021.9363693" [[Online](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9363693&isnumber=9363692)]  
   
-[6] "Defense Health Agency" [[Online](https://www.health.mil/Reference-Center/DHA-Publications/2022/08/05/DHA-AI-6000-02)]
+[6] "Defense Health Agency" [[Online](https://www.health.mil/Reference-Center/DHA-Publications/2022/08/05/DHA-AI-6000-02)]  
+
+[7] "Federal Aviation Administration" [[Online](https://www.faa.gov/newsroom/small-unmanned-aircraft-systems-uas-regulations-part-107)]
 
 
 
