@@ -8,8 +8,8 @@ In mass casualty incidents (MCIs), where the number of injured individuals far e
 ## Introducing the problem
 
 
-The porblem proposed is to create a system that will manually fly to individuals in an emergency situation and read vital signs in terms of heart rate, respiratory rate, and cognition. Then the system must relay that information back to the user and rank the victim in terms of the START triage method. 
-To understand the scope of the problem, the customer has outlined a specific scenario that the drones effectiveness will be built around. This scenario is the following
+The problem proposed is to create a system that will manually fly to individuals in an emergency situation and read vital signs in terms of heart rate, respiratory rate, and cognition. Then the system must relay that information back to the user and rank the victim in terms of the START triage method. 
+To understand the scope of the problem, the customer has outlined a specific scenario that the drone's effectiveness will be built around. This scenario is the following
 
     An individual has been working on a powerline when suddenly the powerline comes crashing down. 
     The individual is unresponsive and paramedics cannot get to the individual due to the active powerline.
@@ -106,13 +106,13 @@ In order to do this, the design will be split up into devices:
 
 
 
-The above URL contains our hardware block diagram using visio software. It details visually how we are splitting up our systems.
+The above URL contains the hardware block diagram using visio software. It details visually how we are splitting up our systems.
 
 
 ### Operational Flow Chart
 [Operational Flow Chart.pdf](https://github.com/user-attachments/files/17498367/Operational.Flow.Chart.pdf)
 
-The above pdf contains our rudimentary operational flow chart. It details how a user will operate the final product specific to the decisions he or she makes while using it.
+The above pdf contains the rudimentary operational flow chart. It details how a user will operate the final product specific to the decisions he or she makes while using it.
 
 
 ## Atomic Subsystem Specifications
@@ -125,10 +125,10 @@ The drone's telecommunication system will be connected to the signal processing 
 
 
 #### **specifications**
-The drone shall accomplish all functionality from at least one meter away from the subject.
-The drone shall be able to operate at full performance for at least 15 minutes. 
-The drone shall weigh less than 20 pounds even after the team makes modifications to the drone. 
-The drone shall operate during daylight hours on a clear day with no wind. 
+The drone shall accomplish all functionality from at least one meter away from the subject.  
+The drone shall be able to operate at full performance for at least 15 minutes.  
+The drone shall weigh less than 20 pounds even after the team makes modifications to the drone.  
+The drone shall operate during daylight hours on a clear day with no wind.  
 
 
 #### **Description**
@@ -142,10 +142,10 @@ The drone will be bought and be ready to fly. Senors and a proccessing unit will
 Power signal to connect the signal processing subsystem
 
 #### **specifications**
-The power subsystem shall supply ample power to all needed subsystems.
-  The power subsystem shall optimally use the battery on the drone to prevent unnessesary discharge.
-  The power subsystem shall not have exposed wiring to ensure safety.
-  The power subsystem shall protect client circuits with fuses.
+The power subsystem shall supply ample power to all needed subsystems.  
+  The power subsystem shall optimally use the battery on the drone to prevent unnecessary discharge.  
+  The power subsystem shall not have exposed wiring to ensure safety.  
+  The power subsystem shall protect client circuits with fuses.  
 
 #### **Description**
 The power subsystem will be responsible for converting power from the battery to the signal processing subsystem subsystem and other perihperals on the drone. The following flow chart describes the steps to meet the specifications.
@@ -159,13 +159,13 @@ The power subsystem will be responsible for converting power from the battery to
     Digital signal to the doppler sensor.
 
 #### **specifications**
-  The signal processing subsystem shall use signal processing to determine heart rate and respritory rate.  
+  The signal processing subsystem shall use signal processing to determine heart rate and respiratory rate.  
   The signal processing subsystem shall be able to get accurate readings from 1 meter away.  
-  The signal processing algorithms shall process data and have it ready to transmit within 500ms of being recieved.  
+  The signal processing algorithms shall process data and have it ready to transmit within 500ms of being received.  
 
 #### **Description**
 
-The signal processing subsystem carries the heart of the project. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The subsystem will have to be fast and accurate. The system will connect data to the drone so that the drone can transmit the data back to the pilot. The following flow chart decribes the steps to meet the specifications.
+The signal processing subsystem carries the heart of the project. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The subsystem will have to be fast and accurate. The system will connect data to the drone so that the drone can transmit the data back to the pilot. The following flow chart describes the steps to meet the specifications.
 
 <img width="433" alt="Computing system (1)" src="https://github.com/user-attachments/assets/080f6b0c-3eb2-43e6-9002-d479ab09ed63">
 
@@ -176,23 +176,23 @@ The signal processing subsystem carries the heart of the project. It will employ
 The vitals' sensor will be wired to the signal processing subsystem on board the drone. It will be communicating digitally, most likely, via serial communications. It will be sending data to the signal processing subsystem that is has acquired through no-contact radar sensing.
 
 #### **specifications**
-The subsystem shall be operational from a distance of at least one meter. 
-The subsystem shall detect a heart rate.
-The subsystem shall detect a breathing rate.
-The subsystem shall weigh less than half a pound.
-The subsystem shall not pose any threat to its subject.
+The subsystem shall be operational from a distance of at least one meter.  
+The subsystem shall detect a heart rate.  
+The subsystem shall detect a breathing rate.  
+The subsystem shall weigh less than half a pound.  
+The subsystem shall not pose any threat to its subject.  
 
 #### **Description**
-The subsystem comprises of a radar doppler, likely of continuous wave (CW) type. It will send a periodic radio signal and listen for that same signal. Measuring how out of phase the sending and receiving signals are, the subsystem will provided the data required to compute the frequency of the breathing and heart rate of the subject. It will be paired with circuitry to filter noise and other disruptive signals.
+The subsystem comprises of a radar doppler, likely of continuous wave (CW) type. It will send a periodic radio signal and listen for that same signal. Measuring how out of phase the sending and receiving signals are, the subsystem will provide the data required to compute the frequency of the breathing and heart rate of the subject. It will be paired with circuitry to filter noise and other disruptive signals.
 
 ### Interfacing Subsystem
 #### **connections**
-wireless connection between drone and client computer.  
+Wireless connection between drone and client computer.  
 
 #### **specifications**
-This system shall display data from the signal processing subsystem onto a laptop screen.
-This system shall use the wireless capability of the programmable drone.
-This system shall run a program on a laptop that will allow the laptop to connect to the drone.
+This system shall display data from the signal processing subsystem onto a laptop screen.  
+This system shall use the wireless capability of the programmable drone.  
+This system shall run a program on a laptop that will allow the laptop to connect to the drone.  
 
 #### **Description**
 This subsystem will utilize the programmable nature of the drone to connect to a laptop and display heart rate and breathing rate information onto the screen. This subsystem will need to write a program on the laptop in order to connect to the drone as well. This program should be portable between computer to computer. 
@@ -202,12 +202,12 @@ This subsystem will utilize the programmable nature of the drone to connect to a
 ### **Microphone and speaker subsystem**
 
 #### **connections**
-Digital connection to microphone from drone.
-Digital connection to the speaker from drone.
+Digital connection to the microphone from the drone.
+Digital connection to the speaker from the drone.
 
 #### **specifications**
-The subsystem shall ensure two way communication from the pilot to the victim.
-The subsystem shall communicate wirelessly via the drone.
+The subsystem shall ensure two-way communication from the pilot to the victim.  
+The subsystem shall communicate wirelessly via the drone.  
 
 #### **Description**
 
@@ -324,6 +324,6 @@ https://chemm.hhs.gov/startadult.htm
 
 - **Mathias Hagewood**: In charge of creating the operational flow chart and identifying necessary skills for project execution.
 
-- **Reece Gilbert**: Focused on outlining the high-level solution and clearly restating the problem.
+- **Reese Gilbert**: Focused on outlining the high-level solution and restating the problem.
 
 - **Gabriel Buckner**: Responsible for defining the atomic subsystem specifications, managing resource allocation, and developing the project timeline.
