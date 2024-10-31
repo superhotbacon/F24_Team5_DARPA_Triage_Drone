@@ -331,7 +331,8 @@ These are the primary roles of each team member. If any new information is gathe
 
 ### Timeline
 
-Revise the detailed timeline (Gantt chart) you created in the project proposal. Ensure that the timeline is optimized for detailed design. Address critical unknowns early and determine if a prototype needs to be constructed before the final build to validate a subsystem. Additionally, if subsystem $A$ imposes constraints on subsystem $B$, generally, subsystem $A$ should be designed first.
+<img width="1497" alt="Screenshot 2024-09-20 at 11 19 20 AM" src="https://github.com/user-attachments/assets/2ae5b16d-0c6d-427a-a992-16c1b248fd86">
+
 
 
 ## References
