@@ -102,7 +102,8 @@ In order to do this, the design will be split up into devices:
 
 ### Hardware Block Diagram
 
-[Hardware Block Diagram.pdf](https://github.com/user-attachments/files/17580743/Hardware.Block.Diagram.2.pdf)
+[Hardware Block Diagram.pdf](https://github.com/user-attachments/files/17580758/Hardware.Block.Diagram.3.pdf)
+
 
 
 The above URL contains our hardware block diagram using visio software. It details visually how we are splitting up our systems.
