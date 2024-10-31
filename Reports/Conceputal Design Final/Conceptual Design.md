@@ -29,7 +29,6 @@ To understand the scope of the problem, the customer has outlined a specific sce
 
 
 
-The fully formulated problem is the overall objective and scope complete with the set of shall statements. This was part of the project proposal. However, it may be that the scope has changed. So, state the fully formulated problem in the introduction of the conceptual design and planning document. For each of the constraints, explain the origin of the constraint (customer specification, standards, ethical concern, broader implication concern, etc).
 
 
 ## Comparative Analysis of Potential Solutions  
