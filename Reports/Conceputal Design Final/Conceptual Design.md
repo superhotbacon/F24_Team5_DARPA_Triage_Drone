@@ -173,20 +173,17 @@ The signal processing subsystem carries the heart of the project. It will employ
 ### **Vitals' Sensor subsystem**
 
 #### **connections**
-The vitals' sensor will be digitally wired to the computational device on board the drone.
+The vitals' sensor will be wired to the signal processing subsystem on board the drone. It will be communicating digitally, most likely, via serial communications. It will be sending data to the signal processing subsystem that is has acquired through no-contact radar sensing.
 
 #### **specifications**
-
+The subsystem shall be operational from a distance of at least one meter. 
+The subsystem shall detect a heart rate.
+The subsystem shall detect a breathing rate.
+The subsystem shall weigh less than half a pound.
+The subsystem shall not pose any threat to its subject.
 
 #### **Description**
-
-ALL THIS NEEDS TO BE CHANGED /UPDATED
-Bi-directional wireless communication to the drone and computing subsystem.
-Output digital connection to LCD display.
-Output power connection to LCD display.
-Input connection to microphone.
-Output connection to the speaker.
-Digital wires to external buttons and switches.
+The subsystem comprises of a radar doppler, likely of continuous wave (CW) type. It will send a periodic radio signal and listen for that same signal. Measuring how out of phase the sending and receiving signals are, the subsystem will provided the data required to compute the frequency of the breathing and heart rate of the subject. It will be paired with circuitry to filter noise and other disruptive signals.
 
 ### Interfacing Subsystem
 #### **connections**
