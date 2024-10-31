@@ -242,7 +242,8 @@ These specifications were influenced greatly by the method above.
 3. The system shall give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.
 4. The system shall display triage results and vitals wirelessly.
 
-
+### **Standards**
+Our design will have to comply with IEEE standard 802.11 [5] which defines how wifi networks are set up and communicate. Our drone will have to work under this standard to ensure proper communication with wifi networks and the interfacing subsystem. Most of this should already be handled with the programmable drone API. However, great care should be taken to ensure proper application of this standard.
 
 
 ## Resources
