@@ -9,7 +9,7 @@ In mass casualty incidents (MCIs), where the number of injured individuals far e
 
 
 The problem proposed is to create a system that will manually fly to individuals in an emergency situation and read vital signs in terms of heart rate, respiratory rate, and cognition. Then the system must relay that information back to the user and rank the victim in terms of the START triage method. 
-To understand the scope of the problem, the customer has outlined a specific scenario that the drone's effectiveness will be built around. This scenario is the following
+To understand the scope of the problem, the customer has outlined a specific scenario around which the drone's effectiveness will be built. This scenario is the following
 
     An individual has been working on a powerline when suddenly the powerline comes crashing down. 
     The individual is unresponsive and paramedics cannot get to the individual due to the active powerline.
@@ -17,7 +17,7 @@ To understand the scope of the problem, the customer has outlined a specific sce
     the individual, and read their vitals. The powerline and the individual are in a clear field 
     with no wind on a clear day.
 
-  The specifications for this project have remained the same as our customer has not changed. This proect does not have many constraints. The following list describes the constraints as well as reasoning and reference numbers for each constraint.
+  The specifications for this project have remained the same as our customer has not changed. This project does not have many constraints. The following list describes the constraints as well as reasoning and reference numbers for each constraint.
 
   
 **1.** The drone SHALL be user-friendly.  
@@ -82,19 +82,19 @@ The solution to this problem requires an aviation drone as well as integrated se
 
 In order to do this, the design will be split up into devices:
 
-1). Power device <br />
-        -A battery will be used to supply all necessary power to each device along with voltage regulators to adjust the voltage to the required amount for each sensing device. The battery will be the input to the voltage regulator circuit. The output of the regulator circuit will be wired to the heartrate/ respiratory rate doppler, the voice detection system, and the computing system. 
+**1). Power device <br />**
+        - A battery will be used to supply all necessary power to each device along with voltage regulators to adjust the voltage to the required amount for each sensing device. The battery will be the input to the voltage regulator circuit. The output of the regulator circuit will be wired to the heart rate / respiratory rate doppler, the voice detection system, and the computing system. 
         
-2). Signal Processing <br /> 
-        -This processing unit (Jettson Nano) will process the data recieved from the microphone as well as the data from the heartbeat and respiratory doppler. The information will then be compared to the START triage method and the results will be wirelessly tranmitted to the user interface. The processing unit will have serial or digital input lines coming from the doppler radar as well as an analog input line coming from the microphone. It will have a wireless radio frequency output going to the user control device. 
+**2). Signal Processing <br />**
+        - This processing unit (Jettson Nano) will process the data received from the microphone as well as the data from the heartbeat and respiratory doppler. The information will then be compared to the START triage method and the results will be wirelessly transmitted to the user interface. The processing unit will have serial or digital input lines coming from the doppler radar as well as an analog input line coming from the microphone. It will have a wireless radio frequency output going to the user control device. 
         
-3). User Control <br /> 
-    -After the signlas are processed the information will be sent to a telecommunication device that will transmit the victims vitals as well as triage level back to the user. The information will be shown on an LCD display at the controller. This device will have one radio frequency signal input that comes from the signal processing device. 
+**3). User Control <br />**
+    - After the signlas are processed the information will be sent to a telecommunication device that will transmit the victim's vitals as well as triage level back to the user. The information will be shown on an LCD display at the controller. This device will have one radio frequency signal input that comes from the signal processing device. 
     
-4). Cognitive test device <br /> 
-    -The user will have a button to allow a procedure to occur using a speaker and a microphone. The speaker will send out a call a prompt and and the microphon will capture audio data and relay it back to the computing system. 
+**4). Cognitive test device <br />**
+    - The user will have a button to allow a procedure to occur using a speaker and a microphone. The speaker will send out a call prompt and the microphone will capture audio data and relay it back to the computing system. 
     
-5). Heartbeat/Respiratory doppler <br /> 
+**5). Heartbeat/Respiratory doppler <br />** 
     -The doppler radar is responsible for obtaining heartbeat and respiratory rate frequencies. The data acquired will also be sent to the computing system. 
 
 
@@ -104,7 +104,7 @@ In order to do this, the design will be split up into devices:
 
 [Darpa.Drone.Hardware.Block.Diagram.pdf](https://github.com/user-attachments/files/17581360/Darpa.Drone.Hardware.Block.Diagram.1.pdf)
 
-The linked document contains the hardware block diagram created in Visio, centering on the drone and the computer. This visual breakdown outlines the division of our systems, focusing on the communication paths and additions between these components. We decided to omit the controller from the diagram, as no modifications are being made to it. As a result, the diagram shows the systems of the Computer and Drone.
+The linked document contains the hardware block diagram created in Visio, centering on the drone and the computer. This visual breakdown outlines the division of our systems, focusing on the communication paths and additions between these components. We decided to omit the controller from the diagram, as no modifications are being made to it. As a result, the diagram shows the computer and drone systems.
 
 
 ### Operational Flow Chart
@@ -132,33 +132,33 @@ The drone shall operate during daylight hours on a clear day with no wind.
 
 
 #### **Description**
-The drone will be bought and be ready to fly. Senors and a processing unit will be added to the drone to expand the capabilities of the drone. The drone will be able to fly to a victim and use the attached sensors to check vitals and cognitivness and sort the injured person into a triage catagory. 
+The drone will be bought and be ready to fly. Senors and a processing unit will be added to the drone to expand the capabilities of the drone. The drone will be able to fly to a victim and use the attached sensors to check vitals and cognitiveness and sort the injured person into a triage category. 
 
 ![Drawing.vsdx - Google Chrome 10_30_2024 6_29_08 PM](https://hackmd.io/_uploads/rydsWHg-kg.png)
 
 
-### **Power and circuity design subsystem**
-#### **connections**
+### **Power and Circuitry design subsystem**
+#### **Connections**
 Power signal to connect the signal processing subsystem
 
-#### **specifications**
+#### **Specifications**
 The power subsystem shall supply ample power to all needed subsystems.  
   The power subsystem shall optimally use the battery on the drone to prevent unnecessary discharge.  
   The power subsystem shall not have exposed wiring to ensure safety.  
   The power subsystem shall protect client circuits with fuses.  
 
 #### **Description**
-The power subsystem will be responsible for converting power from the battery to the signal processing subsystem subsystem and other perihperals on the drone. The following flow chart describes the steps to meet the specifications.
+The power subsystem will be responsible for converting power from the battery to the signal processing subsystem subsystem and other peripherals on the drone. The following flow chart describes the steps to meet the specifications.
 
 
 <img width="118" alt="power subsystem" src="https://github.com/user-attachments/assets/e48fe624-972f-47ee-875b-66390ba27317">
 
 ### **Signal Processing subsystem**
-#### **connections**
+#### **Connections**
   Digital connection to programmable Drone.  
     Digital signal to the doppler sensor.
 
-#### **specifications**
+#### **Specifications**
   The signal processing subsystem shall use signal processing to determine heart rate and respiratory rate.  
   The signal processing subsystem shall be able to get accurate readings from 1 meter away.  
   The signal processing algorithms shall process data and have it ready to transmit within 500ms of being received.  
@@ -172,10 +172,10 @@ The signal processing subsystem carries the heart of the project. It will employ
 
 ### **Vitals' Sensor subsystem**
 
-#### **connections**
-The vitals sensor will be wired to the signal processing subsystem on board the drone. It will be communicating digitally, most likely, via serial communications. It will be sending data to the signal processing subsystem that is has acquired through no-contact radar sensing.
+#### **Connections**
+The vitals sensor will be wired to the signal processing subsystem on board the drone. It will be communicating digitally, most likely, via serial communications. It will be sending data to the signal processing subsystem that it has acquired through no-contact radar sensing.
 
-#### **specifications**
+#### **Specifications**
 The subsystem shall be operational from a distance of at least one meter.  
 The subsystem shall detect a heart rate.  
 The subsystem shall detect a breathing rate.  
@@ -188,10 +188,10 @@ The subsystem comprises of a radar doppler, likely of continuous wave (CW) type.
 ![image](https://github.com/user-attachments/assets/0e9d64a5-9dac-4c05-89bc-5f9c991b3add)
 
 ### Interfacing Subsystem
-#### **connections**
+#### **Connections**
 Wireless connection between drone and client computer.  
 
-#### **specifications**
+#### **Specifications**
 This system shall display data from the signal processing subsystem onto a laptop screen.  
 This system shall use the wireless capability of the programmable drone.  
 This system shall run a program on a laptop that will allow the laptop to connect to the drone.  
@@ -203,11 +203,11 @@ This subsystem will utilize the programmable nature of the drone to connect to a
 
 ### **Microphone and speaker subsystem**
 
-#### **connections**
+#### **Connections**
 Digital connection to the microphone from the drone.
 Digital connection to the speaker from the drone.
 
-#### **specifications**
+#### **Specifications**
 The subsystem shall ensure two-way communication from the pilot to the victim.  
 The subsystem shall communicate wirelessly via the drone.  
 
