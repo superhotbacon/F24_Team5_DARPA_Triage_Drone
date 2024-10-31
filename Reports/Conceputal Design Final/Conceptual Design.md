@@ -183,7 +183,7 @@ The subsystem shall weigh less than half a pound.
 The subsystem shall not pose any threat to its subject.  
 
 #### **Description**
-The subsystem comprises of a radar doppler, likely of continuous wave (CW) type. It will send a periodic radio signal and listen for that same signal. Measuring how out of phase the sending and receiving signals are, the subsystem will provide the data required to compute the frequency of the breathing and heart rate of the subject. It will be paired with circuitry to filter noise and other disruptive signals.
+The Vitals Sensors subsystem is dedicated to obtaining accurate readings from each sensor and ensuring that these readings are transmitted effectively to the computer for further analysis. The subsystem comprises of a radar doppler, likely of continuous wave (CW) type. It will send a periodic radio signal and listen for that same signal. Measuring how out of phase the sending and receiving signals are, the subsystem will provide the data required to compute the frequency of the breathing and heart rate of the subject. It will be paired with circuitry to filter noise and other disruptive signals.
 
 ![image](https://github.com/user-attachments/assets/0e9d64a5-9dac-4c05-89bc-5f9c991b3add)
 
