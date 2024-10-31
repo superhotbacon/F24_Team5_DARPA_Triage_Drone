@@ -133,7 +133,7 @@ The drone shall operate during daylight hours on a clear day with no wind.
 #### **Description**
 The drone will be bought and be ready to fly. Senors and a processing unit will be added to the drone to expand the capabilities of the drone. The drone will be able to fly to a victim and use the attached sensors to check vitals and cognitiveness and sort the injured person into a triage category. 
 
-![Drawing.vsdx - Google Chrome 10_30_2024 6_29_08 PM](https://hackmd.io/_uploads/rydsWHg-kg.png)
+![Drawing.vsdx - Google Chrome 10_31_2024 5_46_48 PM](https://hackmd.io/_uploads/BkIuYYbWJg.png)
 
 
 ### **Power and Circuitry design subsystem**
