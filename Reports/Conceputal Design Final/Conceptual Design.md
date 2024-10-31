@@ -170,10 +170,10 @@ The signal processing subsystem carries the heart of the project. It will employ
 <img width="433" alt="Computing system (1)" src="https://github.com/user-attachments/assets/080f6b0c-3eb2-43e6-9002-d479ab09ed63">
 
 
-### **Sensors subsystem**
+### **Vitals' Sensor subsystem**
 
 #### **connections**
-
+The vitals' sensor will be digitally wired to the computational device on board the drone.
 
 #### **specifications**
 
