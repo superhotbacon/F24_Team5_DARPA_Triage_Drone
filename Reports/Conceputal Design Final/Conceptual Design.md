@@ -102,11 +102,9 @@ In order to do this, the design will be split up into devices:
 
 ### Hardware Block Diagram
 
-[Hardware Block Diagram.pdf](https://github.com/user-attachments/files/17580758/Hardware.Block.Diagram.3.pdf)
+[Darpa Drone Hardware Block Diagram.pdf](https://github.com/user-attachments/files/17581325/Darpa.Drone.Hardware.Block.Diagram.pdf)
 
-
-
-The above URL contains the hardware block diagram using visio software. It details visually how we are splitting up our systems.
+The linked document contains the hardware block diagram created in Visio, centering on the drone and the computer. This visual breakdown outlines the division of our systems, focusing on the communication paths and additions between these components. We decided to omit the controller from the diagram, as no modifications are being made to it. As a result, the diagram shows the systems of the Computer and Drone.
 
 
 ### Operational Flow Chart
