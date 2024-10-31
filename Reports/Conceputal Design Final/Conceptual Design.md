@@ -314,13 +314,13 @@ Revise the detailed timeline (Gantt chart) you created in the project proposal. 
 ## References
 
 [[1](#specification)]
-“DARPA Triage Challenge,” triagechallenge.darpa.mil. https://triagechallenge.darpa.mil/  
-[[2](#comparativeanalyisofpotentialsolution)] "JOUAV." [Online]. Available: https://www.jouav.com/products/ph-25.html  
-[[3](#comparativeanalyisofpotentialsolution)] "VIEWPRO." [Online]. Available:
-https://www.viewprouav.com/compare/?post_id=3542  
-[[4](#ethics)] "START Adult Triage Method." [Online]. Available:
-https://chemm.hhs.gov/startadult.htm
-‌
+“DARPA Triage Challenge,” [[Triagechallenge.darpa.mil](https://triagechallenge.darpa.mil/)]  
+[[2](#comparativeanalyisofpotentialsolution)] "JOUAV." [[Online](https://www.jouav.com/products/ph-25.html)]  
+[[3](#comparativeanalyisofpotentialsolution)] "VIEWPRO." [[Online](https://www.viewprouav.com/compare/?post_id=3542)]  
+[[4](#ethics)] "START Adult Triage Method." [[Online](https://chemm.hhs.gov/startadult.htm)]  
+‌[5] "802.11 "IEEE Standard for Information Technology--Telecommunications and Information Exchange between Systems - Local and Metropolitan Area Networks--Specific Requirements - Part 11: Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY) Specifications," in IEEE Std 802.11-2020 (Revision of IEEE Std 802.11-2016) , vol., no., pp.1-4379, 26 Feb. 2021, doi: 10.1109/IEEESTD.2021.9363693" [[Online](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9363693&isnumber=9363692)]
+
+
 
 ## Statement of Contributions
 
