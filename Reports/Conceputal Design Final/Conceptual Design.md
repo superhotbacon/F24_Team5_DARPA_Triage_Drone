@@ -21,7 +21,7 @@ To understand the scope of the problem, the customer has outlined a specific sce
 
   
 **1.** The drone SHALL be user-friendly.  
-**2.** The drone SHALL have an integrated system for security.  
+**2.** The drone SHALL have an integrated security system.  
 **3.** The drone SHALL remain under 400 ft above ground level  
 **4.** The drone SHALL not exceed 100 mph  
 **5.** The drone SHALL be equipped with anti-collision lighting 
@@ -132,7 +132,7 @@ The drone shall operate during daylight hours on a clear day with no wind.
 
 
 #### **Description**
-The drone will be bought and be ready to fly. Senors and a proccessing unit will be added to the drone to expand the capabilities of the drone. The drone will be able to fly to a victim and use the attached sensors to check vitals and cognitivness and sort the injured person into a triage catagory. 
+The drone will be bought and be ready to fly. Senors and a processing unit will be added to the drone to expand the capabilities of the drone. The drone will be able to fly to a victim and use the attached sensors to check vitals and cognitivness and sort the injured person into a triage catagory. 
 
 ![Drawing.vsdx - Google Chrome 10_30_2024 6_29_08 PM](https://hackmd.io/_uploads/rydsWHg-kg.png)
 
@@ -165,7 +165,7 @@ The power subsystem will be responsible for converting power from the battery to
 
 #### **Description**
 
-The signal processing subsystem carries the heart of the project. It will employ signal processing algorithms to extract useful information about the heart rate and respritory rate. The subsystem will have to be fast and accurate. The system will connect data to the drone so that the drone can transmit the data back to the pilot. The following flow chart describes the steps to meet the specifications.
+The signal processing subsystem carries the heart of the project. It will employ signal processing algorithms to extract useful information about the heart rate and respiratory rate. The subsystem will have to be fast and accurate. The system will connect data to the drone so that the drone can transmit the data back to the pilot. The following flow chart describes the steps to meet the specifications.
 
 <img width="433" alt="Computing system (1)" src="https://github.com/user-attachments/assets/080f6b0c-3eb2-43e6-9002-d479ab09ed63">
 
@@ -173,7 +173,7 @@ The signal processing subsystem carries the heart of the project. It will employ
 ### **Vitals' Sensor subsystem**
 
 #### **connections**
-The vitals' sensor will be wired to the signal processing subsystem on board the drone. It will be communicating digitally, most likely, via serial communications. It will be sending data to the signal processing subsystem that is has acquired through no-contact radar sensing.
+The vitals sensor will be wired to the signal processing subsystem on board the drone. It will be communicating digitally, most likely, via serial communications. It will be sending data to the signal processing subsystem that is has acquired through no-contact radar sensing.
 
 #### **specifications**
 The subsystem shall be operational from a distance of at least one meter.  
@@ -217,7 +217,7 @@ The microphone and speaker subsystem is extremely important as it allows the pil
 
 ## Ethical, Professional, and Standards Considerations
 1.	Culture  
-\-	The integration of drone technology and medical resource contributes to a positive outlook on technological advancement. Using this drone technology to create better solutions to the world's needs creates a lasting culture of high-tech engineering and innovation. 
+\-	The integration of drone technology and medical resources contributes to a positive outlook on technological advancement. Using this drone technology to create better solutions to the world's needs creates a lasting culture of high-tech engineering and innovation. 
 
 2.	Society  
 \-	Integrating drones and robotics into the medical field with accuracy and effectiveness unlocks the potential of new roles and jobs for the future of society. Along with increasing the sense of safety between Humans and Robotics. 
@@ -294,13 +294,13 @@ In a similar vein, the project has been divided into simpler chunks to organize 
 
 The power subsystem will be researched and primarily developed by Reese Gilbert due to his specialization in power systems. Chris Bradley will be observing and acting as Reese's customer because of their similar expertise.
 
-Gabriel Buckner will be heading the signal processing aspect, specifically the communication between the sensors and the computational unit. This fits well with his experience in embedded systems and signal processing. Caleb Bucher will be observing and acting as Gabriel's customers to ensure his work fits the team's vision.
+Gabriel Buckner will be heading the signal processing aspect, specifically the communication between the sensors and the computational unit. This fits well with his experience in embedded systems and signal processing. Caleb Bucher will be observing and acting as Gabriel's customer to ensure his work fits the team's vision.
 
-Chris Bradley will be developing the controller, its user interface, and the cognitive test device as these two modules go hand in hand. His circuit, programming, and microcomputer expertise will be required to complete this task. Mathias Hagewood will be observing and acting as customers due to his similar experience in circuitry.
+Chris Bradley will be developing the controller, its user interface, and the cognitive test device as these two modules go hand in hand. His circuit, programming, and microcomputer expertise will be required to complete this task. Mathias Hagewood will be observing and acting as a customer due to his similar experience in circuitry.
 
 Caleb Bucher will be assembling the mic/speaker submodule due to his programming and circuit expertise. Reese Gilbert will be acting as the customer of this submodule because of his similar experience in circuit design and useful power system expertise. 
 
-Mathias Hagewood will innovate the vitals' sensor. His combinational logic experience, circuit design experience, signals experience will be required to develop this technology. Gabriel Buckner will be observing and acting as a customer due to his expertise in signals and embedded systems.
+Mathias Hagewood will innovate the vitals' sensor. His combinational logic experience, circuit design experience, and signals experience will be required to develop this technology. Gabriel Buckner will be observing and acting as a customer due to his expertise in signals and embedded systems.
 
 These are the primary roles of each team member. If any new information is gathered on a subsystem, the roles are liable to change if someone's expertise becomes better aligned or under the advisement of the Georgia Tech team.
 
