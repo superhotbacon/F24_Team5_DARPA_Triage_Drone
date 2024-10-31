@@ -108,9 +108,11 @@ The linked document contains the hardware block diagram created in Visio, center
 
 
 ### Operational Flow Chart
-[Operational Flow Chart.pdf](https://github.com/user-attachments/files/17498367/Operational.Flow.Chart.pdf)
+![image](https://github.com/user-attachments/assets/9e579383-cfb5-4ee4-8baa-bafd00e4c29a)
 
-The above pdf contains the rudimentary operational flow chart. It details how a user will operate the final product specific to the decisions he or she makes while using it.
+Below is the link to the pdf of the above image. This rudimentary operational flow chart details how a user will operate the final product specific to the decisions he or she makes while using it.
+
+[Operational Flow Chart.pdf](https://github.com/user-attachments/files/17498367/Operational.Flow.Chart.pdf)
 
 
 ## Atomic Subsystem Specifications
@@ -182,6 +184,8 @@ The subsystem shall not pose any threat to its subject.
 
 #### **Description**
 The subsystem comprises of a radar doppler, likely of continuous wave (CW) type. It will send a periodic radio signal and listen for that same signal. Measuring how out of phase the sending and receiving signals are, the subsystem will provide the data required to compute the frequency of the breathing and heart rate of the subject. It will be paired with circuitry to filter noise and other disruptive signals.
+
+![image](https://github.com/user-attachments/assets/0e9d64a5-9dac-4c05-89bc-5f9c991b3add)
 
 ### Interfacing Subsystem
 #### **connections**
@@ -286,15 +290,17 @@ Mathias Hagewood
 - Embedded Systems
 - Combinational Logic
 
-In a similar vein, the project has been divided into simpler chunks to organize the engineering effort; these are listed in the above section titled "High-Level Solution". Based on each team member's specialty, interest, and workload, the project has been divided in the following way.
+In a similar vein, the project has been divided into simpler chunks to organize the engineering effort; these are listed in the above section titled "Atomic Subsystem Specifications". Based on each team member's specialty, interest, and workload, the project has been divided in the following way.
 
-The power device will be researched and primarily developed by Reese Gilbert due to his specialization in power systems. Chris Bradley will be observing and acting as Reese's customer because of their similar expertise.
+The power subsystem will be researched and primarily developed by Reese Gilbert due to his specialization in power systems. Chris Bradley will be observing and acting as Reese's customer because of their similar expertise.
 
-Gabriel Buckner and Mathias Hagewood will be heading the signal processing aspect, specifically the communication between the sensors and the jetson nano. This fits well with their experience in embedded systems and Gabriel's experience in signal processing. Caleb Bucher will be observing and acting as Gabriel's and Mathias's customers to ensure their work fits the team's vision.
+Gabriel Buckner will be heading the signal processing aspect, specifically the communication between the sensors and the computational unit. This fits well with his experience in embedded systems and signal processing. Caleb Bucher will be observing and acting as Gabriel's customers to ensure his work fits the team's vision.
 
-Caleb Bucher and Chris Bradley will be developing the controller, its user interface, and the cognitive test device as these two modules go hand in hand. Their circuit, programming, and microcomputer expertise will be required to complete this task. Reese Gilbert and Mathias Hagewood will be observing and acting as customers due to their similar experience in circuitry.
+Chris Bradley will be developing the controller, its user interface, and the cognitive test device as these two modules go hand in hand. His circuit, programming, and microcomputer expertise will be required to complete this task. Mathias Hagewood will be observing and acting as customers due to his similar experience in circuitry.
 
-Lastly, Reese Gilbert, Caleb Bucher, and Mathias Hagewood will innovate the vitals sensor. Reese's combinational logic experience, Caleb's circuit design experience, and Mathias's software experience will all be required to develop this technology. Gabriel Buckner will be observing and acting as a customer due to his expertise in signals and embedded systems.
+Caleb Bucher will be assembling the mic/speaker submodule due to his programming and circuit expertise. Reese Gilbert will be acting as the customer of this submodule because of his similar experience in circuit design and useful power system expertise. 
+
+Mathias Hagewood will innovate the vitals' sensor. His combinational logic experience, circuit design experience, signals experience will be required to develop this technology. Gabriel Buckner will be observing and acting as a customer due to his expertise in signals and embedded systems.
 
 These are the primary roles of each team member. If any new information is gathered on a subsystem, the roles are liable to change if someone's expertise becomes better aligned or under the advisement of the Georgia Tech team.
 
