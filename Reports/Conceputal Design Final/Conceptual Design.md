@@ -24,7 +24,7 @@ To understand the scope of the problem, the customer has outlined a specific sce
 **2.** The drone SHALL have an integrated security system.  
 **3.** The drone SHALL remain under 400 ft above ground level  
 **4.** The drone SHALL not exceed 100 mph  
-**5.** The drone SHALL be equipped with anti-collision lighting 
+**5.** The drone SHALL be equipped with anti-collision lighting   
 **6.** The drone shall measure heart and respiratory rates by detecting vibrational frequencies of the heart and lungs in hertz, using Doppler sensing technology.
 
 
