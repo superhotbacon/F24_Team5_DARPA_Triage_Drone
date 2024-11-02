@@ -32,6 +32,7 @@ To understand the scope of the problem, the customer has outlined a specific sce
 
 
 
+
 ## Comparative Analysis of Potential Solutions  
 
 ### 1. Drone Design
@@ -180,7 +181,9 @@ The subsystem shall be operational from a distance of at least one meter.
 The subsystem shall detect a heart rate.  
 The subsystem shall detect a breathing rate.  
 The subsystem shall weigh less than half a pound.  
-The subsystem shall not pose any threat to its subject.  
+The subsystem shall not pose any threat to its subject. 
+The subsystem shall obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).
+The subsystem shall obtain the breathing rate and frequency (range 0.13 to 1 Hz).
 
 #### **Description**
 The Vitals Sensors subsystem is dedicated to obtaining accurate readings from each sensor and ensuring that these readings are transmitted effectively to the computer for further analysis. The subsystem comprises of a radar doppler, likely of continuous wave (CW) type. It will send a periodic radio signal and listen for that same signal. Measuring how out of phase the sending and receiving signals are, the subsystem will provide the data required to compute the frequency of the breathing and heart rate of the subject. It will be paired with circuitry to filter noise and other disruptive signals.
@@ -192,9 +195,10 @@ The Vitals Sensors subsystem is dedicated to obtaining accurate readings from ea
 Wireless connection between drone and client computer.  
 
 #### **Specifications**
-This system shall display data from the signal processing subsystem onto a laptop screen.  
-This system shall use the wireless capability of the programmable drone.  
-This system shall run a program on a laptop that will allow the laptop to connect to the drone.  
+This subsystem shall display data from the signal processing subsystem onto a laptop screen. 
+This subsystem shall use the wireless capability of the programmable drone.  
+This subsystem shall run a program on a laptop that will allow the laptop to connect to the drone.  
+This subsystem shall display triage results and vitals wirelessly.
 
 #### **Description**
 This subsystem will utilize the programmable nature of the drone to connect to a laptop and display heart rate and breathing rate information onto the screen. This subsystem will need to write a program on the laptop in order to connect to the drone as well. This program should be portable between computer to computer. 
@@ -210,6 +214,8 @@ Digital connection to the speaker from the drone.
 #### **Specifications**
 The subsystem shall ensure two-way communication from the pilot to the victim.  
 The subsystem shall communicate wirelessly via the drone.  
+The subsystem shall communicate through a speaker that will output 80 dB SPL.
+The subsystem shall give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.
 
 #### **Description**
 
@@ -236,11 +242,7 @@ The microphone and speaker subsystem is extremely important as it allows the pil
 **START Adult Triage Method** [4]     
 During times of disaster, good ethical decisions and considerations are often compromised. However, the START Method can better the decision-making for individuals in these situations. The Drone’s Triage system considers the START Method, thus influencing the design and selection of each subsystem to easily navigate the START Method for better and more ethical  life-saving decisions.
 [](https://www.google.com/url?sa=i&url=https%3A%2F%2Fchemm.hhs.gov%2Fstartadult.htm&psig=AOvVaw0y8xkEmUV6EMQKV7fnoMyg&ust=1729839169189000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLDd8Ju3pokDFQAAAAAdAAAAABAE)![image](https://github.com/user-attachments/assets/3f9fa7fc-3093-4bae-8b61-276a595ef9d1)  
-These specifications were influenced greatly by the method above.  
-1. The system shall obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).
-2. The system shall obtain the breathing rate and frequency (range 0.13 to 1 Hz).
-3. The system shall give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.
-4. The system shall display triage results and vitals wirelessly.
+
 
 ### **Standards**
 #### WI-FI Standard
