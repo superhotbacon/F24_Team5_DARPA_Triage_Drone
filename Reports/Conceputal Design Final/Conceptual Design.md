@@ -74,8 +74,23 @@ The computing systems considered were a **Raspberry Pi** and a **NVIDIA Jetson N
 #### Computing Systems Solution:
 Considering both the Raspberry Pi and the NVIDIA Jetson Nano, the Jetson Nano is the best solution for a computing system. With its high-performance capabilities in graphics processing,  it is a necessity due to the on-board camera that will be used during triage. It also allows for more I/O options compared to the Raspberry Pi, making it the essential choice considering the number of sensors and systems needed for timely and accurate triage. Despite the higher cost of the Jetson Nano, it is capable of maintaining the project budget with the Jetson Nano, making it the clear choice. 
 
-    
+### 3. Controller Systems
+The conroller options were the **Default Drone Controller**, a **Mobile Device**, or a **PC System**.
+####**Default Drone Controller**
+**Description:** It comes with the drone and is therefore low-cost, has less than ten buttons, and is handheld.
+**Pros:** Pre-Programmed, Cost-Friendly, Simple to Use.
+**Cons:** Not Flexible, No Display, Not Modifiable.
+####**Mobile Device**
+**Description:** A handheld, either a dedicated or personal device that can interact with the drone controls through the drone' default web APIs with moderate modifiability.
+**Pros:** Flexible, Potentially Cost-Friendly, Easy to Carry, Modifiable.
+**Cons:** Difficult to handle due to small display, Can't be easily used to program drone, Many potential device models.
+####**PC System**
+**Description:** Either a dedicated or personal device that can interact with the drone controls through the drone's default web APIs with high modifiability.
+**Pros:** Flexible, Potentially Cost-Friendly, Easy to Program, Provides more Buttons to Interface with.
+**Cons:** Large, Less Intuitive, Many potential device models.
 
+#### Controller Systems Solution:
+Due to the higher capabilities of a modern day personal computer, it is the ideal solution for this project. It will provide the most potential for how the drone can be controlled while keeping an adequate control system for the operator. It will be less intuitive than the other possibilities, but that can be mitigated. The other options are simply too limiting, especially since it will not only be the drone that is controlled by the operator, but also the radar, speaker, and mic. 
 
 ## High-Level Solution
 
