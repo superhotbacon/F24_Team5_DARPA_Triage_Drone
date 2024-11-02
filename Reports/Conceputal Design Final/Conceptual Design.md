@@ -25,6 +25,7 @@ To understand the scope of the problem, the customer has outlined a specific sce
 **3.** The drone SHALL remain under 400 ft above ground level  
 **4.** The drone SHALL not exceed 100 mph  
 **5.** The drone SHALL be equipped with anti-collision lighting 
+**6.** The drone shall measure heart and respiratory rates by detecting vibrational frequencies of the heart and lungs in hertz, using Doppler sensing technology.
 
 
 
@@ -77,7 +78,7 @@ Considering both the Raspberry Pi and the NVIDIA Jetson Nano, the Jetson Nano is
 
 ## High-Level Solution
 
-The solution to this problem requires an aviation drone as well as integrated sensors to record data. The drone will be manually flown to the victim and have the ability to hover 1 meter above the target. Attached to the drone will be a sensing system that can measure one's, heart rate and respiratory rate, and cognitiveness all without contacting the individual. The data gathered by the sensors will then be sent to the computing system. The information will be processed and the person will be categorized by severity of injuries in accordance with the START method. 
+The solution to this problem requires an aviation drone as well as integrated sensors to record data. The drone will be manually flown to the victim and have the ability to hover 1 meter above the target. Attached to the drone will be a sensing system that can measure one's, heart rate and respiratory rate, and cognitiveness all without contacting the individual. The data gathered by the sensors will then be sent to the computing system. The information will be processed and the person will be categorized by severity of injuries in accordance with the START method, which is gone into further detail in the START Adult Triage Method section[4]. 
 
 In order to do this, the design will be split up into devices:
 
