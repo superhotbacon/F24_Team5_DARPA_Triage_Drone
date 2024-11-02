@@ -246,7 +246,9 @@ During times of disaster, good ethical decisions and considerations are often co
 
 ### **Standards**
 #### WI-FI Standard
-The design will have to comply with IEEE standard 802.11 [5] which defines how WI-FI networks are set up and communicate. The drone will have to work under this standard to ensure proper communication with WI-FI networks and the interfacing subsystem. Most of this should already be handled with the programmable drone API. However, great care should be taken to ensure proper application of this standard.
+The design will have to comply with IEEE standard 802.11 [5] which defines how WI-FI networks are set up and communicate. This will affect our design as the team will have to ensure the drone complies with this standard to sucessfully connect to the internet and communicate with the web app accessed by most browsers. The programmable drone API will most likely handle the low level hardware specific implementation of the standard. The higer level implementation will need to be tackled by the team. This will also define how the web app is designed as well as how the information is transmitted in packets and what protocols the video feed will be transmitted with.
+
+
 #### Videography and Audio Recording Standard
 The design and project must comply with the **DEFENSE HEALTH AGENCY's [DHA]** _ADMINISTRATIVE INSTRUCTION **NUMBER** 6000.02_ [6]. Systems responsible for videotaping, filming, recording, and imaging of patients must comply with this instruction and policy to ensure lawful and ethical use of videography and audio recordings.
 #### Drone Standard
