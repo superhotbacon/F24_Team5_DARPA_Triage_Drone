@@ -25,7 +25,7 @@ To understand the scope of the problem, the customer has outlined a specific sce
 **3.** The drone SHALL remain under 400 ft above ground level  
 **4.** The drone SHALL not exceed 100 mph  
 **5.** The drone SHALL be equipped with anti-collision lighting   
-**6.** The drone shall measure heart and respiratory rates by detecting vibrational frequencies of the heart and lungs in hertz, using Doppler sensing technology.
+**6.** The drone SHALL measure heart and respiratory rates by detecting vibrational frequencies of the heart and lungs in hertz, using Doppler sensing technology.
 
 
 
@@ -143,10 +143,10 @@ The drone will be bought and be ready to fly. Senors and a processing unit will 
 Power signal to connect the signal processing subsystem
 
 #### **Specifications**
-The power subsystem shall supply ample power to all needed subsystems.  
-  The power subsystem shall optimally use the battery on the drone to prevent unnecessary discharge.  
-  The power subsystem shall not have exposed wiring to ensure safety.  
-  The power subsystem shall protect client circuits with fuses.  
+The power subsystem SHALL supply ample power to all needed subsystems.  
+  The power subsystem SHALL optimally use the battery on the drone to prevent unnecessary discharge.  
+  The power subsystem SHALL not have exposed wiring to ensure safety.  
+  The power subsystem SHALL protect client circuits with fuses.  
 
 #### **Description**
 The power subsystem will be responsible for converting power from the battery to the signal processing subsystem subsystem and other peripherals on the drone. The following flow chart describes the steps to meet the specifications.
@@ -160,9 +160,9 @@ The power subsystem will be responsible for converting power from the battery to
     Digital signal to the doppler sensor.
 
 #### **Specifications**
-  The signal processing subsystem shall use signal processing to determine heart rate and respiratory rate.  
-  The signal processing subsystem shall be able to get accurate readings from 1 meter away.  
-  The signal processing algorithms shall process data and have it ready to transmit within 500ms of being received.  
+  The signal processing subsystem SHALL use signal processing to determine heart rate and respiratory rate.  
+  The signal processing subsystem SHALL be able to get accurate readings from 1 meter away.  
+  The signal processing algorithms SHALL process data and have it ready to transmit within 500ms of being received.  
 
 #### **Description**
 
@@ -177,13 +177,13 @@ The signal processing subsystem carries the heart of the project. It will employ
 The vitals sensor will be wired to the signal processing subsystem on board the drone. It will be communicating digitally, most likely, via serial communications. It will be sending data to the signal processing subsystem that it has acquired through no-contact radar sensing.
 
 #### **Specifications**
-The subsystem shall be operational from a distance of at least one meter.  
-The subsystem shall detect a heart rate.  
-The subsystem shall detect a breathing rate.  
-The subsystem shall weigh less than half a pound.  
-The subsystem shall not pose any threat to its subject. 
-The subsystem shall obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).
-The subsystem shall obtain the breathing rate and frequency (range 0.13 to 1 Hz).
+The subsystem SHALL be operational from a distance of at least one meter.  
+The subsystem SHALL detect a heart rate.  
+The subsystem SHALL detect a breathing rate.  
+The subsystem SHALL weigh less than half a pound.  
+The subsystem SHALL not pose any threat to its subject. 
+The subsystem SHALL obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).
+The subsystem SHALL obtain the breathing rate and frequency (range 0.13 to 1 Hz).
 
 #### **Description**
 The Vitals Sensors subsystem is dedicated to obtaining accurate readings from each sensor and ensuring that these readings are transmitted effectively to the computer for further analysis. The subsystem comprises of a radar doppler, likely of continuous wave (CW) type. It will send a periodic radio signal and listen for that same signal. Measuring how out of phase the sending and receiving signals are, the subsystem will provide the data required to compute the frequency of the breathing and heart rate of the subject. It will be paired with circuitry to filter noise and other disruptive signals.
@@ -195,10 +195,10 @@ The Vitals Sensors subsystem is dedicated to obtaining accurate readings from ea
 Wireless connection between drone and client computer.  
 
 #### **Specifications**
-This subsystem shall display data from the signal processing subsystem onto a laptop screen. 
-This subsystem shall use the wireless capability of the programmable drone.  
-This subsystem shall run a program on a laptop that will allow the laptop to connect to the drone.  
-This subsystem shall display triage results and vitals wirelessly.
+This subsystem SHALL display data from the signal processing subsystem onto a laptop screen. 
+This subsystem SHALL use the wireless capability of the programmable drone.  
+This subsystem SHALL run a program on a laptop that will allow the laptop to connect to the drone.  
+This subsystem SHALL display triage results and vitals wirelessly.
 
 #### **Description**
 This subsystem will utilize the programmable nature of the drone to connect to a laptop and display heart rate and breathing rate information onto the screen. This subsystem will need to write a program on the laptop in order to connect to the drone as well. This program should be portable between computer to computer. 
@@ -212,10 +212,10 @@ Digital connection to the microphone from the drone.
 Digital connection to the speaker from the drone.
 
 #### **Specifications**
-The subsystem shall ensure two-way communication from the pilot to the victim.  
-The subsystem shall communicate wirelessly via the drone.  
-The subsystem shall communicate through a speaker that will output 80 dB SPL.
-The subsystem shall give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.
+The subsystem SHALL ensure two-way communication from the pilot to the victim.  
+The subsystem SHALL communicate wirelessly via the drone.  
+The subsystem SHALL communicate through a speaker that will output 80 dB SPL.
+The subsystem SHALL give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.
 
 #### **Description**
 
