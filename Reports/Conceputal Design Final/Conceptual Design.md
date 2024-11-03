@@ -55,7 +55,7 @@ To understand the scope of the problem, the customer has outlined a specific sce
 **Cons:** High Cost, Heavy Weight, Complex Flight Style, Higher risk of Malfunction, and Difficult to store.  
   
 #### Drone Design Solution: 
-Considering both the Pros and Cons of each drone, it is in the best interest of the solution to select the multi-rotor Drone. Budgeting and reliability played crucial roles in the decision-making. The multi-rotor drone allocated well with the team’s budget and created no conflicts with any other budgeting needs. For fast and accurate triage, it is a necessity to have a reliable drone, the multi-rotor drone seemed to have excelled in this category compared to the Hybrid drone. After careful consideration, the multi-rotor drone is the most optimal choice. 
+Considering both the Pros and Cons of each drone, it is in the best interest of the solution to select the multi-rotor Drone. Budgeting and reliability played crucial roles in the decision-making. The multi-rotor drone allocated well with the team’s budget and created no conflicts with any other budgeting needs. For fast and accurate triage, it is necessary to have a reliable drone, the multi-rotor drone seemed to have excelled in this category compared to the Hybrid drone. After careful consideration, the multi-rotor drone is the most optimal choice. 
 
 *The photos above are for reference*
 
@@ -75,7 +75,7 @@ The computing systems considered were a **Raspberry Pi** and a **NVIDIA Jetson N
 Considering both the Raspberry Pi and the NVIDIA Jetson Nano, the Jetson Nano is the best solution for a computing system. With its high-performance capabilities in graphics processing,  it is a necessity due to the on-board camera that will be used during triage. It also allows for more I/O options compared to the Raspberry Pi, making it the essential choice considering the number of sensors and systems needed for timely and accurate triage. Despite the higher cost of the Jetson Nano, it is capable of maintaining the project budget with the Jetson Nano, making it the clear choice. 
 
 ### 3. Controller Systems
-The conroller options were the **Default Drone Controller**, a **Mobile Device**, or a **PC System**.
+The controller options were the **Default Drone Controller**, a **Mobile Device**, or a **PC System**.
 
 #### **Default Drone Controller**
 **Description:** It comes with the drone and is therefore low-cost, has less than ten buttons, and is handheld.
@@ -120,7 +120,10 @@ In order to do this, the design will be split up into devices:
 
 ### Hardware Block Diagram
 
-[Darpa.Drone.Hardware.Block.Diagram.pdf](https://github.com/user-attachments/files/17581360/Darpa.Drone.Hardware.Block.Diagram.1.pdf)
+![Hardware_Block_Diagram](https://github.com/user-attachments/assets/ac10ede5-9bd6-41d5-95bf-4380d3ebf2f5)
+
+  [Darpa.Drone.Hardware.Block.Diagram.pdf](https://github.com/user-attachments/files/17581360/Darpa.Drone.Hardware.Block.Diagram.1.pdf)
+
 
 The linked document contains the hardware block diagram created in Visio, centering on the drone and the computer. This visual breakdown outlines the division of our systems, focusing on the communication paths and additions between these components. We decided to omit the controller from the diagram, as no modifications are being made to it. As a result, the diagram shows the computer and drone systems.
 
