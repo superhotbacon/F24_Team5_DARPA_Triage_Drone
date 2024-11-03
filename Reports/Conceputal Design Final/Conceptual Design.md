@@ -239,7 +239,7 @@ The subsystem SHALL give vocal commands using the speaker and listen for respons
 
 #### **Description**
 
-The microphone and speaker subsystem is extremely important as it allows the pilot to determine the cognitive ability of the triage patient. This subsystem will have to figure out how the microphones will connect to the drone and the drone controller and figure out how to send data through the interfaces with the drone.
+The microphone and speaker subsystem is extremely important as it allows the pilot to determine the cognitive ability of the triage patient. This subsystem will have to figure out how the microphones will connect to the drone and the drone controller and figure out how to send data through the interfaces with the drone.  
 ![image](https://github.com/user-attachments/assets/68573382-bda0-4339-88e8-ce6fc51a3382)
 
 
