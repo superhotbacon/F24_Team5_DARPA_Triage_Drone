@@ -76,15 +76,17 @@ Considering both the Raspberry Pi and the NVIDIA Jetson Nano, the Jetson Nano is
 
 ### 3. Controller Systems
 The conroller options were the **Default Drone Controller**, a **Mobile Device**, or a **PC System**.
-####**Default Drone Controller**
+
+#### **Default Drone Controller**
 **Description:** It comes with the drone and is therefore low-cost, has less than ten buttons, and is handheld.
 **Pros:** Pre-Programmed, Cost-Friendly, Simple to Use.
 **Cons:** Not Flexible, No Display, Not Modifiable.
-####**Mobile Device**
+
+#### **Mobile Device**
 **Description:** A handheld, either a dedicated or personal device that can interact with the drone controls through the drone' default web APIs with moderate modifiability.
 **Pros:** Flexible, Potentially Cost-Friendly, Easy to Carry, Modifiable.
 **Cons:** Difficult to handle due to small display, Can't be easily used to program drone, Many potential device models.
-####**PC System**
+#### **PC System**
 **Description:** Either a dedicated or personal device that can interact with the drone controls through the drone's default web APIs with high modifiability.
 **Pros:** Flexible, Potentially Cost-Friendly, Easy to Program, Provides more Buttons to Interface with.
 **Cons:** Large, Less Intuitive, Many potential device models.
