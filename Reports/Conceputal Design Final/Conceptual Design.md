@@ -163,7 +163,7 @@ The drone will be bought and be ready to fly. Senors and a processing unit will 
 Power signal to connect the signal processing subsystem
 
 #### **Specifications**
-The power subsystem SHALL supply ample power to all needed subsystems.  
+The power subsystem SHALL supply enough wattage that all devices work correctly while under maximum load. 
   The power subsystem SHALL optimally use the battery on the drone to prevent unnecessary discharge.  
   The power subsystem SHALL not have exposed wiring to ensure safety.  
   The power subsystem SHALL protect client circuits with fuses.  
