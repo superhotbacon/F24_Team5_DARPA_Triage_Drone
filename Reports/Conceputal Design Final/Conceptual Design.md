@@ -180,7 +180,7 @@ The power subsystem will be responsible for converting power from the battery to
     Digital signal to the doppler sensor.
 
 #### **Specifications**
-  The signal processing subsystem SHALL use signal processing to determine heart rate and respiratory rate.  
+  The signal processing subsystem SHALL use signal processing to determine heart rate (range 0.45 to 2.92Hz) and respiratory rate (range 0.13 to 1 Hz).  
   The signal processing subsystem SHALL be able to get accurate readings from 1 meter away.  
   The signal processing algorithms SHALL process data and have it ready to transmit within 500ms of being received.  
 
@@ -198,8 +198,6 @@ The vitals sensor will be wired to the signal processing subsystem on board the 
 
 #### **Specifications**
 The subsystem SHALL be operational from a distance of at least one meter.  
-The subsystem SHALL detect a heart rate.  
-The subsystem SHALL detect a breathing rate.  
 The subsystem SHALL weigh less than half a pound.  
 The subsystem SHALL not pose any threat to its subject. 
 The subsystem SHALL obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).
