@@ -163,8 +163,8 @@ The drone will be bought and be ready to fly. Senors and a processing unit will 
 Power signal to connect the signal processing subsystem
 
 #### **Specifications**
-  The power subsystem SHALL supply a minimum voltage of 4.75v and a maximum voltage of 5.25v to power the Jetson Nano and its peripherals.   
-  The power subsystem SHALL supply a minimum current of 2.5A and a maximum current of 4A to power the Jetson Nano and its peripherals.   
+  The power subsystem SHALL supply a minimum voltage of 4.75v and a maximum voltage of 5.25v to power the Jetson Nano and its peripherals. [8]   
+  The power subsystem SHALL supply a minimum current of 2.5A and a maximum current of 4A to power the Jetson Nano and its peripherals. [8]  
   The power subsystem SHALL optimally use the battery on the drone to prevent unnecessary discharge.  
   The power subsystem SHALL not have exposed wiring to ensure safety.  
   The power subsystem SHALL protect client circuits with fuses.  
@@ -181,9 +181,9 @@ The power subsystem will be responsible for converting power from the battery to
     Digital signal to the doppler sensor.
 
 #### **Specifications**
-  The signal processing subsystem SHALL use signal processing to determine heart rate (range 0.45 to 2.92Hz) and respiratory rate (range 0.13 to 1 Hz).  
+  The signal processing subsystem SHALL use signal processing to determine heart rate (range 0.45 to 2.92Hz) and respiratory rate (range 0.13 to 1 Hz).    
   The signal processing subsystem SHALL be able to get accurate readings from 1 meter away.  
-  The signal processing algorithms SHALL process data and have it ready to transmit within 500ms of being received.  
+  The signal processing algorithms SHALL process data and have it ready to transmit within 500ms of being received.    
 
 #### **Description**
 
@@ -198,11 +198,11 @@ The signal processing subsystem carries the heart of the project. It will employ
 The vitals sensor will be wired to the signal processing subsystem on board the drone. It will be communicating digitally, most likely, via serial communications. It will be sending data to the signal processing subsystem that it has acquired through no-contact radar sensing.
 
 #### **Specifications**
-The subsystem SHALL be operational from a distance of at least one meter.  
+The subsystem SHALL be operational from a distance of at least one meter.    
 The subsystem SHALL weigh less than half a pound.  
-The subsystem SHALL not pose any threat to its subject. 
-The subsystem SHALL obtain the presence of a heartbeat and its frequency. (range 0.45 to 2.92Hz).
-The subsystem SHALL obtain the breathing rate and frequency (range 0.13 to 1 Hz).
+The subsystem SHALL not pose any threat to its subject.   
+The subsystem SHALL obtain the presence of a heartbeat and its frequency (range 0.45 to 2.92Hz).  
+The subsystem SHALL obtain the breathing rate and frequency (range 0.13 to 1 Hz).  
 
 #### **Description**
 The Vitals Sensors subsystem is dedicated to obtaining accurate readings from each sensor and ensuring that these readings are transmitted effectively to the computer for further analysis. The subsystem comprises of a radar doppler, likely of continuous wave (CW) type. It will send a periodic radio signal and listen for that same signal. Measuring how out of phase the sending and receiving signals are, the subsystem will provide the data required to compute the frequency of the breathing and heart rate of the subject. It will be paired with circuitry to filter noise and other disruptive signals.
@@ -214,10 +214,10 @@ The Vitals Sensors subsystem is dedicated to obtaining accurate readings from ea
 Wireless connection between drone and client computer.  
 
 #### **Specifications**
-This subsystem SHALL display data from the signal processing subsystem onto a laptop screen. 
+This subsystem SHALL display data from the signal processing subsystem onto a laptop screen.   
 This subsystem SHALL use the wireless capability of the programmable drone.  
 This subsystem SHALL run a program on a laptop that will allow the laptop to connect to the drone.  
-This subsystem SHALL display triage results and vitals wirelessly.
+This subsystem SHALL display triage results and vitals wirelessly.  
 
 #### **Description**
 This subsystem will utilize the programmable nature of the drone to connect to a laptop and display heart rate and breathing rate information onto the screen. This subsystem will need to write a program on the laptop in order to connect to the drone as well. This program should be portable between computer to computer. 
@@ -231,10 +231,10 @@ Digital connection to the microphone from the drone.
 Digital connection to the speaker from the drone.
 
 #### **Specifications**
-The subsystem SHALL ensure two-way communication from the pilot to the victim.  
-The subsystem SHALL communicate wirelessly via the drone.  
-The subsystem SHALL communicate through a speaker that will output 80 dB SPL.
-The subsystem SHALL give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.
+The subsystem SHALL ensure two-way communication from the pilot to the victim.    
+The subsystem SHALL communicate wirelessly via the drone.    
+The subsystem SHALL communicate through a speaker that will output 80 dB SPL.  
+The subsystem SHALL give vocal commands using the speaker and listen for responses to evaluate the cognitive ability of a victim.  
 
 #### **Description**
 
@@ -380,6 +380,8 @@ These are the primary roles of each team member. If any new information is gathe
 [6] "Defense Health Agency" [[Online](https://www.health.mil/Reference-Center/DHA-Publications/2022/08/05/DHA-AI-6000-02)]  
 
 [7] "Federal Aviation Administration" [[Online](https://www.faa.gov/newsroom/small-unmanned-aircraft-systems-uas-regulations-part-107)]
+
+[8] "Power supply considerations for Jetson Nano Developer Kit" [[Online](https://forums.developer.nvidia.com/t/power-supply-considerations-for-jetson-nano-developer-kit/71637)]
 
 
 
