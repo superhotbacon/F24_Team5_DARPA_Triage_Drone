@@ -164,7 +164,7 @@ Power signal to connect the signal processing subsystem
 
 #### **Specifications**
   The power subsystem SHALL supply a minimum voltage of 4.75v and a maximum voltage of 5.25v to power the Jetson Nano and its peripherals. [8]   
-  The power subsystem SHALL supply a minimum current of 2.5A and a maximum current of 4A to power the Jetson Nano and its peripherals. [8]  
+  The power subsystem SHALL supply up to 4A to power the Jetson Nano and its peripherals. [8]  
   The power subsystem SHALL optimally use the battery on the drone to prevent unnecessary discharge.  
   The power subsystem SHALL not have exposed wiring to ensure safety.  
   The power subsystem SHALL protect client circuits with fuses.  
