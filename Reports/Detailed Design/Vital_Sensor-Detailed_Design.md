@@ -9,12 +9,23 @@ The purpose of this subsystem is to be the interface by which the drone, and the
 This subsystem will provide access to that information and transmit it to the Signal Processing Subsystem for further evaluation.
 
 ## Constraints
-  - The device MUST not push the project budget to exceed $5,000 (target is less than $200).
-  - The device MUST not weigh enough to significantly disturb the drone (target is less than 0.5lb or 230g).
-  - The device MUST not consume so much power as to debilitate the drone.
-  - The device MUST not exceed a Specific Absorption Rate of 1.6 W/kg. [1]
+  - The system MUST not push the project budget to exceed $5,000 (target is less than $200).
+  - The system MUST not weigh enough to significantly disturb the drone (target is less than 0.5lb or 230g).
+  - The system MUST not consume so much power as to debilitate the drone.
+  - The system MUST not exceed a Specific Absorption Rate of 1.6 W/kg. [1]
 
+## Specifications
+  - The system SHALL accurately detect milimeter-sized motion made by a heart from at least a meter away.
+  - The system SHALL accurately detect respiration from at least a meter away.
+  - The system SHALL do the above within 20 seconds.
+  - The system SHALL be able to interface and provide data to a processor.
+  - The system SHALL function despite inconsistent target positions.
 
+## Overview of Proposed Solution ---Reference Data Sheets Here---
+
+The Infineon Demo BGT60UTR11AIP radar sensor is the solution that will fulfill all of the previously mentioned constraints and specifications. It is a 60GHz Frequency Modulated Continuous Wave (FMCW) radar; however, it also posseses the capability to operate in a Continuous Wave (CW) mode.  
+  
+The board is roughly 3 inches by 1 inch and ways less than a gram. 
 
 
 
