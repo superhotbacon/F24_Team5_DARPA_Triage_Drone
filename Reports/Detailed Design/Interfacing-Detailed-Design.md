@@ -2,7 +2,6 @@
 
 The document should include:
 
-- Detailed specifications and constraints specific to the subsystem
 - Synopsis of the suggested solution
 - Interfaces among different subsystems
 - A buildable diagram*
@@ -28,25 +27,23 @@ The interfacing subsystem will function as the project's wireless data visualiza
   
 \- This 1% error rate is necessary to complete accurate triage to not compromise the reliability of the system in crucial situations. 
 
-**2.** The subsystem SHALL clock a latency of <1 second.  
+**2.** The subsystem SHALL clock latency of <1 second for video, audio, and data streaming.  
   
 \- A <1 second clock latency ensures immediate responsive video and audio streaming which is deemed necessary during a time of crisis. A high latency can cause disruptive connectivity and sync between the audio and video. 
 
 **3.** The subsystem SHALL process and display data without storing any received data.  
 
-\- Abiding by the Code of Medical Ethics this requirement ensures the victims' privacy during a time of crisis.
+\- Abiding by the Code of Medical Ethics this requirement ensures the victims' privacy during a time of medical crisis [].
 
 #### Specifications
 
-1. The subsystem SHALL display data collection and analysis on a laptop device. 
-2. The subsystem SHALL be compatible with wireless data transfer capabilities.
-3. The subsystem SHALL wirelessly displays triage signal processing data.
-4. The subsystem SHALL wirelessly stream video and audio data.
+**1.** The subsystem SHALL display data collection and analysis on a laptop device.   
+**2.** The subsystem SHALL be compatible with wireless data transfer capabilities.  
+**3.** The subsystem SHALL wirelessly displays triage signal processing data.  
+**4.** The subsystem SHALL wirelessly stream video and audio data.  
 
 
 ## Overview of Proposed Solution
-
-Describe the solution and how it will fulfill the specifications and constraints of this subsystem.
 
 
 ## Interface with Other Subsystems
@@ -57,19 +54,6 @@ Provide detailed information about the inputs, outputs, and data transferred to 
 ## 3D Model of Custom Mechanical Components
 
 Should there be mechanical elements, display diverse views of the necessary 3D models within the document. Ensure the image's readability and appropriate scaling. Offer explanations as required.
-
-
-## Buildable Schematic 
-
-Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
-
-The schematic should be relevant to the design and provide ample details necessary for constructing the model. It must be comprehensive so that someone, with no prior knowledge of the design, can easily understand it. Each related component's value and measurement should be clearly mentioned.
-
-
-## Printed Circuit Board Layout
-
-Include a manufacturable printed circuit board layout.
-
 
 ## Operational Flowchart
 
