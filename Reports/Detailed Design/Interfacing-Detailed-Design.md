@@ -1,45 +1,35 @@
-# Interfacing Detailed Design
-
-## Introduction
-
-
-
-This document delineates the objectives of a comprehensive system design. Upon reviewing this design, the reader should have a clear understanding of:
-
-- How the specific subsystem integrates within the broader solution
-- The constraints and specifications relevant to the subsystem
-- The rationale behind each crucial design decision
-- The procedure for constructing the solution
-
-
 ## General Requirements for the Document
 
 The document should include:
 
-- Explanation of the subsystem’s integration within the overall solution
 - Detailed specifications and constraints specific to the subsystem
 - Synopsis of the suggested solution
 - Interfaces among different subsystems
-- 3D models of customized mechanical elements*
 - A buildable diagram*
-- A Printed Circuit Board (PCB) design layout*
 - An operational flowchart*
 - A comprehensive Bill of Materials (BOM)
 - Analysis of crucial design decisions
 - Execution plan considering skill sets and time requirements
-*Note: These technical documentation elements are mandatory only when relevant to the particular subsystem.
 
 
-## Function of the Subsystem
+## Introduction
+This document delineates a fully comprehensive system design for the interfacing subsystem. Focusing on the integration within the broader solution, the specifications and constraints relevant to the interfacing, and the process and justification of each crucial design step that constructs the solution. 
 
-This segment should elucidate the role of the subsystem within the entire system, detailing its intended function, aligned with the conceptual design.
 
+## Interfacing Subsystem Function
+
+The interfacing subsystem will function as the project's wireless data visualization via the use of any compatible laptop device. This involves gathering and receiving the processed data wirelessly from the Jetson Nano computing device attached to the drone and displaying live, engaging data visuals for the user within near-immediate transmission and processing times. Live video and audio taken from a camera and microphone connected to the drone will be streamed to the laptop, along with displaying data from the triage signal processing systems wirelessly. 
 
 ## Specifications and Constraints
 
 This section should provide a list of constraints applicable to the subsystem, along with the rationale behind these limitations. For instance, constraints can stem from physics-based limitations or requirements, subsystem prerequisites, standards, ethical considerations, or socio-economic factors.
 
-The team should set specifications for each subsystem. These specifications may require modifications, which must be authorized by the team. It could be necessary to impose additional constraints as further information becomes available.
+### Specifications
+
+1. The subsystem SHALL display data collection and analysis on a laptop device. 
+2. The subsystem SHALL be compatible with wireless data transfer capabilities.
+3. The subsystem SHALL wirelessly display triage signal processing data.
+4. The subsystem SHALL wirelessly stream video and audio data.
 
 Every subsystem must incorporate at least one constraint stemming from standards, ethics, or socio-economic factors.
 
