@@ -11,13 +11,13 @@ The document should include:
 - Execution plan considering skill sets and time requirements
 
 
-## Interfacing Detailed Design
+# Interfacing Detailed Design
 This document delineates a fully comprehensive system design for the interfacing subsystem. Focusing on the integration within the broader solution, the specifications and constraints relevant to the interfacing, and the process and justification of each crucial design step that constructs the solution. 
 
 
 ## Interfacing Subsystem Function
 
-The interfacing subsystem will function as the project's wireless data visualization via the use of any compatible laptop device. This involves gathering and receiving the processed data wirelessly from the Jetson Nano computing device attached to the drone and displaying live, engaging data visuals for the user within near-immediate transmission and processing times. Live video and audio taken from a camera and microphone connected to the drone will be streamed to the laptop, along with displaying data from the triage signal processing systems wirelessly. 
+The interfacing subsystem will function as the project's wireless data visualization via the use of any compatible laptop device. This involves wirelessly gathering and receiving the processed data from the Jetson Nano computing device attached to the drone and displaying live, engaging data visuals for the user within near-immediate transmission and processing times. Live video and audio taken from a camera and microphone connected to the drone will be streamed to the laptop, and data from the triage signal processing systems will be displayed wirelessly. 
 
 ## Specifications and Constraints
 
@@ -25,7 +25,7 @@ The interfacing subsystem will function as the project's wireless data visualiza
 
 **1.** The subsystem SHALL maintain an error rate of less than 1% to ensure accurate transmitted data display.  
   
-\- This 1% error rate is necessary to complete accurate triage to not compromise the reliability of the system in crucial situations. 
+\- This 1% error rate is necessary to complete accurate triage to not compromise the reliability of the system in crucial situations.
 
 **2.** The subsystem SHALL clock latency of <1 second for video, audio, and data streaming.  
   
