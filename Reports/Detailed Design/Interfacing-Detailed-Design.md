@@ -22,16 +22,26 @@ The interfacing subsystem will function as the project's wireless data visualiza
 
 ## Specifications and Constraints
 
-This section should provide a list of constraints applicable to the subsystem, along with the rationale behind these limitations. For instance, constraints can stem from physics-based limitations or requirements, subsystem prerequisites, standards, ethical considerations, or socio-economic factors.
+#### Constraints
 
-### Specifications
+**1.** The subsystem SHALL maintain an error rate of less than 1% to ensure accurate transmitted data display.  
+  
+This 1% error rate is necessary to complete accurate triage to not compromise the reliability of the system in crucial situations. 
+
+**2.** The subsystem SHALL clock a latency of <1 second.  
+  
+A <1 second clock latency ensures immediate responsive video and audio streaming which is deemed necessary during a time of crisis. A high latency can cause disruptive connectivity and sync between the audio and video. 
+
+**3.** The subsystem SHALL process and display data without storing any received data.  
+
+Abiding by the Code of Medical Ethics this requirement ensures the victims' privacy during a time of crisis.
+
+#### Specifications
 
 1. The subsystem SHALL display data collection and analysis on a laptop device. 
 2. The subsystem SHALL be compatible with wireless data transfer capabilities.
-3. The subsystem SHALL wirelessly display triage signal processing data.
+3. The subsystem SHALL wirelessly displays triage signal processing data.
 4. The subsystem SHALL wirelessly stream video and audio data.
-
-Every subsystem must incorporate at least one constraint stemming from standards, ethics, or socio-economic factors.
 
 
 ## Overview of Proposed Solution
@@ -79,3 +89,5 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 ## References
 
 All sources that have contributed to the detailed design and are not considered common knowledge should be duly cited, incorporating multiple references.
+
+https://www.nanocosmos.de/blog/webrtc-latency/
