@@ -128,5 +128,6 @@ Provide a comprehensive list of all necessary components along with their prices
 Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness.
 
 ## References
+[1]. https://www.tp-link.com/us/home-networking/usb-adapter/archer-t4u-plus/#specifications
 
 All sources that have contributed to the detailed design and are not considered common knowledge should be duly cited, incorporating multiple references.
