@@ -39,7 +39,7 @@ The document should include:
      - integrated circuits will gather vital signals and send data to the jetson nano to be processed.
      - The telemetry data will be transmitted to the ground station PC using Transmission Control Protocol (TCP) sockets for reliable delivery.
   3. PC Ground Station:
-     -Displays video and vitals in real time using software. 
+     - Displays video and vitals in real time using software. 
 
 Wi-Fi communication was chosen over 4G communication due to the need for purchasing a data plan for both 4G modules (one for the PC and one for the Jetson Nano). This decision limits the range at which the triage drone can be effective. However for the purpose of the scope outlined by the customer, implementation of wi-fi dongles will provide enough range to be effective.  
 
