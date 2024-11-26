@@ -19,11 +19,25 @@ Wi-Fi communication was chosen over 4G communication due to the need for purchas
 
 ## Specifications and Constraints
 
--  The subsystem shall support a data transfer rate of at least 50 Mbps to handle real time data. [1]
--  The subsystem shall have reliable connectivity at a distance of at least 80 meters using the 2.4GHz band.
+-  The subsystem shall support a data transfer rate of at least 25 Mbps to handle real time data. [1]
+   - This is the minimum data rate for 4k/Ultra HD
+     
+-  The subsystem shall have reliable connectivity at a distance of up to 150 meters using the 2.4GHz band.
+    - Since going with wi-fi modules for communication, the range will be limited. However, I believe the wi-fi adapters should provide enough range to be    effective.
+      
 -  The jetson nano shall use the TP_Link archer T4U Plus to connect to the host wifi network.
--  The communication subsystem shall be 802.11ac Wi-Fi standards. [1]
+     - The jetson nano will operate at the client that sends data to the host. The adapter chosen will provide this capability.
+       
+-  The communication subsystem shall be up to IEEE 802.11 b/g/n  Wi-Fi standards when operating on the 2.4GHz band [1].
+   
+-  The communication subsystem shall be up to IEEE 802.11 a/n/ac wi-fi standards when operating on the 5GHZ band [1].
+  
 -  The communication subsystem shall operate effectivily on a moderately weatherd day as portrayed in the scope.
+    - As referenced in the conceptual design, the drone needs to be able to operate at full functionality on a clear day [2].
+       
+-  The subsytem will work with a ground station PC operating on at least windows 10.
+      - This is the operating systme of my PC. 
+  
   
 
 This section should provide a list of constraints applicable to the subsystem, along with the rationale behind these limitations. For instance, constraints can stem from physics-based limitations or requirements, subsystem prerequisites, standards, ethical considerations, or socio-economic factors.
@@ -90,6 +104,10 @@ A complete list of all components needed for the design must be given with the c
 Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
 
 ## Analysis
+When choosing the method of communication between the drone and the ground control device, there are a few options to consider. 
+**1. RF Modules** 
+- RF 
+
 **Why choose TP-Link Archer T4U Plus?**
 - Dual Band support (2.4GHz band and 5GHz band) allows for flexibility for various enviornments
 - High gain antennas imporve range and stability
