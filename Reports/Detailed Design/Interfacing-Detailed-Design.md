@@ -11,7 +11,7 @@ The document should include:
 - Execution plan considering skill sets and time requirements
 
 
-## Introduction
+## Interfacing Detailed Design
 This document delineates a fully comprehensive system design for the interfacing subsystem. Focusing on the integration within the broader solution, the specifications and constraints relevant to the interfacing, and the process and justification of each crucial design step that constructs the solution. 
 
 
