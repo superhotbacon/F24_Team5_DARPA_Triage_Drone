@@ -99,7 +99,13 @@ Should there be mechanical elements, display diverse views of the necessary 3D m
 
 
 
-## Operational Flowchart
+## Operational Flowcharts
+**Jetson Nano and PC**
+![Drawing 1.vsdx - Google Chrome 11_25_2024 8_39_25 PM](https://hackmd.io/_uploads/rJuvS3fm1l.png)
+
+**UDP(video) and TCP(vitals)**
+
+
 
 For sections including a software component, produce a chart that demonstrates the decision-making process of the microcontroller. It should provide an overview of the device's function without exhaustive detail.
 
