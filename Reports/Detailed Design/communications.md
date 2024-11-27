@@ -104,9 +104,17 @@ A complete list of all components needed for the design must be given with the c
 Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
 
 ## Analysis
-When choosing the method of communication between the drone and the ground control device, there are a few options to consider. 
+When choosing the method of communication between the drone and the ground control device, there are a few options to consider.
+
 **1. RF Modules** 
-- RF 
+- RF modules would be a great option if the drone only needed to transmit telemetry data such as the heart and respiratory rate of the target. However, RF modules have limited bandwith that support low data rates. This is not an ideal solution for wirelessly transmitting video [3].
+
+**2. 4G/5G modules** 
+- Another option to wirelessly transmit data from onboard the drone is provide the Jetson Nano and the PC cellular capabilities by using two 4G modules that can connect with the Jetson Nano and the PC. This is a great option, however one would need to provide a cellular data plan for each device. The problem arises when figuring out who would fit the bill for each of these data plans. This is not a viable soultion for the purposes of this project [4].
+
+**3. Wi-Fi Dongles** 
+-One can provide wi-fi capabilities to the Jetson Nano and the PC without internet connection by using two wi-fi module adapters that plug into each device. Doing this allows the Jetson Nano to connect to the PC hotspot via host/client wifi connection. The draw back to this method is it would limit the range of connectablility between the Jetson and the ground station PC. However, using two TP-Link archer T4U pluses allows for enough range and bandwidth to wirelessly transmit video and telemetry data from the onboard Jetson Nano downt to the ground station PC. This method is the best suited for demonstrating the effectiveness of the triage drone [1].  
+
 
 **Why choose TP-Link Archer T4U Plus?**
 - Dual Band support (2.4GHz band and 5GHz band) allows for flexibility for various enviornments
@@ -126,5 +134,9 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 
 ## References
 [1]. https://www.tp-link.com/us/home-networking/usb-adapter/archer-t4u-plus/#specifications
+[3]. https://www.electro-tech-online.com/threads/rf-modules-which-can-handle-high-number-of-bytes-per-second.163528/
+[4]. https://www.pusr.com/news/4g-lte-modem-functions-and-applications.html
+
+
 
 All sources that have contributed to the detailed design and are not considered common knowledge should be duly cited, incorporating multiple references.
