@@ -42,6 +42,10 @@ The micro-usb to USB connection works as a serial port. The other pins on the bo
 ### The Shield on the MCU
 ![BGT60UBOARD](https://github.com/user-attachments/assets/f1d708ee-65c7-43d5-9d63-6a0106a353eb) [4]
 
+## Conceptual Schematic
+![Screenshot 2024-11-27 at 14-24-46 BGT60UTR11AIP - Infineon-BGT60UTR11AIP-DataSheet-v01_00-EN pdf](https://github.com/user-attachments/assets/055f3a14-bc56-4fa8-a496-5f588c475fac)
+ [5]
+
 
 
 
@@ -50,3 +54,4 @@ The micro-usb to USB connection works as a serial port. The other pins on the bo
 [2]https://www.infineon.com/cms/en/product/evaluation-boards/demo-bgt60utr11aip/  
 [3]https://www.infineon.com/dgdl/Infineon-UG155750_Radar_Baseboard_MCU7_Plus-UserManual-v01_10-EN.pdf?fileId=8ac78c8c88704c7a01888bb70e617c92  
 [4]https://www.infineon.com/dgdl/Infineon-UG091947_BGT60UTR11AIP_shield-UserManual-v02_00-EN.pdf?fileId=8ac78c8c88704c7a01888bade09f7c8b  
+[5]https://www.infineon.com/dgdl/Infineon-BGT60UTR11AIP-DataSheet-v01_00-EN.pdf?fileId=8ac78c8c88ae21230188d3eb8b9307b3
