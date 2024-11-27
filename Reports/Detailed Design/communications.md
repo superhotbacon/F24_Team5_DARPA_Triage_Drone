@@ -1,5 +1,7 @@
+## Drone Communication Subsystem
 
-## Function of the Subsystem
+
+**Function of the Subsystem**
   
   The wireless communication subsystem is responsible for transmitting video and telemetry data from the onboard jetson nano to the PC ground station.
   This will be done over wi-fi communication using two TP-link archer T4U Plus adapters for both the jetson nano and the PC. 
@@ -12,42 +14,41 @@
      - integrated circuits will gather vital signals and send data to the jetson nano to be processed.
      - The telemetry data will be transmitted to the ground station PC using Transmission Control Protocol (TCP) sockets for reliable delivery.
   3. PC Ground Station:
-     - Displays video and vitals in real time using software. 
+     - Displays video and vitals in real time using software.
+        
 
-Wi-Fi communication was chosen over 4G communication due to the need for purchasing a data plan for both 4G modules (one for the PC and one for the Jetson Nano). This decision limits the range at which the triage drone can be effective. However for the purpose of the scope outlined by the customer, implementation of wi-fi dongles will provide enough range to be effective.  
+
+## Specifications 
+**The subsystem shall operate using IEEE 802.11ac wi-fi for video and telemetry data transfer** [5].
+- The IEEE 802.11ac standard supports high data rates and dual-band operation, enabling efficient and low-latency communication. This standard is suitable for real-time video streaming and telemetry data transmission within the operating range.
 
 
-## Specifications and Constraints
+**The PC ground station shall serve as the Wi-Fi hotspot for establishing the network connection**
+- Configuring the PC as the host simplifies setup, centralizes control, and provides a stable Wi-Fi network. This offloads resource-intensive networking tasks from the Jetson Nano.
 
--  The subsystem shall support a data transfer rate of at least 25 Mbps to handle real time data. [1]
-   - This is the minimum data rate for 4k/Ultra HD
+**The Jetson Nano shall transmit video data using UDP to minimize latency** [6]. 
+  - UDP is a connectionless protocol optimized for speed, which is essential for real-time video transmission where occasional packet loss is acceptable.
+
+**The Jetson Nano shall transmit telemetry data using TCP to ensure reliable delivery**
+- TCP's reliable connection protocol allows for reliable data delivery which is crucial for accurate data transfer.
+
+## Constraints
+**The subsystem must operate within the range limitations of the 802.11ac standard, typically up to 100 meters in open spaces** [2]. 
+- Wi-Fi signal strength and range are affected by obstacles, interference, and the chosen frequency band. 100 meters should be enough range to operate effectively as defined in the scope of the emergency situation.
+
+**The TP-Link adapters must be compatible with the Jetson Nano’s operating system and drivers**
+- Each wi-fi adapter can plug into the respected device via a USB connection.
+
+  **The subsystem must operate within the power constraints of the Jetson Nano and PC USB ports** [7]. 
+  - USB 3.0 connections allow the device to draw 4.5 Watts of power. The adapters must not draw this much power at maximum operation.  
      
--  The subsystem shall have reliable connectivity at a distance of up to 150 meters using the 2.4GHz band.
-    - Since going with wi-fi modules for communication, the range will be limited. However, I believe the wi-fi adapters should provide enough range to be    effective.
-      
--  The jetson nano shall use the TP_Link archer T4U Plus to connect to the host wifi network.
-     - The jetson nano will operate at the client that sends data to the host. The adapter chosen will provide this capability.
-       
--  The communication subsystem shall be up to IEEE 802.11 b/g/n  Wi-Fi standards when operating on the 2.4GHz band [1].
-   
--  The communication subsystem shall be up to IEEE 802.11 a/n/ac wi-fi standards when operating on the 5GHZ band [1].
-  
--  The communication subsystem shall operate effectivily on a moderately weatherd day as portrayed in the scope.
-    - As referenced in the conceptual design, the drone needs to be able to operate at full functionality on a clear day [2].
-       
--  The subsytem will work with a ground station PC operating on at least windows 10.
-      - This is the operating systme of my PC. 
-  
-  
-
-This section should provide a list of constraints applicable to the subsystem, along with the rationale behind these limitations. For instance, constraints can stem from physics-based limitations or requirements, subsystem prerequisites, standards, ethical considerations, or socio-economic factors.
-
-The team should set specifications for each subsystem. These specifications may require modifications, which must be authorized by the team. It could be necessary to impose additional constraints as further information becomes available.
-
-Every subsystem must incorporate at least one constraint stemming from standards, ethics, or socio-economic factors.
 
 
 ## Overview of Proposed Solution
+
+The communication subsystem establishes a wireless link between the PC (host) and the Jetson Nano (client) for real-time data transfer. It uses TP-Link Archer T4U Plus adapters configured for 802.11ac Wi-Fi communication, leveraging their dual-band capabilities for optimal performance. This ensures low latency and robust data transmission in potentially challenging environments.
+
+
 **1. Use the PC as Wi-Fi hotspot host**
 - The PC acts as a wi-fi hotspot creating a local wireless network that the Jetson Nano can connect to as a client.
 - Using windows enable hotspot through Network and Internet settings -> Mobile Hotspot -> Enable the hotspot (set a unique SSID and password) -> Configure the adapter to share through TP-Link
@@ -70,18 +71,9 @@ Every subsystem must incorporate at least one constraint stemming from standards
 
 
 
-The communication subsystem establishes a wireless link between the PC (host) and the Jetson Nano (client) for real-time data transfer. It uses TP-Link Archer T4U Plus adapters configured for 802.11ac Wi-Fi communication, leveraging their dual-band capabilities for optimal performance. This ensures low latency and robust data transmission in potentially challenging environments.
-
-Describe the solution and how it will fulfill the specifications and constraints of this subsystem.
-
 
 ## Interface with Other Subsystems
 Each of the TP-Link Archer T4U Plus wifi adapters interface via USB connection. One adapter will connect to the Jetson Nano via USB and the other will connect to the ground station PC via USB. 
-
-
-## 3D Model of Custom Mechanical Components
-
-Should there be mechanical elements, display diverse views of the necessary 3D models within the document. Ensure the image's readability and appropriate scaling. Offer explanations as required.
 
 
 
@@ -94,7 +86,7 @@ Should there be mechanical elements, display diverse views of the necessary 3D m
 
 
 
-For sections including a software component, produce a chart that demonstrates the decision-making process of the microcontroller. It should provide an overview of the device's function without exhaustive detail.
+
 
 
 ## BOM
@@ -134,9 +126,14 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 
 ## References
 [1]. https://www.tp-link.com/us/home-networking/usb-adapter/archer-t4u-plus/#specifications
+
 [3]. https://www.electro-tech-online.com/threads/rf-modules-which-can-handle-high-number-of-bytes-per-second.163528/
+
 [4]. https://www.pusr.com/news/4g-lte-modem-functions-and-applications.html
 
+[5]. https://www.cisco.com/c/en/us/products/wireless/what-is-802-11ac.html
 
+[6]. https://www.cloudflare.com/learning/ddos/glossary/user-datagram-protocol-udp/
 
-All sources that have contributed to the detailed design and are not considered common knowledge should be duly cited, incorporating multiple references.
+[7]. https://tripplite.eaton.com/products/usb-charging#:~:text=USB%203.0%20and%203.1%20allow,these%20%22default%22%20power%20levels.&text=*%20In%202021%2C%20USB%2DIF,Extended%20Power%20Range%20(EPR).
+
