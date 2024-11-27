@@ -33,8 +33,8 @@ To connect to the programmable drone the Jetson Nano will need to connect using 
 
 
 ## Operational Flowchart
+<img width="1651" alt="Drawing 12" src="https://github.com/user-attachments/assets/8e0b39fc-ded5-4406-a414-bbeeff075a1c">
 
-For sections including a software component, produce a chart that demonstrates the decision-making process of the microcontroller. It should provide an overview of the device's function without exhaustive detail.
 
 
 ## BOM
