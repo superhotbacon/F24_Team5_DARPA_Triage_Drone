@@ -3,8 +3,8 @@
 
 **Function of the Subsystem**
   
-  The wireless communication subsystem is responsible for transmitting video and telemetry data from the onboard jetson nano to the PC ground station.
-  This will be done over wi-fi communication using two TP-link archer T4U Plus adapters for both the jetson nano and the PC. 
+  The wireless communication subsystem is responsible for transmitting video and telemetry data from the onboard Jetson Nano to the PC ground station.
+  This will be done over wi-fi communication using two TP-link archer T4U Plus adapters for both the Jetson Nano and the PC. The TP-Link archer T4U plus wi-fi adapters are dual band devices that are designed to enhance wireless connectivity. They support high speed internet with speeds up to 1300 Mbps on the 2.4GHz band and 867 Mbps on the 5GHz band. They are equipped with high gain adjustable antennas for increased range and signal stability. Each device is compatible with a PC running windows and the Jetson Nano via USB. 
 
   **Integration with Broader Solution** 
   1. Video Data Transmission:
@@ -79,7 +79,7 @@ Each of the TP-Link Archer T4U Plus wifi adapters interface via USB connection. 
 
 
 ## Operational Flowcharts
-![flowchart1](https://hackmd.io/_uploads/H1J8iR47Je.png)
+
 
 
 
