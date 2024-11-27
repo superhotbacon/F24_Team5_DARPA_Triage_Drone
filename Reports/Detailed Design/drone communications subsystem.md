@@ -100,7 +100,7 @@ When choosing the method of communication between the drone and the ground contr
 **1. RF Modules** 
 - RF modules would be a great option if the drone only needed to transmit telemetry data such as the heart and respiratory rate of the target. However, RF modules have limited bandwith that support low data rates. This is not an ideal solution for wirelessly transmitting video [3].
 
-**2. 4G/5G modules** 
+**2. 4G modules** 
 - Another option to wirelessly transmit data from onboard the drone is provide the Jetson Nano and the PC cellular capabilities by using two 4G modules that can connect with the Jetson Nano and the PC. This is a great option, however one would need to provide a cellular data plan for each device. The problem arises when figuring out who would fit the bill for each of these data plans. This is not a viable soultion for the purposes of this project [4].
 
 **3. Wi-Fi Dongles** 
