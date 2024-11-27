@@ -17,12 +17,14 @@ The signal processing subsystem's purpose is to take the data gathered from the 
 
 ## Overview of Proposed Solution
 
-Extensive research has gone into the use of doppler radars over the last decade[1]. A lot of this research has been solving multiple issues with contactless monitoring such as movement artifacts from personal movement, motion artifacts from doppler movement, monitoring multiple people, and more. The two main choices are CW (continuous wave) and FMCW (frequency modulated continuous wave). Continuous wave is not able to find the distance of the object, only the change in distance. While this is suitable for the this project. Research indicates that FMCW dopplers are able to reduce motion artifacts associated with doppler movement with the addition of an accelerometer to measure this movement [2]. 
 
-The algorithm the drone will utilize has three parts. Demodulation, Empirical Mode Decomposition (EMD) to eliminate motion artifacts, and finally band pass filtering to extract the two desired frequencies from the reconstructed signal. Furthermore, the distance to target can also be extracted as the beat frequency of the modulated wave is proportional to the distance [4].
+Extensive research has gone into the use of doppler radars over the last decade[1]. A lot of this research has been solving multiple issues with contactless monitoring, such as movement artifacts from personal movement, motion artifacts from doppler movement, monitoring multiple people, and more. The two main choices are CW (continuous wave) and FMCW (frequency modulated continuous wave). Continuous wave is not able to find the distance of the object, only the change in distance. While this is suitable for this project, research indicates that FMCW dopplers are able to reduce motion artifacts associated with doppler movement with the addition of an accelerometer to measure this movement [2].
+
+
+The algorithm the drone will utilize has three parts. Demodulation, Empirical Mode Decomposition (EMD) to eliminate motion artifacts, and finally band pass filtering to extract the two desired frequencies from the reconstructed signal. Furthermore, the distance to the target can also be extracted as the beat frequency of the modulated wave is proportional to the distance [4].
+
 
 This algorithm will meet the specifications of the subsystem as it effectively removes motion artifacts and extracts the heart beat and respiratory rate. The use of the Jetson Nano will ensure the data is processed and passed onto the next subsystem in the path to the operator.
-
 
 ## Interface with Other Subsystems
 The Signal processing subsystem will need to interface to the sensor subsystem as well as the programmable drone. 
