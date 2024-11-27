@@ -79,11 +79,7 @@ Each of the TP-Link Archer T4U Plus wifi adapters interface via USB connection. 
 
 
 ## Operational Flowcharts
-**Jetson Nano and PC**
-![Drawing 1.vsdx - Google Chrome 11_25_2024 8_39_25 PM](https://hackmd.io/_uploads/rJuvS3fm1l.png)
-
-**UDP(video) and TCP(vitals)**
-
+![flowchart1](https://hackmd.io/_uploads/H1J8iR47Je.png)
 
 
 
