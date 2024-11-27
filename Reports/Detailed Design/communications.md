@@ -86,10 +86,13 @@ Each of the TP-Link Archer T4U Plus wifi adapters interface via USB connection. 
 
 
 ## BOM
+| PART NUMBER            | DESCRIPTION     | Link       |MANUFACTURER NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
+| :---:                  | :---:           | :---:             | :---:             | :---:    | :---:         | :---:                  |
+|840030701535            | [TP-Link Archer T4U Plus]([https://www.seeedstudio.com/reComputer-J1020-v2-p-5498.html](https://www.amazon.com/wireless-USB-WiFi-Adapter-PC/dp/B08KHV7H1S/)) | https://www.amazon.com/wireless-USB-WiFi-Adapter-PC/dp/B08KHV7H1S/| TP-Link | 2 | 19.99| 40.00  |
+
 
 A complete list of all components needed for the design must be given with the cost of each component and the total cost of the subsystem. The BOM should be a markdown table. Make sure to to provide the manufacteror, part number, distributor, distributor part number, quantity, and price. Also provide a url where the product can be purchased from. If the componenet is refernced on your schematic make sure to include the component name.
 
-Provide a comprehensive list of all necessary components along with their prices and the total cost of the subsystem. This information should be presented in a tabular format, complete with the manufacturer, part number, distributor, distributor part number, quantity, price, and purchasing website URL. If the component is included in your schematic diagram, ensure inclusion of the component name on the BOM (i.e R1, C45, U4).
 
 ## Analysis
 When choosing the method of communication between the drone and the ground control device, there are a few options to consider.
