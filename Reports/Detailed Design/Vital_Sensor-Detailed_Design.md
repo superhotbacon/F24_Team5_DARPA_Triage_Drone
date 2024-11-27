@@ -25,7 +25,9 @@ This subsystem will provide access to that information and transmit it to the Si
 
 The Infineon Demo BGT60UTR11AIP radar sensor is the solution that will fulfill all of the previously mentioned constraints and specifications. It is a 60GHz Frequency Modulated Continuous Wave (FMCW) radar; however, it also posseses the capability to operate in a Continuous Wave (CW) mode.  
   
-The board is roughly 3 inches by 1 inch and ways less than a gram. 
+The board is roughly 3 inches by 1 inch and ways less than a gram. The board itself is an Infineon Radar Baseboard MCU7 Plus with a BGT60UTR11AIP radar sensor shiled strapped to it. It can be operated via pins on the board or through a micro-usb connection. Infineon provides an extensive SDK for using this technology as well as a ready-to-go GUI.  
+
+This solution has the range, sensitivity, and programmable capabilities as well as weight limitations ideal for fulfilling the role of this submodel.
 
 
 
