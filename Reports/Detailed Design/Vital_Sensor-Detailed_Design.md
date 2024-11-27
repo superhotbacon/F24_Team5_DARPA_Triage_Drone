@@ -23,14 +23,22 @@ This subsystem will provide access to that information and transmit it to the Si
 
 ## Overview of Proposed Solution ---Reference Data Sheets Here---
 
-The Infineon Demo BGT60UTR11AIP radar sensor is the solution that will fulfill all of the previously mentioned constraints and specifications. It is a 60GHz Frequency Modulated Continuous Wave (FMCW) radar; however, it also posseses the capability to operate in a Continuous Wave (CW) mode.  
+The Infineon Demo BGT60UTR11AIP radar sensor is the solution that will fulfill all of the previously mentioned constraints and specifications. It is a 60GHz Frequency Modulated Continuous Wave (FMCW) radar; however, it also posseses the capability to operate in a Continuous Wave (CW) mode. [2]
   
 The board is roughly 3 inches by 1 inch and ways less than a gram. The board itself is an Infineon Radar Baseboard MCU7 Plus with a BGT60UTR11AIP radar sensor shiled strapped to it. It can be operated via pins on the board or through a micro-usb connection. Infineon provides an extensive SDK for using this technology as well as a ready-to-go GUI.  
 
 This solution has the range, sensitivity, and programmable capabilities as well as weight limitations ideal for fulfilling the role of this submodel.
+
+## Interface with other Subsystems
+The vitals sensor subsystem will solely interface with the signal processing subsystem. This will be done by connecting the micro-usb port of the Infineon board to one of the multiple Jetson Nano USB ports. The data this system provides will be used by other systems, but only after being processed by the Jetson.  
+
+The micro-usb to USB connection works as a serial port [3]. The other pins on the board may or may not be utilized as a form of digital communication if the need arises.
+
 
 
 
 
 
 [1]https://www.fcc.gov/general/radio-frequency-safety-0
+[2]https://www.infineon.com/cms/en/product/evaluation-boards/demo-bgt60utr11aip/
+[3]https://www.infineon.com/dgdl/Infineon-UG155750_Radar_Baseboard_MCU7_Plus-UserManual-v01_10-EN.pdf?fileId=8ac78c8c88704c7a01888bb70e617c92
