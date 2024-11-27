@@ -47,6 +47,7 @@ The micro-usb to USB connection works as a serial port. The other pins on the bo
  [5]
 
 ## BOM
+Below is this subsystem's BOM. Since the majority of the engineering required for this subsystem is operation and not construction, there are only two required pieces of equipment.
 
 | PART NUMBER            | DESCRIPTION     | MANUFACTURER NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
 | :---:                  | :---:           | :---:             | :---:    | :---:         | :---:                  |
