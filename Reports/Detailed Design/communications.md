@@ -126,6 +126,8 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 ## References
 [1]. https://www.tp-link.com/us/home-networking/usb-adapter/archer-t4u-plus/#specifications
 
+[2]. Conceptual Design
+
 [3]. https://www.electro-tech-online.com/threads/rf-modules-which-can-handle-high-number-of-bytes-per-second.163528/
 
 [4]. https://www.pusr.com/news/4g-lte-modem-functions-and-applications.html
