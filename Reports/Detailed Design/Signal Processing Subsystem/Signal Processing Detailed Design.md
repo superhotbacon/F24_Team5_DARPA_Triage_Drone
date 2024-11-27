@@ -2,36 +2,12 @@
 # Signal Processing Detailed Design
 
 
-## General Requirements for the Document
-
-The document should include:
-
-- Explanation of the subsystem’s integration within the overall solution
-- Detailed specifications and constraints specific to the subsystem
-- Synopsis of the suggested solution
-- Interfaces among different subsystems
-- 3D models of customized mechanical elements*
-- A buildable diagram*
-- A Printed Circuit Board (PCB) design layout*
-- An operational flowchart*
-- A comprehensive Bill of Materials (BOM)
-- Analysis of crucial design decisions
-- Execution plan considering skill sets and time requirements
-*Note: These technical documentation elements are mandatory only when relevant to the particular subsystem.
-
-
 ## Function of the Subsystem
 
 The signal processing subsystem's purpose is to take the data gathered from the doppler radar and obtain the heart rate and respiratory rate from the signal. Within the entire drone, the signal processing subsystem serves as a middleman between the programmable drone subsystem and the sensors subsystem. This subsystem will be primarily on a Jetson Nano. The Jetson Nano will be part of the Microphone and Video subsystem, Signal Processing subsystem, and the programmable drone subsystem. Because all of these subsystems will be using the Jetson Nano, it is important that the algorithms used in this subsystem are powerful and computationally efficient. 
 
 
 ## Specifications and Constraints
-
-This section should provide a list of constraints applicable to the subsystem, along with the rationale behind these limitations. For instance, constraints can stem from physics-based limitations or requirements, subsystem prerequisites, standards, ethical considerations, or socio-economic factors.
-
-The team should set specifications for each subsystem. These specifications may require modifications, which must be authorized by the team. It could be necessary to impose additional constraints as further information becomes available.
-
-Every subsystem must incorporate at least one constraint stemming from standards, ethics, or socio-economic factors.
 
   (1) The signal processing subsystem SHALL use signal processing to determine heart rate (range 0.45 to 2.92Hz) and respiratory rate (range 0.13 to 1 Hz). This specification stems from the subsystem prerequisites that allow the drone to work as intended.  
   (2) The signal processing subsystem SHALL be able to get accurate readings from 1 meter away. This specification stems our customer, Georgia Tech Research Institute. This allows the drone to read the vitals of the victim without risking hurting the individual. Or in the possible case that the victim is inaccessible and can only be seen from 1 meter away.  
@@ -40,8 +16,6 @@ Every subsystem must incorporate at least one constraint stemming from standards
 
 
 ## Overview of Proposed Solution
-
-
 
 Extensive research has gone into the use of doppler radars over the last decade[1]. A lot of this research has been solving multiple issues with contactless monitoring such as movement artifacts from personal movement, motion artifacts from doppler movement, monitoring multiple people, and more. The two main choices are CW (continuous wave) and FMCW (frequency modulated continuous wave). Continuous wave is not able to find the distance of the object, only the change in distance. While this is suitable for the this project. Research indicates that FMCW dopplers are able to reduce motion artifacts associated with doppler movement with the addition of an accelerometer to measure this movement [2]. 
 
@@ -56,22 +30,6 @@ The Signal processing subsystem will need to interface to the sensor subsystem a
 To connect to the sensor subsystem, the connection will be established using USB. The data received from the sensor can come in many different forms as the chosen sensor is very robust. The form chosen for the data will be unprocessed. The sensor will pass raw data to the Jetson Nano. This is desirable as the Jetson Nano can fully use the data to  extract all relevant information. If processing time becomes a concern, the team can program the doppler to preprocess the data to a smaller degree than the Jetson Nano. This will reduce the load on the Jetson Nano and decrease processing time.
 
 To connect to the programmable drone the Jetson Nano will need to connect using USB. The data sent to this subsystem will be relevant sensor data such as the Heart rate and the Respiratory rate. This data will need to be put into the specified network packets used by that subsystem. Whether that be UDP, TCP, or others.
-
-## 3D Model of Custom Mechanical Components
-
-Should there be mechanical elements, display diverse views of the necessary 3D models within the document. Ensure the image's readability and appropriate scaling. Offer explanations as required.
-
-
-## Buildable Schematic 
-
-Integrate a buildable electrical schematic directly into the document. If the diagram is unreadable or improperly scaled, the supervisor will deny approval. Divide the diagram into sections if the text and components seem too small.
-
-The schematic should be relevant to the design and provide ample details necessary for constructing the model. It must be comprehensive so that someone, with no prior knowledge of the design, can easily understand it. Each related component's value and measurement should be clearly mentioned.
-
-
-## Printed Circuit Board Layout
-
-Include a manufacturable printed circuit board layout.
 
 
 ## Operational Flowchart
