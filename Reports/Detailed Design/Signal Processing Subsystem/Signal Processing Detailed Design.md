@@ -49,8 +49,6 @@ A complete list of all components needed for the design must be given with the c
 |                        |                                                                                                |                                  |   | **Total Quantity** | **2** | 
 ## Analysis
 
-Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness.
-
 The previous research into removing unwanted doppler movement [2] had motion artifacts in a similar range to the desired measurable range. However, for the drone, movement artifact frequencies are expected to be >80 Hz [4]. For the heart rate and respiration rate the desired frequencies are <10 Hz. These are two extremely different frequency bands. While a low pass filter can filter out this noise, it may not be effective enough as the surface vibrations are not stationary in the frequency band and could possibly fall into the range the drone aims to measure. Furthermore, the difference in amplitude between the respiration rate and the heart rate can pose problems to deconstruct the signal into separate Intrinsic Mode Functions (IMF) [2] explained next.
 
 EMD works well to solve the problem of motion artifacts. EMD is an empirical method that works well for signals that are either non linear or non stationary [5]. This makes EMD a great choice for contactless health systems monitoring. Part of the EMD process is splitting up the input signal into Intrinsic Mode Functions (IMF). These IMFs must satisfy two conditions:
