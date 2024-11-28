@@ -9,12 +9,14 @@ The purpose of this subsystem is to be the interface by which the drone, and the
 This subsystem will provide access to that information and transmit it to the Signal Processing Subsystem for further evaluation.
 
 ## Constraints
-  - The system MUST not push the project budget to exceed $5,000 (target is less than $200).
+These constraints are derived from the project's Conceptual Design:  
+  - The system MUST not push the project budget to exceed roughly $5,000 (target is less than $200).
   - The system MUST not weigh enough to significantly disturb the drone (target is less than 0.5lb or 230g).
   - The system MUST not consume so much power as to debilitate the drone.
   - The system MUST not exceed a Specific Absorption Rate (SAR) of 1.6 W/kg as per the standard the Federal Communications Commisions (FCC) has dicated.[1]
 
 ## Specifications
+These specifications are derived from the project's Conceptual Design:  
   - The system SHALL accurately detect a heart-rate from at least a meter away.
   - The system SHALL accurately detect respiration from at least a meter away.
   - The system SHALL be able to interface and provide data to a processor.
