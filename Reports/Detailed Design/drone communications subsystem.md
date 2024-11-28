@@ -79,7 +79,7 @@ Each of the TP-Link Archer T4U Plus wifi adapters interface via USB connection. 
 
 
 ## Operational Flowcharts
-
+![Drawing 2](https://hackmd.io/_uploads/SJZTQ8rXke.png)
 
 
 
