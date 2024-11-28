@@ -13,7 +13,7 @@ These constraints are derived from the project's Conceptual Design:
   - The system MUST not push the project budget to exceed roughly $5,000 (target is less than $200).
   - The system MUST not weigh enough to significantly disturb the drone (target is less than 0.5lb or 230g).
   - The system MUST not consume so much power as to debilitate the drone.
-  - The system MUST not exceed a Specific Absorption Rate (SAR) of 1.6 W/kg as per the standard the Federal Communications Commision (FCC) has dicated.[1]
+  - The system MUST not exceed a Specific Absorption Rate (SAR) of 1.6 W/kg as per the standard the Federal Communications Commission (FCC) has dictated.[1]
 
 ## Specifications
 These specifications are derived from the project's Conceptual Design:  
@@ -24,7 +24,7 @@ These specifications are derived from the project's Conceptual Design:
 
 ## Overview of Proposed Solution 
 
-The Infineon Demo BGT60UTR11AIP radar sensor is the solution that will fulfill all of the previously mentioned constraints and specifications. It is a 60GHz Frequency Modulated Continuous Wave (FMCW) radar; however, it also posseses the capability to operate in a Continuous Wave (CW) mode. [2]
+The Infineon Demo BGT60UTR11AIP radar sensor is the solution that will fulfill all the previously mentioned constraints and specifications. It is a 60GHz Frequency Modulated Continuous Wave (FMCW) radar; however, it also possesses the capability to operate in a Continuous Wave (CW) mode. [2]
   
 The board is roughly 3 inches by 1 inch and ways less than a gram. The board itself is an Infineon Radar Baseboard MCU7 Plus with a BGT60UTR11AIP radar sensor shield strapped to it. It can be operated via pins on the board or through a micro-usb connection. Infineon provides an extensive SDK for using this technology as well as a ready-to-go GUI.  
 
@@ -62,15 +62,15 @@ Below is this subsystem's BOM. Since the majority of the engineering required fo
 ## Analysis
 When it comes to obtaining readings on a subject's hear and respiratory rate via radar, there is no sure way method of accomplishing this goal yet. IEEE Xplore has reported at least 2200 papers on this topic [6], and the interest in this challenge has not slowed down. Researching what to use to fulfill the roles of this subsystem was challenging as there are truly many options to choose from. However, the Infineon BGT60UTRA11AIP and the MCU7 Plus are feature rich and are capable of abiding by the previously mentioned constraints and fulfilling the previously mentioned specifications.  
 
-The Infineon radar sensor is inherently a FMCW type radar. Multiple projects have tried to accomplish vital sensing via radar with a CW type radar, but the latter is limited. CW radar can only detect phase differences amidst readings; FMCW can do that as well as detect changes in frequency [7]. Essentially, FMCW proivde users with more data to process during observations, making it more precise.  
+The Infineon radar sensor is inherently a FMCW type radar. Multiple projects have tried to accomplish vital sensing via radar with a CW type radar, but the latter is limited. CW radar can only detect phase differences amidst readings; FMCW can do that as well as detect changes in frequency [7]. Essentially, FMCW provides users with more data to process during observations, making it more precise.  
 
-The solution is cheap and small enough to fit the constraints. Anything bigger or requiring of some sort of assembly would prove potentially clunky and/or draining to the drone. The other systems will not suffer from the Infineon device's power consumptionn either as it boasts a low power consumption of less than 2W when in use [8].  
+The solution is cheap and small enough to fit the constraints. Anything bigger or requiring of some sort of assembly would prove potentially clunky and/or draining to the drone. The other systems will not suffer from the Infineon device's power consumption either as it boasts a power consumption of less than 2W when in use [8].  
 
-The device has a range of 15m, which is more than enough to meet the proposed specification. In additiion, because the radar sensor operates at a frequency of 60GHz, it is considered a mm-Wave radar device since it is capable of detecting changes as small as a few millimeters which is ideal for heart rate detection as a heartbeat causes minimal displacement.  
+The device has a range of 15m, which is more than enough to meet the proposed specification. In addition, because the radar sensor operates at a frequency of 60GHz, it is considered a mm-Wave radar device since it is capable of detecting changes as small as a few millimeters which is ideal for heart rate detection as a heartbeat causes minimal displacement.  
 
-The Infineon radar is a safe solution. It meets the FCC's SAR standard because, at its max, the radar only dispenses about 24.12mW (or 14dBm) of power [8], and it would never funcitonally get close enough to a subject to exceed an SAR value of 1.6W/kg. 
+The Infineon radar is a safe solution. It meets the FCC's SAR standard because, at its max, the radar only dispenses about 24.12mW (or 14dBm) of power [8], and it would never functionally get close enough to a subject to exceed an SAR value of 1.6W/kg. 
 
-Lastly, the added MCU7 Plus provides users with the ability to use Infineon's radar SDK. The board itself is capable of some processing that allows for the data to be acquired in different modes (FMCW or CW) as well as to what measure would a user like the data to already be processed. One can obtain completely raw data from the device, but the board and SDK also allows users to receive data in specificly organized objects or classes so further processing is simplified. THis is a huge advantage as it will allow the project to be developed more quickly and flexilby. 
+Lastly, the added MCU7 Plus provides users with the ability to use Infineon's radar SDK. The board itself is capable of some processing that allows for the data to be acquired in different modes (FMCW or CW) as well as to what measure would a user like the data to already be processed. One can obtain completely raw data from the device, but the board and SDK also allows users to receive data in specifically organized objects or classes so further processing is simplified. This is a huge advantage as it will allow the project to be developed more quickly and flexibly. 
 
 As a side note, this is a single-input single-output sensor, meaning it has only one TX and one RX pin. Having multiple RX pins allow for the ability to determine the angle of the object in question; however, there is no reason to believe that this capability could provide further use in calculating a heart and respiratory rate.
 
