@@ -64,7 +64,7 @@ The device has a range of 15m, which is more than enough to meet the proposed sp
 
 Lastly, the added MCU7 Plus provides users with the ability to use Infineon's radar SDK. The board itself is capable of some processing that allows for the data to be acquired in different modes (FMCW or CW) as well as to what measure would a user like the data to already be processed. One can obtain completely raw data from the device, but the board and SDK also allows users to receive data in specificly organized objects or classes so further processing is simplified. THis is a huge advantage as it will allow the project to be developed more quickly and flexilby. 
 
-As a note, this is a single-input single-output sensor, meaning it has only one TX and one RX pin. Having multiple RX pins allow for the ability to determine the angle of the object in question; however, there is no reason to believe that this capability could provide further use in calculating a heart and respiratory rate.
+As a side note, this is a single-input single-output sensor, meaning it has only one TX and one RX pin. Having multiple RX pins allow for the ability to determine the angle of the object in question; however, there is no reason to believe that this capability could provide further use in calculating a heart and respiratory rate.
   
 
 
