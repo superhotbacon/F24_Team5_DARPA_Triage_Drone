@@ -60,8 +60,10 @@ The Infineon radar sensor is inherently a FMCW type radar. Multiple projects hav
 
 The solution is cheap and small enough to fit the constraints. Anything bigger or requiring of some sort of assembly would prove potentially clunky and/or draining to the drone. The other systems will not suffer from the Infineon device's power consumptionn either as it boasts a low power consumption of less than 2W when in use [8].  
 
-The device has a range of 15m, which is more than enough to meet the proposed specification.  
+The device has a range of 15m, which is more than enough to meet the proposed specification. In additiion, because the radar sensor operates at a frequency of 60GHz, it is considered a mm-Wave radar device since it is capable of detecting changes as small as a few millimeters which is ideal for heart rate detection as a heartbeat causes minimal displacement.  
 
+Lastly, the added MCU7 Plus provides users with the ability to use Infineon's radar SDK. The board itself is capable of some processing that allows for the data to be acquired in different modes (FMCW or CW) as well as to what measure would a user like the data to already be processed. One can obtain completely raw data from the device, but the board and SDK also allows users to receive data in specificly organized objects or classes so further processing is simplified. THis is a huge advantage as it will allow the project to be developed more quickly and flexilby. 
+  
 
 
 
