@@ -46,6 +46,8 @@ The micro-usb to USB connection works as a serial port. The other pins on the bo
  [5]
 
 ## Operational Flowchart
+![Drawing 3-1(1)](https://github.com/user-attachments/assets/b36b84c4-8f24-4b3e-ab12-278e8f50576c)
+
 
 ## BOM
 Below is this subsystem's BOM. Since the majority of the engineering required for this subsystem is operation and not construction, there are only two required pieces of equipment.
