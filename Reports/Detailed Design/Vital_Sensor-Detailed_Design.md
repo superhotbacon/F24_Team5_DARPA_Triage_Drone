@@ -17,7 +17,6 @@ This subsystem will provide access to that information and transmit it to the Si
 ## Specifications
   - The system SHALL accurately detect milimeter-sized motion made by a heart from at least a meter away.
   - The system SHALL accurately detect respiration from at least a meter away.
-  - The system SHALL do the above within 20 seconds.
   - The system SHALL be able to interface and provide data to a processor.
   - The system SHALL function despite inconsistent target positions.
 
@@ -54,6 +53,17 @@ Below is this subsystem's BOM. Since the majority of the engineering required fo
  DEMOBGT60UTR11AIPTOBO1               | [Infineon Demo BGT60UTR11AIP](https://www.seeedstudio.com/reComputer-J1020-v2-p-5498.html](https://www.infineon.com/cms/en/product/evaluation-boards/demo-bgt60utr11aip/)) | Infineon | 1 | $177.37 | $177.37|
 | 7T9MV4              | [Micro-USB Cable](https://www.digikey.ee/en/products/detail/analog-devices-inc/ADXL203EB/665382](https://www.amazon.com/Amazon-Basics-Charging-Transfer-Gold-Plated/dp/B07232M876/ref=sr_1_1_ffob_sspa?crid=3NYG1TYD80F2E&dib=eyJ2IjoiMSJ9.BTH-JaqRBvQbWEP_82nsg3yEMXYNI64nU1zKdoVJWozaRJLjffc2AxH49bpUSKMxRmhycVZ-cl4f3JYFXJR7O-3Ep6gIb74Q28Zai-27w_6wIuGL0XXqfFrfD50MVW2j8NuEYlM7A9VtHiTLiQdeKxmE8xwIcwvhPZrYZnz8vqIc6Mny7I9Ial4L6WIZNb2fiShtVv-b9LdoFAx3AEaVMsWlQ0dKs3R5FriiQQhb82U.-ba0OBlMVvDP-XYOVvnkis2BssC956V1D6XXpyLtQnw&dib_tag=se&keywords=microusb%2Busb%2Bcable&qid=1732739767&sprefix=microusb%2Caps%2C107&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1)) | Amazon | 1 | $7.59 | $7.59 |
 
+## Analysis
+When it comes to obtaining readings on a subject's hear and respiratory rate via radar, there is no sure way method of accomplishing this goal yet. IEEE Xplore has reported at least 2200 papers on this topic [6], and the interest in this challenge has not slowed down. Researching what to use to fulfill the roles of this subsystem was challenging as there are truly many options to choose from. However, the Infineon BGT60UTRA11AIP and the MCU7 Plus are feature rich and are capable of abiding by the previously mentioned constraints and fulfilling the previously mentioned specifications.  
+
+The Infineon radar sensor is inherently a FMCW type radar. Multiple projects have tried to accomplish vital sensing via radar with a CW type radar, but the latter is limited. CW radar can only detect phase differences amidst readings; FMCW can do that as well as detect changes in frequency [7]. Essentially, FMCW proivde users with more data to process during observations, making it more precise.  
+
+The solution is cheap and small enough to fit the constraints. Anything bigger or requiring of some sort of assembly would prove potentially clunky and/or draining to the drone. The other systems will not suffer from the Infineon device's power consumptionn either as it boasts a low power consumption of less than 2W when in use [8].  
+
+The device has a range of 15m, which is more than enough to meet the proposed specification.  
+
+
+
 
 
 
@@ -62,3 +72,6 @@ Below is this subsystem's BOM. Since the majority of the engineering required fo
 [3]https://www.infineon.com/dgdl/Infineon-UG155750_Radar_Baseboard_MCU7_Plus-UserManual-v01_10-EN.pdf?fileId=8ac78c8c88704c7a01888bb70e617c92  
 [4]https://www.infineon.com/dgdl/Infineon-UG091947_BGT60UTR11AIP_shield-UserManual-v02_00-EN.pdf?fileId=8ac78c8c88704c7a01888bade09f7c8b  
 [5]https://www.infineon.com/dgdl/Infineon-BGT60UTR11AIP-DataSheet-v01_00-EN.pdf?fileId=8ac78c8c88ae21230188d3eb8b9307b3
+[6][2025_Radar_Challenge_DynamicHR.pdf](https://github.com/user-attachments/files/17950353/2025_Radar_Challenge_DynamicHR.pdf)
+[7]https://pmc.ncbi.nlm.nih.gov/articles/PMC9104941/#B29-sensors-22-03106
+[8]https://www.infineon.com/dgdl/FAQ_BGT60_70_80.pdf?fileId=5546d46146d18cb4014700efb33138bc
