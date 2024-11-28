@@ -13,7 +13,7 @@ These constraints are derived from the project's Conceptual Design:
   - The system MUST not push the project budget to exceed roughly $5,000 (target is less than $200).
   - The system MUST not weigh enough to significantly disturb the drone (target is less than 0.5lb or 230g).
   - The system MUST not consume so much power as to debilitate the drone.
-  - The system MUST not exceed a Specific Absorption Rate (SAR) of 1.6 W/kg as per the standard the Federal Communications Commisions (FCC) has dicated.[1]
+  - The system MUST not exceed a Specific Absorption Rate (SAR) of 1.6 W/kg as per the standard the Federal Communications Commision (FCC) has dicated.[1]
 
 ## Specifications
 These specifications are derived from the project's Conceptual Design:  
