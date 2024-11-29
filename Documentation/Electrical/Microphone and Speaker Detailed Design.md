@@ -20,14 +20,32 @@ The function of this subsystem is to design a system for a drone equipped with a
 Drone propellers typically generate a fundamental noise frequency around 200–400 Hz (depending on RPM and blade count), with harmonics at multiples of this frequency. This noise interferes with microphone recordings.
 
 #### **Notch Filter Design**
+![image](https://github.com/user-attachments/assets/65323d5d-bf4e-4ce7-a721-03fd42ecb4f6)
 
 
-Where:
+As shown above, the notch filter in the circuit effectively combines a high-pass filter and a low-pass filter. The low-pass filter has a cutoff frequency at 200 Hz, while the high-pass filter cuts off frequencies above 400 Hz. These frequency ranges are chosen to replicate the noise characteristics of a drone propeller during flight, as they correspond to the typical vibration frequencies caused by the rotating blades.
+
+In this design, the R Load in the circuit represents the connection to the Jetson Nano, which will process the filtered signals. The Jetson Nano will be used to analyze and interpret the noise-free audio from the microphone on the drone, helping to improve communication or data collection while filtering out unwanted drone motor vibrations.
+
+This filter design is crucial for noise reduction and will allow for clearer audio processing, ensuring that the audio signal received by the Jetson Nano is free from interference caused by the drone’s propeller motor.
+
+#### **Transfer Function**
+![image](https://github.com/user-attachments/assets/858fbe2f-f3f5-4c84-b170-81328ad0ce18)
+
+
+#### **Bode Plot Diagram**
+![image](https://github.com/user-attachments/assets/bdf308ee-3b87-46b2-972f-0ff9423bfde4)
+
 
 
 #### **Component Selection**
 
-- Example for 200 Hz:
+- PCB Board
+- 2x1k Resister
+- 2x3k Resister
+- 3x10k Resister
+- 2x1u Resister
+- 3 opamps
 
 
 #### **Integration**
@@ -74,6 +92,11 @@ Analog cameras output composite video signals (e.g., NTSC or PAL). These signals
 ### **6. Block Diagram**
 The system is structured as follows:
 
+## BOM
+| PART NUMBER            | DESCRIPTION     | Link       |MANUFACTURER NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
+| :---:                  | :---:           | :---:             | :---:             | :---:    | :---:         | :---:                  |
+| 054114569014          | SoloGood Caddx FPV Micro Camera Ratel2 Starlight 1200TVL 1/1.8'' 2.1mm NTSC PAL 16:9 4:3 Switchable Super WDR for FPV Racing | [https://www.amazon.com/wireless-USB-WiFi-Adapter-PC/dp/B08KHV7H1S/](https://www.amazon.com/SoloGood-Camera-Ratel2-Starlight-1200TVL/dp/B08T74F3WB/ref=pd_ci_mcx_di_int_sccai_cn_d_sccl_3_4/144-9551838-3238701?pd_rd_w=YxQkM&content-id=amzn1.sym.751acc83-5c05-42d0-a15e-303622651e1e&pf_rd_p=751acc83-5c05-42d0-a15e-303622651e1e&pf_rd_r=Q9AJA8MX952BJCT92BHM&pd_rd_wg=BfBvl&pd_rd_r=30b4bc70-a359-4dd8-acab-b23bd076afef&pd_rd_i=B08T74F3WB&th=1)| Caddx | 2 | 32.99| 65.97  |
+| 641076944258                       |PowerDeWise Professional Grade Lavalier Clip On Microphone - Lav Mic for Camera Phone iPhone GoPro Video Recording ASMR - Small Noise Cancelling 3.5mm Tiny Shirt Microphone with Easy Clip On System                  | https://www.amazon.com/Professional-Microphone-Omnidirectional-Recording-Conference/dp/B01AG56HYQ/ref=rvi_d_sccl_14/144-9551838-3238701?pd_rd_w=Aq1sP&content-id=amzn1.sym.f5690a4d-f2bb-45d9-9d1b-736fee412437&pf_rd_p=f5690a4d-f2bb-45d9-9d1b-736fee412437&pf_rd_r=WN2H7TGAXJ3HR815ETNS&pd_rd_wg=PsTil&pd_rd_r=df48aa10-57fd-4c64-a194-51e172731714&pd_rd_i=B01AG56HYQ&psc=1           |   PowerDeWise           |    1    |       29.99           |     29.99         |
 
 
 ---
