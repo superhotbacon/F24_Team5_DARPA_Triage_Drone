@@ -32,7 +32,7 @@ The interfacing subsystem is an immediate-time processing and displaying system 
 **1. Processing and Displaying Data**
 
   - A laptop with a minimum of 2 I/O ports to support external connection devices (TP-Link Archer T4U) and charging functions to ensure connectivity and power reliability.
-  - A Windows or macOS laptop system, having sufficient CPU at 1.5 GHz, <1 GB RAM processing, and H.264/H.265 GPU hardware for displaying and decoding/encoding audio streams, video streams, and telemetry data.
+  - A Windows or macOS laptop system, having sufficient CPU at 1.5 GHz, <1 GB RAM processing, and H.264/H.265 GPU hardware **[6]** for displaying and decoding/encoding audio streams, video streams, and telemetry data.
   - A laptop system capable of supporting WebRTC and WebSockets through supported browsers (Chrome or Firefox) and supported Python libraries.
   - WebRTC application for direct client-to-client audio and video streaming with low latency on modern browsers **[2]**.
   - Python, HTML, and JavaScript Programming language frameworks offer extensive libraries for decoding and displaying audio, video, and telemetry data and support WebRTC streaming applications. 
@@ -45,21 +45,21 @@ The interfacing subsystem is an immediate-time processing and displaying system 
   - Memory buffers and streams will be used to ensure that the data will be displayed but not stored in the hard memory of the device and instead discarded after use, ensuring the victims' privacy **[5]**.
 
 ## Interface with Other Subsystems
-The interfacing subsystem will connect with each subsystem being the main output for all gathered data. The interfacing subsystem must be compatible with the drone communication subsystem to function correctly. This will be completed by attaching a wifi module adaptor (TP-Link Archer T4U Plus **[3]** ) to the laptop and drone's USB port acting as a host and client to communicate data to one another. Once a wireless connective bridge is obtained, and created by the drone communication subsystem, the data from each of the signal processing, microphone camera, and vitals sensors subsystems can be outputted to the user with accuracy. The data will be packaged through necessary Python libraries. Failure at any of these subsystems will result in a lack of accuracy and functionality within the interfacing subsystem.
+The interfacing subsystem will connect with each subsystem being the main output for all gathered data. The interfacing subsystem must be compatible with the drone communication subsystem to function correctly. This will be completed by attaching a wifi module adaptor (TP-Link Archer T4U Plus **[3]**) to the laptop and drone's USB port acting as a host and client to communicate data to one another. Once a wireless connective bridge is obtained, and created by the drone communication subsystem, the data from each of the signal processing, microphone camera, and vitals sensors subsystems can be outputted to the user with accuracy. The data will be packaged through necessary Python libraries. Failure at any of these subsystems will result in a lack of accuracy and functionality within the interfacing subsystem.
 
 
 ## Operational Flowchart
+![Blank diagram](https://github.com/user-attachments/assets/ecdcaaf4-0390-453f-acaa-63bfb39faf4a)
 
-For sections including a software component, produce a chart that demonstrates the decision-making process of the microcontroller. It should provide an overview of the device's function without exhaustive detail.
 
 
 ## BOM
 
-_No software or hardware will be needed for the purchase of this subsystem._
+_No software or hardware will be needed for purchase for this subsystem._
 
 ## Analysis
 
-Deliver a full and relevant analysis of the design demonstrating that it should meet the constraints and accomplish the intended function. This analysis should be comprehensive and well articulated for persuasiveness.
+
 
 ## References
 
@@ -67,7 +67,8 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 **[2]** [WebRTC](https://webrtc.org)   
 **[3]** [Drone Communication Subsystem](https://github.com/superhotbacon/F24_Team5_DARPA_Triage_Drone/blob/communication-detailed-design/Reports/Detailed%20Design/drone%20communications%20subsystem.md)  
 **[4]** [Conceptual Design](https://github.com/superhotbacon/F24_Team5_DARPA_Triage_Drone/blob/main/Reports/Conceputal%20Design%20Final/Conceptual%20Design.md)  
-**[5}** [Data Privacy](https://www.rcrcmagazine.org/2021/01/data-protection-critical-humanitarian-action/)
+**[5]** [Data Privacy](https://www.rcrcmagazine.org/2021/01/data-protection-critical-humanitarian-action/)  
+**[6]** [GPU Hardware](https://www.pugetsystems.com/labs/articles/what-h-264-and-h-265-hardware-decoding-is-supported-in-premiere-pro-2120/?srsltid=AfmBOoobeUiZLAJkBTojUF9R8mp34t64RI2c3WcPgzpm_UJpcW_yobUm)
 
 
 
@@ -76,6 +77,5 @@ Deliver a full and relevant analysis of the design demonstrating that it should 
 The document should include:
 
 - An operational flowchart*
-- A comprehensive Bill of Materials (BOM)
 - Analysis of crucial design decisions
 - Execution plan considering skill sets and time requirements
