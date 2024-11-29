@@ -20,7 +20,8 @@ The interfacing subsystem will function as the project's wireless data visualiza
 **1.** The subsystem SHALL display accurate data collection and analysis on a laptop device.    
 **2.** The subsystem SHALL be compatible with wireless data transfer capabilities.  
 **3.** The subsystem SHALL wirelessly displays triage signal processing data.   
-**4.** The subsystem SHALL wirelessly stream video and audio data.  
+**4.** The subsystem SHALL wirelessly stream video and audio data.
+**5.** The subsystem SHALL transmit audio to the speaker through either the built-in microphone or an external microphone. 
 
 
 **These specifications and constraints are rationalized in the Overview of Proposed Solution.**
@@ -32,9 +33,9 @@ The interfacing subsystem is an immediate-time processing and displaying system 
 **1. Processing and Displaying Data**
 
   - A laptop with a minimum of 2 I/O ports to support external connection devices (TP-Link Archer T4U) and charging functions to ensure connectivity and power reliability.
-  - A Windows or macOS laptop system, having sufficient CPU at 1.5 GHz, <1 GB RAM processing, and H.264/H.265 GPU hardware **[6]** for displaying and decoding/encoding audio streams, video streams, and telemetry data.
+  - A Windows laptop system, having sufficient CPU at 1.5 GHz, <1 GB RAM processing, and H.264/H.265 GPU hardware **[6]** for displaying and decoding/encoding audio streams, video streams, and telemetry data.
   - A laptop system capable of supporting WebRTC and WebSockets through supported browsers (Chrome or Firefox) and supported Python libraries.
-  - WebRTC application for direct client-to-client audio and video streaming with low latency on modern browsers **[2]**.
+  - WebRTC application for direct client-to-client audio and video streaming with low latency on modern browsers. Allowing for successful audio and video transmission for the audio and video devices. **[2]**.
   - Python, HTML, and JavaScript Programming language frameworks offer extensive libraries for decoding and displaying audio, video, and telemetry data and support WebRTC streaming applications. 
 
 **2. Data Accuracy and Reliability**
@@ -45,7 +46,11 @@ The interfacing subsystem is an immediate-time processing and displaying system 
   - Memory buffers and streams will be used to ensure that the data will be displayed but not stored in the hard memory of the device and instead discarded after use, ensuring the victims' privacy **[5]**.
 
 ## Interface with Other Subsystems
-The interfacing subsystem will connect with each subsystem being the main output for all gathered data. The interfacing subsystem must be compatible with the drone communication subsystem to function correctly. This will be completed by attaching a wifi module adaptor (TP-Link Archer T4U Plus **[3]**) to the laptop and drone's USB port acting as a host and client to communicate data to one another. Once a wireless connective bridge is obtained, and created by the drone communication subsystem, the data from each of the signal processing, microphone camera, and vitals sensors subsystems can be outputted to the user with accuracy. The data will be packaged through necessary Python libraries. Failure at any of these subsystems will result in a lack of accuracy and functionality within the interfacing subsystem.
+The interfacing subsystem will connect with each subsystem being the main output for all gathered data.
+  
+The interfacing subsystem must be compatible with the drone communication subsystem to function correctly. This will be completed by attaching a wifi module adaptor (TP-Link Archer T4U Plus **[3]**) to the laptop and drone's USB port acting as a host and client to communicate data to one another. Once a wireless connective bridge is obtained, and created by the drone communication subsystem, the data from each of the signal processing, microphone camera, and vitals sensors subsystems can be outputted to the user with accuracy.   
+  
+The data will be packaged through necessary Python libraries. Failure at any of these subsystems will result in a lack of accuracy and functionality within the interfacing subsystem.
 
 
 ## Operational Flowchart
@@ -58,6 +63,23 @@ The interfacing subsystem will connect with each subsystem being the main output
 _No software or hardware will be needed for purchase for this subsystem._
 
 ## Analysis
+#### Choosing the Software and Devices
+A laptop device with Windows software is a great option for the interfacing subsystem as it supports modern web browsers necessary for WebRTC and WebSocket applications. WebRTC and WebSocket software applications are the perfect choice for the processing and transmission of data for the interfacing subsystem. Both applications have many complementary features, allowing for low latency and synced communication. 
+
+  - WebRTC includes built-in error correction algorithms (FEC and CRC), ensuring that the video and audio stream is correct and accurate.
+  - WebRTC's client-to-client base structure will allow for ensured privacy because it eliminates the need for server-based storage. Also benefiting from this structure is the latency times, WebRTC ensures a low-latency time which is necessary for a medical disaster response.
+  - The ease of compatibility and integration with WebRTC and WebSockets are essential for the use of the different applications built using programming languages (Python, JavaScript, and HTML).
+
+#### Programming Languages
+Python, JavaScript, and HTML for the interfacing subsystem are pivotal for the success of the interfacing subsystem. 
+
+  - Python is the perfect choice for data processing and backend. Python offers lots of support for data manipulation which is necessary when dealing with backend telemetry data processing (vital sensor data).
+ - Python offers extensive amounts of libraries including _OpenCV_ or _GStreamer_. These are excellent choices for video and audio data processing and transmission and are a compatible application with WebRTC and WebSockets.
+
+  - JavaScript is a dynamic option for real-time data and is compatible with most interactive web applications such as WebRTC and WebSockets. Although Python is a powerful processing language it lacks the real-time interaction that JavaScript offers. Pairing the two together will be optimal in effectively creating complex computation of sensor data handling through Python and communicating the back-end logic in a real-time JavaScript application.
+  - HTML is a powerful tool for creating a visualized interface that is accessible across many modern browsers. The integration of HTML is a requirement to display all the processed data.
+  - HTML offers lots of pre-built libraries that are great options for WebRTC audio and video streaming as well as live data graphs for real-time vitals data.
+
 
 
 
@@ -70,12 +92,3 @@ _No software or hardware will be needed for purchase for this subsystem._
 **[5]** [Data Privacy](https://www.rcrcmagazine.org/2021/01/data-protection-critical-humanitarian-action/)  
 **[6]** [GPU Hardware](https://www.pugetsystems.com/labs/articles/what-h-264-and-h-265-hardware-decoding-is-supported-in-premiere-pro-2120/?srsltid=AfmBOoobeUiZLAJkBTojUF9R8mp34t64RI2c3WcPgzpm_UJpcW_yobUm)
 
-
-
-## General Requirements for the Document
-
-The document should include:
-
-- An operational flowchart*
-- Analysis of crucial design decisions
-- Execution plan considering skill sets and time requirements
