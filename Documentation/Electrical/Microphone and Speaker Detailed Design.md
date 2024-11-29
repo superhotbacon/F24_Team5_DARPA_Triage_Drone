@@ -103,9 +103,7 @@ The system is structured as follows:
 
 ### **7. Challenges and Mitigation**
 - **Noise Interference**:
-  - Additional low-pass or high-pass filters can complement the notch filter for broader noise rejection.
-- **Latency**:
-  - Optimized data processing pipelines using the Jetson Nano’s GPU ensure low-latency operation.
+  - While the notch filter addresses specific noise frequencies, additional low-pass or high-pass filters may be necessary for broader noise rejection. These supplementary filters can help eliminate any residual interference that the notch filter cannot handle. However, until I can test the drone’s noise characteristics during operation, it is difficult to fully identify and filter out all unwanted frequencies. During the drone's assembly phase, I plan to conduct tests to measure the actual noise generated. This will allow me to fine-tune the filters to target the specific noise profile more effectively. noise rejection.
 ---
 
 ### **8. Conclusion**
