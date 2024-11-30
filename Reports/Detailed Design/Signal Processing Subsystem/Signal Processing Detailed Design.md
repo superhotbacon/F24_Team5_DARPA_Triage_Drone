@@ -31,7 +31,7 @@ The Signal processing subsystem will need to interface to the sensor subsystem a
 
 To connect to the sensor subsystem, the connection will be established using USB. The data received from the sensor can come in many different forms as the chosen sensor is very robust. The form chosen for the data will be unprocessed. The sensor will pass raw data to the Jetson Nano. This is desirable as the Jetson Nano can fully use the data to  extract all relevant information. If processing time becomes a concern, the team can program the doppler to preprocess the data to a smaller degree than the Jetson Nano. This will reduce the load on the Jetson Nano and decrease processing time.
 
-To connect to the programmable drone the Jetson Nano will need to connect using USB. The data sent to this subsystem will be relevant sensor data such as the Heart rate and the Respiratory rate. This data will need to be put into the specified network packets used by that subsystem. Whether that be UDP, TCP, or others.
+To connect to the programmable drone the Jetson Nano will need to connect using USB. The data sent to this subsystem will be relevant sensor data such as the Heart rate and the Respiratory rate. This data will need to be put into the specified network packets used by that subsystem, whether that be UDP, TCP, or others.
 
 
 ## Operational Flowchart
