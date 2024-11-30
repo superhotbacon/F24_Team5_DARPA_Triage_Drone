@@ -33,6 +33,20 @@ To connect to the sensor subsystem, the connection will be established using USB
 
 To connect to the programmable drone the Jetson Nano will need to connect using USB. The data sent to this subsystem will be relevant sensor data such as the Heart rate and the Respiratory rate. This data will need to be put into the specified network packets used by that subsystem, whether that be UDP, TCP, or others.
 
+For documentation purposes, a top view of the Jetson Nano and pin out descriptions are included here.
+
+![topView](https://github.com/user-attachments/assets/25bd412f-7ace-4ae4-9378-d9bd33effc06)
+
+This shows the top view of the Jetson Nano. With Lables 
+
+![expansionConnector](https://github.com/user-attachments/assets/ed1333b8-3b3f-44bd-9534-88168218be27)
+This is a quick look at the expansion connector without advanced description. 
+
+![pinDescription1](https://github.com/user-attachments/assets/64d9b2fc-1ba8-4b8e-b322-c5906afb7435)
+Expanding on the previous figure, this includes extra documentation about functionality
+
+![PinDescription2](https://github.com/user-attachments/assets/edb0878a-01e1-4c8f-8405-9152783d4229)
+This is the second page of the detailed pin out.
 
 ## Operational Flowchart
 <img width="1651" alt="Drawing 12" src="https://github.com/user-attachments/assets/8e0b39fc-ded5-4406-a414-bbeeff075a1c">
