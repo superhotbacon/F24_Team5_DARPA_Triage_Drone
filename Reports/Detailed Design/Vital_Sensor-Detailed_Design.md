@@ -12,7 +12,7 @@ This subsystem will provide access to that information and transmit it to the Si
 These constraints are derived from the project's Conceptual Design:  
   - The system MUST not push the project budget to exceed roughly $5,000 (target is less than $200).
   - The system MUST not weigh enough to significantly disturb the drone (target is less than 0.5lb or 230g).
-  - The system MUST not consume so much power as to debilitate the drone.
+  - The system MUST not consume so much power as to seriously impact the drone's flight-time.
   - The system MUST not exceed a Specific Absorption Rate (SAR) of 1.6 W/kg as per the standard the Federal Communications Commission (FCC) has dictated.[1]
 
 ## Specifications
@@ -60,7 +60,7 @@ Below is this subsystem's BOM. Since the majority of the engineering required fo
 | 7T9MV4              | [Micro-USB Cable](https://www.digikey.ee/en/products/detail/analog-devices-inc/ADXL203EB/665382](https://www.amazon.com/Amazon-Basics-Charging-Transfer-Gold-Plated/dp/B07232M876/ref=sr_1_1_ffob_sspa?crid=3NYG1TYD80F2E&dib=eyJ2IjoiMSJ9.BTH-JaqRBvQbWEP_82nsg3yEMXYNI64nU1zKdoVJWozaRJLjffc2AxH49bpUSKMxRmhycVZ-cl4f3JYFXJR7O-3Ep6gIb74Q28Zai-27w_6wIuGL0XXqfFrfD50MVW2j8NuEYlM7A9VtHiTLiQdeKxmE8xwIcwvhPZrYZnz8vqIc6Mny7I9Ial4L6WIZNb2fiShtVv-b9LdoFAx3AEaVMsWlQ0dKs3R5FriiQQhb82U.-ba0OBlMVvDP-XYOVvnkis2BssC956V1D6XXpyLtQnw&dib_tag=se&keywords=microusb%2Busb%2Bcable&qid=1732739767&sprefix=microusb%2Caps%2C107&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1)) | Amazon | 1 | $7.59 | $7.59 |
 
 ## Analysis
-When it comes to obtaining readings on a subject's hear and respiratory rate via radar, there is no sure way method of accomplishing this goal yet. IEEE Xplore has reported at least 2200 papers on this topic [6], and the interest in this challenge has not slowed down. Researching what to use to fulfill the roles of this subsystem was challenging as there are truly many options to choose from. However, the Infineon BGT60UTRA11AIP and the MCU7 Plus are feature rich and are capable of abiding by the previously mentioned constraints and fulfilling the previously mentioned specifications.  
+When it comes to obtaining readings on a subject's heart and respiratory rate via radar, there are multiple ways to accomplish this. IEEE Xplore has reported at least 2200 papers on this topic [6], and the interest in this challenge has not slowed down. Researching what to use to fulfill the roles of this subsystem was challenging as there are truly many options to choose from. However, the Infineon BGT60UTRA11AIP and the MCU7 Plus are feature rich and are capable of abiding by the previously mentioned constraints and fulfilling the previously mentioned specifications.  
 
 The Infineon radar sensor is inherently a FMCW type radar. Multiple projects have tried to accomplish vital sensing via radar with a CW type radar, but the latter is limited. CW radar can only detect phase differences amidst readings; FMCW can do that as well as detect changes in frequency [7]. Essentially, FMCW provides users with more data to process during observations, making it more precise.  
 
@@ -68,8 +68,8 @@ The solution is cheap and small enough to fit the constraints. Anything bigger o
 
 The device has a range of 15m, which is more than enough to meet the proposed specification. In addition, because the radar sensor operates at a frequency of 60GHz, it is considered a mm-Wave radar device since it is capable of detecting changes as small as a few millimeters which is ideal for heart rate detection as a heartbeat causes minimal displacement.  
 
-The Infineon radar is a safe solution. It meets the FCC's SAR standard because, at its max, the radar only dispenses about 24.12mW (or 14dBm) of power [8], and it would never functionally get close enough to a subject to exceed an SAR value of 1.6W/kg. 
-
+The Infineon radar is a safe solution. It meets the FCC's SAR standard (listed under constraints) because, at its max, the radar only dispenses about 24.12mW (or 14dBm) of power [8], and it would never functionally get close enough to a subject to exceed an SAR value of 1.6W/kg. In other words, the power output of the radar is low and those being observed by the sensor will not be harmfully exposed to it.  
+  
 Lastly, the added MCU7 Plus provides users with the ability to use Infineon's radar SDK. The board itself is capable of some processing that allows for the data to be acquired in different modes (FMCW or CW) as well as to what measure would a user like the data to already be processed. One can obtain completely raw data from the device, but the board and SDK also allows users to receive data in specifically organized objects or classes so further processing is simplified. This is a huge advantage as it will allow the project to be developed more quickly and flexibly. 
 
 As a side note, this is a single-input single-output sensor, meaning it has only one TX and one RX pin. Having multiple RX pins allow for the ability to determine the angle of the object in question; however, there is no reason to believe that this capability could provide further use in calculating a heart and respiratory rate.
