@@ -10,7 +10,7 @@ The signal processing subsystem's purpose is to take the data gathered from the 
 ## Specifications and Constraints
 
   (1) The signal processing subsystem SHALL use signal processing to determine heart rate (range 0.45 to 2.92Hz) and respiratory rate (range 0.13 to 1 Hz). This specification stems from the subsystem prerequisites that allow the drone to work as intended.  
-  (2) The signal processing subsystem SHALL be able to get accurate readings from 1 meter away. This specification stems our customer, Georgia Tech Research Institute. This allows the drone to read the vitals of the victim without risking hurting the individual. Or in the possible case that the victim is inaccessible and can only be seen from 1 meter away.  
+  (2) The signal processing subsystem SHALL be able to get accurate readings from 1 meter away. This specification stems from the customer, Georgia Tech Research Institute. This allows the drone to read the vitals of the victim without risking hurting the individual. Or in the possible case that the victim is inaccessible and can only be seen from 1 meter away.  
  (3) The signal processing algorithms SHALL process data and have it ready to transmit within 500ms of being received. This specification stems from prerequisites that ensure the timely display of results so the operators can make quick decisions in high stress situations.   
  (4) The signal processing subsystem SHALL not store heart rate and respiratory rate data in long term storage that persists after power on reset. This constraint stems from ethics as the drone should not be used to sell heart rate and respiration rate data for companies to use to target products or services to patients.  
 
