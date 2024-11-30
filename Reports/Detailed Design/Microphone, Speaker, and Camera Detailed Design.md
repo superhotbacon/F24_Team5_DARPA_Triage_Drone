@@ -90,7 +90,7 @@ The speaker enables two-way communication between the drone and a victim:
 
 ---
 
-### **5. Analog Cameras for Video Streaming**
+### **Analog Cameras for Video Streaming**
 
 #### **Camera Selection**
 Two analog cameras are added for real-time video streaming:
