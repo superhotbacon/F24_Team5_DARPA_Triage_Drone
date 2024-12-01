@@ -12,10 +12,10 @@ The function of this subsystem is to design a system for a drone equipped with a
 5. The camera shall provide a minimum resolution of 1080p for clear and detailed video capture.   
 6. The camera shall operate at a minimum of 30 frames per second (fps) to ensure smooth video playback.  
 7. The camera shall have a wide field of view sufficient to capture subjects while compensating for drone motion.  
-8. The camera shall operate within the power limits of the drone to ensure sustained operation.  
+8. The all components shall operate within the power limits of 22v auxiliary power to ensure sustained operation.  
 
 ### Constraints  
-1. The combined weight of the microphone, speaker, and cameras shall not exceed the payload capacity of the drone.  
+1. The combined weight of the microphone, speaker, and cameras shall not exceed the payload capacity of the drone of 3.3 lbs.  
 2. All components shall operate reliably in outdoor environments, including exposure to wind and moderate temperature fluctuations.  
 3. The microphone, speaker, and cameras shall not cause interference with each other or with other electronic components on the drone.
 
