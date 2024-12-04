@@ -11,7 +11,7 @@ The interfacing subsystem will function as the project's wireless data visualiza
 #### Constraints
 
 **1.** The subsystem MUST maintain an error rate of less than 1% to ensure accurate transmitted data display.  
-**2.** The subsystem MUST clock a latency of <1 second for video, audio, and data streaming at a max range of 984 feet.  
+**2.** The subsystem MUST clock a latency of <1 second for video, audio, and data streaming.  
 **3.** The subsystem MUST process and display data without storing any of the received data.  
   
 **It is important that these constraints are met due to the importance and crucial need for fast accurate data for life-saving measures.**
@@ -20,7 +20,7 @@ The interfacing subsystem will function as the project's wireless data visualiza
 **1.** The subsystem SHALL display accurate data collection and analysis on a laptop device.    
 **2.** The subsystem SHALL be compatible with wireless data transfer capabilities.  
 **3.** The subsystem SHALL wirelessly displays triage signal processing data.   
-**4.** The subsystem SHALL wirelessly stream video and audio data.
+**4.** The subsystem SHALL wirelessly stream video and audio data.  
 **5.** The subsystem SHALL transmit audio to the speaker through either the built-in microphone or an external microphone. 
 
 
@@ -70,6 +70,7 @@ A laptop device with Windows software is a great option for the interfacing subs
 
   - WebRTC includes built-in error correction algorithms (FEC and CRC), ensuring that the video and audio stream is correct and accurate.
   - WebRTC's client-to-client base structure will allow for ensured privacy because it eliminates the need for server-based storage. Also benefiting from this structure is the latency times, WebRTC ensures a low-latency time which is necessary for a medical disaster response.
+  - The latency of <1 ms for real-time audio and video streaming typically has a max range at roughly 33-50 feet on a supported 5 GHz band, and roughly 98-131 feet on a supported 2.4 GHz band. The _Archer T4U Plus_ supports, 802.11ac, both 2.4 GHz and 5 GHz bands. 
   - The ease of compatibility and integration with WebRTC and WebSockets are essential for the use of the different applications built using programming languages (Python, JavaScript, and HTML).
 
 #### Programming Languages
