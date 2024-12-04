@@ -60,7 +60,9 @@ The data will be packaged through necessary Python libraries. Failure at any of 
 
 ## BOM
 
-_No software or hardware will be needed for purchase for this subsystem._
+| PART NUMBER            | DESCRIPTION     | Link       |MANUFACTURER NAME | QUANTITY | COST PER ITEM | TOTAL COST OF QUANTITY |
+| :---:                  | :---:           | :---:             | :---:             | :---:    | :---:         | :---:                  |
+|840030701535            | [TP-Link Archer T4U Plus]([https://www.seeedstudio.com/reComputer-J1020-v2-p-5498.html](https://www.amazon.com/wireless-USB-WiFi-Adapter-PC/dp/B08KHV7H1S/)) | https://www.amazon.com/wireless-USB-WiFi-Adapter-PC/dp/B08KHV7H1S/| TP-Link | 2 | 19.99| *_Purchased in drone communication subsystem_  |
 
 ## Analysis
 #### Choosing the Software and Devices
