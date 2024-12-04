@@ -11,7 +11,7 @@ The interfacing subsystem will function as the project's wireless data visualiza
 #### Constraints
 
 **1.** The subsystem MUST maintain an error rate of less than 1% to ensure accurate transmitted data display.  
-**2.** The subsystem MUST clock a latency of <1 second for video, audio, and data streaming.  
+**2.** The subsystem MUST clock a latency of <1 second for video, audio, and data streaming at a max range of 984 feet.  
 **3.** The subsystem MUST process and display data without storing any of the received data.  
   
 **It is important that these constraints are met due to the importance and crucial need for fast accurate data for life-saving measures.**
@@ -36,7 +36,7 @@ The interfacing subsystem is an immediate-time processing and displaying system 
   - A Windows laptop system, having sufficient CPU at 1.5 GHz, <1 GB RAM processing, and H.264/H.265 GPU hardware **[6]** for displaying and decoding/encoding audio streams, video streams, and telemetry data.
   - A laptop system capable of supporting WebRTC and WebSockets through supported browsers (Chrome or Firefox) and supported Python libraries.
   - WebRTC application for direct client-to-client audio and video streaming with low latency on modern browsers. Allowing for successful audio and video transmission for the audio and video devices. **[2]**.
-  - Python, HTML, and JavaScript Programming language frameworks offer extensive libraries for decoding and displaying audio, video, and telemetry data and support WebRTC streaming applications. 
+  - Python, HTML, and JavaScript Programming language frameworks offer extensive libraries for decoding and displaying audio, video, and telemetry data and support WebRTC streaming applications.
 
 **2. Data Accuracy and Reliability**
 
