@@ -70,7 +70,7 @@ A laptop device with Windows software is a great option for the interfacing subs
 
   - WebRTC includes built-in error correction algorithms (FEC and CRC), ensuring that the video and audio stream is correct and accurate.
   - WebRTC's client-to-client base structure will allow for ensured privacy because it eliminates the need for server-based storage. Also benefiting from this structure is the latency times, WebRTC ensures a low-latency time which is necessary for a medical disaster response.
-  - The latency of <1 ms for real-time audio and video streaming typically has a max range at roughly 33-50 feet on a supported 5 GHz band, and roughly 98-131 feet on a supported 2.4 GHz band. The _Archer T4U Plus_ supports, 802.11ac, both 2.4 GHz and 5 GHz bands. 
+  - The latency of <1 second for real-time audio and video streaming has a max range at roughly 33-50 feet on a supported 5 GHz band, and roughly 98-131 feet on a supported 2.4 GHz band. The _Archer T4U Plus_ supports, 802.11ac, both 2.4 GHz and 5 GHz bands. 
   - The ease of compatibility and integration with WebRTC and WebSockets are essential for the use of the different applications built using programming languages (Python, JavaScript, and HTML).
 
 #### Programming Languages
