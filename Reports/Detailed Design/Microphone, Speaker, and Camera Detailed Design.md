@@ -23,14 +23,14 @@ The function of this subsystem is to design a system for a drone equipped with a
 ---
 
 ### Overview of Proposed Solution
-- **Microphone:**  
-  The microphone on the drone captures ambient sounds, including drone-generated noise and external audio. The audio is sent to the Jetson Nano for filtering and processing, enabling the system to focus on relevant sounds while minimizing unwanted noise from the drone.
+**Microphone:**  
+The microphone on the drone captures ambient sounds, including drone-generated noise and external audio. The audio is sent to the Jetson Nano for filtering and processing, enabling the system to focus on relevant sounds while minimizing unwanted noise from the drone.
 
-- **Speaker:**  
-  The speaker on the drone transmits audio from the Jetson Nano, enabling two-way communication. This allows the drone to relay instructions, alerts, or other audio signals to the operator or nearby individuals.
+**Speaker:**  
+The speaker on the drone transmits audio from the Jetson Nano, enabling two-way communication. This allows the drone to relay instructions, alerts, or other audio signals to the operator or nearby individuals.
 
-- **Analog Cameras:**  
-  The drone is equipped with analog cameras that provide real-time video footage. These cameras allow for visual monitoring of the drone’s surroundings, which is essential for navigation, obstacle avoidance, and ensuring safe operation during flight.
+**Analog Cameras:**  
+The drone is equipped with analog cameras that provide real-time video footage. These cameras allow for visual monitoring of the drone’s surroundings, which is essential for navigation, obstacle avoidance, and ensuring safe operation during flight.
 
 
 ---
