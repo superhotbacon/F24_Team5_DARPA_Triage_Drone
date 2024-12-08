@@ -52,6 +52,11 @@ The interfacing subsystem must be compatible with the drone communication subsys
   
 The data will be packaged through necessary Python libraries. Failure at any of these subsystems will result in a lack of accuracy and functionality within the interfacing subsystem.
 
+## Interfacing Block Diagram
+![Block Diagram (1)](https://github.com/user-attachments/assets/4bafc49d-c250-4c6c-a0d5-edae34b31c47)
+
+Block Diagram visualizing the different interfaces to each sub module
+
 
 ## Operational Flowchart
 ![Blank diagram](https://github.com/user-attachments/assets/ecdcaaf4-0390-453f-acaa-63bfb39faf4a)
