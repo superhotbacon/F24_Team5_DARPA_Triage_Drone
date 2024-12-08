@@ -4,7 +4,7 @@
 
 The function of this subsystem is to design a system for a drone equipped with a microphone, speaker, and two analog cameras, all connected with a Jetson Nano. The design includes a **notch filter** to eliminate propeller noise captured by the microphone, ensuring clear audio transmission, while the speaker and cameras facilitate communication and video streaming.
 
-## Specifications and Constraints  
+## Specifications  
 1. The microphone shall operate within a frequency range of 0.5 Hz to 500 Hz to capture biological signals effectively.  
 2. The speaker shall support frequencies from 300 Hz to 3.4 kHz for effective human voice transmission.   
 3. The speaker shall produce sufficient output power to enable clear communication at distances up to 10 meters.  
