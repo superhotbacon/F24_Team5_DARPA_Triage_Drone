@@ -110,7 +110,7 @@ When choosing the method of communication between the drone and the ground contr
 **Why choose TP-Link Archer T4U Plus?**
 - Dual Band support (2.4GHz band and 5GHz band) allows for flexibility for various enviornments
 - High gain antennas imporve range and stability
-
+- The wi-fi adapters are capable of transmitting data over 100 meters under ideal conditions, particularly in open environments with a clear line of sight. However, factors like obstructions/obstacles and interference can reduce the range. For the scenario described by our customer 100 meters should not be a problem especially with the high gain antennas and using the 2.4GHz band.
 
 **Why use the PC as the host?** 
 - Easier to have hot spot set up on a stationary device 
