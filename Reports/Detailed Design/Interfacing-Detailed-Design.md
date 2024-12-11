@@ -98,5 +98,7 @@ Python, JavaScript, and HTML for the interfacing subsystem are pivotal for the s
 **[3]** [Drone Communication Subsystem](https://github.com/superhotbacon/F24_Team5_DARPA_Triage_Drone/blob/communication-detailed-design/Reports/Detailed%20Design/drone%20communications%20subsystem.md)  
 **[4]** [Conceptual Design](https://github.com/superhotbacon/F24_Team5_DARPA_Triage_Drone/blob/main/Reports/Conceputal%20Design%20Final/Conceptual%20Design.md)  
 **[5]** [Data Privacy](https://www.rcrcmagazine.org/2021/01/data-protection-critical-humanitarian-action/)  
-**[6]** [GPU Hardware](https://www.pugetsystems.com/labs/articles/what-h-264-and-h-265-hardware-decoding-is-supported-in-premiere-pro-2120/?srsltid=AfmBOoobeUiZLAJkBTojUF9R8mp34t64RI2c3WcPgzpm_UJpcW_yobUm)
+**[6]** [GPU Hardware](https://www.pugetsystems.com/labs/articles/what-h-264-and-h-265-hardware-decoding-is-supported-in-premiere-pro-2120/?srsltid=AfmBOoobeUiZLAJkBTojUF9R8mp34t64RI2c3WcPgzpm_UJpcW_yobUm)  
+**[7]** [Typical Packet Size](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://mentor.ieee.org/802.11/dcn/00/11-00-0349-00-000e-models-for-mpeg2-and-video-conferencing.ppt%23:~:text%3DTypically%2520for%2520Internet%2520environment%2520packet%2520size%2520can%2520vary%2520from%2520200%252D1500%2520bytes&ved=2ahUKEwjwtN-x_J6KAxWRKUQIHRwiFvYQFnoECA8QAw&usg=AOvVaw30QwI1wXxvZkdeWfSPSb8l)  
+**[8]** [TPLink Archer T4U Plus](https://www.seeedstudio.com/reComputer-J1020-v2-p-5498.html](https://www.amazon.com/wireless-USB-WiFi-Adapter-PC/dp/B08KHV7H1S/))
 
