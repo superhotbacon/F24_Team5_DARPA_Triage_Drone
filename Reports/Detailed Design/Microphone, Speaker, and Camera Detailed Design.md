@@ -39,10 +39,14 @@ The Jetson Nano layout:
 [4]![image](![image](https://github.com/user-attachments/assets/97daee00-25fe-4d1d-8c16-72a19f47e9d0)
 
 #### **Port Configuration**
-- **J6**: Camera 1  
+- **J13**: Camera 1  
 - **J49**: Camera 2  
 - **J32**: Microphone and Notch Filter 
-- **J33**: Speaker  
+- **J33-1 & 2**: Speaker 1, Speaker 2
+
+ ### **Port Block Diagram**
+ ![image](https://github.com/user-attachments/assets/80233d77-9b1a-4ed1-8fa3-c5fc713f02e6)
+
 
 ---
 
@@ -52,7 +56,7 @@ The Jetson Nano layout:
 Drone propellers typically generate a fundamental noise frequency around 200–400 Hz[2], with harmonics at multiples of this frequency. This noise interferes with microphone recordings.
 
 #### **Notch Filter Design**
-![image](https://github.com/user-attachments/assets/65323d5d-bf4e-4ce7-a721-03fd42ecb4f6)
+![image](https://github.com/user-attachments/assets/6a24eb77-4823-4df0-841e-c012aa48de6b)
 
 
 As shown above, the notch filter in the circuit effectively combines a high-pass filter and a low-pass filter. The low-pass filter has a cutoff frequency at 200 Hz, while the high-pass filter cuts off frequencies above 400 Hz. These frequency ranges are chosen to replicate the noise characteristics of a drone propeller during flight, as they correspond to the typical vibration frequencies caused by the rotating blades.
@@ -132,6 +136,8 @@ The microphone will be securely mounted on the drone in a position that allows i
 After the notch filter has been assembled and tested, the output will be routed to the Jetson Nano for further processing. The Jetson Nano will receive the cleaned audio signal from the filter and process it for communication or data analysis. This connection will require careful wiring to ensure stable signal transmission and prevent any potential interference.
 
 The speaker, which will be responsible for transmitting audio from the Jetson Nano, will be connected to the system’s output. The Jetson Nano will process and output the audio signal, which will then be sent to the speaker, ensuring clear two-way communication. The speaker will be mounted in a location on the drone that maximizes its ability to transmit audio clearly, without interference from other components.
+
+All components when assembled will be needing to all be attached together with the drone and the Jetson nano. The Current Drone allows for multiple connections and attachments so will be very easy to attach components. It will need to be kept in mind that all component's weights need to be evenly distributed and centered so that the drone can be stable.
 
 Once all components are assembled and connected, the system will undergo comprehensive testing. This will include verifying that the microphone captures audio without interference from the drone’s motors, ensuring the cameras provide clear, smooth video, and confirming that the Jetson Nano processes both audio and video signals effectively. The entire system will be powered by the drone’s 22V auxiliary power source, and voltage regulators will be used where necessary to ensure each component receives the correct voltage. Additionally, the wiring must be carefully managed to prevent signal interference, and insulation should be applied to prevent short circuits. After the assembly and testing phase, the subsystem will be ready for integration into the drone, ensuring all components work together seamlessly while maintaining the drone’s power and weight constraints.
 
