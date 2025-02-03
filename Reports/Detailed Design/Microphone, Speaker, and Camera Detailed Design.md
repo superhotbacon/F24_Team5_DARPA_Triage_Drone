@@ -2,7 +2,7 @@
 
 ## Function of the subsystem
 
-The function of this subsystem is to design a system for a drone equipped with a microphone, speaker, and two analog cameras, all connected with a Jetson Nano. The design includes a **notch filter** to eliminate propeller noise captured by the microphone, ensuring clear audio transmission, while the speaker and cameras facilitate communication and video streaming.
+The function of the Microphone, Speaker, and Camera subsystem is to integrate a microphone, speaker, and two analog cameras onto a drone, all connected to a Jetson Nano. The design includes signal processing on the Jetson Nano to eliminate propeller noise captured by the microphone, ensuring clear audio transmission. Additionally, the speaker and cameras facilitate communication and video streaming. An assembly design will also be required to show how all components will be mounted onto the drone. The Jetson Nano will work with both the microphone filtering subsystem and the signal processing. Therefore, using efficient coding algorithms is imperative to conserve the drone’s battery.
 
 ## Specifications  
 1. The microphone shall operate within a frequency range of 0.5 Hz to 500 Hz to capture biological signals effectively.  
@@ -24,24 +24,32 @@ The function of this subsystem is to design a system for a drone equipped with a
 
 ### Overview of Proposed Solution
 **Microphone:**  
-The microphone on the drone captures ambient sounds, including drone-generated noise and external audio. The audio is sent to the Jetson Nano for filtering and processing, enabling the system to focus on relevant sounds while minimizing unwanted noise from the drone.
+The microphone on the drone captures ambient sounds, including both drone-generated noise and external audio. The audio is sent to the Jetson Nano for filtering and processing, allowing the system to focus on relevant sounds while minimizing unwanted noise from the drone. Due to the simplicity of eliminating propeller noise, a low-pass filter will be implemented to ensure that no frequencies above 200 Hz interfere with the microphone’s output.
 
-**Speaker:**  
-The speaker on the drone transmits audio from the Jetson Nano, enabling two-way communication. This allows the drone to relay instructions, alerts, or other audio signals to the operator or nearby individuals.
+**Camera Selection**
+Two analog cameras are added for real-time video streaming:
+- Camera 1: Front-facing for navigation.
+- Camera 2: Downward-facing for inspection and monitoring.  
+
+**Speaker:**    
+The speaker on the drone transmits audio from the Jetson Nano, enabling two-way communication. This allows the drone to relay instructions, alerts, or other audio signals to the operator or nearby individuals. TO ensure that the Microphone doenst pick up anything for the speaker. the two parts will only be able to activate inversly or neither.
 
 **Analog Cameras:**  
 The drone is equipped with analog cameras that provide real-time video footage. These cameras allow for visual monitoring of the drone’s surroundings, which is essential for navigation, obstacle avoidance, and ensuring safe operation during flight.
 
+**Jetson Nano:**  
+The Jetson Nano will control all signal processing through a Python script, communicating with each component in the system. The primary objective is to allow the user to easily toggle between the microphone and speaker via an interface subsystem, ensuring that only one is active at a time. First, the analog microphone signal must be demodulated into a digital signal. Following that, a noise filtering algorithm will be developed. The Python script will define a sampling rate and a cutoff frequency (set at 200 Hz). The sampling rate will be determined through testing to find the optimal balance between battery usage and audio quality. The script will also include the necessary functions and logic to handle real-time input and output between the components, ensuring that audio signals are processed accurately and efficiently, while effectively removing unwanted noise.
 
+**Flow Chart**  
+![image](https://github.com/user-attachments/assets/c916fd9a-ba51-471f-9eec-0d0adf3f64d6)
 ---
 ### **Schematics**
-The Jetson Nano layout:
-[4]![image](![image](https://github.com/user-attachments/assets/97daee00-25fe-4d1d-8c16-72a19f47e9d0)
+![image](https://github.com/user-attachments/assets/97daee00-25fe-4d1d-8c16-72a19f47e9d0)
 
 #### **Port Configuration**
 - **J13**: Camera 1  
 - **J49**: Camera 2  
-- **J32**: Microphone and Notch Filter 
+- **J32**: Microphone 
 - **J33-1 & 2**: Speaker 1, Speaker 2
 
  ### **Port Block Diagram**
@@ -50,65 +58,14 @@ The Jetson Nano layout:
 
 ---
 
-### **Noise Filtering Using a Notch Filter**
-
-#### **Drone Propeller Noise**
-Drone propellers typically generate a fundamental noise frequency around 200–400 Hz[2], with harmonics at multiples of this frequency. This noise interferes with microphone recordings.
-
-#### **Notch Filter Design**
-![image](https://github.com/user-attachments/assets/6a24eb77-4823-4df0-841e-c012aa48de6b)
-
-
-As shown above, the notch filter in the circuit effectively combines a high-pass filter and a low-pass filter. The low-pass filter has a cutoff frequency at 200 Hz, while the high-pass filter cuts off frequencies above 400 Hz. These frequency ranges are chosen to replicate the noise characteristics of a drone propeller during flight, as they correspond to the typical vibration frequencies caused by the rotating blades.
-
-In this design, the R Load in the circuit represents the connection to the Jetson Nano, which will process the filtered signals. The Jetson Nano will be used to analyze and interpret the noise-free audio from the microphone on the drone, helping to improve communication or data collection while filtering out unwanted drone motor vibrations.
-
-This filter design is crucial for noise reduction and will allow for clearer audio processing, ensuring that the audio signal received by the Jetson Nano is free from interference caused by the drone’s propeller motor.
-
-#### **Transfer Function**
-![image](https://github.com/user-attachments/assets/858fbe2f-f3f5-4c84-b170-81328ad0ce18)
-
-
 #### **Bode Plot Diagram**
+**Noice Filter:**  
+The initial approach to filtering the microphone signal involved designing a notch filter in MATLAB to understand its transfer function. The objective was to isolate and remove unwanted noise at specific frequencies. However, after further evaluation, it was decided to transition to a software-based solution by programming the filter in Python. This shift was motivated by cost-effectiveness, as it required fewer physical components, and provided greater flexibility for real-time signal processing on the Jetson Nano. By implementing the filter in software, the same results could be achieved without additional hardware, making the solution more efficient and manageable for the drone’s system.
 ![image](https://github.com/user-attachments/assets/bdf308ee-3b87-46b2-972f-0ff9423bfde4)
 
-
-
-#### **Component Selection**
-
-- PCB Board
-- 2x1k Resister
-- 2x3k Resister
-- 3x10k Resister
-- 2x1u Resister
-- 3 opamps
-
-
-#### **Integration**
-The microphone signal passes through the notch filter before reaching the Jetson Nano’s audio input. The filtered signal removes the drone noise while retaining useful audio.
-
 ---
-
-### **Speaker for Communication**
-
-The speaker enables two-way communication between the drone and a victim:
-- **Signal Flow**:
-  Audio from the ground control is processed by the Jetson Nano. The Jetson Nano’s DAC (Digital-to-Analog Converter) outputs the audio signal. The signal is amplified and sent to the drone’s speaker.
-- **Amplification Circuit**:
-  A small Class-D audio amplifier is used to drive the speaker efficiently. A low-pass filter at the amplifier input ensures smooth signal reproduction.
-
-
----
-
-### **Analog Cameras for Video Streaming**
-
-#### **Camera Selection**
-Two analog cameras are added for real-time video streaming:
-- **Camera 1:** Front-facing for navigation.
-- **Camera 2:** Downward-facing for inspection and monitoring.
-
-#### **Signal Conversion**
-Analog cameras output composite video signals (e.g., NTSC or PAL). These signals must be digitized for the Jetson Nano. Each camera connects to an analog-to-digital converter (e.g., USB video capture adapters). The digitized video is fed into the Jetson Nano via USB.
+### **Attaching components to the drone**
+The Jetson Nano, along with the two cameras, speaker, and microphone, will be mounted on the drone using custom 3D-printed brackets designed for lightweight support. The 3D-printed parts will have low infill to reduce overall weight while maintaining structural integrity. The Jetson Nano will be secured to the drone’s main frame with a rigid 3D-printed base, ensuring stability without adding unnecessary bulk. The two cameras will be attached using adjustable 3D-printed mounts, with Camera 1 positioned at the front for forward vision and Camera 2 placed at an angle to capture an alternative perspective. The microphone will be positioned away from the propellers and motors, using a lightweight arm or enclosure to minimize direct exposure to wind and mechanical noise. The speaker will be mounted at the lower part of the drone to ensure clear audio projection. Wiring will be neatly routed along the frame, secured with cable ties, to prevent loose connections and interference while keeping the system lightweight and efficient.
 
 
 ## **BOM**
@@ -117,29 +74,21 @@ Analog cameras output composite video signals (e.g., NTSC or PAL). These signals
 | 054114569014 | Camera           | [Amazon: Camera](https://www.amazon.com/SoloGood-Camera-Ratel2-Starlight-1200TVL/dp/B08T74F3WB/ref=pd_ci_mcx_di_int_sccai_cn_d_sccl_3_4/144-9551838-3238701?pd_rd_w=YxQkM&content-id=amzn1.sym.751acc83-5c05-42d0-a15e-303622651e1e&pf_rd_p=751acc83-5c05-42d0-a15e-303622651e1e&pf_rd_r=Q9AJA8MX952BJCT92BHM&pd_rd_wg=BfBvl&pd_rd_r=30b4bc70-a359-4dd8-acab-b23bd076afef&pd_rd_i=B08T74F3WB&th=1)      |   Caddx             |    2    |     32.99     |  65.97                 |
 | 641076944258 |Microphone        | [Amazon: Microphone](https://www.amazon.com/Professional-Microphone-Omnidirectional-Recording-Conference/dp/B01AG56HYQ/ref=rvi_d_sccl_14/144-9551838-3238701?pd_rd_w=Aq1sP&content-id=amzn1.sym.f5690a4d-f2bb-45d9-9d1b-736fee412437&pf_rd_p=f5690a4d-f2bb-45d9-9d1b-736fee412437&pf_rd_r=WN2H7TGAXJ3HR815ETNS&pd_rd_wg=PsTil&pd_rd_r=df48aa10-57fd-4c64-a194-51e172731714&pd_rd_i=B01AG56HYQ&psc=1)      |   PowerDeWise       |    1    |     29.99     |  29.99                 |
 | 641076944258 | 4 PCS Speaker 3  | [Amazon: Speaker](https://www.amazon.com/Loundspeaker-JST-PH2-0-Interface-Electronic-Advertising/dp/B0B4D1BN4F/ref=sr_1_5)      |   HANXI01           |    1    |     9.99      |  9.99                  |
-| B07WQWPLSP       | OP AMP LM358     | [Amazon: OP AMP](https://www.amazon.com/BOJACK-LM358P-Operational-Amplifier-LM358N/dp/B07WQWPLSP/ref=sr_1_1_sspa?crid=1JMR29377YQWP&dib=eyJ2IjoiMSJ9.LSp_oRxWDe1toRPBDAn23V3iZ7ry76AwtqZ5tQ62HjX8-aGfMtXTLrw_F8nfj3A4GvHgXQDa5uCWx1d6OPUl_w4vh8rRxY4kE5DVs5v8oaILAN-gneWTkgxYiHK2e_VOk706fxN3QeCt4s1E7_3PFxFmFJND8KAC6cli0vG2mOOczmT6pxIpFNDYJEipdBdEYuQlz4t2V-PSknkB1u5qjeEhB_6oS-7sQwHyCdWO7tM.tX9RBvNIrq4wt-SO1kFa2g8IN-6zwlQROtZMUo21EDI&dib_tag=se&keywords=lm358+op+amp&qid=1733452269&sprefix=LM358%2Caps%2C187&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1)      |   BOJACK  |    1    |     6.99      |  6.99                 |
-|   B072BL2VX1 | 10k, 1k, 3k Resistor     | [Amazon: Pack of Resisters](https://www.amazon.com/Elegoo-Values-Resistor-Assortment-Compliant/dp/B072BL2VX1/ref=sr_1_11?adgrpid=1334807683268756&dib=eyJ2IjoiMSJ9.6LwS_eL7GUDzrQTHCbHoUrXbUU6GcLf0Oh8KSANGZZcKLQV9E25Etr_y-yw_ibsxsUMQKiaoy3v_NUdjJBJBd16oxGNYWNBu1omlyGmU6lJdlYDy_EAuuHzvzGLdBONOJJlHLmBO5f9wS9NKR7eXevuXdIzZGzBtkLbsQsK-SbKwonpXQ_b-4WhgfoP14ZgF2wh3hsFTeQRplu5Fy1y5_y_uAX4tEInTBPESEXO5Fx0.ZmMxoRQ3nHuHH2YXgTIRbEiO8F4hE1dWvl3iFtlsMc4&dib_tag=se&hvadid=83425629443795&hvbmt=bp&hvdev=c&hvlocphy=84181&hvnetw=o&hvqmt=p&hvtargid=kwd-83425831793952%3Aloc-190&hydadcr=24663_13493294&keywords=10k+resistor&qid=1733452455&sr=8-11)      |   ELEGOO            |    1    |     9.99      |  9.99                  |
-|    B0CMQC587X   | 1u Capcitor      | [1u Capcitor](https://www.amazon.com/ALLECIN-Electrolytic-Capacitor-0-2x0-43in-Capacitors/dp/B0CMQC587X/ref=sr_1_1_sspa?crid=3QZTZ36DZN51S&dib=eyJ2IjoiMSJ9.hsAm4pqGQ38GqvW3cA8gw_Vy691_Ovizo0e_MeOfj11e7Tf9oaFEtQ24qpl9aL3UpsgLkayB-dbQsgqRnGrivJVFQgB3zMzzx8aKbp20rUkOyhHYEu0Aygqb2_nWGRTsYWctMexbeO6Ga5a3S_MCFiH__em-GDdlSi5Yp1mz4QVvSUkoAsUTnAfpzpHInY3tJNYct-c6_Pm75OwEEsNWdphEOcNX1_uIyfeMrDmux7s.LQrTrPYdLJ0AUdGAZJ6qA7vHMlhZPZjwqv2ijBfft6I&dib_tag=se&keywords=1u%2Bcapacitor&qid=1733453195&sprefix=1u%2Bcapacitor%2Caps%2C139&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1)      |   ALLECIN           |    1    |     5.99       |  5.99                  |
-|    B09QMNV6J1   | PCB Board    | [PCB Board](https://www.amazon.com/SchmalzTech-Electronic-Circuit-Prototype-ST-PERF-1-1/dp/B09QMNV6J1/ref=sr_1_9?crid=1B9ZBSO7MFE08&dib=eyJ2IjoiMSJ9.Zu_9MlJdzbeq8tv531drZjpTDlcmfjniMEkyCko4374U3tqhmQmhzEO8s8qM9OmQc62cfXgdgF0VwWrVu3_xe0BD-MAqf4EgoTJrxokwY-Kk1nacOFx1_tUMYUFkbyRfksTVOzmJbwo-t-GkMTpky0Fqt9u1K2-ZpbBD8dIRgK4JzqGuwHWSYgZtP4A8tKqWhZnpfxL0TiebCocZSxhKRhjj3NyTUxiyxhvsaUNRAZE.A_4CWiiiztRpMRoPWQ1zoE9OBHox0kCzaczKJxdOiz0&dib_tag=se&keywords=small%2Bpcb%2Bboard&qid=1733457234&sprefix=small%2Bpcb%2Bboard%2Caps%2C123&sr=8-9&th=1)      |   SchmalzTech, LLC      |    2    |     5.99       |  11.98                  |
 
-
----
-
-### **Challenges and Mitigation**
-While the notch filter addresses specific noise frequencies, additional low-pass or high-pass filters may be necessary for broader noise rejection. These supplementary filters can help eliminate any residual interference that the notch filter cannot handle. However, until I can test the drone’s noise characteristics during operation, it is difficult to fully identify and filter out all unwanted frequencies. During the drone's assembly phase, I plan to conduct tests to measure the actual noise generated. This will allow me to fine-tune the filters to target the specific noise profile more effectively. noise rejection.
 
 ---
 
 ### **Analysis**
-The microphone will be securely mounted on the drone in a position that allows it to effectively capture relevant sounds, particularly the biological signals, while minimizing interference from the drone's propeller noise. The output from the microphone will be connected to the input of the notch filter circuit, which will require proper soldering to ensure stable signal transmission. The notch filter itself will be assembled on a printed circuit board (PCB) where the components such as resistors, capacitors, and operational amplifiers will be placed and soldered according to the design layout. This is critical for ensuring the filter works as intended, attenuating noise in the 200–400 Hz range, which corresponds to the drone's propeller frequencies, while allowing other audio frequencies to pass through without distortion. Once the circuit is assembled, it will be tested to ensure the correct frequency response is achieved, using tools like an oscilloscope to verify that the noise has been effectively filtered.
+The subsystem integrating the microphone, speaker, and cameras on the drone, connected to the Jetson Nano, is designed to enable efficient real-time signal processing and communication. The microphone captures both ambient sounds and noise generated by the drone’s propellers. To ensure that only relevant audio signals are processed, the Jetson Nano is used to filter out the propeller noise. A low-pass filter will be implemented to attenuate frequencies above 200 Hz, focusing on biological signals while reducing interference.
 
-After the notch filter has been assembled and tested, the output will be routed to the Jetson Nano for further processing. The Jetson Nano will receive the cleaned audio signal from the filter and process it for communication or data analysis. This connection will require careful wiring to ensure stable signal transmission and prevent any potential interference.
+The two analog cameras are strategically placed to capture different perspectives. Camera 1 is front-facing for navigation purposes, while Camera 2 is positioned downward for monitoring and inspection. Both cameras will provide real-time video, which is crucial for the drone's autonomous navigation and obstacle avoidance.
 
-The speaker, which will be responsible for transmitting audio from the Jetson Nano, will be connected to the system’s output. The Jetson Nano will process and output the audio signal, which will then be sent to the speaker, ensuring clear two-way communication. The speaker will be mounted in a location on the drone that maximizes its ability to transmit audio clearly, without interference from other components.
+The speaker will enable two-way communication, allowing the drone to transmit audio signals. To avoid interference with the microphone, the microphone and speaker will operate inversely—only one component will be active at any given time. This prevents the microphone from picking up sound from the speaker, ensuring clear audio transmission.
 
-All components when assembled will be needing to all be attached together with the drone and the Jetson nano. The Current Drone allows for multiple connections and attachments so will be very easy to attach components. It will need to be kept in mind that all component's weights need to be evenly distributed and centered so that the drone can be stable.
+The Jetson Nano will be the central control unit for all signal processing. It will handle the demodulation of the microphone’s analog signal, convert it into a digital signal, and apply a noise filtering algorithm to ensure high-quality audio output. A sampling rate and cutoff frequency of 200 Hz will be defined based on testing, optimizing the balance between battery consumption and audio quality. The Python script running on the Jetson Nano will facilitate real-time processing and communication between the components, ensuring efficient and accurate signal transmission.
 
-Once all components are assembled and connected, the system will undergo comprehensive testing. This will include verifying that the microphone captures audio without interference from the drone’s motors, ensuring the cameras provide clear, smooth video, and confirming that the Jetson Nano processes both audio and video signals effectively. The entire system will be powered by the drone’s 22V auxiliary power source, and voltage regulators will be used where necessary to ensure each component receives the correct voltage. Additionally, the wiring must be carefully managed to prevent signal interference, and insulation should be applied to prevent short circuits. After the assembly and testing phase, the subsystem will be ready for integration into the drone, ensuring all components work together seamlessly while maintaining the drone’s power and weight constraints.
+All components will be securely mounted onto the drone using custom 3D-printed brackets. These parts will feature low infill to minimize weight while maintaining structural integrity, ensuring the drone remains stable during flight. The careful placement and secure attachment of the components will help prevent interference between the microphone, speaker, and cameras, contributing to overall system performance.
+
 
 ### **References**
 
