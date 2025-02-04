@@ -40,8 +40,14 @@ The drone is equipped with analog cameras that provide real-time video footage. 
 **Jetson Nano:**  
 The Jetson Nano will control all signal processing through a Python script, communicating with each component in the system. The primary objective is to allow the user to easily toggle between the microphone and speaker via an interface subsystem, ensuring that only one is active at a time. First, the analog microphone signal must be demodulated into a digital signal. Following that, a noise filtering algorithm will be developed. The Python script will define a sampling rate and a cutoff frequency (set at 200 Hz). The sampling rate will be determined through testing to find the optimal balance between battery usage and audio quality. The script will also include the necessary functions and logic to handle real-time input and output between the components, ensuring that audio signals are processed accurately and efficiently, while effectively removing unwanted noise.
 
+
 **Flow Chart**  
 ![image](https://github.com/user-attachments/assets/c916fd9a-ba51-471f-9eec-0d0adf3f64d6)
+
+**Drone Bracker:**  
+The 3D-printed mounting system for the drone components is designed with efficiency and weight reduction in mind. To minimize added weight while maintaining durability, the printed parts will have a low infill density of approximately 10%, ensuring structural integrity without unnecessary bulk. The Jetson Nano will be housed in a custom 3D-printed pocket, allowing it to securely slide into place while providing easy access for maintenance and ventilation. The cameras, speaker, and microphone will be firmly attached to the frame using screws, ensuring stability during flight and preventing unwanted vibrations. The microphone will be strategically positioned to avoid direct exposure to propeller noise, while the speaker will be mounted in a way that optimizes sound projection. Cable routing channels will be incorporated into the design to keep wiring neatly organized and secure, reducing the risk of loose connections or interference. This lightweight and modular approach ensures that all components remain securely in place without compromising the drone’s flight stability and performance.
+![image](https://github.com/user-attachments/assets/1b5027b5-bfb1-4b34-aaa9-f812ac7d5f4d)
+
 ---
 ### **Schematics**
 ![image](https://github.com/user-attachments/assets/97daee00-25fe-4d1d-8c16-72a19f47e9d0)
