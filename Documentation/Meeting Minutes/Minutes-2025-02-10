@@ -1,0 +1,30 @@
+# Minutes-2025-02-10
+
+| Attendance       | 02/10 [Minutes] |  Total [Minutes]  |
+| :----            | :----:          |  :----:           |
+| Gabe Buckner     | 60              | **60**            |
+| Mathias Hagewood | 60              | **60**            | 
+| Caleb Bucher     | 60              | **60**            |
+| Reese Gilbert    | 60              | **60**            |
+| Chris Bradley    | 60              | **60**            |  
+
+    
+**Group**  
+Chris- Downloaded needed WebRTC applications and libraries.
+Caleb- Planned meetings to meet with Advisor and Georgia Tech Research Team.
+Reese and Chris - Established that the TP-LInk works between two PC's.
+Gabe- Worked on getting the jetson nano set up and functional.
+Mathias- Tested the sensor with a python script. And balled out on his presentation. 
+Group - Ensured delivered equipment was correct and functional.
+
+
+## Notes 
+- Waiting on Jetson Nano and Drone to be delievered.
+  
+
+## Planned Tasks
+- **Gabriel Buckner** connect Jetson Nano up in the capstone lab and ensure functionality.    
+- **Mathias Hagewood** Continue to test radar doppler
+- **Caleb Bucher**  order microphone and camera.
+- **Reese Gilbert** Get Jetson nano hooked up with a TP-Link adapter. 
+- **Chris Bradley** apply the WebRTC application.  
