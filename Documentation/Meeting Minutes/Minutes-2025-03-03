@@ -1,0 +1,103 @@
+# Minutes-2025-02-24
+
+
+
+
+
+
+| Attendance       | 02/27 [Minutes] | 03/03 [Minutes]   |  Total [Minutes]  |
+
+
+| :----            | :----:          | :----:            |  :----:           |
+
+
+| Gabe Buckner     | 60              |20                 | **80**            |
+
+
+| Mathias Hagewood | 60              |20                 | **80**            | 
+
+
+| Caleb Bucher     | 60              |20                 | **80**            |
+
+
+| Reese Gilbert    | 60              |20                 | **80**            |
+
+
+| Chris Bradley    | 60              |20                 | **80**            |  
+
+
+
+
+
+    
+
+
+**Accomplished**  
+
+
+
+
+
+    Chris - Developed video streaming test environment with HTML, Javascript, python, and webRTC on local host
+
+    
+
+
+    Caleb - Worked on taking the caddexfpv cameras, speaker, microphone, and converting them from analog to digital.
+
+
+    
+
+
+    Reese - 
+
+
+    
+
+
+    Gabe - Set up the Jetson nano for SSH from another computer. Can run graphical applications using VcXsvr on windows. This will be a 'backup' if the HTML client doesnt end up working. Attemped to update Ubuntu to 24.04 (bricked the SD card). Ended up having to reflash jetson Nano. Continued working with Mathias to get Raddar dopller environment working
+
+    
+
+
+    Mathias - Got Radar SDK to work on windows to test the doppler. Attemped to install Python wheel for Radar SDK on Jetson Nano. Didn't work (incompatible arm7 vs arm8). Shifted to trying to build Radar SDK from source in C for the Jetson Nano.
+
+
+
+
+
+
+
+
+## Notes 
+
+
+- Ubuntu Software is giving some compatibility issues. 
+
+
+- Demonstration due Moday (2/24)
+
+
+  
+
+
+
+
+
+## Planned Tasks
+ 
+
+
+- **Gabriel Buckner** Continue working with Mathias to get the Radar SDK working on Nano so that work on signal processing can begin.
+
+
+- **Mathias Hagewood** Build Radar SDK from source for the Jetson Nano.
+
+
+- **Caleb Bucher** Looking into Digital filters for the microphones.
+
+
+- **Reese Gilbert** 
+
+
+- **Chris Bradley** Begin working to expand the localhost test environment to work peer-peer
