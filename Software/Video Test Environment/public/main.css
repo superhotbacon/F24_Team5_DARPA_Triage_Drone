@@ -1,0 +1,24 @@
+/* main.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  #videos {
+    display: flex;
+    justify-content: left;
+  }
+  
+  .video-player {
+    background-color: black;
+    width: 400px;
+    height: 300px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+  }
