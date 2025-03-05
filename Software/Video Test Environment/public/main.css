@@ -1,24 +1,30 @@
-/* main.css */
-
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-  }
-  
-  #videos {
-    display: flex;
-    justify-content: left;
-  }
-  
-  .video-player {
-    background-color: black;
-    width: 400px;
-    height: 300px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-  }
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  background-image: url('Tennessee_Technological_University_seal.svg.png'); /* Reference the uploaded file */
+  background-size: auto 30%; /* Adjust size, keeping width automatic and height 30% */
+  background-position: center bottom; /* Center horizontally, align at bottom */
+  background-repeat: no-repeat; /* Prevent tiling */
+}
+
+#videos {
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.video-player {
+  background-color: black;
+  width: 400px;
+  height: 300px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
