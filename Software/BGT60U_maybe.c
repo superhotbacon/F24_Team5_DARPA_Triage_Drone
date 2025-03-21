@@ -1,12 +1,21 @@
+#define _USE_MATH_DEFINES
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "ifxAvian/Avian.h"
 #include "ifxAlgo/FFT.h"
 #include "ifxFmcw/DeviceFmcw.h"
 #include "ifxFmcw/MetricsFmcw.h"
 #include "ifxFmcw/DeviceFmcwTypes.h"
+#include "ifxBase/Error.h"
+#include "ifxBase/Version.h"
+#include <unistd.h>
 
+
+// Define M_PI manually if it is still not recognized
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 #define NUM_RX_ANTENNAS 1
 #define FRAME_RATE 20.0
 #define NUMBER_OF_CHIRPS 1
@@ -23,17 +32,17 @@
 #define OBJECT_DIST_STOP 0.6
 #define VITAL_SIG_SAMPLE_RATE FRAME_RATE
 
-static double phase_buffer[PHASE_BUFFER_SIZE];
+static ifx_Float_t phase_buffer[PHASE_BUFFER_SIZE];
 static int phase_index = 0;
 
-double breathing_b[FILTER_ORDER] = {
+const ifx_Float_t breathing_b[FILTER_ORDER] = {
     0.0476, 0.0476, 0.0476, 0.0476, 0.0476,
     0.0476, 0.0476, 0.0476, 0.0476, 0.0476,
     0.0476, 0.0476, 0.0476, 0.0476, 0.0476,
     0.0476, 0.0476, 0.0476, 0.0476, 0.0476,
     0.0476
 };
-double heart_b[FILTER_ORDER] = {
+const ifx_Float_t heart_b[FILTER_ORDER] = {
     0.0476, 0.0476, 0.0476, 0.0476, 0.0476,
     0.0476, 0.0476, 0.0476, 0.0476, 0.0476,
     0.0476, 0.0476, 0.0476, 0.0476, 0.0476,
@@ -41,7 +50,7 @@ double heart_b[FILTER_ORDER] = {
     0.0476
 };
 
-void fir_filter(const double* b, int b_len, const double* input, int input_len, double* output) {
+void fir_filter(const ifx_Float_t* b, int b_len, const double* input, int input_len, double* output) {
     for (int n = 0; n < input_len; n++) {
         double acc = 0.0;
         for (int k = 0; k < b_len; k++) {
@@ -67,7 +76,7 @@ void unwrap_phase(double* phase, int len) {
     }
 }
 
-void process_vital_signs(const double* phase_buf, int len) {
+void process_vital_signs(const ifx_Float_t* phase_buf, int len) {
     int i;
     double unwrapped_phase[PHASE_BUFFER_SIZE];
     for (i = 0; i < len; i++) {
@@ -80,8 +89,8 @@ void process_vital_signs(const double* phase_buf, int len) {
     fir_filter(breathing_b, FILTER_ORDER, unwrapped_phase, len, filtered_breathing);
     fir_filter(heart_b, FILTER_ORDER, unwrapped_phase, len, filtered_heart);
     
-    double* bp_in = (double*)calloc(FFT_SIZE_VITAL, sizeof(double));
-    double* heart_in = (double*)calloc(FFT_SIZE_VITAL, sizeof(double));
+    float* bp_in = (float*)calloc(FFT_SIZE_VITAL, sizeof(double));
+    float* heart_in = (float*)calloc(FFT_SIZE_VITAL, sizeof(double));
     for (i = 0; i < len; i++) {
         bp_in[i] = filtered_breathing[i];
         heart_in[i] = filtered_heart[i];
@@ -100,8 +109,8 @@ void process_vital_signs(const double* phase_buf, int len) {
     double bp_max = 0.0, heart_max = 0.0;
     int fft_bins = FFT_SIZE_VITAL/2 + 1;
     for (i = 0; i < fft_bins; i++) {
-        double mag_bp = sqrt(bp_fft[i].re * bp_fft[i].re + bp_fft[i].im * bp_fft[i].im);
-        double mag_hr = sqrt(heart_fft[i].re * heart_fft[i].re + heart_fft[i].im * heart_fft[i].im);
+        double mag_bp = sqrt(bp_fft[i].data[0] * bp_fft[i].data[0] + bp_fft[i].data[1] * bp_fft[i].data[1]);
+        double mag_hr = sqrt(heart_fft[i].data[0] * heart_fft[i].data[0] + heart_fft[i].data[1] * heart_fft[i].data[1]);
         if (mag_bp > bp_max) {
             bp_max = mag_bp;
             bp_peak_index = i;
@@ -133,13 +142,13 @@ typedef struct {
     int dummy;
 } RadarDataProcessor;
 
-double* calc_range_fft(const RadarDataProcessor* processor, double*** frame, int dims) {
+double* calc_range_fft(const RadarDataProcessor* processor, ifx_Cube_R_t* frame) {
     double* range_fft_buffer = (double*)calloc(FFT_SIZE_RANGE_PROFILE/2, sizeof(double));
     return range_fft_buffer;
 }
 
-void process_frame(RadarDataProcessor* processor, double*** frame, int dims, double max_range) {
-    double* range_fft = calc_range_fft(processor, frame, dims);
+void process_frame(RadarDataProcessor* processor, ifx_Cube_R_t* frame, double max_range) {
+    double* range_fft = calc_range_fft(processor, frame);
     if (range_fft != NULL) {
         int start_index_range = (int)(OBJECT_DIST_START / max_range * (FFT_SIZE_RANGE_PROFILE/2));
         int stop_index_range  = (int)(OBJECT_DIST_STOP / max_range * (FFT_SIZE_RANGE_PROFILE/2));
@@ -169,9 +178,21 @@ void process_frame(RadarDataProcessor* processor, double*** frame, int dims, dou
 int main() {
     RadarDataProcessor radar_processor = {0};
 
+    // Create radar device instance
+    ifx_Avian_Device_t* device = ifx_avian_create();
+    if (device == NULL) {
+        fprintf(stderr, "Failed to create radar device: %s\n", ifx_error_to_string(ifx_error_get()));
+        return -1;
+    }
+
+    // Print SDK version and device information
+    printf("Radar SDK Version: %s\n", ifx_sdk_get_version_string_full());
+    printf("UUID of board: %s\n", ifx_avian_get_board_uuid(device));
+    printf("Sensor: %u\n", ifx_avian_get_sensor_type(device));
+
     // Create radar device configuration
     ifx_Avian_Config_t device_config;
-    ifx_avian_get_config_defaults(IFX_AVIAN_BGT60UTR11AIP, &device_config);
+    ifx_avian_get_config_defaults(device, &device_config);
 
     // Customize radar configuration parameters
     device_config.sample_rate_Hz = 4e6;
@@ -186,17 +207,15 @@ int main() {
     device_config.chirp_repetition_time_s = 0.001; // 1 ms chirp repetition time
     device_config.frame_repetition_time_s = 1.0 / FRAME_RATE; // Frame rate defined previously
 
-    // Create radar device instance with configured parameters
-    ifx_Avian_Device_t* device = ifx_avian_create(&device_config);
-    if (device == NULL) {
-        fprintf(stderr, "Radar initialization failed: %s\n", ifx_error_to_string(ifx_error_get()));
+    // Apply the configuration to the radar device
+    ifx_avian_set_config(device, &device_config);
+
+    // Check for errors after setting the configuration
+    if (ifx_error_get() != IFX_OK) {
+        fprintf(stderr, "Failed to configure radar device: %s\n", ifx_error_to_string(ifx_error_get()));
+        ifx_avian_destroy(device);
         return -1;
     }
-
-    // Print SDK version and device information
-    printf("Radar SDK Version: %s\n", ifx_sdk_get_version_string_full());
-    printf("UUID of board: %s\n", ifx_avian_get_board_uuid(device));
-    printf("Sensor: %s\n", ifx_avian_get_sensor_type(device));
 
     // Calculate range resolution and maximum range based on sensor configuration
     double chirp_bandwidth = device_config.end_frequency_Hz - device_config.start_frequency_Hz;
@@ -215,11 +234,8 @@ int main() {
             break; 
         }
 
-        // Dimensions array [num_rx_antennas, num_chirps, num_samples_per_chirp]
-        int dims[3] = { NUM_RX_ANTENNAS, NUMBER_OF_CHIRPS, SAMPLES_PER_CHIRP };
-
         // Process the acquired frame data
-        process_frame(&radar_processor, frame, dims, max_range);
+        process_frame(&radar_processor, frame, max_range);
 
         // Free the acquired frame after processing
         ifx_cube_destroy_r(frame);
