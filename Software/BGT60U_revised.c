@@ -32,7 +32,6 @@
 #define OBJECT_DIST_START 0.5
 #define OBJECT_DIST_STOP 0.6
 #define VITAL_SIG_SAMPLE_RATE FRAME_RATE
-#define FFT_SIZE_RANGE_PROFILE 128 // Example size (adjust as needed)
 
 static ifx_Float_t phase_buffer[PHASE_BUFFER_SIZE];
 static int phase_index = 0;
@@ -173,7 +172,8 @@ void calc_range_fft(const RadarDataProcessor* processor, ifx_Cube_R_t* frame, if
         for (int chirp = 0; chirp < num_chirps; chirp++) {
             // Get pointer to the data for this chirp. We assume frame->data[ant] 
             // is an array of pointers to sample arrays.
-            ifx_Float_t* chirp_data = frame->data[ant][chirp];
+            //ifx_Float_t* chirp_data = frame->data[ant][chirp];
+            ifx_Float_t* chirp_data = frame->data + (ant * num_chirps * num_samples) + (chirp * num_samples);
 
             // Remove DC offset: compute average of the chirp samples.
             double sum = 0.0;
@@ -258,7 +258,7 @@ void calc_range_fft(const RadarDataProcessor* processor, ifx_Cube_R_t* frame, if
 }
 
 void process_frame(RadarDataProcessor* processor, ifx_Cube_R_t* frame, double max_range) {
-    ifx_Complex_t* range_fft; 
+    ifx_Complex_t* range_fft = {0}; 
     calc_range_fft(processor, frame, range_fft);
     if (range_fft != NULL) {
         int start_index_range = (int)(OBJECT_DIST_START / max_range * (FFT_SIZE_RANGE_PROFILE/2));
@@ -266,17 +266,16 @@ void process_frame(RadarDataProcessor* processor, ifx_Cube_R_t* frame, double ma
         int range_bin = start_index_range;
         double max_val = 0.0;
         for (int i = start_index_range; i < stop_index_range; i++) {
-            double mag = fabs(range_fft[i]);
+            double mag = ifx_complex_abs(range_fft[i]);
             if (mag > max_val) {
                 max_val = mag;
                 range_bin = i;
             }
         }
         
-        double wrapped_phase = atan2(0.0, range_fft[range_bin]);
-        double unwrapped = wrapped_phase;
+        double wrapped_phase = atan2(IFX_COMPLEX_IMAG(range_fft[range_bin]), IFX_COMPLEX_REAL(range_fft[range_bin]));
         if (phase_index < PHASE_BUFFER_SIZE) {
-            phase_buffer[phase_index++] = unwrapped;
+            phase_buffer[phase_index++] = wrapped_phase;
         }
         if (phase_index >= PHASE_BUFFER_SIZE) {
             process_vital_signs(phase_buffer, PHASE_BUFFER_SIZE);
