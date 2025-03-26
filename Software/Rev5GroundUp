@@ -99,17 +99,11 @@ double max_range;
 
 void unwrap_phase(ifx_Float_t* phase, int len);
 void process_vital_signs(const ifx_Float_t* phase_buf, int len)
-void calc_range_fft(ifx_fft_t* phaseFFT, ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Complex_t* out);
+//void calc_range_fft(ifx_fft_t* phaseFFT, ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Complex_t* out);
 void calc_range_fft(ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Vector_R_t** fft_out) 
 
 
 int main() {
-
-    //ifx_Complex_t range_fft_arr[(int)SAMPLES_PER_CHIRP];
-    //ifx_Complex_t* range_fft = range_fft_arr;
-    ifx_Vector_R_t* = malloc(num_chirps_per_Frame * sizeof(ifx_Vector_C_t))
-	ifx_Vecctor_C_t** fft_out;
-
 
     // Create radar device instance
     ifx_Avian_Device_t* device = ifx_avian_create();
@@ -187,6 +181,13 @@ int main() {
         return -1;
     }
 
+    //create vector types to store output of the range fft
+    ifx_vec_create_c (uint32_t length)
+    ifx_Vector_C_t* vectorRangeArray[num_chirps_per_frame];
+    for(int i = 0; i < num_chrips_per_frame; i++){
+        vectorRangeArray[i] = ifx_vec_create_c(num_samples_per_chirp);
+    }
+    
     while (1) {
         // Acquire next frame from radar sensor
         frame = ifx_avian_get_next_frame(device, NULL);
@@ -196,7 +197,7 @@ int main() {
         }
 
         // Process the acquired frame data
-        process_frame(&radar_processor, frame, max_range);
+        process_frame(frame, max_range);
     }
     // Free the acquired frame after processing
     ifx_cube_destroy_r(frame);
@@ -382,14 +383,14 @@ void process_vital_signs(const ifx_Float_t* phase_buf, int len) {
     processNum++;
 }
 
-void process_frame(ifx_Cube_R_t* frame, double max_range) {
+void process_frame(ifx_Cube_R_t* frame, double max_range, ifx_Vector_C_t** fft_out,) {
     /*
     //ifx_Complex_t range_fft_arr[(int)SAMPLES_PER_CHIRP];
     //ifx_Complex_t* range_fft = range_fft_arr;
     ifx_Vector_R_t* = malloc(num_chirps_per_Frame * sizeof(ifx_Vector_C_t))
-	ifx_Vecctor_C_t** fft_out;
+	ifx_Vecctor_C_t** fft_out;*/
     calc_range_fft(rangeFFT, frame, fft_out);
-    */
+    
     for(int i = 0; i < num_chirps_per_frame; i++);
         if (range_fft != NULL) {
             /*
