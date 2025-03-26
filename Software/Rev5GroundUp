@@ -1,0 +1,297 @@
+#define _USE_MATH_DEFINES
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "ifxAvian/Avian.h"
+#include "ifxAlgo/FFT.h"
+#include "ifxFmcw/DeviceFmcw.h"
+#include "ifxFmcw/MetricsFmcw.h"
+#include "ifxFmcw/DeviceFmcwTypes.h"
+#include "ifxBase/Error.h"
+#include "ifxBase/Version.h"
+#include <unistd.h>
+#include "ifxBase/Complex.h"
+
+
+// Define M_PI manually if it is still not recognized
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+//////////////////////////Old
+#define FFT_SIZE_RANGE_PROFILE //
+#define PHASE_BUFFER_SIZE 256 //MUST BE POWER OF 2
+#define LOW_BREATHING 0.15
+#define HIGH_BREATHING 0.6
+#define LOW_HEART 0.85
+#define HIGH_HEART 2.4
+#define FILTER_ORDER 21
+
+/////////////////////////////////////New
+#define RANGE_RESOLUTION 0.0005
+#define MAX_RANGE_M 1.0
+#define MAX_SPEED_M_S 1.0
+#define SPEED_RESOLUTION_M_S 0.001
+#define CENTER_FREQUENCY 0.0 //0 sets middle of bandwitdth of radar
+#define C 299792458.0
+
+
+
+
+const ifx_Float_t breathing_b[FILTER_ORDER] = {
+    0.007313837127168415, 
+    0.009386036920457386, 
+    0.01538868930614381, 
+    0.02474755515295232, 
+    0.036554722423133006, 
+    0.04965777770448871, 
+    0.06277345990028897, 
+    0.07461451916940258, 
+    0.08401716469240755, 
+    0.09005640738673612, 
+    0.09213779788313568, 
+    0.09005640738673612, 
+    0.08401716469240755, 
+    0.07461451916940258, 
+    0.06277345990028897, 
+    0.04965777770448871, 
+    0.036554722423133006, 
+    0.02474755515295232, 
+    0.01538868930614381, 
+    0.009386036920457386, 
+    0.007313837127168415,
+};
+
+const ifx_Float_t heart_b[FILTER_ORDER] = {
+    0.006640638910216269, 
+    0.008758057930780494, 
+    0.014708206397157428, 
+    0.024152371131549114, 
+    0.03631880147898397, 
+    0.05008085188252181, 
+    0.06408095781326595, 
+    0.07688568069269515, 
+    0.08715286038261551, 
+    0.09379013987956314, 
+    0.09608502796167993, 
+    0.09379013987956314, 
+    0.08715286038261551, 
+    0.07688568069269515, 
+    0.06408095781326595, 
+    0.05008085188252181, 
+    0.03631880147898397, 
+    0.024152371131549114, 
+    0.014708206397157428, 
+    0.008758057930780494, 
+    0.006640638910216269, 
+};
+static ifx_Float_t phase_buffer[PHASE_BUFFER_SIZE];
+static int phase_index = 0;
+
+int num_samples_per_chirp, num_chirps_per_frame, sample_rate_Hz, start_frequency_Hz, end_frequency_Hz, chirp_repitition_time, frame_repitition_time; 
+float frame_rate, chirp_rate;
+
+// Calculate range resolution and maximum range based on sensor configuration
+double chirp_bandwidth;
+double range_res;
+double slope_chirp;
+double max_range;
+
+void unwrap_phase(ifx_Float_t* phase, int len);
+void calc_range_fft(ifx_fft_t* phaseFFT, ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Complex_t* out);
+
+int main() {
+
+    // Create radar device instance
+    ifx_Avian_Device_t* device = ifx_avian_create();
+    if (device == NULL) {
+        fprintf(stderr, "Failed to create radar device: %s\n", ifx_error_to_string(ifx_error_get()));
+        return -1;
+    }
+
+    // Print SDK version and device information
+    printf("Radar SDK Version: %s\n", ifx_sdk_get_version_string_full());
+    printf("UUID of board: %s\n", ifx_avian_get_board_uuid(device));
+    printf("Sensor: %u\n", ifx_avian_get_sensor_type(device));
+
+    // Create radar device configuration
+    ifx_Avian_Config_t device_config;
+    ifx_avian_get_config_defaults(device, &device_config);
+    if (ifx_error_get() != IFX_OK) {
+        fprintf(stderr, "Failed to get radar defaults: %s\n", ifx_error_to_string(ifx_error_get()));
+        ifx_avian_destroy(device);
+        return -1;
+    }
+    ifx_Avian_Metrics_t Metrics;
+    //set metrics
+    Metrics.range_resolution_m = RANGE_RESOLUTION;
+    Metrics.max_range_m = MAX_RANGE_M;
+    Metrics.max_speed_m_s = MAX_SPEED_M_S;
+    Metrics.speed_resolution_m_s = SPEED_RESOLUTION_M_S;
+    //turn metrics into a config
+    ifx_avian_metrics_to_config(device, &Metrics, true, &device_config); //"true" rounds to nearest power of 2
+    if (ifx_error_get() != IFX_OK) {
+        fprintf(stderr, "Failed to set metrics to config: %s\n", ifx_error_to_string(ifx_error_get()));
+        ifx_avian_destroy(device);
+        return -1;
+    }
+    // Apply the configuration to the radar device
+    ifx_avian_set_config(device, &device_config);
+    // Check for errors after setting the configuration
+    if (ifx_error_get() != IFX_OK) {
+        fprintf(stderr, "Failed to set device configuration: %s\n", ifx_error_to_string(ifx_error_get()));
+        ifx_avian_destroy(device);
+        return -1;
+    }
+    //put the paramters into some global variables
+    sample_rate_Hz = device_config.sample_rate_Hz;
+    start_frequency_Hz = device_config.start_frequency_Hz;
+    end_frequency_Hz = device_config.end_frequency_Hz;
+    num_samples_per_chirp = device_config.num_sample_per_chirp;
+    num_chirps_per_frame = device_config.num_chirps_per_frame;
+    chirp_repitition_time = device_config.chirp_repitition_time;
+    frame_repitition_time = device_config.frame_repitition_time;
+    frame_rate = 1.0/frame_repitition_time;
+    chirp_rate = 1.0/chirp_repitition_time;
+
+
+    // Calculate range resolution and maximum range based on sensor configuration
+    chirp_bandwidth = device_config.end_frequency_Hz - device_config.start_frequency_Hz; //validated
+    range_res = (C) / (2 * chirp_bandwidth);
+    printf("Range resolution: %.3f m\n", range_res);
+    slope_chirp = chirp_bandwidth / device_config.chirp_repitition_time;
+    max_range = (device_config.sample_rate_Hz * C) / (2 * slope_chirp); //from radar sdk
+
+/////////////////////Create FFT types
+    ifx_FFT_t* RangeFFT= ifx_fft_create(IFX_FFT_TYPE_R2C, num_samples_per_chirp); //MUST BE power of 2
+    ifx_FFT_t* PhaseFFT= ifx_fft_create(IFX_FFT_TYPE_R2C, PHASE_BUFFER_SIZE); //MUST BE POWER OF 2 FOR SIZE
+    if (ifx_error_get() != IFX_OK) {
+        fprintf(stderr, "Failed to make fft objects: %s\n", ifx_error_to_string(ifx_error_get()));
+        ifx_avian_destroy(device);
+        return -1;
+    }
+    printf("Maximum range: %.3f m\n", max_range);
+
+    ifx_Cube_R_t* frame = ifx_cube_create_r(NUM_RX_ANTENNAS, NUMBER_OF_CHIRPS, SAMPLES_PER_CHIRP);
+    if (frame == NULL) {
+        fprintf(stderr, "Failed to create frame structure.\n");
+        return -1;
+    }
+
+    while (1) {
+        // Acquire next frame from radar sensor
+        frame = ifx_avian_get_next_frame(device, NULL);
+        if (frame == NULL) {
+            fprintf(stderr, "Failed to acquire frame: %s\n", ifx_error_to_string(ifx_error_get()));
+            break; 
+        }
+
+        // Process the acquired frame data
+        process_frame(&radar_processor, frame, max_range);
+    }
+    // Free the acquired frame after processing
+    ifx_cube_destroy_r(frame);
+    // Clean up and release radar resources
+    ifx_avian_destroy(device);
+    return 0;
+}
+
+
+void unwrap_phase(ifx_Float_t* phase, int len) {
+    for (int i = 1; i < len; i++) {
+        ifx_Float_t dp = phase[i] - phase[i-1];
+        if (dp > M_PI) {
+            for (int j = i; j < len; j++) {
+                phase[j] -= 2 * M_PI;
+            }
+        } else if (dp < -M_PI) {
+            for (int j = i; j < len; j++) {
+                phase[j] += 2 * M_PI;
+            }
+        }
+    }
+}
+
+
+void calc_range_fft(ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Vector_R_t* fft_out) {
+
+
+/*
+    Global variable reference
+    sample_rate_Hz = device_config.sample_rate_Hz;
+    start_frequency_Hz = device_config.start_frequency_Hz;
+    end_frequency_Hz = device_config.end_frequency_Hz;
+    num_samples_per_chirp = device_config.num_sample_per_chirp;
+    num_chirps_per_frame = device_config.num_chirps_per_frame;
+    chirp_repitition_time = device_config.chirp_repitition_time;
+    frame_repitition_time = device_config.frame_repitition_time;
+    frame_rate = 1.0/frame_repitition_time;
+    chirp_rate = 1.0/chirp_repitition_time;
+*/
+
+//int num_chirps = NUMBER_OF_CHIRPS; //frame->dims[1];
+int num_samples = sampes_per_chirp; //frame->dims[2];
+int fft_len = num_samples_per_chirp;
+int out_len = fft_len / 2;      // Only first half (excluding DC symmetries)
+ifx_Matrix_R_t matrix;
+//matrix.dimensions = 2; try without this first
+ifx_Matrix_R_t* matrix_ptr = &matrix;
+// For each chirp of this antenna:
+ifx_Vector_R_t = vec;
+ifx_Vector_R_t* = &vect;
+
+// Initialize output buffer to zeros. Do we need this?
+for (int bin = 0; bin < out_len; bin++) {
+    out[bin].data[0] = 0.0;
+    out[bin].data[1] = 0.0;
+}      
+  
+    //vector and matrix resolve to the same back end deftype. Dont know why infineon did it this way tbh. Kinda goofy ahh
+    for (int chirp = 0; chirp < num_chirps_per_frame; chirp++) {
+        // Get pointer to the data for this chirp. We assume frame->data[ant] 
+        // is an array of pointers to sample arrays.
+        //ifx_Float_t* chirp_data = frame->data[ant][chirp];
+        //ifx_Float_t* chirp_data = frame->data + (chirp * num_samples + );
+        //get current chirp
+        ifx_cube_get_slice_r(frame, chirp, matrix_ptr);
+
+        // Remove DC offset: compute average of the chirp samples.
+        double sum = 0.0;
+        int s;
+        for (s = 0; s < num_samples; s++) {
+            sum += IFX_MAT_AT(matrix_ptr, s, 0)//macro to get the element
+        }
+        double avg = sum / num_samples;
+
+        //subtract dc offset
+        for(s = 0; s < num_samples, s++){
+            IFX_MAT_AT(matrix_ptr, s, 0) = IFX_MAT_AT(matrix_ptr, s, 0) - avg;
+        }
+
+        // Also apply Blackman–Harris window; compute window coefficients.
+        // The Blackman–Harris window coefficients (for example) are:
+        // w[n] = 0.35875 - 0.48829*cos(2*pi*n/(N-1)) + 0.14128*cos(4*pi*n/(N-1)) - 0.01168*cos(6*pi*n/(N-1))
+        /*lets look into windowing
+        for (s = 0; s < num_samples; s++) {
+            double window = 0.35875
+                            - 0.48829 * cos((2 * M_PI * s) / (num_samples - 1))
+                            + 0.14128 * cos((4 * M_PI * s) / (num_samples - 1))
+                            - 0.01168 * cos((6 * M_PI * s) / (num_samples - 1));
+            signal[s] = (chirp_data[s] - avg) * window;
+        }
+        // Zero-pad the rest of the signal buffer.
+        for (s = num_samples; s < fft_len; s++) {
+            signal[s] = 0.0;
+        }
+            */
+        // Compute FFT for this chirp.
+        //WARNING: this should work with the matrix type. If not try putting in the vect?
+        ifx_fft_raw_rc(fft_inst, matrix, fft_out);
+        // Scale the FFT output: divide by num_samples and multiply results by 2.
+        // (Note: In the Python code, FFT result is divided by num_samples and multiplied by 2.)
+        for (int bin = 0; bin < out_len; bin++) {
+            fft_out[bin].data[0] = fft_out[bin].data[0] / num_samples * 2.0;
+            fft_out[bin].data[1] = fft_out[bin].data[1] / num_samples * 2.0;
+        }
+    } // End of chirp loop
+ 
+}
