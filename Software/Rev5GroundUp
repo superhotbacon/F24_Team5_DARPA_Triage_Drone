@@ -105,6 +105,12 @@ void calc_range_fft(ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Vector_R_t** f
 
 int main() {
 
+    //ifx_Complex_t range_fft_arr[(int)SAMPLES_PER_CHIRP];
+    //ifx_Complex_t* range_fft = range_fft_arr;
+    ifx_Vector_R_t* = malloc(num_chirps_per_Frame * sizeof(ifx_Vector_C_t))
+	ifx_Vecctor_C_t** fft_out;
+
+
     // Create radar device instance
     ifx_Avian_Device_t* device = ifx_avian_create();
     if (device == NULL) {
@@ -377,10 +383,13 @@ void process_vital_signs(const ifx_Float_t* phase_buf, int len) {
 }
 
 void process_frame(ifx_Cube_R_t* frame, double max_range) {
-    ifx_Complex_t range_fft_arr[(int)SAMPLES_PER_CHIRP];
-    ifx_Complex_t* range_fft = range_fft_arr;
+    /*
+    //ifx_Complex_t range_fft_arr[(int)SAMPLES_PER_CHIRP];
+    //ifx_Complex_t* range_fft = range_fft_arr;
+    ifx_Vector_R_t* = malloc(num_chirps_per_Frame * sizeof(ifx_Vector_C_t))
 	ifx_Vecctor_C_t** fft_out;
     calc_range_fft(rangeFFT, frame, fft_out);
+    */
     for(int i = 0; i < num_chirps_per_frame; i++);
         if (range_fft != NULL) {
             /*
