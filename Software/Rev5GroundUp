@@ -33,6 +33,7 @@
 #define SPEED_RESOLUTION_M_S 0.001
 #define CENTER_FREQUENCY 0.0 //0 sets middle of bandwitdth of radar
 #define C 299792458.0
+#define OVERFLOW_BUF_SIZE 256
 
 
 
@@ -97,7 +98,10 @@ double slope_chirp;
 double max_range;
 
 void unwrap_phase(ifx_Float_t* phase, int len);
+void process_vital_signs(const ifx_Float_t* phase_buf, int len)
 void calc_range_fft(ifx_fft_t* phaseFFT, ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Complex_t* out);
+void calc_range_fft(ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Vector_R_t** fft_out) 
+
 
 int main() {
 
@@ -212,86 +216,200 @@ void unwrap_phase(ifx_Float_t* phase, int len) {
 }
 
 
-void calc_range_fft(ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Vector_R_t** fft_out) {
+void calc_range_fft(ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Vector_C_t** fft_out) {
 
-///fft_out needs to be a pointer to an array of ifx_vector*s
-/*
-    Global variable reference
-    sample_rate_Hz = device_config.sample_rate_Hz;
-    start_frequency_Hz = device_config.start_frequency_Hz;
-    end_frequency_Hz = device_config.end_frequency_Hz;
-    num_samples_per_chirp = device_config.num_sample_per_chirp;
-    num_chirps_per_frame = device_config.num_chirps_per_frame;
-    chirp_repitition_time = device_config.chirp_repitition_time;
-    frame_repitition_time = device_config.frame_repitition_time;
-    frame_rate = 1.0/frame_repitition_time;
-    chirp_rate = 1.0/chirp_repitition_time;
-*/
+    ///fft_out needs to be a pointer to an array of ifx_vector*s
+    /*
+        Global variable reference
+        sample_rate_Hz = device_config.sample_rate_Hz;
+        start_frequency_Hz = device_config.start_frequency_Hz;
+        end_frequency_Hz = device_config.end_frequency_Hz;
+        num_samples_per_chirp = device_config.num_sample_per_chirp;
+        num_chirps_per_frame = device_config.num_chirps_per_frame;
+        chirp_repitition_time = device_config.chirp_repitition_time;
+        frame_repitition_time = device_config.frame_repitition_time;
+        frame_rate = 1.0/frame_repitition_time;
+        chirp_rate = 1.0/chirp_repitition_time;
+    */
 
-//int num_chirps = NUMBER_OF_CHIRPS; //frame->dims[1];
-int num_samples = sampes_per_chirp; //frame->dims[2];
-int fft_len = num_samples_per_chirp;
-int out_len = fft_len / 2;      // Only first half (excluding DC symmetries)
-ifx_Matrix_R_t matrix;
-//matrix.dimensions = 2; try without this first
-ifx_Matrix_R_t* matrix_ptr = &matrix;
-// For each chirp of this antenna:
-ifx_Vector_R_t = vec;
-ifx_Vector_R_t* = &vect;
+    //int num_chirps = NUMBER_OF_CHIRPS; //frame->dims[1];
+    int num_samples = sampes_per_chirp; //frame->dims[2];
+    int fft_len = num_samples_per_chirp;
+    int out_len = fft_len / 2;      // Only first half (excluding DC symmetries)
+    ifx_Matrix_R_t matrix;
+    //matrix.dimensions = 2; try without this first
+    ifx_Matrix_R_t* matrix_ptr = &matrix;
+    // For each chirp of this antenna:
+    ifx_Vector_C_t = vec;
+    ifx_Vector_C_t* = &vect;
 
-// Initialize output buffer to zeros. Do we need this?
-for (int bin = 0; bin < out_len; bin++) {
-    out[bin].data[0] = 0.0;
-    out[bin].data[1] = 0.0;
-}      
+    // Initialize output buffer to zeros. Do we need this?
+    for (int bin = 0; bin < out_len; bin++) {
+        out[bin].data[0] = 0.0;
+        out[bin].data[1] = 0.0;
+    }      
+    
+        //vector and matrix resolve to the same back end deftype. Dont know why infineon did it this way tbh. Kinda goofy ahh
+        for (int chirp = 0; chirp < num_chirps_per_frame; chirp++) {
+            // Get pointer to the data for this chirp. We assume frame->data[ant] 
+            // is an array of pointers to sample arrays.
+            //ifx_Float_t* chirp_data = frame->data[ant][chirp];
+            //ifx_Float_t* chirp_data = frame->data + (chirp * num_samples + );
+            //get current chirp
+            ifx_cube_get_slice_r(frame, chirp, matrix_ptr);
+
+            // Remove DC offset: compute average of the chirp samples.
+            double sum = 0.0;
+            int s;
+            for (s = 0; s < num_samples; s++) {
+                sum += IFX_MAT_AT(matrix_ptr, s, 0)//macro to get the element
+            }
+            double avg = sum / num_samples;
+
+            //subtract dc offset
+            for(s = 0; s < num_samples, s++){
+                IFX_MAT_AT(matrix_ptr, s, 0) = IFX_MAT_AT(matrix_ptr, s, 0) - avg;
+            }
+
+            // Also apply Blackman–Harris window; compute window coefficients.
+            // The Blackman–Harris window coefficients (for example) are:
+            // w[n] = 0.35875 - 0.48829*cos(2*pi*n/(N-1)) + 0.14128*cos(4*pi*n/(N-1)) - 0.01168*cos(6*pi*n/(N-1))
+            /*lets look into windowing
+            for (s = 0; s < num_samples; s++) {
+                double window = 0.35875
+                                - 0.48829 * cos((2 * M_PI * s) / (num_samples - 1))
+                                + 0.14128 * cos((4 * M_PI * s) / (num_samples - 1))
+                                - 0.01168 * cos((6 * M_PI * s) / (num_samples - 1));
+                signal[s] = (chirp_data[s] - avg) * window;
+            }
+            // Zero-pad the rest of the signal buffer.
+            for (s = num_samples; s < fft_len; s++) {
+                signal[s] = 0.0;
+            }
+                */
+            // Compute FFT for this chirp.
+            //WARNING: this should work with the matrix type. If not try putting in the vect?
+            ifx_fft_run_rc(fft_inst, matrix, fft_out[chirp]);
+            // Scale the FFT output: divide by num_samples and multiply results by 2.
+            // (Note: In the Python code, FFT result is divided by num_samples and multiplied by 2.)
+            for (int bin = 0; bin < out_len; bin++) {
+                fft_out[chirp][bin].data[0] = fft_out[chirp][bin].data[0] / num_samples * 2.0;
+                fft_out[chirp][bin].data[1] = fft_out[chirp][bin].data[1] / num_samples * 2.0;
+            }
+        } // End of chirp loop
+    
+}
+
+
+void process_vital_signs(const ifx_Float_t* phase_buf, int len) {
+    int i;
+    static int processNum = 0;
+    ifx_Float_t unwrapped_phase[PHASE_BUFFER_SIZE];
+    for (i = 0; i < len; i++) {
+        unwrapped_phase[i] = phase_buf[i];
+    }
+    unwrap_phase(unwrapped_phase, len);
+    
+	 for(i = 0; i < len; i++){
+		printf("Phase: %f, ", (float)phase_buf[i]);
+	 }    
+    
+    
+    ifx_Float_t filtered_breathing[PHASE_BUFFER_SIZE] = {0};
+    ifx_Float_t filtered_heart[PHASE_BUFFER_SIZE] = {0};
+    //fir_filter(breathing_b, FILTER_ORDER, unwrapped_phase, len, filtered_breathing); REPLACE WITH INFINEON FIR FUNCTIONS
+    //fir_filter(heart_b, FILTER_ORDER, unwrapped_phase, len, filtered_heart);
+    
+    ifx_Float_t* bp_in = (ifx_Float_t*)calloc(FFT_SIZE_VITAL, sizeof(ifx_Float_t));
+    ifx_Float_t* heart_in = (ifx_Float_t*)calloc(FFT_SIZE_VITAL, sizeof(ifx_Float_t));
+
+    for (i = 0; i < len; i++) {
+        bp_in[i] = filtered_breathing[i];
+        heart_in[i] = filtered_heart[i];
+    }
+    
+    ifx_Complex_t* bp_fft = (ifx_Complex_t*)malloc(sizeof(ifx_Complex_t) * (FFT_SIZE_VITAL/2 + 1));
+    ifx_Complex_t* heart_fft = (ifx_Complex_t*)malloc(sizeof(ifx_Complex_t) * (FFT_SIZE_VITAL/2 + 1));
   
-    //vector and matrix resolve to the same back end deftype. Dont know why infineon did it this way tbh. Kinda goofy ahh
-    for (int chirp = 0; chirp < num_chirps_per_frame; chirp++) {
-        // Get pointer to the data for this chirp. We assume frame->data[ant] 
-        // is an array of pointers to sample arrays.
-        //ifx_Float_t* chirp_data = frame->data[ant][chirp];
-        //ifx_Float_t* chirp_data = frame->data + (chirp * num_samples + );
-        //get current chirp
-        ifx_cube_get_slice_r(frame, chirp, matrix_ptr);
+    ifx_FFT_t* bp_inst = ifx_fft_create(IFX_FFT_TYPE_R2C, FFT_SIZE_VITAL);
+    ifx_FFT_t* heart_inst = ifx_fft_create(IFX_FFT_TYPE_R2C, FFT_SIZE_VITAL);
+    //printf("HERE FISHY FISHY (SEG FAULT FINDER V)\n");
+    
+    //These two lines seg fault. I think its because the FFT isnt being created. Because its not a power of two
+    ifx_fft_raw_rc(bp_inst, bp_in, bp_fft);
+    ifx_fft_raw_rc(heart_inst, heart_in, heart_fft);
+    /////////////
+    int bp_peak_index = 0, heart_peak_index = 0;
+    ifx_Float_t bp_max = 0.0, heart_max = 0.0;
+    int fft_bins = FFT_SIZE_VITAL/2 + 1;
+   //////// printf("HERE FISHY FISHY (SEG FAULT FINDER V)\n");
+    for (i = 0; i < fft_bins; i++) {
+        ifx_Float_t mag_bp = sqrt(IFX_COMPLEX_REAL(bp_fft[i]) * IFX_COMPLEX_REAL(bp_fft[i]) +
+                             IFX_COMPLEX_IMAG(bp_fft[i]) * IFX_COMPLEX_IMAG(bp_fft[i]));
+        ifx_Float_t mag_hr = sqrt(IFX_COMPLEX_REAL(heart_fft[i]) * IFX_COMPLEX_REAL(heart_fft[i]) +
+                             IFX_COMPLEX_IMAG(heart_fft[i]) * IFX_COMPLEX_IMAG(heart_fft[i]));
+        if (mag_bp > bp_max) {
+            bp_max = mag_bp;
+            bp_peak_index = i;
+        }
+        if (mag_hr > heart_max) {
+            heart_max = mag_hr;
+            heart_peak_index = i;
+        }
+    }
+    
+    double freq_resolution = VITAL_SIG_SAMPLE_RATE / (double)FFT_SIZE_VITAL;
+    double breathing_rate_hz = bp_peak_index * freq_resolution;
+    double heart_rate_hz = heart_peak_index * freq_resolution;
+    double breathing_rate_bpm = breathing_rate_hz * 60.0;
+    double heart_rate_bpm = heart_rate_hz * 60.0;
+    printf("PROCESS VITALS ITERATION: %d ", processNum);
+    printf("Estimated Breathing Rate: %.2f bpm\n", breathing_rate_bpm);
+    printf("Estimated Heart Rate: %.2f bpm\n", heart_rate_bpm);
+    
+    ifx_fft_destroy(bp_inst);
+    ifx_fft_destroy(heart_inst);
+    free(bp_fft);
+    free(heart_fft);
+    free(bp_in);
+    free(heart_in);
+    processNum++;
+}
 
-        // Remove DC offset: compute average of the chirp samples.
-        double sum = 0.0;
-        int s;
-        for (s = 0; s < num_samples; s++) {
-            sum += IFX_MAT_AT(matrix_ptr, s, 0)//macro to get the element
-        }
-        double avg = sum / num_samples;
-
-        //subtract dc offset
-        for(s = 0; s < num_samples, s++){
-            IFX_MAT_AT(matrix_ptr, s, 0) = IFX_MAT_AT(matrix_ptr, s, 0) - avg;
-        }
-
-        // Also apply Blackman–Harris window; compute window coefficients.
-        // The Blackman–Harris window coefficients (for example) are:
-        // w[n] = 0.35875 - 0.48829*cos(2*pi*n/(N-1)) + 0.14128*cos(4*pi*n/(N-1)) - 0.01168*cos(6*pi*n/(N-1))
-        /*lets look into windowing
-        for (s = 0; s < num_samples; s++) {
-            double window = 0.35875
-                            - 0.48829 * cos((2 * M_PI * s) / (num_samples - 1))
-                            + 0.14128 * cos((4 * M_PI * s) / (num_samples - 1))
-                            - 0.01168 * cos((6 * M_PI * s) / (num_samples - 1));
-            signal[s] = (chirp_data[s] - avg) * window;
-        }
-        // Zero-pad the rest of the signal buffer.
-        for (s = num_samples; s < fft_len; s++) {
-            signal[s] = 0.0;
-        }
+void process_frame(ifx_Cube_R_t* frame, double max_range) {
+    ifx_Complex_t range_fft_arr[(int)SAMPLES_PER_CHIRP];
+    ifx_Complex_t* range_fft = range_fft_arr;
+	ifx_Vecctor_C_t** fft_out;
+    calc_range_fft(rangeFFT, frame, fft_out);
+    for(int i = 0; i < num_chirps_per_frame; i++);
+        if (range_fft != NULL) {
+            /*
+            int start_index_range = (int)(OBJECT_DIST_START / max_range * (FFT_SIZE_RANGE_PROFILE/2));
+            int stop_index_range  = (int)(OBJECT_DIST_STOP / max_range * (FFT_SIZE_RANGE_PROFILE/2));
+            int range_bin = start_index_range;
+            double max_val = 0.0;
             */
-        // Compute FFT for this chirp.
-        //WARNING: this should work with the matrix type. If not try putting in the vect?
-        ifx_fft_run_rc(fft_inst, matrix, fft_out[chirp]);
-        // Scale the FFT output: divide by num_samples and multiply results by 2.
-        // (Note: In the Python code, FFT result is divided by num_samples and multiplied by 2.)
-        for (int bin = 0; bin < out_len; bin++) {
-            fft_out[chirp][bin].data[0] = fft_out[chirp][bin].data[0] / num_samples * 2.0;
-            fft_out[chirp][bin].data[1] = fft_out[chirp][bin].data[1] / num_samples * 2.0;
+            for (int i = 0; i < num_samples_per_chirp; i++) {
+                double mag = ifx_complex_abs(range_fft[i]);
+                if (mag > max_val) {
+                    max_val = mag;
+                    range_bin = i;
+                }
+            }
+                printf("rangeBin: %d", range_bin); 
+                printf("\nstartIndex:%d, endindex:%d\n", start_index_range, stop_index_range);       
+            
+            ifx_Float_t wrapped_phase = atan2(IFX_COMPLEX_IMAG(range_fft[range_bin]), IFX_COMPLEX_REAL(range_fft[range_bin]));
+            printf("imag:%f , real: %f \n",IFX_COMPLEX_IMAG(range_fft[range_bin]), IFX_COMPLEX_REAL(range_fft[range_bin]));
+            if (phase_index < PHASE_BUFFER_SIZE) {
+                phase_buffer[phase_index++] = wrapped_phase;
+            }
+            if (phase_index >= PHASE_BUFFER_SIZE) { 
+                //printf("wheres my segfault VONE MILLION-------------------\n");
+                process_vital_signs(phase_buffer, PHASE_BUFFER_SIZE);
+                phase_index = 0;
+            }
+            //free(range_fft);//Seg fauling Not dynamically allocated, doesnt need to be freed.
         }
-    } // End of chirp loop
- 
+    
 }
