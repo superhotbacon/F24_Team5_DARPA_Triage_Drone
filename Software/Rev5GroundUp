@@ -212,9 +212,9 @@ void unwrap_phase(ifx_Float_t* phase, int len) {
 }
 
 
-void calc_range_fft(ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Vector_R_t* fft_out) {
+void calc_range_fft(ifx_fft_t* rangeFFT, ifx_Cube_R_t* frame, ifx_Vector_R_t** fft_out) {
 
-
+///fft_out needs to be a pointer to an array of ifx_vector*s
 /*
     Global variable reference
     sample_rate_Hz = device_config.sample_rate_Hz;
@@ -285,12 +285,12 @@ for (int bin = 0; bin < out_len; bin++) {
             */
         // Compute FFT for this chirp.
         //WARNING: this should work with the matrix type. If not try putting in the vect?
-        ifx_fft_raw_rc(fft_inst, matrix, fft_out);
+        ifx_fft_run_rc(fft_inst, matrix, fft_out[chirp]);
         // Scale the FFT output: divide by num_samples and multiply results by 2.
         // (Note: In the Python code, FFT result is divided by num_samples and multiplied by 2.)
         for (int bin = 0; bin < out_len; bin++) {
-            fft_out[bin].data[0] = fft_out[bin].data[0] / num_samples * 2.0;
-            fft_out[bin].data[1] = fft_out[bin].data[1] / num_samples * 2.0;
+            fft_out[chirp][bin].data[0] = fft_out[chirp][bin].data[0] / num_samples * 2.0;
+            fft_out[chirp][bin].data[1] = fft_out[chirp][bin].data[1] / num_samples * 2.0;
         }
     } // End of chirp loop
  
