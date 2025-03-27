@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "ifxAvian/Avian.h"
 #include "ifxAlgo/FFT.h"
+#include "ifxAlgo/Window.h"
 #include "ifxFmcw/DeviceFmcw.h"
 #include "ifxFmcw/MetricsFmcw.h"
 #include "ifxFmcw/DeviceFmcwTypes.h"
@@ -11,6 +12,7 @@
 #include <unistd.h>
 #include "ifxBase/Complex.h"
 #include "pthread.h"
+#include "ifxAlgo/PreprocessedFFT.h"
 
 #define NUM_RX_ANTENNAS 1
 #define FRAME_RATE 20.0
@@ -93,7 +95,6 @@ typedef struct {
 void* read_data_thread(void* arg) {
     ThreadArgs* holder = (ThreadArgs*) arg;
     ifx_Fmcw_Frame_t* frame = ifx_fmcw_allocate_frame(holder->device);
-    //ifx_Mda_R_t** slice;
 
     while(1){
         ifx_fmcw_get_next_frame(holder->device, frame);
@@ -102,28 +103,119 @@ void* read_data_thread(void* arg) {
             break; 
         }
 
-        //slice = (ifx_Mda_R_t**)calloc(frame->num_cubes, sizeof(ifx_Mda_R_t*));
         
         for(uint32_t i = 0; i < frame->num_cubes; i++){
-            //slice[i] = frame->cubes[i];
-            //enqueue(&queue, slice[i]);
             enqueue(&queue, frame->cubes[i]);
         }
     }
-    //free(slice);
     ifx_fmcw_destroy_frame(frame);
     return NULL;
 }
 
+/*size_t compute_offset(const ifx_Mda_R_t* array, const uint32_t* indices)
+{
+    size_t offset = 0;
+    for (uint32_t i = 0; i < array->dimensions; ++i) {
+        offset += indices[i] * array->stride[i];  // Compute offset using stride
+    }
+    return offset;
+}
+
+// Function to multiply frame by window coefficients
+void apply_window_to_frame(ifx_Mda_R_t* frame, ifx_Mda_R_t* window)
+{
+    // Check that the dimensions and shape match
+    if (frame->dimensions != window->dimensions) {
+        printf("Error with Windowing");
+        return;
+    }
+
+    for (uint32_t i = 0; i < frame->dimensions; ++i) {
+        if (frame->shape[i] != window->shape[i]) {
+            printf("Error with Windowing");
+            return;
+        }
+    }
+
+    // Number of elements in the frame (assuming multi-dimensional arrays)
+    uint32_t num_elements = 1;
+    for (uint32_t i = 0; i < frame->dimensions; ++i) {
+        num_elements *= frame->shape[i];
+    }
+
+    // Temporary array to hold the indices for accessing frame and window elements
+    uint32_t* indices = (uint32_t*)malloc(frame->dimensions * sizeof(uint32_t));
+
+    // Multiply the data element by element, using stride-based indexing
+    for (uint32_t i = 0; i < num_elements; ++i) {
+        // Compute multi-dimensional indices for the current element
+        uint32_t temp_i = i;
+        for (uint32_t d = 0; d < frame->dimensions; ++d) {
+            indices[d] = temp_i % frame->shape[d];  // Get index for dimension d
+            temp_i /= frame->shape[d];  // Move to the next "layer"
+        }
+
+        // Compute the offset for frame and window data
+        size_t frame_offset = compute_offset(frame, indices);
+        size_t window_offset = compute_offset(window, indices);
+
+        // Multiply the frame's data by the corresponding window coefficient
+        frame->data[frame_offset] *= window->data[window_offset];
+    }
+
+    // Clean up
+    free(indices);
+}*/
+
+void calc_range_fft(ifx_Vector_C_t* range_fft){
+
+    ifx_Window_Config_t wnd;
+    wnd.type = IFX_WINDOW_BLACKMANHARRIS;
+    wnd.size = FFT_SIZE_RANGE_PROFILE;
+    wnd.scale = 1;
+
+    ifx_PPFFT_Config_t fft_config;
+    fft_config.fft_size = FFT_SIZE_RANGE_PROFILE;
+    fft_config.fft_type = IFX_FFT_TYPE_R2C;
+    fft_config.is_normalized_window = false;
+    fft_config.mean_removal_enabled = false;
+    fft_config.window_config = wnd;
+    
+    ifx_PPFFT_t* fft_tool = ifx_ppfft_create(&fft_config);
+    
+
+    if(!is_empty(&queue)){
+
+        ifx_Mda_R_t *frame = dequeue(&queue);
+
+        //ifx_window_init(&wnd, &coeff);
+        //apply_window_to_frame(frame, &coeff);
+        ifx_ppfft_run_rc(fft_tool, frame, range_fft);
+
+        if (ifx_error_get() != IFX_OK) {
+            fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
+            ifx_ppfft_destroy(fft_tool);
+            return;
+        }            
+    }
+
+    ifx_ppfft_destroy(fft_tool);
+}
+
 // Function to simulate processing radar data
 void* process_data_thread(void* arg) {
+
+    ifx_Vector_C_t* range_fft = (ifx_Vector_C_t*)malloc(sizeof(ifx_Vector_C_t));
+
     while(1){
         if(!is_empty(&queue)){
 
-            ifx_Mda_R_t* temp = dequeue(&queue);
-            printf("Here is a frame: %f\n", temp->data[1]);
+            calc_range_fft(range_fft);
+            printf("Here is the fft data: %f\n", range_fft->data->data[0]);
         }
     }
+
+    free(range_fft);
     return NULL;
 }
 
@@ -136,14 +228,14 @@ int main(){
     pthread_t data_thread, process_thread;
     ifx_Device_Fmcw_t* device = ifx_fmcw_create();
     
-    if ((device = NULL) != IFX_OK){
+    if ((device == NULL) != IFX_OK){
         fprintf(stderr, "Failed to open device: %s\n", ifx_error_to_string(ifx_error_get()));
         return -1;
     }
 
     printf("Radar SDK Version: %s\n", ifx_sdk_get_version_string_full());
-    printf("UUID of board: %s\n", ifx_avian_get_board_uuid(device));
-    printf("Sensor: %u\n", ifx_avian_get_sensor_type(device));
+    printf("UUID of board: %s\n", ifx_fmcw_get_board_uuid(device));
+    printf("Sensor: %u\n", ifx_fmcw_get_sensor_type(device));
 
     ifx_Fmcw_Simple_Sequence_Config_t single_chirp;
     single_chirp.num_chirps = NUMBER_OF_CHIRPS;
