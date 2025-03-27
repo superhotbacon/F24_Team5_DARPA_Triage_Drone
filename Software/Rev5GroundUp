@@ -136,7 +136,7 @@ int main() {
     Metrics.max_speed_m_s = MAX_SPEED_M_S;
     Metrics.speed_resolution_m_s = SPEED_RESOLUTION_M_S;
     //turn metrics into a config
-    ifx_avian_metrics_to_config(device, &Metrics, true, &device_config); //"true" rounds to nearest power of 2
+   /* ifx_avian_metrics_to_config(device, &Metrics, true, &device_config); //"true" rounds to nearest power of 2
     if (ifx_error_get() != IFX_OK) {
         fprintf(stderr, "Failed to set metrics to config: %s\n", ifx_error_to_string(ifx_error_get()));
         ifx_avian_destroy(device);
@@ -150,6 +150,7 @@ int main() {
         ifx_avian_destroy(device);
         return -1;
     }
+    */
     //put the paramters into some global variables
     sample_rate_Hz = device_config.sample_rate_Hz;
     start_frequency_Hz = device_config.start_frequency_Hz;
@@ -411,30 +412,33 @@ void process_frame(ifx_Cube_R_t* frame, double max_range, ifx_Vector_C_t** vecto
     //ifx_Complex_t* range_fft = range_fft_arr;
     ifx_Vector_R_t* = malloc(num_chirps_per_Frame * sizeof(ifx_Vector_C_t))
 	ifx_Vecctor_C_t** fft_out;*/
-    static phase_index;
-    calc_range_fft(Range_FFT, frame, vectorRangeArray);
+    static int phase_index;
+    calc_range_fft(RangeFFT, frame, vectorRangeArray);
     ifx_Float_t max_val;
     uint32_t range_bin;
-    for(int i = 0; i < num_chirps_per_frame; i++);
-        if (Range_FFT != NULL) {
+    int i;
+    for(i = 0; i < num_chirps_per_frame; i++){
+        if (RangeFFT != NULL) {
             //find max val and max val index
-            max_val = ifx_vec_maxabs_r(vectorRangeArray[i])
-            range_bin = ifx_vec_max_idx_r(vectorRangeArray[i])
+            max_val = ifx_vec_maxabs_c(vectorRangeArray[i]);
+            range_bin = ifx_vec_max_idx_c(vectorRangeArray[i]);
 
             printf("rangeBin: %d", range_bin); 
             //printf("\nstartIndex:%d, endindex:%d\n", start_index_range, stop_index_range);       
         
-            ifx_Float_t wrapped_phase = atan2(IFX_COMPLEX_IMAG(vectorRangeArray[i][range_bin]), IFX_COMPLEX_REAL(vectorRangeArray[i][range_bin]));
-            printf("imag:%f , real: %f \n",IFX_COMPLEX_IMAG(vectorRangeArray[i][range_bin]), IFX_COMPLEX_REAL(vectorRangeArray[i][range_bin]));
+            ifx_Float_t wrapped_phase = atan2((vectorRangeArray[i][range_bin].data->data[1]), vectorRangeArray[i][range_bin].data->data[0]);
+            printf("imag:%f , real: %f \n",vectorRangeArray[i][range_bin].data->data[1], vectorRangeArray[i][range_bin].data->data[0]);
             if (phase_index < PHASE_BUFFER_SIZE) {
                 phase_buffer[phase_index++] = wrapped_phase;
             }
             if (phase_index >= PHASE_BUFFER_SIZE) { 
                 //printf("wheres my segfault VONE MILLION-------------------\n");
-                process_vital_signs(phase_buffer, PhaseFFT, PHASE_BUFFER_SIZE,br_filt, hr_filt);
+                 process_vital_signs(phase_buffer, PhaseFFT, PHASE_BUFFER_SIZE,br_filt, hr_filt, filterOutputHr, filterOutputBr);
                 phase_index = 0;
             }
             //free(range_fft);//Seg fauling Not dynamically allocated, doesnt need to be freed.
         }
     
+		}
+
 }
