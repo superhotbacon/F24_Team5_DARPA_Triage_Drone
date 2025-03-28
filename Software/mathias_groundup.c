@@ -1,314 +1,272 @@
-#include <math.h>
+/* ===========================================================================
+** Copyright (C) 2021-2022 Infineon Technologies AG
+**
+** Redistribution and use in source and binary forms, with or without
+** modification, are permitted provided that the following conditions are met:
+**
+** 1. Redistributions of source code must retain the above copyright notice,
+**    this list of conditions and the following disclaimer.
+** 2. Redistributions in binary form must reproduce the above copyright
+**    notice, this list of conditions and the following disclaimer in the
+**    documentation and/or other materials provided with the distribution.
+** 3. Neither the name of the copyright holder nor the names of its
+**    contributors may be used to endorse or promote products derived from
+**    this software without specific prior written permission.
+**
+** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+** IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+** ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+** LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+** CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+** SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+** INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+** CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+** POSSIBILITY OF SUCH DAMAGE.
+** ===========================================================================
+*/
+
+/**
+ * @file    raw_data.c
+ *
+ * @brief   Raw data example.
+ *
+ * This example illustrates how to fetch time-domain data from an Avian family of FMCW
+ * radar sensor like BGT60TR13, BGT60UTR11AIP or BGT60ATR24 using the Radar SDK.
+ */
+
+/*
+==============================================================================
+   1. INCLUDE FILES
+==============================================================================
+*/
+
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "ifxAvian/Avian.h"
-#include "ifxAlgo/FFT.h"
-#include "ifxAlgo/Window.h"
+
+#include "ifxBase/Base.h"
+#include "ifxBase/internal/Util.h"  // for ifx_util_popcount
 #include "ifxFmcw/DeviceFmcw.h"
-#include "ifxFmcw/MetricsFmcw.h"
-#include "ifxFmcw/DeviceFmcwTypes.h"
-#include "ifxBase/Error.h"
-#include "ifxBase/Version.h"
-#include <unistd.h>
-#include "ifxBase/Complex.h"
-#include "pthread.h"
-#include "ifxAlgo/PreprocessedFFT.h"
 
-#define NUM_RX_ANTENNAS 1
-#define FRAME_RATE 20.0
-#define NUMBER_OF_CHIRPS 1
-#define SAMPLES_PER_CHIRP 64
-#define FFT_SIZE_RANGE_PROFILE (SAMPLES_PER_CHIRP * 2)
-#define QUEUE_SIZE 50
+/*
+==============================================================================
+   2. LOCAL DEFINITIONS
+==============================================================================
+*/
 
-// Define the queue structure
-typedef struct {
-    ifx_Mda_R_t *data[QUEUE_SIZE];   // Array to store queue elements
-    uint32_t head;
-    uint32_t tail;
-    uint32_t size;
-    pthread_mutex_t mutex;  // Mutex for thread-safe access
-} Queue;
+#define NUM_FETCHED_FRAMES 10 /**< Number of frames to fetch */
 
-// Global queue
-Queue queue;
+/*
+==============================================================================
+   6. LOCAL FUNCTIONS
+==============================================================================
+*/
 
-// Initialize the queue
-void init_queue(Queue* q) {
-    q->head = 0;
-    q->tail = 0;
-    q->size = 0;
-    pthread_mutex_init(&q->mutex, NULL);  // Initialize the mutex
-}
-
-// Check if the queue is empty
-int is_empty(Queue* q) {
-    return q->size == 0;
-}
-
-// Check if the queue is full
-int is_full(Queue* q) {
-    return q->size == QUEUE_SIZE;
-}
-
-// Enqueue operation to add an element to the queue
-void enqueue(Queue* q, ifx_Mda_R_t* item) {
-    pthread_mutex_lock(&q->mutex);  // Lock the mutex to ensure thread safety
-
-    if (is_full(q)) {
-        printf("Queue is full! Cannot enqueue");
-    } else {
-        q->data[q->head] = item;
-        q->size++;
-        q->head = (q->head + 1) % QUEUE_SIZE;
-    }
-
-    pthread_mutex_unlock(&q->mutex);  // Unlock the mutex
-}
-
-// Dequeue operation to remove an element from the queue
-ifx_Mda_R_t* dequeue(Queue* q) {
-    pthread_mutex_lock(&q->mutex);  // Lock the mutex to ensure thread safety
-
-    ifx_Mda_R_t* item = NULL; // Default return value in case queue is empty
-    if (is_empty(q)) {
-        printf("Queue is empty! Cannot dequeue\n");
-    } else {
-        item = q->data[q->tail];
-        q->tail = (q->tail + 1) % QUEUE_SIZE;
-        q->size--;
-    }
-
-    pthread_mutex_unlock(&q->mutex);  // Unlock the mutex
-    return item;
-}
-
-
-
-
-// Sample structure to pass data to the threads
-typedef struct {
-    ifx_Device_Fmcw_t* device;  // Device object
-} ThreadArgs;
-
-// Function to simulate reading data from the device
-void* read_data_thread(void* arg) {
-    ThreadArgs* holder = (ThreadArgs*) arg;
-    ifx_Fmcw_Frame_t* frame = ifx_fmcw_allocate_frame(holder->device);
-
-    while(1){
-        ifx_fmcw_get_next_frame(holder->device, frame);
-        if (frame == NULL) {
-            fprintf(stderr, "Failed to acquire frame: %s\n", ifx_error_to_string(ifx_error_get()));
-            break; 
-        }
-
-        
-        for(uint32_t i = 0; i < frame->num_cubes; i++){
-            enqueue(&queue, frame->cubes[i]);
-        }
-    }
-    ifx_fmcw_destroy_frame(frame);
-    return NULL;
-}
-
-/*size_t compute_offset(const ifx_Mda_R_t* array, const uint32_t* indices)
+/**
+ * @brief Helper function to process the antenna data, by summing it up.
+ *
+ * This function is an example showing a possible way
+ * of processing antenna signal. The goal in this example is to
+ * sum up all chirps into one vector.
+ *
+ * @param antenna_data data from one antenna containing multiple chirps
+ */
+static void sum_and_display_antenna_data(const ifx_Matrix_R_t* antenna_data)
 {
-    size_t offset = 0;
-    for (uint32_t i = 0; i < array->dimensions; ++i) {
-        offset += indices[i] * array->stride[i];  // Compute offset using stride
+    ifx_Vector_R_t chirp = {0};
+    // Create the sum vector
+    ifx_Vector_R_t* sum = ifx_vec_create_r(IFX_MAT_COLS(antenna_data));
+
+    // Iterate through all chirps
+    for (uint32_t i = 0; i < IFX_MAT_ROWS(antenna_data); i++)
+    {
+        // Fetch a chirp from the antenna data matrix
+        ifx_mat_get_rowview_r(antenna_data, i, &chirp);
+        // add it to the sum vector
+        ifx_vec_add_r(&chirp, sum, sum);
     }
-    return offset;
+
+    // Divide the sum vector element wise by number of chirps in the antenna data
+    ifx_vec_scale_r(sum, 1.0f / IFX_MAT_ROWS(antenna_data), sum);
+
+    for (uint32_t i = 0; i < IFX_VEC_LEN(sum); i++)
+    {
+        printf("%.4f ", IFX_VEC_AT(sum, i));
+    }
+    printf("\n\n");
+    ifx_vec_destroy_r(sum);
 }
 
-// Function to multiply frame by window coefficients
-void apply_window_to_frame(ifx_Mda_R_t* frame, ifx_Mda_R_t* window)
+//----------------------------------------------------------------------------
+
+/**
+ * @brief Helper function which sums, and displays the antenna data, given the deinterleaved frame,
+ * as an example for frame processing,
+ *
+ * Separates different antenna signals, and pass them for further processing.
+ * Specificaly, the function processes the deinterleaved frame, by summing up the data
+ * for each row, using sum_and_display_antenna_data helper function.
+ * Note: This function assumes the sequence is comprised of one chirp nested in a loop, within the frame loop.
+ *
+ * @param[in] num_chirps The number of chirps.
+ * @param[in] num_samples_per_chirp The number of samples per chirp.
+ * @param[in] num_rx The number of rx antennas.
+ * @param[in] adc_max_value The adc maximum value.
+ * @param[in] frame The frame may contain multiple antenna signals,
+ *            depending on the device configuration.
+ *            Each antenna signal can contain multiple chirps.
+ */
+static void sum_and_display_frame_data(uint32_t num_chirps, uint32_t num_samples_per_chirp, uint32_t num_rx, ifx_Float_t adc_max_value, ifx_Fmcw_Frame_t* deinterleaved_frame)
 {
-    // Check that the dimensions and shape match
-    if (frame->dimensions != window->dimensions) {
-        printf("Error with Windowing");
+    ifx_Mda_R_t* data_cube = deinterleaved_frame->cubes[0];
+    ifx_Matrix_R_t antenna_data;
+    for (uint32_t i = 0; i < IFX_CUBE_ROWS(data_cube); i++)
+    {
+        ifx_cube_get_row_r(data_cube, i, &antenna_data);
+        sum_and_display_antenna_data(&antenna_data);
+    }
+}
+
+/**
+ * @brief Helper function to get the frame dimensions assuming there is only one chirp in the sequence.
+ *
+ * @param fmcw_Sequence_Element      pointer to first Sequence Element
+ * @param num_rx                     pointer to the number of RX antennes.
+ * @param num_samples_per_chirp      pointer to the number of samples per chirp
+ */
+static void get_frame_dimensions(const ifx_Fmcw_Sequence_Element_t* element, uint32_t* num_rx, uint32_t* num_samples_per_chirp)
+{
+    if (element == NULL)
+    {
+        *num_samples_per_chirp = 0;
+        *num_rx = 0;
         return;
     }
 
-    for (uint32_t i = 0; i < frame->dimensions; ++i) {
-        if (frame->shape[i] != window->shape[i]) {
-            printf("Error with Windowing");
-            return;
+    // At the beginning, it is needed to check if the sequence starts with the frame loop in order to skip it
+    if ((element->type == IFX_SEQ_LOOP) && (element->next_element == NULL))
+    {
+        element = element->loop.sub_sequence;
+    }
+
+    while (element != NULL)
+    {
+        switch (element->type)
+        {
+            case IFX_SEQ_LOOP:
+                element = element->loop.sub_sequence;
+                continue;
+            case IFX_SEQ_CHIRP:
+                *num_samples_per_chirp = element->chirp.num_samples;
+                *num_rx = ifx_util_popcount(element->chirp.rx_mask);
+                break;
+            default:
+                break;
         }
+        element = element->next_element;
     }
-
-    // Number of elements in the frame (assuming multi-dimensional arrays)
-    uint32_t num_elements = 1;
-    for (uint32_t i = 0; i < frame->dimensions; ++i) {
-        num_elements *= frame->shape[i];
-    }
-
-    // Temporary array to hold the indices for accessing frame and window elements
-    uint32_t* indices = (uint32_t*)malloc(frame->dimensions * sizeof(uint32_t));
-
-    // Multiply the data element by element, using stride-based indexing
-    for (uint32_t i = 0; i < num_elements; ++i) {
-        // Compute multi-dimensional indices for the current element
-        uint32_t temp_i = i;
-        for (uint32_t d = 0; d < frame->dimensions; ++d) {
-            indices[d] = temp_i % frame->shape[d];  // Get index for dimension d
-            temp_i /= frame->shape[d];  // Move to the next "layer"
-        }
-
-        // Compute the offset for frame and window data
-        size_t frame_offset = compute_offset(frame, indices);
-        size_t window_offset = compute_offset(window, indices);
-
-        // Multiply the frame's data by the corresponding window coefficient
-        frame->data[frame_offset] *= window->data[window_offset];
-    }
-
-    // Clean up
-    free(indices);
-}*/
-
-void calc_range_fft(ifx_Vector_C_t** range_fft){
-
-    ifx_Window_Config_t wnd;
-    wnd.type = IFX_WINDOW_BLACKMANHARRIS;
-    wnd.size = FFT_SIZE_RANGE_PROFILE;
-    wnd.scale = 1;
-
-    ifx_PPFFT_Config_t fft_config;
-    fft_config.fft_size = FFT_SIZE_RANGE_PROFILE;
-    fft_config.fft_type = IFX_FFT_TYPE_R2C;
-    fft_config.is_normalized_window = false;
-    fft_config.mean_removal_enabled = false;
-    fft_config.window_config = wnd;
-    
-    ifx_PPFFT_t* fft_tool = ifx_ppfft_create(&fft_config);
-
-    if(!is_empty(&queue)){
-
-        ifx_Mda_R_t *frame = dequeue(&queue);
-        ifx_Matrix_R_t* temp_m = ifx_mat_create_r(frame->shape[0], frame->shape[2]);
-        ifx_Vector_R_t* temp_v = ifx_vec_create_r(frame->shape[2]);
-
-        
-        ifx_cube_get_col_r(frame, 0, temp_m);
-        ifx_mat_get_rowview_r(temp_m, 0, temp_v);
-        ifx_ppfft_run_c(fft_tool, temp_v, range_fft);
-
-        if (ifx_error_get() != IFX_OK) {
-            fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
-            ifx_ppfft_destroy(fft_tool);
-            return;
-        }     
-        
-        
-        
-        //ifx_window_init(&wnd, &coeff);
-        //apply_window_to_frame(frame, &coeff);
-       
-        ifx_mat_destroy_r(temp_m);
-        ifx_vec_destroy_r(temp_v);
-    }
-    ifx_ppfft_destroy(fft_tool);
 }
 
-// Function to simulate processing radar data
-void* process_data_thread(void* arg) {
+/*
+==============================================================================
+   7. MAIN METHOD
+==============================================================================
+ */
 
-    ifx_Vector_C_t* range_fft = ifx_vec_create_c(SAMPLES_PER_CHIRP);
-
-    while(1){
-        if(!is_empty(&queue)){
-
-            calc_range_fft(range_fft);
-            printf("Here is the fft data: %f\n", range_fft->data->data[0]);
-        }
-    }
-    
-    ifx_vec_destroy_c(range_fft);
-    
-    return NULL;
-}
-
-
-
-
-
-int main(){
-    init_queue(&queue);
-    pthread_t data_thread, process_thread;
-    ifx_Device_Fmcw_t* device = ifx_fmcw_create();
-    
-    if ((device == NULL) != IFX_OK){
-        fprintf(stderr, "Failed to open device: %s\n", ifx_error_to_string(ifx_error_get()));
-        return -1;
-    }
+int main(int argc, char** argv)
+{
+    ifx_Error_t error = IFX_OK;
+    ifx_Fmcw_Raw_Frame_t* frame = NULL;
+    ifx_Fmcw_Frame_t* deinterleaved_frame = NULL;
+    ifx_Float_t* converted_frame = NULL;
+    ifx_Fmcw_Sequence_Element_t* sequence = NULL;
+    ifx_Device_Fmcw_t* fmcw_device;
 
     printf("Radar SDK Version: %s\n", ifx_sdk_get_version_string_full());
-    printf("UUID of board: %s\n", ifx_fmcw_get_board_uuid(device));
-    printf("Sensor: %u\n", ifx_fmcw_get_sensor_type(device));
 
-    ifx_Fmcw_Simple_Sequence_Config_t single_chirp;
-    single_chirp.num_chirps = NUMBER_OF_CHIRPS;
-    single_chirp.chirp_repetition_time_s = 0.001;
-    single_chirp.frame_repetition_time_s = 1 / FRAME_RATE;
-    single_chirp.tdm_mimo = true;
-    single_chirp.chirp.start_frequency_Hz = 57.4e9;
-    single_chirp.chirp.end_frequency_Hz = 63.0e9;      //check these values on windows partition!!!!!
-    single_chirp.chirp.sample_rate_Hz = 1e6;
-    single_chirp.chirp.num_samples = SAMPLES_PER_CHIRP;
-    single_chirp.chirp.rx_mask = 1;
-    single_chirp.chirp.tx_mask = 1;
-    single_chirp.chirp.tx_power_level = 31;
-    single_chirp.chirp.lp_cutoff_Hz = 500000;
-    single_chirp.chirp.hp_cutoff_Hz = 80000;
-    single_chirp.chirp.if_gain_dB = 33;
-
-    ifx_Fmcw_Sequence_Element_t* sequence = ifx_fmcw_create_simple_sequence(&single_chirp);
-    ifx_fmcw_set_acquisition_sequence(device, sequence);
-
-    // Check for errors after setting the configuration
-    if (ifx_error_get() != IFX_OK) {
-        fprintf(stderr, "Failed to configure radar device: %s\n", ifx_error_to_string(ifx_error_get()));
-        ifx_avian_destroy(device);
-        return -1;
+    /* Open the device: Connect to the first radar sensor found. */
+    fmcw_device = ifx_fmcw_create();
+    if ((error = ifx_error_get()) != IFX_OK)
+    {
+        fprintf(stderr, "Failed to open device: %s\n", ifx_error_to_string(error));
+        goto out;
     }
 
-    double range_res = 3e8 / (2 * ifx_fmcw_get_chirp_sampling_bandwidth(device, &single_chirp.chirp));
-    printf("Range resolution: %.3f m\n", range_res);
-    double max_range = range_res * single_chirp.chirp.num_samples / 2;
-    printf("Maximum range: %.3f m\n", max_range);
+    const char* uuid = ifx_fmcw_get_board_uuid(fmcw_device);
+    printf("UUID of board: %s\n", uuid);
 
-    ThreadArgs variable;
-    variable.device = device;
+    // Load register file, to overwrite the defaults and configure the parameters not exposed in the FMCW API
+    // ifx_fmcw_load_register_file(fmcw_device, "config_regs_filename.txt");
 
-    // Create the thread for reading data from the device
-    if (pthread_create(&data_thread, NULL, read_data_thread, (void*)&variable) != 0) {
-        perror("Failed to create data thread");
-        return 1;
+    /* A device instance is initialised with the default acquisition
+     * sequence for its corresponding radar sensor. This sequence can be
+     * simply fetched, analyzed or modified by the user.
+     */
+    sequence = ifx_fmcw_get_acquisition_sequence(fmcw_device);
+    if ((error = ifx_error_get()) != IFX_OK)
+    {
+        fprintf(stderr, "Failed to get acquisition_sequence:  %s\n", ifx_error_to_string(error));
+        goto out;
     }
 
-    // Create the thread for processing radar data
-    if (pthread_create(&process_thread, NULL, process_data_thread, NULL) != 0) {
-        perror("Failed to create process thread");
-        return 1;
+    /* Print the current device acquisition sequence */
+    ifx_fmcw_print_sequence(sequence);
+
+    /* Allocate memory for frame */
+    frame = ifx_fmcw_allocate_raw_frame(fmcw_device);
+    deinterleaved_frame = ifx_fmcw_allocate_frame(fmcw_device);
+    converted_frame = (ifx_Float_t*)calloc(frame->num_samples, sizeof(ifx_Float_t));
+
+    /* Get the frame dimensions for de-interleving, and then processing */
+    uint32_t num_rx = 0;
+    uint32_t num_samples_per_chirp = 0;
+    get_frame_dimensions(sequence, &num_rx, &num_samples_per_chirp);
+    if (!num_rx || !num_samples_per_chirp)
+    {
+        fprintf(stderr, "Failed to determine frame dimensions");
+        goto out;
     }
-    /*ifx_Fmcw_Frame_t* frame = ifx_fmcw_allocate_frame(device);
+    const uint32_t num_chirps = frame->num_samples / (num_rx * num_samples_per_chirp);
+    float adc_max_value = (float)(1 << (ifx_fmcw_get_sensor_information(fmcw_device)->adc_resolution_bits - 1)) - 1;
 
-    while(1){
-
-        ifx_fmcw_get_next_frame(device, frame);
-        if (frame == NULL) {
-            fprintf(stderr, "Failed to acquire frame: %s\n", ifx_error_to_string(ifx_error_get()));
-            break; 
+    /* Fetch NUM_FETCHED_FRAMES number of frames. */
+    for (int frame_number = 0; frame_number < NUM_FETCHED_FRAMES; frame_number++)
+    {
+        /* Get the time-domain data for the next frame. The function will block
+         * until the full frame is available and copy the data into the frame
+         * handle.
+         * This function also creates a frame structure for time domain data
+         * acquisition, if not created already. It is the responsibility of
+         * the caller to free the returned frame in this scope.
+         */
+        ifx_fmcw_get_next_raw_frame(fmcw_device, frame);
+        if ((error = ifx_error_get()) != IFX_OK)
+        {
+            fprintf(stderr, "Failed to get next frame: %s\n", ifx_error_to_string(error));
+            goto out;
         }
 
-        usleep(1000);
-    }
-*/  pthread_join(data_thread, NULL);
-    pthread_join(process_thread, NULL);
+        /* De-interleave frame */
+        ifx_fmcw_convert_raw_data_to_float_array(fmcw_device, frame->num_samples, frame->samples, converted_frame);
+        ifx_fmcw_view_deinterleaved_frame(fmcw_device, converted_frame, deinterleaved_frame);
 
-    pthread_mutex_destroy(&queue.mutex);  // Destroy the mutex
+        /* Process the frame */
+        sum_and_display_frame_data(num_chirps, num_samples_per_chirp, num_rx, adc_max_value, deinterleaved_frame);
+    }
+
+    ifx_fmcw_stop_acquisition(fmcw_device);
+
+out:
+    /* Close the device after processing all frames. It is valid to pass NULL
+     * to destroy functions.
+     */
+    ifx_fmcw_destroy_raw_frame(frame);
+    ifx_fmcw_destroy_frame(deinterleaved_frame);
+    free(converted_frame);
     ifx_fmcw_destroy_sequence(sequence);
-  //  ifx_fmcw_destroy_frame(frame);
-    ifx_fmcw_destroy(device);
+    ifx_fmcw_destroy(fmcw_device);
+
+    return error == IFX_OK ? EXIT_SUCCESS : EXIT_FAILURE;
 }
