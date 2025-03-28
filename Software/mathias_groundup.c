@@ -167,7 +167,7 @@ void apply_window_to_frame(ifx_Mda_R_t* frame, ifx_Mda_R_t* window)
     free(indices);
 }*/
 
-void calc_range_fft(ifx_Vector_C_t* range_fft){
+void calc_range_fft(ifx_Vector_C_t** range_fft){
 
     ifx_Window_Config_t wnd;
     wnd.type = IFX_WINDOW_BLACKMANHARRIS;
@@ -182,30 +182,39 @@ void calc_range_fft(ifx_Vector_C_t* range_fft){
     fft_config.window_config = wnd;
     
     ifx_PPFFT_t* fft_tool = ifx_ppfft_create(&fft_config);
-    
 
     if(!is_empty(&queue)){
 
         ifx_Mda_R_t *frame = dequeue(&queue);
+        ifx_Matrix_R_t* temp_m = ifx_mat_create_r(frame->shape[0], frame->shape[2]);
+        ifx_Vector_R_t* temp_v = ifx_vec_create_r(frame->shape[2]);
 
-        //ifx_window_init(&wnd, &coeff);
-        //apply_window_to_frame(frame, &coeff);
-        ifx_ppfft_run_rc(fft_tool, frame, range_fft);
+        
+        ifx_cube_get_col_r(frame, 0, temp_m);
+        ifx_mat_get_rowview_r(temp_m, 0, temp_v);
+        ifx_ppfft_run_c(fft_tool, temp_v, range_fft);
 
         if (ifx_error_get() != IFX_OK) {
             fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
             ifx_ppfft_destroy(fft_tool);
             return;
-        }            
+        }     
+        
+        
+        
+        //ifx_window_init(&wnd, &coeff);
+        //apply_window_to_frame(frame, &coeff);
+       
+        ifx_mat_destroy_r(temp_m);
+        ifx_vec_destroy_r(temp_v);
     }
-
     ifx_ppfft_destroy(fft_tool);
 }
 
 // Function to simulate processing radar data
 void* process_data_thread(void* arg) {
 
-    ifx_Vector_C_t* range_fft = (ifx_Vector_C_t*)malloc(sizeof(ifx_Vector_C_t));
+    ifx_Vector_C_t* range_fft = ifx_vec_create_c(SAMPLES_PER_CHIRP);
 
     while(1){
         if(!is_empty(&queue)){
@@ -214,8 +223,9 @@ void* process_data_thread(void* arg) {
             printf("Here is the fft data: %f\n", range_fft->data->data[0]);
         }
     }
-
-    free(range_fft);
+    
+    ifx_vec_destroy_c(range_fft);
+    
     return NULL;
 }
 
