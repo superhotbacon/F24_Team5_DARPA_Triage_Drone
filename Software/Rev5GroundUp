@@ -12,7 +12,7 @@
 #include "ifxBase/Version.h"
 #include <unistd.h>
 #include "ifxBase/Complex.h"
-
+#include "Python.h"
 
 
 // Define M_PI manually if it is still not recognized
@@ -29,11 +29,11 @@
 #define FILTER_ORDER 21
 
 /////////////////////////////////////New
-#define RANGE_RESOLUTION 0.0005
-#define MAX_RANGE_M 1.0
+#define RANGE_RESOLUTION 0.05
+#define MAX_RANGE_M 10.0
 #define MAX_SPEED_M_S 1.0
-#define SPEED_RESOLUTION_M_S 0.001
-#define CENTER_FREQUENCY 0.0 //0 sets middle of bandwitdth of radar
+#define SPEED_RESOLUTION_M_S 1.0
+#define CENTER_FREQUENCY 0 //0 sets middle of bandwitdth of radar
 #define C 299792458.0
 #define OVERFLOW_BUF_SIZE 256
 #define NUM_RX_ANTENNAS 1
@@ -100,13 +100,20 @@ double slope_chirp;
 double max_range;
 
 void unwrap_phase(ifx_Float_t* phase, int len);
+void initializePlotting();
+void uninitializePlotting();
+void plotPoint2d(double x, double y);
+
+
 void process_vital_signs(ifx_Float_t* phase_buf,ifx_FFT_t* PhaseFFt, int len, ifx_Filter_R_t* br_filt, ifx_Filter_R_t* hr_filt,ifx_Vector_R_t* filterOutputHr ,ifx_Vector_R_t* filterOutputBr );
 //void calc_range_fft(ifx_FFT_t* phaseFFT, ifx_FFT_t* RangeFFT, ifx_Cube_R_t* frame, ifx_Complex_t* out);
 void calc_range_fft(ifx_FFT_t* RangeFFT, ifx_Cube_R_t* frame, ifx_Vector_C_t** vectorRangeArray);
 void process_frame(ifx_Cube_R_t* frame, double max_range, ifx_Vector_C_t** vectorRangeArray, ifx_Vector_C_t** vectorPhaseArray, ifx_FFT_t* PhaseFFT, ifx_FFT_t* RangeFFT, ifx_Filter_R_t* br_filt, ifx_Filter_R_t* hr_filt,
     ifx_Vector_R_t* filterOutputHr ,ifx_Vector_R_t* filterOutputBr );
-
-
+int RangeFFT_size = 0;
+int PhaseFFT_size = 0;
+ifx_Matrix_C_t* RangeFFT_outputMatrix;
+ifx_Vector_C_t* RangeFFT_imOutput;
 int main() {
 
     // Create radar device instance
@@ -115,7 +122,7 @@ int main() {
         fprintf(stderr, "Failed to create radar device: %s\n", ifx_error_to_string(ifx_error_get()));
         return -1;
     }
-
+	initializePlotting();
     // Print SDK version and device information
     printf("Radar SDK Version: %s\n", ifx_sdk_get_version_string_full());
     printf("UUID of board: %s\n", ifx_avian_get_board_uuid(device));
@@ -129,19 +136,36 @@ int main() {
         ifx_avian_destroy(device);
         return -1;
     }
+    /*
     ifx_Avian_Metrics_t Metrics;
     //set metrics
+    
     Metrics.range_resolution_m = RANGE_RESOLUTION;
     Metrics.max_range_m = MAX_RANGE_M;
     Metrics.max_speed_m_s = MAX_SPEED_M_S;
     Metrics.speed_resolution_m_s = SPEED_RESOLUTION_M_S;
+    Metrics.center_frequency_Hz = CENTER_FREQUENCY;
     //turn metrics into a config
-   /* ifx_avian_metrics_to_config(device, &Metrics, true, &device_config); //"true" rounds to nearest power of 2
+    ifx_avian_metrics_to_config(device, &Metrics, true, &device_config); //"true" rounds to nearest power of 2
     if (ifx_error_get() != IFX_OK) {
         fprintf(stderr, "Failed to set metrics to config: %s\n", ifx_error_to_string(ifx_error_get()));
         ifx_avian_destroy(device);
         return -1;
     }
+    */
+    //put the paramters into some global variables
+    sample_rate_Hz = device_config.sample_rate_Hz;
+    start_frequency_Hz = device_config.start_frequency_Hz;
+    printf("start Freq: %f\n", start_frequency_Hz);
+    end_frequency_Hz = device_config.end_frequency_Hz;
+    printf("end Freq: %f\n",end_frequency_Hz);
+    num_samples_per_chirp = device_config.num_samples_per_chirp;
+    num_chirps_per_frame = device_config.num_chirps_per_frame;
+    chirp_repetition_time = device_config.chirp_repetition_time_s;
+    frame_repetition_time = device_config.frame_repetition_time_s;
+    frame_rate = 1.0/frame_repetition_time;
+    chirp_rate = 1.0/chirp_repetition_time;    
+    
     // Apply the configuration to the radar device
     ifx_avian_set_config(device, &device_config);
     // Check for errors after setting the configuration
@@ -150,17 +174,9 @@ int main() {
         ifx_avian_destroy(device);
         return -1;
     }
-    */
-    //put the paramters into some global variables
-    sample_rate_Hz = device_config.sample_rate_Hz;
-    start_frequency_Hz = device_config.start_frequency_Hz;
-    end_frequency_Hz = device_config.end_frequency_Hz;
-    num_samples_per_chirp = device_config.num_samples_per_chirp;
-    num_chirps_per_frame = device_config.num_chirps_per_frame;
-    chirp_repetition_time = device_config.chirp_repetition_time_s;
-    frame_repetition_time = device_config.frame_repetition_time_s;
-    frame_rate = 1.0/frame_repetition_time;
-    chirp_rate = 1.0/chirp_repetition_time;
+    
+    
+
 
 
     // Calculate range resolution and maximum range based on sensor configuration
@@ -172,7 +188,9 @@ int main() {
 
 /////////////////////Create FFT types
     ifx_FFT_t* RangeFFT= ifx_fft_create(IFX_FFT_TYPE_R2C, num_samples_per_chirp); //MUST BE power of 2
+    RangeFFT_size = ifx_fft_get_fft_size(RangeFFT);
     ifx_FFT_t* PhaseFFT= ifx_fft_create(IFX_FFT_TYPE_R2C, PHASE_BUFFER_SIZE); //MUST BE POWER OF 2 FOR SIZE
+	 PhaseFFT_size = ifx_fft_get_fft_size(PhaseFFT);
     if (ifx_error_get() != IFX_OK) {
         fprintf(stderr, "Failed to make fft objects: %s\n", ifx_error_to_string(ifx_error_get()));
         ifx_avian_destroy(device);
@@ -185,15 +203,17 @@ int main() {
         fprintf(stderr, "Failed to create frame structure.\n");
         return -1;
     }
-
+	
     //create vector types to store output of the range fft
     ifx_Vector_C_t** vectorRangeArray = malloc(num_chirps_per_frame * sizeof(ifx_Vector_C_t));
+    RangeFFT_outputMatrix = ifx_mat_create_c(RangeFFT_size, num_chirps_per_frame);
+    RangeFFT_imOutput = ifx_vec_create_c(RangeFFT_size);
     for(int i = 0; i < num_chirps_per_frame; i++){
-        vectorRangeArray[i] = ifx_vec_create_c(num_samples_per_chirp);
+        vectorRangeArray[i] = ifx_vec_create_c(RangeFFT_size);
     }
     ifx_Vector_C_t* vectorPhaseArray[PHASE_BUFFER_SIZE];
     for(int i = 0; i < PHASE_BUFFER_SIZE; i++){
-        vectorPhaseArray[i] = ifx_vec_create_c(PHASE_BUFFER_SIZE);
+        vectorPhaseArray[i] = ifx_vec_create_c(PhaseFFT_size);
     }
     //create filter types to be passed
 
@@ -215,6 +235,7 @@ int main() {
     ifx_Vector_R_t* filterOutputBr = ifx_vec_create_r(PHASE_BUFFER_SIZE);
     ifx_Vector_R_t* filterOutputHr = ifx_vec_create_r(PHASE_BUFFER_SIZE);
 
+	//printf("wheres my segfault\n");
     while (1) {
         // Acquire next frame from radar sensor
         frame = ifx_avian_get_next_frame(device, NULL);
@@ -224,11 +245,13 @@ int main() {
         }
         // Process the acquired frame data
         process_frame(frame, max_range, vectorRangeArray, vectorPhaseArray, PhaseFFT, RangeFFT, br_filt, hr_filt, filterOutputHr , filterOutputBr );
+//printf("wheres my segfault2\n");
     }
     // Free the acquired frame after processing
     ifx_cube_destroy_r(frame);
     // Clean up and release radar resources
     ifx_avian_destroy(device);
+    uninitializePlotting();
     return 0;
 }
 
@@ -248,6 +271,12 @@ void unwrap_phase(ifx_Float_t* phase, int len) {
     }
 }
 
+void check_and_print_error(){
+    if (ifx_error_get() != IFX_OK) {
+        fprintf(stderr, "Failed to get radar defaults: %s\n", ifx_error_to_string(ifx_error_get()));
+        return -1;
+    }
+}
 
 void calc_range_fft(ifx_FFT_t* RangeFFT, ifx_Cube_R_t* frame, ifx_Vector_C_t** vectorRangeArray) {
 
@@ -267,69 +296,62 @@ void calc_range_fft(ifx_FFT_t* RangeFFT, ifx_Cube_R_t* frame, ifx_Vector_C_t** v
     int num_samples = num_samples_per_chirp; 
     int fft_len = num_samples_per_chirp;
     int out_len = fft_len / 2;      // Only first half (excluding DC symmetries)
-    ifx_Matrix_R_t matrix;
     //matrix.dimensions = 2; try without this first
-    ifx_Matrix_R_t* matrix_ptr = &matrix;
+   	 ifx_Matrix_R_t* matrix_ptr = ifx_mat_create_r(num_chirps_per_frame, num_samples);
+    	ifx_Vector_R_t* FFT_vector = ifx_vec_create_r(RangeFFT_size);
 
-    // Initialize output buffer to zeros. Do we need this?
-    /*for (int bin = 0; bin < out_len; bin++) {
-        out[bin].data[0] = 0.0;
-        out[bin].data[1] = 0.0;
-    } */     
-    
-        //vector and matrix resolve to the same back end deftype. Dont know why infineon did it this way tbh. Kinda goofy ahh
+         ifx_cube_get_row_r(frame, 0, matrix_ptr);
+         check_and_print_error();   
+         
+        //vector and matrix resolve to the same back end deftype. bascially just different amounts of ararays
         for (int chirp = 0; chirp < num_chirps_per_frame; chirp++) {
-            // Get pointer to the data for this chirp. We assume frame->data[ant] 
-            // is an array of pointers to sample arrays.
-            //ifx_Float_t* chirp_data = frame->data[ant][chirp];
-            //ifx_Float_t* chirp_data = frame->data + (chirp * num_samples + );
-            //get current chirp
-            ifx_cube_get_slice_r(frame, chirp, matrix_ptr);
-
+				//get current chirp
+            
+				//printf("Segfault in process fft?\nNumsamples:%d\n", num_samples);
             // Remove DC offset: compute average of the chirp samples.
             double sum = 0.0;
             int s;
+            /*
             for (s = 0; s < num_samples; s++) {
-                sum += IFX_MAT_AT(matrix_ptr, s, 0);//macro to get the element
+            	//printf("findingSum:%d, \n", s);
+                sum += IFX_MAT_AT(matrix_ptr, s, chirp);//macro to get the element
+                
             }
             double avg = sum / num_samples;
-
+            */
+            
+				//printf("numchripsperFrame:%d\n",num_chirps_per_frame);
             //subtract dc offset
             for(s = 0; s < num_samples; s++){
-                IFX_MAT_AT(matrix_ptr, s, 0) = IFX_MAT_AT(matrix_ptr, s, 0) - avg;
-            }
-
-            // Also apply Blackman–Harris window; compute window coefficients.
-            // The Blackman–Harris window coefficients (for example) are:
-            // w[n] = 0.35875 - 0.48829*cos(2*pi*n/(N-1)) + 0.14128*cos(4*pi*n/(N-1)) - 0.01168*cos(6*pi*n/(N-1))
-            /*lets look into windowing
-            for (s = 0; s < num_samples; s++) {
-                double window = 0.35875
-                                - 0.48829 * cos((2 * M_PI * s) / (num_samples - 1))
-                                + 0.14128 * cos((4 * M_PI * s) / (num_samples - 1))
-                                - 0.01168 * cos((6 * M_PI * s) / (num_samples - 1));
-                signal[s] = (chirp_data[s] - avg) * window;
-            }
-            // Zero-pad the rest of the signal buffer.
-            for (s = num_samples; s < fft_len; s++) {
-                signal[s] = 0.0;
-            }
-                */
-            // Compute FFT for this chirp.
-            //WARNING: this should work with the matrix type. If not try putting in the vect?
-            ifx_fft_run_rc(RangeFFT, &matrix, vectorRangeArray[chirp]);
+                IFX_VEC_AT(FFT_vector, s)= IFX_MAT_AT(matrix_ptr, s, 0);
+            } 
+            ifx_Float_t DcOffset= ifx_vec_mean_r(FFT_vector);            
+            ifx_vec_sub_rs(FFT_vector, DcOffset, FFT_vector);
+           
+            ifx_fft_run_rc(RangeFFT, FFT_vector, RangeFFT_imOutput);
+				check_and_print_error();
+				 printf("I see you: %d\n",ifx_vec_max_idx_c(RangeFFT_imOutput));
+				//ifx_vec_abs_c(RangeFFT_imOutput, FFT_vector);
+				 //printf("I see you: %d\n",ifx_vec_max_idx_c(RangeFFT_imOutput));
+            //printf("Segfault in process fft2?, :%d\n", chirp);
             // Scale the FFT output: divide by num_samples and multiply results by 2.
             // (Note: In the Python code, FFT result is divided by num_samples and multiplied by 2.)
             for (int bin = 0; bin < out_len; bin++) {
-                vectorRangeArray[chirp][bin].data->data[0]= vectorRangeArray[chirp][bin].data->data[0] / (num_samples * 2.0);
-                vectorRangeArray[chirp][bin].data->data[1] = vectorRangeArray[chirp][bin].data->data[1] / (num_samples * 2.0);
+            	 IFX_MAT_AT(RangeFFT_outputMatrix, bin, chirp)= IFX_VEC_AT(RangeFFT_imOutput, bin);
+            	 plotPoint2d((float)bin, (float)ifx_complex_abs(IFX_VEC_AT(RangeFFT_imOutput,bin)));
+					//plotPoint2d((float)bin, SQRT(IFX_VEC_AT(RangeFFT_imOut,bin)->data[0]
             }
-        } // End of chirp loop
-    
+        } 
+        printf("made it to the end of cal range fft!/n");
+        
+    	free(FFT_vector);
+    	free(matrix_ptr);
 }
 
 
 void process_vital_signs(ifx_Float_t* phase_buf, ifx_FFT_t* PhaseFFT, int len, ifx_Filter_R_t* br_filt, ifx_Filter_R_t* hr_filt,ifx_Vector_R_t* filterOutputHr ,ifx_Vector_R_t* filterOutputBr) {
+	printf("inside Process Vital Signs\n");	
+	/*    
     int i;
     static int processNum = 0;
     ifx_Float_t unwrapped_phase[PHASE_BUFFER_SIZE];
@@ -362,7 +384,7 @@ void process_vital_signs(ifx_Float_t* phase_buf, ifx_FFT_t* PhaseFFT, int len, i
         bp_in[i] = filtered_breathing[i];
         heart_in[i] = filtered_heart[i];
     }
-    */
+    *//*
     //left off here
     //ifx_fft_run_rc(PhaseFFT, filterOutputBr, filtered_breathing);
     //ifx_fft_run_rc(PhaseFFT, filterOutputHr, filtered_heart);
@@ -413,32 +435,59 @@ void process_frame(ifx_Cube_R_t* frame, double max_range, ifx_Vector_C_t** vecto
     ifx_Vector_R_t* = malloc(num_chirps_per_Frame * sizeof(ifx_Vector_C_t))
 	ifx_Vecctor_C_t** fft_out;*/
     static int phase_index;
+    //printf("wheres my segfault3\n");
     calc_range_fft(RangeFFT, frame, vectorRangeArray);
+    //printf("wheres my segfault4\n");
     ifx_Float_t max_val;
     uint32_t range_bin;
     int i;
     for(i = 0; i < num_chirps_per_frame; i++){
         if (RangeFFT != NULL) {
+        	/*
             //find max val and max val index
             max_val = ifx_vec_maxabs_c(vectorRangeArray[i]);
             range_bin = ifx_vec_max_idx_c(vectorRangeArray[i]);
 
-            printf("rangeBin: %d", range_bin); 
+            //printf("rangeBin: %d", range_bin); 
             //printf("\nstartIndex:%d, endindex:%d\n", start_index_range, stop_index_range);       
         
             ifx_Float_t wrapped_phase = atan2((vectorRangeArray[i][range_bin].data->data[1]), vectorRangeArray[i][range_bin].data->data[0]);
-            printf("imag:%f , real: %f \n",vectorRangeArray[i][range_bin].data->data[1], vectorRangeArray[i][range_bin].data->data[0]);
+            //printf("imag:%f , real: %f \n",vectorRangeArray[i][range_bin].data->data[1], vectorRangeArray[i][range_bin].data->data[0]);
             if (phase_index < PHASE_BUFFER_SIZE) {
                 phase_buffer[phase_index++] = wrapped_phase;
             }
             if (phase_index >= PHASE_BUFFER_SIZE) { 
-                //printf("wheres my segfault VONE MILLION-------------------\n");
                  process_vital_signs(phase_buffer, PhaseFFT, PHASE_BUFFER_SIZE,br_filt, hr_filt, filterOutputHr, filterOutputBr);
                 phase_index = 0;
             }
             //free(range_fft);//Seg fauling Not dynamically allocated, doesnt need to be freed.
+            */
         }
     
 		}
 
 }
+
+void initializePlotting() {
+  Py_Initialize();
+  // load matplotlib for plotting
+  PyRun_SimpleString(
+    "from matplotlib import pyplot as plt\n"
+    "plt.ion()\n"
+    "plt.show(block=False)\n"
+    );
+}
+
+void uninitializePlotting() {
+  PyRun_SimpleString("plt.ioff()\nplt.show()");
+  Py_Finalize();
+}
+
+void plotPoint2d(double x, double y) {
+#define CMD_BUF_SIZE 500
+  static char command[CMD_BUF_SIZE];
+  snprintf(command, CMD_BUF_SIZE, "plt.plot([%f],[%f],'r.')", x, y);
+  PyRun_SimpleString(command);
+  PyRun_SimpleString("plt.gcf().canvas.flush_events()");
+}
+
