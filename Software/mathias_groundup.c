@@ -171,9 +171,9 @@ void calc_range_fft(ifx_Vector_C_t* range_fft){
 
     ifx_Window_Config_t wnd;
     wnd.type = IFX_WINDOW_BLACKMANHARRIS;
-    wnd.size = FFT_SIZE_RANGE_PROFILE;
+    wnd.size = FFT_SIZE_RANGE_PROFILE/2;
     wnd.scale = 1;
-
+	 
     ifx_PPFFT_Config_t fft_config;
     fft_config.fft_size = FFT_SIZE_RANGE_PROFILE;
     fft_config.fft_type = IFX_FFT_TYPE_R2C;
@@ -188,12 +188,13 @@ void calc_range_fft(ifx_Vector_C_t* range_fft){
         ifx_Mda_R_t *frame = dequeue(&queue);
         ifx_Matrix_R_t* temp_m = ifx_mat_create_r(frame->shape[0], frame->shape[2]);
         ifx_Vector_R_t* temp_v = ifx_vec_create_r(frame->shape[2]);
-
         
         ifx_cube_get_col_r(frame, 0, temp_m);
         ifx_mat_get_rowview_r(temp_m, 0, temp_v);
+        
         ifx_ppfft_run_rc(fft_tool, temp_v, range_fft);
-
+					
+			
         if (ifx_error_get() != IFX_OK) {
             fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
             ifx_ppfft_destroy(fft_tool);
