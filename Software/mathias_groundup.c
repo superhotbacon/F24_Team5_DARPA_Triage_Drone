@@ -22,6 +22,7 @@
 #define QUEUE_SIZE 50
 #define OBJECT_DIST_START 0.5
 #define OBJECT_DIST_END 0.6
+#define BUFFER_SIZE 2000
 
 // Define the queue structure
 typedef struct {
@@ -220,13 +221,16 @@ void* process_data_thread(void* arg) {
 
     ifx_Vector_C_t* range_fft = ifx_vec_create_c(SAMPLES_PER_CHIRP+1);
     ifx_Vector_R_t* range_fft_abs = ifx_vec_create_r(SAMPLES_PER_CHIRP+1);
-    ifx_Complex_t  slow_time_buffer[2000/*100*20 in python*/] = {0};
+    ifx_Complex_t slow_time_buffer[BUFFER_SIZE] = {0};
+
     int start_index = (int)(OBJECT_DIST_START/max_range * SAMPLES_PER_CHIRP);
     int end_index = (int)(OBJECT_DIST_END/max_range * SAMPLES_PER_CHIRP);
     int peak_indeces[2*(int)FRAME_RATE] = {0};
     int peak_index_avg = 0;
     float max_val;
     int sum;
+    uint32_t counter = 0;
+    float wrapped_phase_plot[BUFFER_SIZE] = {0};
 
 
     while(1){
@@ -239,7 +243,7 @@ void* process_data_thread(void* arg) {
             for(int i = 0; i < (2*(int)FRAME_RATE) - 1; i++){
                 peak_indeces[i] = peak_indeces[i+1];
             }
-            for(int i = 0; i < (2000) - 1; i++){
+            for(int i = 0; i < (BUFFER_SIZE) - 1; i++){
                 slow_time_buffer[i] = slow_time_buffer[i+1];
             }
 
@@ -259,10 +263,32 @@ void* process_data_thread(void* arg) {
 
             peak_index_avg = (int)(sum/(2*(int)FRAME_RATE));
 
-            slow_time_buffer[1999] = range_fft->data[peak_index_avg];
+            slow_time_buffer[BUFFER_SIZE-1] = range_fft->data[peak_index_avg];
 
-            printf("peak: %f\n", max_val);
-            printf("avg: %u\n", peak_index_avg);
+            if(counter < BUFFER_SIZE-1){
+                counter++;
+            }
+            //printf("peak: %f\n", max_val);
+            //printf("avg: %u\n", peak_index_avg);
+
+            float wrapped_phase[counter];
+
+            for(int i = 0; i < counter; i++){
+                wrapped_phase[i] = (float)atan2(slow_time_buffer[((BUFFER_SIZE-1)-counter)+i].data[1],
+                                                slow_time_buffer[((BUFFER_SIZE-1)-counter)+i].data[0]);
+            }
+
+            for(int i = 0; i < BUFFER_SIZE - counter; i++){
+                wrapped_phase_plot[i] = wrapped_phase_plot[i+counter];
+            }
+
+            int j = 0;
+            for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
+                wrapped_phase_plot[i] = wrapped_phase[j];
+                j++;
+            }
+            printf("peak: %f\n", wrapped_phase_plot[BUFFER_SIZE-1]);
+            printf("avg: %u\n", counter);
         }
     }
     ifx_vec_destroy_r(range_fft_abs);
