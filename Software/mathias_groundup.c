@@ -14,6 +14,9 @@
 #include "pthread.h"
 #include "ifxAlgo/PreprocessedFFT.h"
 
+// Define M_PI manually if it is still not recognized
+#define M_PI 3.14159265358979323846
+
 #define NUM_RX_ANTENNAS 1
 #define FRAME_RATE 20.0
 #define NUMBER_OF_CHIRPS 1
@@ -23,6 +26,13 @@
 #define OBJECT_DIST_START 0.5
 #define OBJECT_DIST_END 0.6
 #define BUFFER_SIZE 2000
+
+//The following were used in
+//a python script to create the filter coefficients
+#define LOW_BREATHING 0.15
+#define HIGH_BREATHING 0.6
+#define LOW_HEART 0.85
+#define HIGH_HEART 2.4
 
 // Define the queue structure
 typedef struct {
@@ -36,6 +46,68 @@ typedef struct {
 // Global queue
 Queue queue;
 double max_range;
+
+const float breathing_b[(int)FRAME_RATE+1] = {
+    0.003224461484620409,
+    0.0053625468955774,
+    0.010716753679115535,
+    0.020134452875849942,
+    0.03364992753594613,
+    0.05040530764097441,
+    0.06875002737429206,
+    0.08650406008875909,
+    0.10133621147139964,
+    0.11118431769162093,
+    0.11463454748746789,
+    0.11118431769162093,
+    0.10133621147139964,
+    0.08650406008875909,
+    0.06875002737429206,
+    0.05040530764097441,
+    0.03364992753594613,
+    0.020134452875849942,
+    0.010716753679115535,
+    0.0053625468955774,
+    0.003224461484620409,
+};
+
+const float heart_b[(int)FRAME_RATE+1] = {
+    0.0017645272119925645,
+    -0.0009666883792551835,
+    -0.010176268245414486,
+    -0.03076649977892691,
+    -0.058311372455515466,
+    -0.07476801518027178,
+    -0.05682865595727649,
+    0.006279361489023919,
+    0.09895901033453573,
+    0.18246542149313824,
+    0.21607567177986248,
+    0.18246542149313824,
+    0.09895901033453573,
+    0.006279361489023919,
+    -0.05682865595727649,
+    -0.07476801518027178,
+    -0.058311372455515466,
+    -0.03076649977892691,
+    -0.010176268245414486,
+    -0.0009666883792551835,
+    0.0017645272119925645,
+};
+
+void fir_filter(float* x, float* y, float* b, int input_size, int filter_order) {
+    // Loop through the input signal
+    for (int n = 0; n < input_size; n++) {
+        y[n] = 0;  // Initialize output
+
+        // Apply the FIR filter
+        for (int k = 0; k <= filter_order; k++) {
+            if (n - k >= 0) {
+                y[n] += b[k] * x[n - k];  // Convolution sum
+            }
+        }
+    }
+}
 
 // Initialize the queue
 void init_queue(Queue* q) {
@@ -171,6 +243,22 @@ void apply_window_to_frame(ifx_Mda_R_t* frame, ifx_Mda_R_t* window)
     free(indices);
 }*/
 
+void unwrap_phase(float* phase, int size) {
+    // Iterate through the array of phase values
+    for (int i = 1; i < size; i++) {
+        // Compute the difference between the current phase and the previous one
+        float delta = phase[i] - phase[i - 1];
+        
+        // If the difference exceeds pi, unwrap it by adding or subtracting 2*pi
+        if (delta > M_PI) {
+            phase[i] -= 2 * M_PI;  // Subtract 2*pi if the jump is greater than pi
+        }
+        else if (delta < -M_PI) {
+            phase[i] += 2 * M_PI;  // Add 2*pi if the jump is less than -pi
+        }
+    }
+}
+
 void calc_range_fft(ifx_Vector_C_t* range_fft){
 
     ifx_Window_Config_t wnd;
@@ -229,9 +317,13 @@ void* process_data_thread(void* arg) {
     int peak_index_avg = 0;
     float max_val;
     int sum;
-    uint32_t counter = 0;
+    int counter = 0;
     float wrapped_phase_plot[BUFFER_SIZE] = {0};
-
+    float unwrapped_phase_plot[BUFFER_SIZE] = {0};
+    float *filtered_breathing;
+    float *filtered_heart;
+    float filtered_breathing_plot[BUFFER_SIZE] = {0};
+    float filtered_heart_plot[BUFFER_SIZE] = {0};
 
     while(1){
         if(!is_empty(&queue)){
@@ -272,6 +364,7 @@ void* process_data_thread(void* arg) {
             //printf("avg: %u\n", peak_index_avg);
 
             float wrapped_phase[counter];
+            float unwrapped_phase[counter];
 
             for(int i = 0; i < counter; i++){
                 wrapped_phase[i] = (float)atan2(slow_time_buffer[((BUFFER_SIZE-1)-counter)+i].data[1],
@@ -287,8 +380,44 @@ void* process_data_thread(void* arg) {
                 wrapped_phase_plot[i] = wrapped_phase[j];
                 j++;
             }
-            printf("peak: %f\n", wrapped_phase_plot[BUFFER_SIZE-1]);
-            printf("avg: %u\n", counter);
+            //printf("peak: %f\n", wrapped_phase_plot[BUFFER_SIZE-1]);
+            //printf("avg: %u\n", counter);
+
+            for(int i = 0; i < counter; i++){
+                unwrapped_phase[i] = wrapped_phase[i];
+            }
+            
+            unwrap_phase(unwrapped_phase, counter);
+            printf("unwrap: %f\n", unwrapped_phase[0]);
+            //printf("avg: %u\n", counter);
+
+            for(int i = 0; i < BUFFER_SIZE - (int)counter; i++){
+                unwrapped_phase_plot[i] = unwrapped_phase_plot[i+counter];
+            }
+
+            fir_filter(unwrapped_phase, filtered_breathing, breathing_b, counter, (int)FRAME_RATE + 1);
+            fir_filter(unwrapped_phase, filtered_heart, heart_b, counter, (int)FRAME_RATE + 1); //skipped a part in python
+
+            int j = 0;
+            for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
+                unwrapped_phase_plot[i] = unwrapped_phase[j];
+                j++;
+            }
+
+            int j = 0;
+            for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
+                filtered_breathing_plot[i] = filtered_breathing[j];
+                j++;
+            }
+
+            int j = 0;
+            for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
+                filtered_heart_plot[i] = filtered_heart[j];
+                j++;
+            }
+            printf("peak: %f\n", filtered_breathing_plot[0]);
+            printf("peak: %f\n", filtered_heart_plot[0]);
+
         }
     }
     ifx_vec_destroy_r(range_fft_abs);
