@@ -95,7 +95,7 @@ const float heart_b[(int)FRAME_RATE+1] = {
     0.0017645272119925645,
 };
 
-void fir_filter(float* x, float* y, float* b, int input_size, int filter_order) {
+void fir_filter(float* x, float* y, const float* b, int input_size, int filter_order) {
     // Loop through the input signal
     for (int n = 0; n < input_size; n++) {
         y[n] = 0;  // Initialize output
@@ -320,8 +320,6 @@ void* process_data_thread(void* arg) {
     int counter = 0;
     float wrapped_phase_plot[BUFFER_SIZE] = {0};
     float unwrapped_phase_plot[BUFFER_SIZE] = {0};
-    float *filtered_breathing;
-    float *filtered_heart;
     float filtered_breathing_plot[BUFFER_SIZE] = {0};
     float filtered_heart_plot[BUFFER_SIZE] = {0};
 
@@ -382,41 +380,42 @@ void* process_data_thread(void* arg) {
             }
             //printf("peak: %f\n", wrapped_phase_plot[BUFFER_SIZE-1]);
             //printf("avg: %u\n", counter);
-
+				
             for(int i = 0; i < counter; i++){
                 unwrapped_phase[i] = wrapped_phase[i];
             }
             
             unwrap_phase(unwrapped_phase, counter);
-            printf("unwrap: %f\n", unwrapped_phase[0]);
-            //printf("avg: %u\n", counter);
-
+            
             for(int i = 0; i < BUFFER_SIZE - (int)counter; i++){
                 unwrapped_phase_plot[i] = unwrapped_phase_plot[i+counter];
             }
-
+				
+				float filtered_breathing[counter];
+    			float filtered_heart[counter];				
+				
             fir_filter(unwrapped_phase, filtered_breathing, breathing_b, counter, (int)FRAME_RATE + 1);
             fir_filter(unwrapped_phase, filtered_heart, heart_b, counter, (int)FRAME_RATE + 1); //skipped a part in python
 
-            int j = 0;
+            j = 0;
             for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
                 unwrapped_phase_plot[i] = unwrapped_phase[j];
                 j++;
             }
 
-            int j = 0;
+            j = 0;
             for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
                 filtered_breathing_plot[i] = filtered_breathing[j];
                 j++;
             }
 
-            int j = 0;
+            j = 0;
             for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
                 filtered_heart_plot[i] = filtered_heart[j];
                 j++;
             }
-            printf("peak: %f\n", filtered_breathing_plot[0]);
-            printf("peak: %f\n", filtered_heart_plot[0]);
+            printf("peak: %f\n", filtered_breathing_plot[BUFFER_SIZE-1]);
+            printf("peak: %f\n", filtered_heart_plot[BUFFER_SIZE-1]);
 
         }
     }
