@@ -259,6 +259,63 @@ void unwrap_phase(float* phase, int size) {
     }
 }
 
+void vital_signs_fft(float* input, float* output, int length, int scalar){
+    ifx_Vector_R_t* in_sig = ifx_vec_create_r((uint32_t)length);
+    ifx_Vector_C_t* out_fft = ifx_vec_create_c((uint32_t)length);
+    ifx_Vector_R_t* out_abs = ifx_vec_create_r((uint32_t)length);
+    ifx_Vector_R_t* out_sig = ifx_vec_create_r((uint32_t)length);
+
+    ifx_vec_rawview_r(in_sig, input, length, 1);
+
+    ifx_Window_Config_t wnd;
+    wnd.type = IFX_WINDOW_BLACKMANHARRIS;
+    wnd.size = length;
+    wnd.scale = 1;
+	 
+    ifx_PPFFT_Config_t fft_config;
+    fft_config.fft_size = scalar;
+    fft_config.fft_type = IFX_FFT_TYPE_R2C;
+    fft_config.is_normalized_window = false;
+    fft_config.mean_removal_enabled = false;
+    fft_config.window_config = wnd;
+
+    ifx_PPFFT_t* fft_tool = ifx_ppfft_create(&fft_config);
+
+    ifx_ppfft_run_rc(fft_tool, in_sig, out_fft);
+
+    if (ifx_error_get() != IFX_OK) {
+            fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
+            ifx_ppfft_destroy(fft_tool);
+            return;
+        }     
+        
+    ifx_vec_abs_c(out_fft, out_abs);
+
+    if (ifx_error_get() != IFX_OK) {
+            fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
+            ifx_ppfft_destroy(fft_tool);
+            return;
+        }     
+        
+    ifx_vec_scale_r(out_abs, 1/scalar, out_sig);
+
+    if (ifx_error_get() != IFX_OK) {
+            fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
+            ifx_ppfft_destroy(fft_tool);
+            return;
+        }     
+
+    for(int i = 0; i < length; i++){
+        output[i] = out_sig->data[i];
+    }
+
+    ifx_vec_destroy_r(in_sig);
+    ifx_vec_destroy_r(out_abs);
+    ifx_vec_destroy_r(out_fft);
+    ifx_vec_destroy_c(out_sig);
+    ifx_ppfft_destroy(fft_tool);
+}
+
 void calc_range_fft(ifx_Vector_C_t* range_fft){
 
     ifx_Window_Config_t wnd;
@@ -307,8 +364,8 @@ void calc_range_fft(ifx_Vector_C_t* range_fft){
 // Function to simulate processing radar data
 void* process_data_thread(void* arg) {
 
-    ifx_Vector_C_t* range_fft = ifx_vec_create_c(SAMPLES_PER_CHIRP+1);
-    ifx_Vector_R_t* range_fft_abs = ifx_vec_create_r(SAMPLES_PER_CHIRP+1);
+    ifx_Vector_C_t* range_fft = ifx_vec_create_c(SAMPLES_PER_CHIRP);
+    ifx_Vector_R_t* range_fft_abs = ifx_vec_create_r(SAMPLES_PER_CHIRP);
     ifx_Complex_t slow_time_buffer[BUFFER_SIZE] = {0};
 
     int start_index = (int)(OBJECT_DIST_START/max_range * SAMPLES_PER_CHIRP);
@@ -414,9 +471,17 @@ void* process_data_thread(void* arg) {
                 filtered_heart_plot[i] = filtered_heart[j];
                 j++;
             }
-            printf("peak: %f\n", filtered_breathing_plot[BUFFER_SIZE-1]);
-            printf("peak: %f\n", filtered_heart_plot[BUFFER_SIZE-1]);
+            //printf("peak: %f\n", filtered_breathing_plot[BUFFER_SIZE-1]);
+            //printf("peak: %f\n", filtered_heart_plot[BUFFER_SIZE-1]);
 
+            float breathing_fft[counter];
+            float heart_fft[counter];
+
+            vital_signs_fft(filtered_breathing, breathing_fft, counter, BUFFER_SIZE);
+            vital_signs_fft(filtered_heart, heart_fft, counter, BUFFER_SIZE);
+
+            printf("peak: %f\n", breathing_fft[0]);
+            printf("peak: %f\n", heart_fft[0]);
         }
     }
     ifx_vec_destroy_r(range_fft_abs);
