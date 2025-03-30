@@ -26,7 +26,7 @@
 #define OBJECT_DIST_START 0.5
 #define OBJECT_DIST_END 0.6
 #define BUFFER_SIZE 512
-#define FFT_SIZE_2 1024
+#define FFT_SIZE_2 (BUFFER_SIZE * 2);
 
 //The following were used in
 //a python script to create the filter coefficients
@@ -189,60 +189,7 @@ void* read_data_thread(void* arg) {
     return NULL;
 }
 
-/*size_t compute_offset(const ifx_Mda_R_t* array, const uint32_t* indices)
-{
-    size_t offset = 0;
-    for (uint32_t i = 0; i < array->dimensions; ++i) {
-        offset += indices[i] * array->stride[i];  // Compute offset using stride
-    }
-    return offset;
-}
 
-// Function to multiply frame by window coefficients
-void apply_window_to_frame(ifx_Mda_R_t* frame, ifx_Mda_R_t* window)
-{
-    // Check that the dimensions and shape match
-    if (frame->dimensions != window->dimensions) {
-        printf("Error with Windowing");
-        return;
-    }
-
-    for (uint32_t i = 0; i < frame->dimensions; ++i) {
-        if (frame->shape[i] != window->shape[i]) {
-            printf("Error with Windowing");
-            return;
-        }
-    }
-
-    // Number of elements in the frame (assuming multi-dimensional arrays)
-    uint32_t num_elements = 1;
-    for (uint32_t i = 0; i < frame->dimensions; ++i) {
-        num_elements *= frame->shape[i];
-    }
-
-    // Temporary array to hold the indices for accessing frame and window elements
-    uint32_t* indices = (uint32_t*)malloc(frame->dimensions * sizeof(uint32_t));
-
-    // Multiply the data element by element, using stride-based indexing
-    for (uint32_t i = 0; i < num_elements; ++i) {
-        // Compute multi-dimensional indices for the current element
-        uint32_t temp_i = i;
-        for (uint32_t d = 0; d < frame->dimensions; ++d) {
-            indices[d] = temp_i % frame->shape[d];  // Get index for dimension d
-            temp_i /= frame->shape[d];  // Move to the next "layer"
-        }
-
-        // Compute the offset for frame and window data
-        size_t frame_offset = compute_offset(frame, indices);
-        size_t window_offset = compute_offset(window, indices);
-
-        // Multiply the frame's data by the corresponding window coefficient
-        frame->data[frame_offset] *= window->data[window_offset];
-    }
-
-    // Clean up
-    free(indices);
-}*/
 
 void unwrap_phase(float* phase, int size) {
     // Iterate through the array of phase values
@@ -258,6 +205,20 @@ void unwrap_phase(float* phase, int size) {
             phase[i] += 2 * M_PI;  // Add 2*pi if the jump is less than -pi
         }
     }
+}
+
+int find_signal_peaks(float* fft_sig, int start_index, int end_index){
+    float max_val = 0;
+    int peak_index = 0;
+    
+    for(int i = start_index; i <= end_index; i++){
+        if(fft_sig[i] > max_val){
+            max_val = fft_sig[i];
+            peak_index = i;
+        }
+    }
+
+    return peak_index;
 }
 
 void vital_signs_fft(float* input, float* output, int length){
@@ -367,10 +328,6 @@ void calc_range_fft(ifx_Vector_C_t* range_fft){
             return;
         }     
         
-        
-        
-        //ifx_window_init(&wnd, &coeff);
-        //apply_window_to_frame(frame, &coeff);
        
         ifx_mat_destroy_r(temp_m);
         ifx_vec_destroy_r(temp_v);
@@ -383,21 +340,42 @@ void* process_data_thread(void* arg) {
 
     ifx_Vector_C_t* range_fft = ifx_vec_create_c(SAMPLES_PER_CHIRP);
     ifx_Vector_R_t* range_fft_abs = ifx_vec_create_r(SAMPLES_PER_CHIRP);
+    ifx_Vector_R_t* range_profile = ifx_vec_create_r(SAMPLES_PER_CHIRP);
+    ifx_Vector_R_t* vitals_range_profile = ifx_vec_create_r(BUFFER_SIZE);
     ifx_Complex_t slow_time_buffer[BUFFER_SIZE] = {0};
+
+    ifx_vec_linspace_r(0, max_range, range_profile);
+    ifx_vec_linspace_r(0, FRAME_RATE/2, vitals_range_profile);
 
     int start_index = (int)(OBJECT_DIST_START/max_range * SAMPLES_PER_CHIRP);
     int end_index = (int)(OBJECT_DIST_END/max_range * SAMPLES_PER_CHIRP);
+    int index_start_breathing = (int)(LOW_BREATHING/FRAME_RATE * BUFFER_SIZE); //in python, don't use BUFFER_SIZE,
+    int index_end_brething = (int)(HIGH_BREATHING/FRAME_RATE * BUFFER_SIZE);    //double it.
+    int index_start_heart = (int)(LOW_HEART/FRAME_RATE * BUFFER_SIZE);
+    int index_end_heart = (int)(HIGH_HEART/FRAME_RATE * BUFFER_SIZE);
+
     int peak_indeces[2*(int)FRAME_RATE] = {0};
     int peak_index_avg = 0;
     float max_val;
     int sum;
     int counter = 0;
+    float wrapped_phase[BUFFER_SIZE] = {0};
+    float unwrapped_phase[BUFFER_SIZE] = {0};
     float wrapped_phase_plot[BUFFER_SIZE] = {0};
     float unwrapped_phase_plot[BUFFER_SIZE] = {0};
+    float filtered_breathing[BUFFER_SIZE] = {0};
+    float filtered_heart[BUFFER_SIZE] = {0};	
     float filtered_breathing_plot[BUFFER_SIZE] = {0};
     float filtered_heart_plot[BUFFER_SIZE] = {0};
     float breathing_fft[BUFFER_SIZE] = {0};
     float heart_fft[BUFFER_SIZE] = {0};
+    int breathing_rate_estimation_index[BUFFER_SIZE] = {0};
+    int heart_rate_estimation_index[BUFFER_SIZE] = {0};
+    int vital_sum = 0;
+    int avg_breathing_index = 0;
+    int avg_heart_index = 0;
+    float b_bpm = 0;
+    float h_bpm = 0;
 
     while(1){
         if(!is_empty(&queue)){
@@ -437,9 +415,6 @@ void* process_data_thread(void* arg) {
             //printf("peak: %f\n", max_val);
             //printf("avg: %u\n", peak_index_avg);
 
-            float wrapped_phase[counter];
-            float unwrapped_phase[counter];
-
             for(int i = 0; i < counter; i++){
                 wrapped_phase[i] = (float)atan2(slow_time_buffer[((BUFFER_SIZE-1)-counter)+i].data[1],
                                                 slow_time_buffer[((BUFFER_SIZE-1)-counter)+i].data[0]);
@@ -466,17 +441,23 @@ void* process_data_thread(void* arg) {
             for(int i = 0; i < BUFFER_SIZE - (int)counter; i++){
                 unwrapped_phase_plot[i] = unwrapped_phase_plot[i+counter];
             }
-				
-				float filtered_breathing[counter];
-    			float filtered_heart[counter];				
-				
-            fir_filter(unwrapped_phase, filtered_breathing, breathing_b, counter, (int)FRAME_RATE + 1);
-            fir_filter(unwrapped_phase, filtered_heart, heart_b, counter, (int)FRAME_RATE + 1); //skipped a part in python
-
+			
             j = 0;
             for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
                 unwrapped_phase_plot[i] = unwrapped_phase[j];
                 j++;
+            }
+				
+            fir_filter(unwrapped_phase, filtered_breathing, breathing_b, counter, (int)FRAME_RATE + 1);
+            fir_filter(unwrapped_phase, filtered_heart, heart_b, counter, (int)FRAME_RATE + 1); //skipped a part in python
+
+            
+            for(int i = 0; i < BUFFER_SIZE - (int)counter; i++){
+                filtered_breathing_plot[i] = filtered_breathing_plot[i+counter];
+            }
+
+            for(int i = 0; i < BUFFER_SIZE - (int)counter; i++){
+                filtered_heart_plot[i] = filtered_heart_plot[i+counter];
             }
 
             j = 0;
@@ -493,164 +474,50 @@ void* process_data_thread(void* arg) {
             //printf("peak: %f\n", filtered_breathing_plot[BUFFER_SIZE-1]);
             //printf("peak: %f\n", filtered_heart_plot[BUFFER_SIZE-1]);
 
-                   
-				
-				if(counter > 10){
-            vital_signs_fft(filtered_breathing_plot, breathing_fft, BUFFER_SIZE);
-            vital_signs_fft(filtered_heart_plot, heart_fft, BUFFER_SIZE);
+            
+			if(counter > 10){
+                vital_signs_fft(filtered_breathing_plot, breathing_fft, BUFFER_SIZE);
+                vital_signs_fft(filtered_heart_plot, heart_fft, BUFFER_SIZE);
             }
-            printf("b: %f\n", breathing_fft[0]);
-            printf("h: %f\n", heart_fft[0]);
 
-				
-				
-				
-				
-				
-				
-				
-				
+            //printf("b: %f\n", breathing_fft[0]);
+            //printf("h: %f\n", heart_fft[0]);
 
-				/*ifx_Vector_R_t* in_sig = ifx_vec_create_r(200);
-		    ifx_Vector_C_t* out_fft = ifx_vec_create_c(200);
-		    //ifx_Vector_R_t* out_abs = ifx_vec_create_r((uint32_t)length);
-		    //ifx_Vector_R_t* out_sig = ifx_vec_create_r((uint32_t)length);
-		
-		    ifx_vec_rawview_r(in_sig, filtered_breathing_plot, 200, 1);
-		    
-		    
-		    
-		    ifx_FFT_t* tool_fft = ifx_fft_create(IFX_FFT_TYPE_R2C, 256);
-		    
-		    if (ifx_error_get() != IFX_OK) {
-		            fprintf(stderr, "Failed create tool: %s\n", ifx_error_to_string(ifx_error_get()));
-		           // ifx_ppfft_destroy(sl_fft_tool);
-		        }
-		
-		    
-			 
-			 ifx_fft_run_rc(tool_fft, in_sig, out_fft);
-		    //ifx_ppfft_run_rc(sl_fft_tool, in_sig, out_fft);
-		    
-		    printf("peak: %f\n", out_fft->data[0].data[0]);
-		
-		    if (ifx_error_get() != IFX_OK) {
-		            fprintf(stderr, "Failed vital_sign yo fft: %s\n", ifx_error_to_string(ifx_error_get()));
-		           // ifx_ppfft_destroy(sl_fft_tool);
-		            return;
-		        } 
+            for(int i = 0; i < BUFFER_SIZE - 1; i++){
+                breathing_rate_estimation_index[i] = breathing_rate_estimation_index[i+1];
+            }
 
-	int length = 512;
-	//float* input[64] = {0};
-	float output[512] = {0};
+            for(int i = 0; i < BUFFER_SIZE - 1; i++){
+                heart_rate_estimation_index[i] = heart_rate_estimation_index[i+1];
+            }
 
+            breathing_rate_estimation_index[BUFFER_SIZE-1] = find_signal_peaks(breathing_fft, index_start_breathing, index_end_brething);//may not work
+            heart_rate_estimation_index[BUFFER_SIZE-1] = find_signal_peaks(heart_fft, index_start_heart, index_end_heart);//as max value and not peak will
+                                                                                        //be returned
 
+            for(int i = BUFFER_SIZE-counter; i < BUFFER_SIZE; i++){
+                vital_sum += breathing_rate_estimation_index[i];
+            }
 
-				ifx_Vector_R_t* in_sig = ifx_vec_create_r((uint32_t)length);
-    ifx_Vector_C_t* out_fft = ifx_vec_create_c((uint32_t)length);
-    ifx_Vector_R_t* out_abs = ifx_vec_create_r((uint32_t)length);
-    ifx_Vector_R_t* out_sig = ifx_vec_create_r((uint32_t)length);
+            avg_breathing_index = (int)(vital_sum/counter);
 
-		printf("filtered: %f\n", filtered_breathing_plot[1]);
+            for(int i = BUFFER_SIZE-counter; i < BUFFER_SIZE; i++){
+                vital_sum += heart_rate_estimation_index[i];
+            }
 
-    ifx_vec_rawview_r(in_sig, filtered_breathing_plot, (uint32_t)length, 1);
-    
-    
-    ifx_Window_Config_t sl_wnd;
-    sl_wnd.type = IFX_WINDOW_BLACKMANHARRIS;
-    sl_wnd.size = length;
-    sl_wnd.scale = 1;
-	 
-    ifx_PPFFT_Config_t sl_fft_config;
-    sl_fft_config.fft_size = 1024;
-    sl_fft_config.fft_type = IFX_FFT_TYPE_R2C;
-    sl_fft_config.is_normalized_window = false;
-    sl_fft_config.mean_removal_enabled = false;
-    sl_fft_config.window_config = sl_wnd;
+            avg_heart_index = (int)(vital_sum/counter);
 
-    ifx_PPFFT_t* sl_fft_tool = ifx_ppfft_create(&sl_fft_config);
-    //ifx_FFT_t* tool_fft = ifx_fft_create(IFX_FFT_TYPE_R2C, 256);
-    
-    if (ifx_error_get() != IFX_OK) {
-            fprintf(stderr, "Failed create tool: %s\n", ifx_error_to_string(ifx_error_get()));
-            //ifx_ppfft_destroy(sl_fft_tool);
-            return;
-        }
-
-    
-    
-    if(in_sig == NULL){
-    			printf("2");
-    }
-    if(out_fft == NULL){
-    			printf("3");
-    }
-	 
-	 //ifx_fft_run_rc(tool_fft, in_sig, out_fft);
-    ifx_ppfft_run_rc(sl_fft_tool, in_sig, out_fft);
-
-    if (ifx_error_get() != IFX_OK) {
-            fprintf(stderr, "Failed vital_sign fft: %s\n", ifx_error_to_string(ifx_error_get()));
-            //ifx_ppfft_destroy(sl_fft_tool);
-            return;
-        }     
-        
-    ifx_vec_abs_c(out_fft, out_abs);
-
-    if (ifx_error_get() != IFX_OK) {
-            fprintf(stderr, "Failed to compute abs: %s\n", ifx_error_to_string(ifx_error_get()));
-           // ifx_ppfft_destroy(sl_fft_tool);
-            return;
-        }     
-        
-    //ifx_vec_scale_r(out_abs, 1/FFT_SIZE_2, out_sig);
-
-    if (ifx_error_get() != IFX_OK) {
-            fprintf(stderr, "Failed to scale: %s\n", ifx_error_to_string(ifx_error_get()));
-            //ifx_ppfft_destroy(sl_fft_tool);
-            return;
-        }     
-
-    for(int i = 0; i < length; i++){
-        output[i] = out_abs->data[i];
-    }
-
-    
-		printf("peak: %f\n", output[0]);
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            b_bpm = vitals_range_profile->data[avg_breathing_index] * 60;
+            h_bpm = vitals_range_profile->data[avg_heart_index] * 60;
+            
+            printf("b_bpm: %f\n", b_bpm);
+            printf("h_bpm: %f\n", h_bpm);
+            printf("counter: %u\n,", counter);
         }
     }
     ifx_vec_destroy_r(range_fft_abs);
+    ifx_vec_destroy_r(range_profile);
+    ifx_vec_destroy_r(vitals_range_profile);
     ifx_vec_destroy_c(range_fft);
     
     return NULL;
@@ -719,17 +586,7 @@ int main(){
         perror("Failed to create process thread");
         return 1;
     }
-    /*ifx_Fmcw_Frame_t* frame = ifx_fmcw_allocate_frame(device);
-
-    while(1){
-
-        ifx_fmcw_get_next_frame(device, frame);
-        if (frame == NULL) {
-            fprintf(stderr, "Failed to acquire frame: %s\n", ifx_error_to_string(ifx_error_get()));
-            break; 
-        }
-
-        usleep(1000);
+    
     }
 */  pthread_join(data_thread, NULL);
     pthread_join(process_thread, NULL);
