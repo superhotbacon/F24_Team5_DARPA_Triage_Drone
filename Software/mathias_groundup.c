@@ -25,7 +25,7 @@
 #define QUEUE_SIZE 50
 #define OBJECT_DIST_START 0.5
 #define OBJECT_DIST_END 1.5
-#define BUFFER_SIZE 64 //must be a power of 2
+#define BUFFER_SIZE 256 //must be a power of 2
 #define FFT_SIZE_2 (BUFFER_SIZE * 2);
 
 //The following were used in
@@ -241,7 +241,7 @@ void vital_signs_fft(float* input, float* output, int length){
     ifx_PPFFT_Config_t sl_fft_config;
     sl_fft_config.fft_size = FFT_SIZE_2;
     sl_fft_config.fft_type = IFX_FFT_TYPE_R2C;
-    sl_fft_config.is_normalized_window = true;
+    sl_fft_config.is_normalized_window = false;
     sl_fft_config.mean_removal_enabled = false;
     sl_fft_config.window_config = sl_wnd;
 
@@ -308,7 +308,7 @@ void calc_range_fft(ifx_Vector_C_t* range_fft){
     ifx_PPFFT_Config_t fft_config;
     fft_config.fft_size = FFT_SIZE_RANGE_PROFILE;
     fft_config.fft_type = IFX_FFT_TYPE_R2C;
-    fft_config.is_normalized_window = true;
+    fft_config.is_normalized_window = false;
     fft_config.mean_removal_enabled = false;
     fft_config.window_config = wnd;
     
@@ -353,6 +353,7 @@ void* process_data_thread(void* arg) {
 
     int start_index = (int)(OBJECT_DIST_START/max_range * SAMPLES_PER_CHIRP);
     int end_index = (int)(OBJECT_DIST_END/max_range * SAMPLES_PER_CHIRP);
+    
     int index_start_breathing = (int)(LOW_BREATHING/FRAME_RATE * 2 * BUFFER_SIZE); //in python, don't use BUFFER_SIZE,
     int index_end_brething = (int)(HIGH_BREATHING/FRAME_RATE * 2 * BUFFER_SIZE);    //double it.
     int index_start_heart = (int)(LOW_HEART/FRAME_RATE * 2 * BUFFER_SIZE);
@@ -421,6 +422,15 @@ void* process_data_thread(void* arg) {
 				distance = range_profile->data[peak_index_avg];
 				
             slow_time_buffer[BUFFER_SIZE-1] = range_fft->data[peak_index_avg];
+            
+            heart_fft_plot[BUFFER_SIZE-1] = range_fft_abs->data[peak_index_avg];
+            
+			        /*    max_val = 0;
+			            for(int i = BUFFER_SIZE-counter; i < BUFFER_SIZE; i++){
+								max_val += heart_fft_plot[i];				          
+			            }
+			            
+			            avg_h_fft = max_val/counter;*/
 
             if(counter < BUFFER_SIZE){
                 counter++;
@@ -519,7 +529,12 @@ void* process_data_thread(void* arg) {
             
             if(heart_rate_estimation_index[BUFFER_SIZE-1] == 0){
 					heart_rate_estimation_index[BUFFER_SIZE-1] = heart_rate_estimation_index[BUFFER_SIZE-2];            
+            }max_val = 0;
+            for(int i = BUFFER_SIZE-counter; i < BUFFER_SIZE; i++){
+					max_val += heart_fft[i];				          
             }
+            
+            avg_h_fft = max_val/counter;
             
 				vital_sum = 0;
 				avg_breathing_index = 0;
@@ -572,8 +587,8 @@ void* process_data_thread(void* arg) {
             printf("mag h: %f\n", avg_h_fft);
             
             printf("distance: %f m\n", distance);
-            //printf("b_bpm: %f\n", b_bpm);
-            //printf("h_bpm: %f\n", h_bpm);
+            printf("b_bpm: %f\n", b_bpm);
+            printf("h_bpm: %f\n", h_bpm);
             //printf("counter: %u\n", counter);
         }
     }
