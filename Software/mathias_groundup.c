@@ -207,14 +207,19 @@ void unwrap_phase(float* phase, int size) {
     }
 }
 
+
+
 int find_signal_peaks(float* fft_sig, int start_index, int end_index){
     float max_val = 0;
     int peak_index = 0;
     
-    for(int i = start_index; i <= end_index; i++){
-        if(fft_sig[i] > max_val){
-            max_val = fft_sig[i];
-            peak_index = i;
+    for (int i = start_index+1; i < end_index; i++) {
+        if (fft_sig[i] > fft_sig[i - 1] && fft_sig[i] > fft_sig[i + 1]) {
+            // This is a peak, so store the index
+            if(max_val < fft_sig[i]){
+                peak_index = i;
+                max_val = fft_sig[i];
+            }
         }
     }
 
@@ -586,7 +591,17 @@ int main(){
         perror("Failed to create process thread");
         return 1;
     }
-    
+    /*ifx_Fmcw_Frame_t* frame = ifx_fmcw_allocate_frame(device);
+
+    while(1){
+
+        ifx_fmcw_get_next_frame(device, frame);
+        if (frame == NULL) {
+            fprintf(stderr, "Failed to acquire frame: %s\n", ifx_error_to_string(ifx_error_get()));
+            break; 
+        }
+
+        usleep(1000);
     }
 */  pthread_join(data_thread, NULL);
     pthread_join(process_thread, NULL);
