@@ -20,12 +20,12 @@
 #define NUM_RX_ANTENNAS 1
 #define FRAME_RATE 20.0
 #define NUMBER_OF_CHIRPS 1
-#define SAMPLES_PER_CHIRP 64
+#define SAMPLES_PER_CHIRP 128
 #define FFT_SIZE_RANGE_PROFILE (SAMPLES_PER_CHIRP * 2)
 #define QUEUE_SIZE 50
 #define OBJECT_DIST_START 0.5
-#define OBJECT_DIST_END 0.6
-#define BUFFER_SIZE 512
+#define OBJECT_DIST_END 1.5
+#define BUFFER_SIZE 64 //must be a power of 2
 #define FFT_SIZE_2 (BUFFER_SIZE * 2);
 
 //The following were used in
@@ -207,13 +207,12 @@ void unwrap_phase(float* phase, int size) {
     }
 }
 
-
-
 int find_signal_peaks(float* fft_sig, int start_index, int end_index){
     float max_val = 0;
     int peak_index = 0;
     
     for (int i = start_index+1; i < end_index; i++) {
+		  //printf("fft: %f\n", fft_sig[i]);    	
         if (fft_sig[i] > fft_sig[i - 1] && fft_sig[i] > fft_sig[i + 1]) {
             // This is a peak, so store the index
             if(max_val < fft_sig[i]){
@@ -354,12 +353,12 @@ void* process_data_thread(void* arg) {
 
     int start_index = (int)(OBJECT_DIST_START/max_range * SAMPLES_PER_CHIRP);
     int end_index = (int)(OBJECT_DIST_END/max_range * SAMPLES_PER_CHIRP);
-    int index_start_breathing = (int)(LOW_BREATHING/FRAME_RATE * BUFFER_SIZE); //in python, don't use BUFFER_SIZE,
-    int index_end_brething = (int)(HIGH_BREATHING/FRAME_RATE * BUFFER_SIZE);    //double it.
-    int index_start_heart = (int)(LOW_HEART/FRAME_RATE * BUFFER_SIZE);
-    int index_end_heart = (int)(HIGH_HEART/FRAME_RATE * BUFFER_SIZE);
+    int index_start_breathing = (int)(LOW_BREATHING/FRAME_RATE * 2 * BUFFER_SIZE); //in python, don't use BUFFER_SIZE,
+    int index_end_brething = (int)(HIGH_BREATHING/FRAME_RATE * 2 * BUFFER_SIZE);    //double it.
+    int index_start_heart = (int)(LOW_HEART/FRAME_RATE * 2 * BUFFER_SIZE);
+    int index_end_heart = (int)(HIGH_HEART/FRAME_RATE * 2 * BUFFER_SIZE);
 
-    int peak_indeces[2*(int)FRAME_RATE] = {0};
+    int peak_indeces[BUFFER_SIZE] = {0};
     int peak_index_avg = 0;
     float max_val;
     int sum;
@@ -379,8 +378,13 @@ void* process_data_thread(void* arg) {
     int vital_sum = 0;
     int avg_breathing_index = 0;
     int avg_heart_index = 0;
+    float breathing_fft_plot[BUFFER_SIZE] = {0};
+    float heart_fft_plot[BUFFER_SIZE] = {0};
+    float avg_b_fft = 0;
+    float avg_h_fft = 0;
     float b_bpm = 0;
     float h_bpm = 0;
+    float distance = 0;
 
     while(1){
         if(!is_empty(&queue)){
@@ -389,7 +393,7 @@ void* process_data_thread(void* arg) {
             //printf("Here is the fft data: %f\n", range_fft->data->data[0]);
             ifx_vec_abs_c(range_fft, range_fft_abs);
 
-            for(int i = 0; i < (2*(int)FRAME_RATE) - 1; i++){
+            for(int i = 0; i < (BUFFER_SIZE) - 1; i++){
                 peak_indeces[i] = peak_indeces[i+1];
             }
             for(int i = 0; i < (BUFFER_SIZE) - 1; i++){
@@ -402,24 +406,29 @@ void* process_data_thread(void* arg) {
             for(int i = start_index; i <= end_index; i++){
                 if(range_fft_abs->data[i] > max_val){
                     max_val = range_fft_abs->data[i];
-                    peak_indeces[(2*(int)FRAME_RATE)-1] = i;
+                    peak_indeces[BUFFER_SIZE-1] = i;
                 }
+                //printf("\rrange: %f\n", range_fft_abs->data[i]);
+                //printf("\rrange: %f\n", range_fft_abs->data[i]);
             }
 
-            for(int i = 0; i < 2*(int)FRAME_RATE; i++){
+            for(int i = 0; i < BUFFER_SIZE; i++){
                 sum += peak_indeces[i];
             }
 
-            peak_index_avg = (int)(sum/(2*(int)FRAME_RATE));
-
+            peak_index_avg = (int)(sum/(BUFFER_SIZE));
+				
+				distance = range_profile->data[peak_index_avg];
+				
             slow_time_buffer[BUFFER_SIZE-1] = range_fft->data[peak_index_avg];
 
             if(counter < BUFFER_SIZE){
                 counter++;
             }
             //printf("peak: %f\n", max_val);
-            //printf("avg: %u\n", peak_index_avg);
-
+            
+				//printf("stb: %f\n", slow_time_buffer[((BUFFER_SIZE-1)-counter)+i].data[1]);
+				
             for(int i = 0; i < counter; i++){
                 wrapped_phase[i] = (float)atan2(slow_time_buffer[((BUFFER_SIZE-1)-counter)+i].data[1],
                                                 slow_time_buffer[((BUFFER_SIZE-1)-counter)+i].data[0]);
@@ -432,6 +441,7 @@ void* process_data_thread(void* arg) {
             int j = 0;
             for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
                 wrapped_phase_plot[i] = wrapped_phase[j];
+            	 //printf("peak: %f\n", wrapped_phase[j]);
                 j++;
             }
             //printf("peak: %f\n", wrapped_phase_plot[BUFFER_SIZE-1]);
@@ -450,6 +460,7 @@ void* process_data_thread(void* arg) {
             j = 0;
             for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
                 unwrapped_phase_plot[i] = unwrapped_phase[j];
+            	 //printf("peak: %f\n", unwrapped_phase[j]);
                 j++;
             }
 				
@@ -468,12 +479,14 @@ void* process_data_thread(void* arg) {
             j = 0;
             for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
                 filtered_breathing_plot[i] = filtered_breathing[j];
+            	 //printf("peak: %f\n", filtered_breathing[j]);
                 j++;
             }
 
             j = 0;
             for(int i = BUFFER_SIZE - counter; i < BUFFER_SIZE; i++){
                 filtered_heart_plot[i] = filtered_heart[j];
+            	 //printf("peak: %f\n", filtered_heart[j]);                
                 j++;
             }
             //printf("peak: %f\n", filtered_breathing_plot[BUFFER_SIZE-1]);
@@ -499,25 +512,69 @@ void* process_data_thread(void* arg) {
             breathing_rate_estimation_index[BUFFER_SIZE-1] = find_signal_peaks(breathing_fft, index_start_breathing, index_end_brething);//may not work
             heart_rate_estimation_index[BUFFER_SIZE-1] = find_signal_peaks(heart_fft, index_start_heart, index_end_heart);//as max value and not peak will
                                                                                         //be returned
-
+                                                                                        
+            if(breathing_rate_estimation_index[BUFFER_SIZE-1] == 0){
+					breathing_rate_estimation_index[BUFFER_SIZE-1] = breathing_rate_estimation_index[BUFFER_SIZE-2];            
+            }
+            
+            if(heart_rate_estimation_index[BUFFER_SIZE-1] == 0){
+					heart_rate_estimation_index[BUFFER_SIZE-1] = heart_rate_estimation_index[BUFFER_SIZE-2];            
+            }
+            
+				vital_sum = 0;
+				avg_breathing_index = 0;
+				
             for(int i = BUFFER_SIZE-counter; i < BUFFER_SIZE; i++){
                 vital_sum += breathing_rate_estimation_index[i];
             }
 
             avg_breathing_index = (int)(vital_sum/counter);
+            
+            vital_sum = 0;
+				avg_heart_index = 0;
 
             for(int i = BUFFER_SIZE-counter; i < BUFFER_SIZE; i++){
                 vital_sum += heart_rate_estimation_index[i];
             }
 
             avg_heart_index = (int)(vital_sum/counter);
-
-            b_bpm = vitals_range_profile->data[avg_breathing_index] * 60;
-            h_bpm = vitals_range_profile->data[avg_heart_index] * 60;
+				
+				//printf("avg_h_index: %u\n", avg_heart_index);
+				//printf("avg_b_index: %u\n", breathing_rate_estimation_index[BUFFER_SIZE-1]);
+					
+            b_bpm = vitals_range_profile->data[avg_breathing_index]*60;
+            h_bpm = vitals_range_profile->data[avg_heart_index]*60;
             
-            printf("b_bpm: %f\n", b_bpm);
-            printf("h_bpm: %f\n", h_bpm);
-            printf("counter: %u\n,", counter);
+            
+            for(int i = 0; i < (BUFFER_SIZE) - 1; i++){
+                breathing_fft_plot[i] = breathing_fft_plot[i+1];
+                heart_fft_plot[i] = heart_fft_plot[i+1];
+            }
+            
+            breathing_fft_plot[BUFFER_SIZE-1] = breathing_fft[breathing_rate_estimation_index[BUFFER_SIZE-1]];
+            heart_fft_plot[BUFFER_SIZE-1] = heart_fft[heart_rate_estimation_index[BUFFER_SIZE-1]];
+            
+            max_val = 0;
+            for(int i = BUFFER_SIZE-counter; i < BUFFER_SIZE; i++){
+					max_val += breathing_fft[i];				          
+            }
+            
+            avg_b_fft = max_val/counter;
+            
+            max_val = 0;
+            for(int i = BUFFER_SIZE-counter; i < BUFFER_SIZE; i++){
+					max_val += heart_fft[i];				          
+            }
+            
+            avg_h_fft = max_val/counter;
+            
+            printf("mag b: %f\n", avg_b_fft);
+            printf("mag h: %f\n", avg_h_fft);
+            
+            printf("distance: %f m\n", distance);
+            //printf("b_bpm: %f\n", b_bpm);
+            //printf("h_bpm: %f\n", h_bpm);
+            //printf("counter: %u\n", counter);
         }
     }
     ifx_vec_destroy_r(range_fft_abs);
@@ -553,7 +610,7 @@ int main(){
     single_chirp.tdm_mimo = true;
     single_chirp.chirp.start_frequency_Hz = 57.4e9;
     single_chirp.chirp.end_frequency_Hz = 63.0e9;      //check these values on windows partition!!!!!
-    single_chirp.chirp.sample_rate_Hz = 1e6;
+    single_chirp.chirp.sample_rate_Hz = 2e6;
     single_chirp.chirp.num_samples = SAMPLES_PER_CHIRP;
     single_chirp.chirp.rx_mask = 1;
     single_chirp.chirp.tx_mask = 1;
@@ -591,19 +648,9 @@ int main(){
         perror("Failed to create process thread");
         return 1;
     }
-    /*ifx_Fmcw_Frame_t* frame = ifx_fmcw_allocate_frame(device);
-
-    while(1){
-
-        ifx_fmcw_get_next_frame(device, frame);
-        if (frame == NULL) {
-            fprintf(stderr, "Failed to acquire frame: %s\n", ifx_error_to_string(ifx_error_get()));
-            break; 
-        }
-
-        usleep(1000);
-    }
-*/  pthread_join(data_thread, NULL);
+    
+  
+    pthread_join(data_thread, NULL);
     pthread_join(process_thread, NULL);
 
     pthread_mutex_destroy(&queue.mutex);  // Destroy the mutex
