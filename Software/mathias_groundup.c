@@ -25,7 +25,8 @@
 #define QUEUE_SIZE 50
 #define OBJECT_DIST_START 0.5
 #define OBJECT_DIST_END 0.6
-#define BUFFER_SIZE 2000
+#define BUFFER_SIZE 512
+#define FFT_SIZE_2 1024
 
 //The following were used in
 //a python script to create the filter coefficients
@@ -259,49 +260,66 @@ void unwrap_phase(float* phase, int size) {
     }
 }
 
-void vital_signs_fft(float* input, float* output, int length, int scalar){
+void vital_signs_fft(float* input, float* output, int length){
     ifx_Vector_R_t* in_sig = ifx_vec_create_r((uint32_t)length);
     ifx_Vector_C_t* out_fft = ifx_vec_create_c((uint32_t)length);
-    ifx_Vector_R_t* out_abs = ifx_vec_create_r((uint32_t)length);
     ifx_Vector_R_t* out_sig = ifx_vec_create_r((uint32_t)length);
 
-    ifx_vec_rawview_r(in_sig, input, length, 1);
-
-    ifx_Window_Config_t wnd;
-    wnd.type = IFX_WINDOW_BLACKMANHARRIS;
-    wnd.size = length;
-    wnd.scale = 1;
+    ifx_vec_rawview_r(in_sig, input, (uint32_t)length, 1);
+    
+    
+    ifx_Window_Config_t sl_wnd;
+    sl_wnd.type = IFX_WINDOW_BLACKMANHARRIS;
+    sl_wnd.size = length;
+    sl_wnd.scale = 1;
 	 
-    ifx_PPFFT_Config_t fft_config;
-    fft_config.fft_size = scalar;
-    fft_config.fft_type = IFX_FFT_TYPE_R2C;
-    fft_config.is_normalized_window = false;
-    fft_config.mean_removal_enabled = false;
-    fft_config.window_config = wnd;
+    ifx_PPFFT_Config_t sl_fft_config;
+    sl_fft_config.fft_size = FFT_SIZE_2;
+    sl_fft_config.fft_type = IFX_FFT_TYPE_R2C;
+    sl_fft_config.is_normalized_window = true;
+    sl_fft_config.mean_removal_enabled = false;
+    sl_fft_config.window_config = sl_wnd;
 
-    ifx_PPFFT_t* fft_tool = ifx_ppfft_create(&fft_config);
+    ifx_PPFFT_t* sl_fft_tool = ifx_ppfft_create(&sl_fft_config);
+    //ifx_FFT_t* tool_fft = ifx_fft_create(IFX_FFT_TYPE_R2C, FFT_SIZE_2);
+    
+    if (ifx_error_get() != IFX_OK) {
+            fprintf(stderr, "Failed create tool: %s\n", ifx_error_to_string(ifx_error_get()));
+            ifx_ppfft_destroy(sl_fft_tool);
+            return;
+        }
 
-    ifx_ppfft_run_rc(fft_tool, in_sig, out_fft);
+    
+    if(sl_fft_tool == NULL){
+    			printf("1\n");
+    }
+    if(in_sig == NULL){
+    			printf("2");
+    }
+    if(out_fft == NULL){
+    			printf("3");
+    }
+	 
+	 //ifx_fft_run_rc(tool_fft, in_sig, out_fft);
+    ifx_ppfft_run_rc(sl_fft_tool, in_sig, out_fft);
 
     if (ifx_error_get() != IFX_OK) {
-            fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
-            ifx_ppfft_destroy(fft_tool);
+            fprintf(stderr, "Failed vital_sign fft: %s\n", ifx_error_to_string(ifx_error_get()));
+            ifx_ppfft_destroy(sl_fft_tool);
             return;
         }     
         
-    ifx_vec_abs_c(out_fft, out_abs);
+    ifx_vec_abs_c(out_fft, out_sig);
 
     if (ifx_error_get() != IFX_OK) {
-            fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
-            ifx_ppfft_destroy(fft_tool);
+            fprintf(stderr, "Failed to compute abs: %s\n", ifx_error_to_string(ifx_error_get()));
+            ifx_ppfft_destroy(sl_fft_tool);
             return;
         }     
-        
-    ifx_vec_scale_r(out_abs, 1/scalar, out_sig);
 
     if (ifx_error_get() != IFX_OK) {
-            fprintf(stderr, "Failed to compute fft: %s\n", ifx_error_to_string(ifx_error_get()));
-            ifx_ppfft_destroy(fft_tool);
+            fprintf(stderr, "Failed to scale: %s\n", ifx_error_to_string(ifx_error_get()));
+            ifx_ppfft_destroy(sl_fft_tool);
             return;
         }     
 
@@ -310,10 +328,9 @@ void vital_signs_fft(float* input, float* output, int length, int scalar){
     }
 
     ifx_vec_destroy_r(in_sig);
-    ifx_vec_destroy_r(out_abs);
-    ifx_vec_destroy_r(out_fft);
-    ifx_vec_destroy_c(out_sig);
-    ifx_ppfft_destroy(fft_tool);
+    ifx_vec_destroy_c(out_fft);
+    ifx_vec_destroy_r(out_sig);
+    ifx_ppfft_destroy(sl_fft_tool);
 }
 
 void calc_range_fft(ifx_Vector_C_t* range_fft){
@@ -326,7 +343,7 @@ void calc_range_fft(ifx_Vector_C_t* range_fft){
     ifx_PPFFT_Config_t fft_config;
     fft_config.fft_size = FFT_SIZE_RANGE_PROFILE;
     fft_config.fft_type = IFX_FFT_TYPE_R2C;
-    fft_config.is_normalized_window = false;
+    fft_config.is_normalized_window = true;
     fft_config.mean_removal_enabled = false;
     fft_config.window_config = wnd;
     
@@ -379,6 +396,8 @@ void* process_data_thread(void* arg) {
     float unwrapped_phase_plot[BUFFER_SIZE] = {0};
     float filtered_breathing_plot[BUFFER_SIZE] = {0};
     float filtered_heart_plot[BUFFER_SIZE] = {0};
+    float breathing_fft[BUFFER_SIZE] = {0};
+    float heart_fft[BUFFER_SIZE] = {0};
 
     while(1){
         if(!is_empty(&queue)){
@@ -412,7 +431,7 @@ void* process_data_thread(void* arg) {
 
             slow_time_buffer[BUFFER_SIZE-1] = range_fft->data[peak_index_avg];
 
-            if(counter < BUFFER_SIZE-1){
+            if(counter < BUFFER_SIZE){
                 counter++;
             }
             //printf("peak: %f\n", max_val);
@@ -474,14 +493,161 @@ void* process_data_thread(void* arg) {
             //printf("peak: %f\n", filtered_breathing_plot[BUFFER_SIZE-1]);
             //printf("peak: %f\n", filtered_heart_plot[BUFFER_SIZE-1]);
 
-            float breathing_fft[counter];
-            float heart_fft[counter];
+                   
+				
+				if(counter > 10){
+            vital_signs_fft(filtered_breathing_plot, breathing_fft, BUFFER_SIZE);
+            vital_signs_fft(filtered_heart_plot, heart_fft, BUFFER_SIZE);
+            }
+            printf("b: %f\n", breathing_fft[0]);
+            printf("h: %f\n", heart_fft[0]);
 
-            vital_signs_fft(filtered_breathing, breathing_fft, counter, BUFFER_SIZE);
-            vital_signs_fft(filtered_heart, heart_fft, counter, BUFFER_SIZE);
+				
+				
+				
+				
+				
+				
+				
+				
 
-            printf("peak: %f\n", breathing_fft[0]);
-            printf("peak: %f\n", heart_fft[0]);
+				/*ifx_Vector_R_t* in_sig = ifx_vec_create_r(200);
+		    ifx_Vector_C_t* out_fft = ifx_vec_create_c(200);
+		    //ifx_Vector_R_t* out_abs = ifx_vec_create_r((uint32_t)length);
+		    //ifx_Vector_R_t* out_sig = ifx_vec_create_r((uint32_t)length);
+		
+		    ifx_vec_rawview_r(in_sig, filtered_breathing_plot, 200, 1);
+		    
+		    
+		    
+		    ifx_FFT_t* tool_fft = ifx_fft_create(IFX_FFT_TYPE_R2C, 256);
+		    
+		    if (ifx_error_get() != IFX_OK) {
+		            fprintf(stderr, "Failed create tool: %s\n", ifx_error_to_string(ifx_error_get()));
+		           // ifx_ppfft_destroy(sl_fft_tool);
+		        }
+		
+		    
+			 
+			 ifx_fft_run_rc(tool_fft, in_sig, out_fft);
+		    //ifx_ppfft_run_rc(sl_fft_tool, in_sig, out_fft);
+		    
+		    printf("peak: %f\n", out_fft->data[0].data[0]);
+		
+		    if (ifx_error_get() != IFX_OK) {
+		            fprintf(stderr, "Failed vital_sign yo fft: %s\n", ifx_error_to_string(ifx_error_get()));
+		           // ifx_ppfft_destroy(sl_fft_tool);
+		            return;
+		        } 
+
+	int length = 512;
+	//float* input[64] = {0};
+	float output[512] = {0};
+
+
+
+				ifx_Vector_R_t* in_sig = ifx_vec_create_r((uint32_t)length);
+    ifx_Vector_C_t* out_fft = ifx_vec_create_c((uint32_t)length);
+    ifx_Vector_R_t* out_abs = ifx_vec_create_r((uint32_t)length);
+    ifx_Vector_R_t* out_sig = ifx_vec_create_r((uint32_t)length);
+
+		printf("filtered: %f\n", filtered_breathing_plot[1]);
+
+    ifx_vec_rawview_r(in_sig, filtered_breathing_plot, (uint32_t)length, 1);
+    
+    
+    ifx_Window_Config_t sl_wnd;
+    sl_wnd.type = IFX_WINDOW_BLACKMANHARRIS;
+    sl_wnd.size = length;
+    sl_wnd.scale = 1;
+	 
+    ifx_PPFFT_Config_t sl_fft_config;
+    sl_fft_config.fft_size = 1024;
+    sl_fft_config.fft_type = IFX_FFT_TYPE_R2C;
+    sl_fft_config.is_normalized_window = false;
+    sl_fft_config.mean_removal_enabled = false;
+    sl_fft_config.window_config = sl_wnd;
+
+    ifx_PPFFT_t* sl_fft_tool = ifx_ppfft_create(&sl_fft_config);
+    //ifx_FFT_t* tool_fft = ifx_fft_create(IFX_FFT_TYPE_R2C, 256);
+    
+    if (ifx_error_get() != IFX_OK) {
+            fprintf(stderr, "Failed create tool: %s\n", ifx_error_to_string(ifx_error_get()));
+            //ifx_ppfft_destroy(sl_fft_tool);
+            return;
+        }
+
+    
+    
+    if(in_sig == NULL){
+    			printf("2");
+    }
+    if(out_fft == NULL){
+    			printf("3");
+    }
+	 
+	 //ifx_fft_run_rc(tool_fft, in_sig, out_fft);
+    ifx_ppfft_run_rc(sl_fft_tool, in_sig, out_fft);
+
+    if (ifx_error_get() != IFX_OK) {
+            fprintf(stderr, "Failed vital_sign fft: %s\n", ifx_error_to_string(ifx_error_get()));
+            //ifx_ppfft_destroy(sl_fft_tool);
+            return;
+        }     
+        
+    ifx_vec_abs_c(out_fft, out_abs);
+
+    if (ifx_error_get() != IFX_OK) {
+            fprintf(stderr, "Failed to compute abs: %s\n", ifx_error_to_string(ifx_error_get()));
+           // ifx_ppfft_destroy(sl_fft_tool);
+            return;
+        }     
+        
+    //ifx_vec_scale_r(out_abs, 1/FFT_SIZE_2, out_sig);
+
+    if (ifx_error_get() != IFX_OK) {
+            fprintf(stderr, "Failed to scale: %s\n", ifx_error_to_string(ifx_error_get()));
+            //ifx_ppfft_destroy(sl_fft_tool);
+            return;
+        }     
+
+    for(int i = 0; i < length; i++){
+        output[i] = out_abs->data[i];
+    }
+
+    
+		printf("peak: %f\n", output[0]);
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
     ifx_vec_destroy_r(range_fft_abs);
