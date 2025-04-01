@@ -18,14 +18,14 @@
 #define M_PI 3.14159265358979323846
 
 #define NUM_RX_ANTENNAS 1
-#define FRAME_RATE 20.0
+#define FRAME_RATE 12.0
 #define NUMBER_OF_CHIRPS 1
-#define SAMPLES_PER_CHIRP 128
+#define SAMPLES_PER_CHIRP 64
 #define FFT_SIZE_RANGE_PROFILE (SAMPLES_PER_CHIRP * 2)
 #define QUEUE_SIZE 50
 #define OBJECT_DIST_START 0.5
-#define OBJECT_DIST_END 1.5
-#define BUFFER_SIZE 256 //must be a power of 2
+#define OBJECT_DIST_END 0.6
+#define BUFFER_SIZE 512
 #define FFT_SIZE_2 (BUFFER_SIZE * 2);
 
 //The following were used in
@@ -48,7 +48,7 @@ typedef struct {
 Queue queue;
 double max_range;
 
-const float breathing_b[(int)FRAME_RATE+1] = {
+/*const float breathing_b[(int)FRAME_RATE+1] = {
     0.003224461484620409,
     0.0053625468955774,
     0.010716753679115535,
@@ -94,6 +94,38 @@ const float heart_b[(int)FRAME_RATE+1] = {
     -0.010176268245414486,
     -0.0009666883792551835,
     0.0017645272119925645,
+};*/
+
+const float breathing_b[(int)FRAME_RATE+1] = {
+    0.005370712283942504 ,
+0.014169910031316102 ,
+0.04032204440712771 ,
+0.08395585005883582 ,
+0.13457686370071184 ,
+0.17532101593822114 ,
+0.19093705268047637 ,
+0.17532101593822114 ,
+0.13457686370071187 ,
+0.08395585005883582 ,
+0.040322044407127756 ,
+0.014169910031316107 ,
+0.005370712283942504 ,
+};
+
+const float heart_b[(int)FRAME_RATE+1] = {
+    0.0029383507419724606 ,
+-0.00996317049608988 ,
+-0.06628735782436071 ,
+-0.12450624245838231 ,
+-0.032322238234551416 ,
+0.2165630455465109 ,
+0.3598165594621794 ,
+0.2165630455465109 ,
+-0.03232223823455142 ,
+-0.12450624245838231 ,
+-0.06628735782436079 ,
+-0.009963170496089883 ,
+0.0029383507419724606 ,
 };
 
 void fir_filter(float* x, float* y, const float* b, int input_size, int filter_order) {
@@ -630,8 +662,8 @@ int main(){
     single_chirp.chirp.rx_mask = 1;
     single_chirp.chirp.tx_mask = 1;
     single_chirp.chirp.tx_power_level = 31;
-    single_chirp.chirp.lp_cutoff_Hz = 500000;
-    single_chirp.chirp.hp_cutoff_Hz = 80000;
+    single_chirp.chirp.lp_cutoff_Hz = 600000;//500000;
+    single_chirp.chirp.hp_cutoff_Hz = 140000;//80000;
     single_chirp.chirp.if_gain_dB = 33;
 
     ifx_Fmcw_Sequence_Element_t* sequence = ifx_fmcw_create_simple_sequence(&single_chirp);
