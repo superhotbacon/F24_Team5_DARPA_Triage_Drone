@@ -43,7 +43,7 @@ The heart rate measurement analysis reveals the Doppler system demonstrates good
 
 
 ### Expermintal Conclusion
-The experimental data reveals fundamental challenges in the Doppler system's ability to accurately measure physiological signals across different physiological states. For breathing rate detection, the system's performance degrades significantly at lower respiratory rates (4-7 breaths/min), where measurement errors escalate to 77-360%. This pattern strongly suggests the system struggles to distinguish true respiratory movements from other low-frequency physiological noise when thoracic displacement amplitudes are minimal.
+
 
 ## Experiment for Breathing Rate 
 
@@ -69,5 +69,5 @@ The comprehensive breathing rate evaluation, including both controlled-rate expe
 
 ### Experimental Conclusion
 
-The experimental data reveals fundamental challenges in the Doppler system's ability to accurately measure physiological signals across different physiological states. For breathing rate detection, the system's performance degrades significantly at lower respiratory rates (4-7 breaths/min), where measurement errors escalate to 77-360%. This pattern strongly suggests the system struggles to distinguish true respiratory movements from other low-frequency physiological noise when thoracic displacement amplitudes are minimal.
+
 
