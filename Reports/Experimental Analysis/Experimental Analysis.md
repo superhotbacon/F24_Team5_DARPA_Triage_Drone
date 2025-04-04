@@ -40,7 +40,7 @@ In the experiment, it is expected that we will find the Doppler's measurements w
 ![image](https://github.com/user-attachments/assets/7d5fd322-9df0-405a-9775-956546fbb93f)
 ![image](https://github.com/user-attachments/assets/303072b5-7110-4e35-9d48-3089ac9fd7e1)
 
-The data reveals that the Doppler system generally aligns well with the heart rate monitor in Tests 1, 2, and 4, showing average errors between 0.43% and 2.97%, indicating reasonable agreement. However, in Test 3, the Doppler underestimated heart rates by 7.47%, and in Test 5, the discrepancy widened to 10.09%, with extreme single-point errors reaching 25–26% during the final seconds. Test 4 demonstrated the most stability, with a near-perfect match at 30 seconds (0% error) and a maximum error of just 9.88%, while Test 5’s inconsistencies suggest challenges with higher heart rates or motion artifacts. Potential error sources include sensor misalignment, physiological fluctuations, or Doppler’s lag in tracking rapid heart rate changes.
+The data reveals that the Doppler system generally aligns well with the heart rate monitor in Tests 1, 2, and 4, showing average errors between 0.43% and 2.97%, indicating reasonable agreement. However, in Test 3, the Doppler underestimated heart rates by 7.47%, and in Test 5, the discrepancy widened to 10.09%, with extreme single-point errors reaching 25–26% during the final seconds. Test 4 demonstrated the most stability, with a near-perfect match at 30 seconds (0% error) and a maximum error of just 9.88%, while Test 5’s inconsistencies suggest challenges with higher heart rates or motion artifacts.
 
 ### Expermintal Conclusion
 
