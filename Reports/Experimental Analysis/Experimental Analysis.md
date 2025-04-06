@@ -72,9 +72,20 @@ The Doppler breathing rate monitor performs well for fast breathing rates above 
 
 Further investigation is required to determine the cause of the high inaccuracy present in the low breathing ranges. However, the data has a correlation between the actual breathing rate and the measured breathing rate and is able to detect the lack of a breathing rate. This implies the device has a causal relationship between the actual and measured breathing rates. A potential reason for the device's incapability at detecting lower breathing rates is that motion that slow will have a low magnitude, likely lower than what the device is programmed to detect. After the high inaccuracy is investigated and a solution implemented, the experiment needs to be conducted again.
 
-### Video Experiment 
+## Video Experiment 
 
+### Video Latency Experiment 
 The video latency experiment was designed to measure transmission delay at different distances using WebRTC technology. The getStats function was used to collect latency data directly from the WebRTC connection, giving real-time information about network performance. The experiment included several distance points, from very close to about 110 feet, to see how distance affects video delay. This setup made it possible to compare how latency changed as the devices were moved farther apart. The results were shown in a graph that displayed the connection between distance and latency. The testing was done indoors, with relatively short distances and few obstacles. 
 
 ### Expectation 
 The expected results were that latency would increase slightly as the distance between devices grew. Since the distances tested were relatively short and WebRTC is designed for low-latency communication, the latency was not expected to go over one second. At shorter distances, the latency was expected to stay mostly consistent, with only small changes as the distance reached up to 110 feet.
+
+### Procedure
+  - Step 1: Turn on Jetson Nano and start video streaming application
+  - Step 2: Increase the distance between the host device and client device by intervals of 12 feet
+  - Step 3: Calculate latency at each 12 foot interval with getStats() function in WebRTC
+  - Step 4: Collect data points and show the average trend
+  - Step 5: Finished Testing
+### Data Analysis 
+![output](https://github.com/user-attachments/assets/9023d9f1-9465-47ff-aba8-1805cedccb08)
+This graph shows how video latency changes as the distance from the triage system increases. We measured latency at intervals of 12 feet, starting from 0 and going up to 110 feet. Each red dot represents an interval of 12 feet measurement we took during testing, and the blue curve shows the overall trend. At close range, latency was very low—around 0.008 seconds. As we moved farther away, the latency gradually increased, reaching about 0.180 seconds at the maximum distance of our testing site of 110 feet.
