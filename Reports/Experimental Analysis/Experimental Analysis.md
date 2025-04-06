@@ -72,3 +72,9 @@ The Doppler breathing rate monitor performs well for fast breathing rates above 
 
 Further investigation is required to determine the cause of the high inaccuracy present in the low breathing ranges. However, the data has a correlation between the actual breathing rate and the measured breathing rate and is able to detect the lack of a breathing rate. This implies the device has a causal relationship between the actual and measured breathing rates. A potential reason for the device's incapability at detecting lower breathing rates is that motion that slow will have a low magnitude, likely lower than what the device is programmed to detect. After the high inaccuracy is investigated and a solution implemented, the experiment needs to be conducted again.
 
+### Video Experiment 
+
+The video latency experiment was designed to measure transmission delay at different distances using WebRTC technology. The getStats function was used to collect latency data directly from the WebRTC connection, giving real-time information about network performance. The experiment included several distance points, from very close to about 110 feet, to see how distance affects video delay. This setup made it possible to compare how latency changed as the devices were moved farther apart. The results were shown in a graph that displayed the connection between distance and latency. The testing was done indoors, with relatively short distances and few obstacles. 
+
+### Expectation 
+The expected results were that latency would increase slightly as the distance between devices grew. Since the distances tested were relatively short and WebRTC is designed for low-latency communication, the latency was not expected to go over one second. At shorter distances, the latency was expected to stay mostly consistent, with only small changes as the distance reached up to 110 feet.
