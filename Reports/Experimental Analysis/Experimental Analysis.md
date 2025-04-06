@@ -44,7 +44,7 @@ The Doppler heart rate monitor performs well for normal resting heart rates betw
 
 ### Expermintal Conclusion
 
-From the heart rate tests, it is apparent that the doppler sucessfully detects heart rate and can semi-accuratly describe the actual rate. Some of the present error could be present due to extaneous phase jumps that cause momentary spikes in the derived heart rate. Some investigation into these phase jumps is needed to attempt to reduce this. However, the prototype is able to determine heart rate successfully enough for the final project. There is sufficient data to suggest that an increase in heart rate correlates to an increase in measured heart rate. This implies a causal relationship between the measured heart rate and the actual heart rate. Further development needs to be done to increase accuracy in the higher heart beat ranges.
+From the heart rate tests, it is apparent that the device successfully detects heart rate and can semi-accurately describe the actual rate. The present error could exist due to extraneous phase jumps that cause momentary spikes in the derived heart rate; some investigation into these phase jumps is needed to formalize a solution. However, the prototype performs accurately enough as a proof of concept. There is sufficient data to suggest that an increase in heart rate correlates to an increase in measured heart rate. This implies a causal relationship between the measured heart rate and the actual heart rate. Further development needs to be done to increase accuracy in the higher heart beat ranges since a subject with a higher heart rate typically is in more motion (shaking, breathing with intensity) creating more noise that disrupts readings. 
 
 ## Experiment for Breathing Rate 
 
