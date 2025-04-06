@@ -44,6 +44,7 @@ The Doppler heart rate monitor performs well for normal resting heart rates betw
 
 ### Expermintal Conclusion
 
+From the heart rate tests, it is apparent that the doppler sucessfully detects heart rate and can semi-accuratly describe the actual rate. Some of the present error could be present due to extaneous phase jumps that cause momentary spikes in the derived heart rate. Some investigation into these phase jumps is needed to attempt to reduce this. However, the prototype is able to determine heart rate successfully enough for the final project. There is sufficient data to suggest that an increase in heart rate correlates to an increase in measured heart rate. This implies a causal relationship between the measured heart rate and the actual heart rate. Further development needs to be done to increase accuracy in the higher heart beat ranges.
 
 ## Experiment for Breathing Rate 
 
@@ -64,10 +65,10 @@ In the experiment, it is expected that we will find the Doppler's measurements w
 
 ![image](https://github.com/user-attachments/assets/c83787d1-e0ff-4c3c-9134-ce8bbba5de74)
 
-The Doppler breathing rate monitor performs well for fast breathing rates above 20 breaths per minute (bpm), showing excellent accuracy with errors between 0-9.5%. However, its reliability drops significantly for slower breathing rates—below 10 bpm, errors skyrocket up to 360%, with severe overestimation (e.g., counting 22 bpm instead of the actual 5 bpm). In the moderate range (10-16 bpm), accuracy is inconsistent, with errors between 12.5-28.6%. These results suggest the system excels at detecting rapid, pronounced breathing but struggles with slow respiration, likely due to interference from heartbeat signals or other noise. While suitable for monitoring during exercise or stress, the technology requires significant improvements for accurate resting respiratory measurements. This rate-dependent performance highlights the need for context-specific validation in respiratory monitoring applications.
+The Doppler breathing rate monitor performs well for fast breathing rates above 20 breaths per minute (bpm), showing excellent accuracy with errors between 0-9.5%. However, its reliability drops significantly for slower breathing rates—below 10 bpm, errors skyrocket up to 360%, with severe overestimation (e.g., counting 22 bpm instead of the actual 5 bpm). In the moderate range (10-16 bpm), accuracy is inconsistent, with errors between 12.5-28.6%. These results suggest the system excels at detecting rapid, pronounced breathing but struggles with slow respiration, likely due to interference from heartbeat signals or other noise. While suitable for monitoring during exercise or stress, the technology requires significant improvements for accurate low respiratory measurements. This rate-dependent performance highlights the need for context-specific validation in respiratory monitoring applications.
 
 
 ### Experimental Conclusion
 
-
+Further investigation is required to determine the cause of the high inaccuracy present in the low breathing ranges. However, the data has a correlation between the actual breathing rate and the measured breathing rate. Furthermore, it is also able to detecct the lack of a breathing rate at all. This implies the doppler has a causal relationship between the actual and measured breathing rates. After the high inaccuracy is investigated and a soution implemented, the experiment needs to be conducted again.
 
