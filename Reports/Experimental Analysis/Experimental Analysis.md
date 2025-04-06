@@ -70,5 +70,5 @@ The Doppler breathing rate monitor performs well for fast breathing rates above 
 
 ### Experimental Conclusion
 
-Further investigation is required to determine the cause of the high inaccuracy present in the low breathing ranges. However, the data has a correlation between the actual breathing rate and the measured breathing rate. Furthermore, it is also able to detecct the lack of a breathing rate at all. This implies the doppler has a causal relationship between the actual and measured breathing rates. After the high inaccuracy is investigated and a soution implemented, the experiment needs to be conducted again.
+Further investigation is required to determine the cause of the high inaccuracy present in the low breathing ranges. However, the data has a correlation between the actual breathing rate and the measured breathing rate and is able to detect the lack of a breathing rate. This implies the device has a causal relationship between the actual and measured breathing rates. A potential reason for the device's incapability at detecting lower breathing rates is that motion that slow will have a low magnitude, likely lower than what the device is programmed to detect. After the high inaccuracy is investigated and a solution implemented, the experiment needs to be conducted again.
 
