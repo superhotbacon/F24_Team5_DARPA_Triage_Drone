@@ -122,7 +122,20 @@ The video quality stayed the same during the entire test, even as the distance b
 ![video quality at 110](https://github.com/user-attachments/assets/d31f4d93-3303-430b-b7c5-b582ef702720)
 This image shows a video quality test at 110 feet, demonstrating a stable video stream at 29 FPS with a readable timer of 1:06.37 seconds.
 
+### Audio Quality Experiment
+In this experiment, one person was used as the "victim" at the drone end of the speaker. This person listened for 5 phrases comming from the operator (PC) end of the system. Then the victim will respond to each prompt that comes from the operator. This test was ran at the max testing distance of 110 feet without any obstructions to interfere with the connection siganl. This experiment will prove that a person in need will be able to hear prompts coming from the drone operator. It will also prove that the victim will be able to communicate needs back to the first responder. 
 
+### Expectations
+In this experiement it is expected that the test subject will be able to accuratly depict the phrases communicated from the operator device. It is also expected that the operator will be able to clearly understand the test subject responding to the previously given prompts. \
+
+### Procedure 
+- Step 1: Turn on Jetson Nano and start video streaming application
+- Step 2: Test subject listens for operator's prompts and writes them down
+- Step 3: Operator listens for subjectes responses and writes them down.
+- Step 4: Verify that the prompts and responses were recieved accuratley.
+- Step 5: Finish Testing
+
+### Data Analysis 
 
 
 
