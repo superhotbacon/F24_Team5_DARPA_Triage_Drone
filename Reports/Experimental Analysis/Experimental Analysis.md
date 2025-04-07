@@ -137,7 +137,8 @@ In this experiement it is expected that the test subject will be able to accurat
 
 ### Data Analysis 
 
-
+### Video and Audio Conclusion
+The tests showed that both the video and audio transmission remained clear and reliable across all distances up to 110 feet. The video maintained a steady frame rate of around 30 FPS with no visible lag, blurring, or frame drops, even at the farthest point. Audio quality was also consistent, with no noticeable delays, dropouts, or distortion. In the audio test, both participants were able to clearly hear each other and respond to spoken prompts without issues. Overall, the system provided smooth video and audio communication with low latency and stable performance throughout each test. These experiments were limited to indoor tests due to only having a minimal functioning prototype without an external power source. The maximum range was 110 feet. 
 
 
 
