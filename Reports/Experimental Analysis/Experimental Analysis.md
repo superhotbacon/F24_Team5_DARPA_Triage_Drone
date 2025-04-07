@@ -95,7 +95,7 @@ This graph shows how video latency changes as the distance from the triage syste
 The image shows an example test at the maximum distance of 110 feet, where the video stream maintained a consistent latency of around 177 milliseconds and a stable frame rate of about 30 FPS. The connection remained reliable throughout the test.
 
 ### Video Quality Experiment
-Just like the latency test, the video quality was observed at incresing distances. The experiment was ran indoors without any obstacles to obstruct the signal between the client and host devices. This setup made it possible to observe if the video quality at different distances will be detremental to the trage drones functionality. 
+In this experiment we used a running clock to be able to observe the choppiness of the transmitted video as well as to read the frames per second. Just like the latency test, the video quality was observed at incresing distances. The experiment was ran indoors without any obstacles to obstruct the signal between the client and host devices. This setup made it possible to observe if the video quality at different distances will be detremental to the trage drones functionality. 
 
 
 
