@@ -117,7 +117,10 @@ In this experiment it is expected that the video quality will maintain excellenc
 | 90                   | Excellent       | Good              |  30  |    
 | 110                  | Excellent       | Good              |  29  |    
 
-The video quality stayed the same during the entire test, even as the distance between devices increased to 110 feet. There were no changes in how sharp, smooth, or clear the video looked. The stream stayed steady, with no lag, blurriness, or skipped frames. This shows that the system kept a strong and reliable video connection at all distances tested indoors without any obstructions. 
+The video quality stayed the same during the entire test, even as the distance between devices increased to 110 feet. There were no changes in how sharp, smooth, or clear the video looked. The stream stayed steady, with no lag, blurriness, or skipped frames. This shows that the system kept a strong and reliable video connection at all distances tested indoors without any obstructions.   
+
+![video quality at 110](https://github.com/user-attachments/assets/d31f4d93-3303-430b-b7c5-b582ef702720)
+This image shows a video quality test at 110 feet, demonstrating a stable video stream at 29 FPS with a readable timer of 1:06.37 seconds.
 
 
 
