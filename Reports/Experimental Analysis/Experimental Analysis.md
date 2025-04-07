@@ -97,8 +97,18 @@ The image shows an example test at the maximum distance of 110 feet, where the v
 ### Video Quality Experiment
 In this experiment we used a running clock to be able to observe the choppiness of the transmitted video as well as to read the frames per second. Just like the latency test, the video quality was observed at incresing distances. The experiment was ran indoors without any obstacles to obstruct the signal between the client and host devices. This setup made it possible to observe if the video quality at different distances will be detremental to the trage drones functionality. 
 
+### Expectations
+In this experiment it is expected that the video quality will maintain excellence (roughly 30 FPS) as the distance increases to a testing max of 110 feet. This will prove that the video will clearly display the timer's digits used for the experiment. 
 
+### Procedure 
+- Step 1: Turn on Jetson Nano and start video streaming application
+- Step 2: Increase the distance between the host device and client device by intervals of 12 feet
+- Step 3: Calculate frames per second at each 12 foot interval with getStats() function in WebRTC
+- Step 4: Observe clear whether output is clear and timer is readable
+- Step 5: Finish Testing
+  
 
+### Data Analysis
 | Distance (ft)        | Signal Quality  |  Video Quality     | Frames Per Second |
 | :----                | :----:          |  :----:           | :-----:   |                
 | 12                   | Excellent       | Good              |  30  |      
@@ -108,5 +118,10 @@ In this experiment we used a running clock to be able to observe the choppiness 
 | 110                  | Excellent       | Good              |  29  |    
 
 The video quality stayed the same during the entire test, even as the distance between devices increased to 110 feet. There were no changes in how sharp, smooth, or clear the video looked. The stream stayed steady, with no lag, blurriness, or skipped frames. This shows that the system kept a strong and reliable video connection at all distances tested indoors without any obstructions. 
+
+
+
+
+
 
 
