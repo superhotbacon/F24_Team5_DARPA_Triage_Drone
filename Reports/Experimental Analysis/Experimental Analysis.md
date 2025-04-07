@@ -88,4 +88,11 @@ The expected results were that latency would increase slightly as the distance b
   - Step 5: Finished Testing
 ### Data Analysis 
 ![output](https://github.com/user-attachments/assets/9023d9f1-9465-47ff-aba8-1805cedccb08)
-This graph shows how video latency changes as the distance from the triage system increases. We measured latency at intervals of 12 feet, starting from 0 and going up to 110 feet. Each red dot represents an interval of 12 feet measurement we took during testing, and the blue curve shows the overall trend. At close range, latency was very low—around 0.008 seconds. As we moved farther away, the latency gradually increased, reaching about 0.180 seconds at the maximum distance of our testing site of 110 feet.
+This graph shows how video latency changes as the distance from the triage system increases. We measured latency at intervals of 12 feet, starting from 0 and going up to 110 feet. Each red dot represents an interval of 12 feet measurements took during testing, and the blue curve shows the overall trend. At close range, latency was very low—around 0.008 seconds. As the client device moved farther away, the latency gradually increased, reaching about 0.180 seconds at the maximum distance of our testing site of 110 feet.  
+  
+    
+  ![test from vent](https://github.com/user-attachments/assets/a892816b-a52a-44b3-bbfc-4b1f5bc8c684)
+The image shows an example test at the maximum distance of 110 feet, where the video stream maintained a consistent latency of around 177 milliseconds and a stable frame rate of about 30 FPS. The connection remained reliable throughout the test.
+
+### Video Quality Experiment
+
