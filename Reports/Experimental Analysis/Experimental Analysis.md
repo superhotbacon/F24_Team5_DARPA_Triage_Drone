@@ -122,6 +122,9 @@ The video quality stayed the same during the entire test, even as the distance b
 ![video quality at 110](https://github.com/user-attachments/assets/d31f4d93-3303-430b-b7c5-b582ef702720)
 This image shows a video quality test at 110 feet, demonstrating a stable video stream at 29 FPS with a readable timer of 1:06.37 seconds.
 
+### Video Conclusion
+The video tests showed that the system worked well at all distances up to 110 feet. The delay increased slightly as the distance grew, starting at about 0.008 seconds and reaching around 0.180 seconds, but it stayed low the whole time. The video quality stayed the same during the test, with a steady frame rate of about 30 FPS and no lag, blurriness, or skipped frames. This shows that the video stream stayed clear and stable across all distances in the indoor test.
+
 ### Audio Quality Experiment
 In this experiment, one person was used as the "victim" at the drone end of the speaker. This person listened for 5 phrases comming from the operator (PC) end of the system. Then the victim will respond to each prompt that comes from the operator. This test was ran at the max testing distance of 110 feet without any obstructions to interfere with the connection siganl. This experiment will prove that a person in need will be able to hear prompts coming from the drone operator. It will also prove that the victim will be able to communicate needs back to the first responder. 
 
@@ -137,8 +140,12 @@ In this experiement it is expected that the test subject will be able to accurat
 
 ### Data Analysis 
 
-### Video and Audio Conclusion
+### Audio Conclusion
 The tests showed that both the video and audio transmission remained clear and reliable across all distances up to 110 feet. The video maintained a steady frame rate of around 30 FPS with no visible lag, blurring, or frame drops, even at the farthest point. Audio quality was also consistent, with no noticeable delays, dropouts, or distortion. In the audio test, both participants were able to clearly hear each other and respond to spoken prompts without issues. Overall, the system provided smooth video and audio communication with low latency and stable performance throughout each test. These experiments were limited to indoor tests due to only having a minimal functioning prototype without an external power source. The maximum range was 110 feet. 
 
+
+### Satements of Contribution
+-Gabe, Mathias, Caleb: Conducted the experiments for the heart rate and breathing rate. Also, put together the analysis report for both experiments. 
+-Reese, Chris: Conducted the experiments for the video and audio. Also, put together the analysis report for both video and audio. 
 
 
