@@ -37,7 +37,9 @@ In the experiment, it is expected that we will find the Doppler's measurements w
   
 ### Data Analysis
 
-![image](https://github.com/user-attachments/assets/b8d21bb7-6670-4605-bf81-73fc719b6965)
+![image](https://github.com/user-attachments/assets/5904ed80-42a8-4b64-8fda-b9d60439291e)
+
+
 
 The Doppler heart rate monitor performs well for normal resting heart rates between 60-100 beats per minute (bpm), with about 69% of readings falling within 10% of the correct value and perfect accuracy at certain rates like 61, 70, 75, and 82 bpm. However, its reliability drops significantly for elevated heart rates above 100 bpm, where errors average nearly 48% and can skyrocket to 73-82% in cases of extreme tachycardia. The system also struggles with rapid heart rate changes, high variability, and specific ranges around 70 and 85 bpm, suggesting limitations in processing fast or irregular signals. While suitable for routine monitoring at rest, these flaws—especially the worsening accuracy at higher heart rates—highlight the need for improved motion artifact filtering and better high-rate detection before the device can be trusted in high-stress or exercise conditions.
 
@@ -63,7 +65,8 @@ In the experiment, it is expected that we will find the Doppler's measurements w
 
 ### Data Analysis
 
-![image](https://github.com/user-attachments/assets/c83787d1-e0ff-4c3c-9134-ce8bbba5de74)
+![image](https://github.com/user-attachments/assets/7c81ac67-bc14-4b73-868e-2930b9b18dc4)
+
 
 The Doppler breathing rate monitor performs well for fast breathing rates above 20 breaths per minute (bpm), showing excellent accuracy with errors between 0-9.5%. However, its reliability drops significantly for slower breathing rates—below 10 bpm, errors skyrocket up to 360%, with severe overestimation (e.g., counting 22 bpm instead of the actual 5 bpm). In the moderate range (10-16 bpm), accuracy is inconsistent, with errors between 12.5-28.6%. These results suggest the system excels at detecting rapid, pronounced breathing but struggles with slow respiration, likely due to interference from heartbeat signals or other noise. While suitable for monitoring during exercise or stress, the technology requires significant improvements for accurate low respiratory measurements. This rate-dependent performance highlights the need for context-specific validation in respiratory monitoring applications.
 
