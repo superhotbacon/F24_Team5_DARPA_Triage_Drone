@@ -123,13 +123,14 @@ The video quality stayed the same during the entire test, even as the distance b
 This image shows a video quality test at 110 feet, demonstrating a stable video stream at 29 FPS with a readable timer of 1:06.37 seconds.
 
 ### Video Conclusion
-The video tests showed that the system worked well at all distances up to 110 feet. The delay increased slightly as the distance grew, starting at about 0.008 seconds and reaching around 0.180 seconds, but it stayed low the whole time. The video quality stayed the same during the test, with a steady frame rate of about 30 FPS and no lag, blurriness, or skipped frames. This shows that the video stream stayed clear and stable across all distances in the indoor test.
+The video tests showed that the system worked well at all distances up to 110 feet. The delay increased slightly as the distance grew, starting at about 0.008 seconds and reaching around 0.180 seconds, but it stayed low the whole time. The video quality stayed the same during the test, with a steady frame rate of about 30 FPS and no lag, blurriness, or skipped frames. This shows that the video stream stayed clear and stable across all distances in the indoor test. However, testing was limited to indoor environments at a maximum range of 110 feet due to the lack of an external power source for the prototype, which restricted outdoor or long-range testing. Future evaluations will involve outdoor scenarios and increased distances to further assess system reliability and performance under varied conditions.
+
 
 ### Audio Quality Experiment
 In this experiment, one person was used as the "victim" at the drone end of the speaker. This person listened for 5 phrases comming from the operator (PC) end of the system. Then the victim will respond to each prompt that comes from the operator. This test was ran at the max testing distance of 110 feet without any obstructions to interfere with the connection siganl. This experiment will prove that a person in need will be able to hear prompts coming from the drone operator. It will also prove that the victim will be able to communicate needs back to the first responder. 
 
 ### Expectations
-In this experiement it is expected that the test subject will be able to accuratly depict the phrases communicated from the operator device. It is also expected that the operator will be able to clearly understand the test subject responding to the previously given prompts. \
+In this experiement it is expected that the test subject will be able to accuratly depict the phrases communicated from the operator device. It is also expected that the operator will be able to clearly understand the test subject responding to the previously given prompts.
 
 ### Procedure 
 - Step 1: Turn on Jetson Nano and start video streaming application
@@ -139,13 +140,39 @@ In this experiement it is expected that the test subject will be able to accurat
 - Step 5: Finish Testing
 
 ### Data Analysis 
+![Phrases](https://github.com/user-attachments/assets/9547eb9e-e413-4cf8-ae8c-d1b8cd80c745)  
+During the test, the operator spoke five phrases from a distance of 110 feet to a test subject using a Jetson Nano. The subject transcribed what they heard in real time. 
+
+The phrases were:
+1. Are you okay?
+2. What is your name?
+3. Do you need medical assistance?
+4. What is your location?
+5. What is your pain level?
+
+All phrases were captured 100% accurately, confirming clear audio reception by the Jetson Nano at that range.
+
+
+
+![Answers](https://github.com/user-attachments/assets/4a947a07-8cfb-4ade-8703-d53cf3d71a86)  
+Following the audio transmission of five phrases from the operator to the test subject (via a Jetson Nano at 110 feet), the subject responded in real time to the operator. The responses below were recorded and confirmed to be 100% accurate:
+
+1. "Yes" – in response to Are you okay?
+2. "Reese" – in response to What is your name?
+3. "Yes" – in response to Do you need medical assistance?
+4. "I don’t know" – in response to What is your location?
+5. "6" – in response to What is your pain level?  
+
+These results confirm effective two-way audio communication between the operator and the test subject at the tested range.
+
+
 
 ### Audio Conclusion
-The tests showed that both the video and audio transmission remained clear and reliable across all distances up to 110 feet. The video maintained a steady frame rate of around 30 FPS with no visible lag, blurring, or frame drops, even at the farthest point. Audio quality was also consistent, with no noticeable delays, dropouts, or distortion. In the audio test, both participants were able to clearly hear each other and respond to spoken prompts without issues. Overall, the system provided smooth video and audio communication with low latency and stable performance throughout each test. These experiments were limited to indoor tests due to only having a minimal functioning prototype without an external power source. The maximum range was 110 feet. 
+This experiment successfully demonstrated that clear two-way audio communication can be achieved between a Jetson Nano system and a remote operator over a distance of 110 feet. The test subject was able to accurately hear and transcribe all five emergency-related prompts, and the operator clearly received each of the subject’s verbal responses. These results validate the system's ability to support critical communication in a real-world emergency scenario. However, testing was limited to indoor environments at a maximum range of 110 feet due to the lack of an external power source for the prototype, which restricted outdoor or long-range testing. Future evaluations will involve outdoor scenarios and increased distances to further assess system reliability and performance under varied conditions.
 
 
 ### Satements of Contribution
--Gabe, Mathias, Caleb: Conducted the experiments for the heart rate and breathing rate. Also, put together the analysis report for both experiments. 
--Reese, Chris: Conducted the experiments for the video and audio. Also, put together the analysis report for both video and audio. 
+**Gabe Bucker, Mathias Hagewood, Caleb Bucher:** Conducted the experiments for the heart rate and breathing rate. Also, put together the analysis report for both experiments.  
+**Reese Gilbert and Chris Bradley:** Conducted the experiments for the video and audio. Also, put together the analysis report for both video and audio. 
 
 
