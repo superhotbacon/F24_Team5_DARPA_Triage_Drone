@@ -37,7 +37,8 @@ In the experiment, it is expected that we will find the Doppler's measurements w
   
 ### Data Analysis
 
-![image](https://github.com/user-attachments/assets/5904ed80-42a8-4b64-8fda-b9d60439291e)
+![image](https://github.com/user-attachments/assets/5ecee9fd-910d-497c-b1dc-44ff77898404)
+
 
 
 
