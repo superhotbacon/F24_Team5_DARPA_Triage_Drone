@@ -20,17 +20,17 @@
 #define NUM_RX_ANTENNAS 1
 #define FRAME_RATE 12.0
 #define NUMBER_OF_CHIRPS 1
-#define SAMPLES_PER_CHIRP 64
+#define SAMPLES_PER_CHIRP 128
 #define FFT_SIZE_RANGE_PROFILE (SAMPLES_PER_CHIRP * 2)
 #define QUEUE_SIZE 50
 #define OBJECT_DIST_START 0.5
-#define OBJECT_DIST_END 0.6
-#define BUFFER_SIZE 512
+#define OBJECT_DIST_END 1.5
+#define BUFFER_SIZE 128
 #define FFT_SIZE_2 (BUFFER_SIZE * 2);
 
 //The following were used in
 //a python script to create the filter coefficients
-#define LOW_BREATHING 0.15
+#define LOW_BREATHING 0.05
 #define HIGH_BREATHING 0.6
 #define LOW_HEART 0.85
 #define HIGH_HEART 2.4
@@ -274,7 +274,7 @@ void vital_signs_fft(float* input, float* output, int length){
     sl_fft_config.fft_size = FFT_SIZE_2;
     sl_fft_config.fft_type = IFX_FFT_TYPE_R2C;
     sl_fft_config.is_normalized_window = false;
-    sl_fft_config.mean_removal_enabled = false;
+    sl_fft_config.mean_removal_enabled = true;
     sl_fft_config.window_config = sl_wnd;
 
     ifx_PPFFT_t* sl_fft_tool = ifx_ppfft_create(&sl_fft_config);
@@ -341,7 +341,7 @@ void calc_range_fft(ifx_Vector_C_t* range_fft){
     fft_config.fft_size = FFT_SIZE_RANGE_PROFILE;
     fft_config.fft_type = IFX_FFT_TYPE_R2C;
     fft_config.is_normalized_window = false;
-    fft_config.mean_removal_enabled = false;
+    fft_config.mean_removal_enabled = true;
     fft_config.window_config = wnd;
     
     ifx_PPFFT_t* fft_tool = ifx_ppfft_create(&fft_config);
@@ -385,7 +385,6 @@ void* process_data_thread(void* arg) {
 
     int start_index = (int)(OBJECT_DIST_START/max_range * SAMPLES_PER_CHIRP);
     int end_index = (int)(OBJECT_DIST_END/max_range * SAMPLES_PER_CHIRP);
-    
     int index_start_breathing = (int)(LOW_BREATHING/FRAME_RATE * 2 * BUFFER_SIZE); //in python, don't use BUFFER_SIZE,
     int index_end_brething = (int)(HIGH_BREATHING/FRAME_RATE * 2 * BUFFER_SIZE);    //double it.
     int index_start_heart = (int)(LOW_HEART/FRAME_RATE * 2 * BUFFER_SIZE);
@@ -418,6 +417,7 @@ void* process_data_thread(void* arg) {
     float b_bpm = 0;
     float h_bpm = 0;
     float distance = 0;
+   
 
     while(1){
         if(!is_empty(&queue)){
@@ -614,13 +614,27 @@ void* process_data_thread(void* arg) {
             }
             
             avg_h_fft = max_val/counter;
+				
+				if(avg_h_fft < 0.1){
+					printf("No heart rate detected!\n");				
+				}
+				else{
+					printf("h_bpm: %f\n", h_bpm);
+				}
+				
+				if(avg_b_fft < 0.8){
+					printf("No breathing rate detected!\n");				
+				}
+				else{
+					printf("b_bpm: %f\n", b_bpm);
+				}
             
             printf("mag b: %f\n", avg_b_fft);
             printf("mag h: %f\n", avg_h_fft);
             
             printf("distance: %f m\n", distance);
-            printf("b_bpm: %f\n", b_bpm);
-            printf("h_bpm: %f\n", h_bpm);
+            //printf("b_bpm: %f\n", b_bpm);
+            //printf("h_bpm: %f\n", h_bpm);
             //printf("counter: %u\n", counter);
         }
     }
